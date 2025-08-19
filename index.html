@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Puranic Path - An Authentic Pilgrimage Agency</title>
+    <link rel="icon" type="image/png" href="Path2.jpg" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Chosen Palette: Sacred Earth -->
+    <!-- Application Structure Plan: The application is designed as a thematic, single-page dashboard to transform the dense business plan into an engaging user journey. The structure progresses logically from the core vision to market analysis, business model, competitive advantage, and future plans. This non-linear, thematic approach allows users (like investors or partners) to quickly grasp the key aspects of the business based on their interests, rather than reading a linear document. Key interactions include tabbed sections for philosophical concepts, interactive charts for financial and market data, and a visual timeline for the strategic roadmap, all designed to make complex information digestible and memorable. -->
+    <!-- Visualization & Content Choices: 
+        1. Market Growth: Report Info -> Market size FY2024 & projection FY2032. Goal -> Inform/Show Change. Viz -> Bar Chart. Interaction -> Tooltips on hover. Justification -> Clearly visualizes growth potential. Library -> Chart.js.
+        2. Startup Costs: Report Info -> Breakdown of initial costs. Goal -> Inform. Viz -> Doughnut Chart. Interaction -> Tooltips on hover. Justification -> Shows proportional allocation of capital effectively. Library -> Chart.js.
+        3. Core Philosophy: Report Info -> Types of Tīrthas, Core Rituals. Goal -> Organize/Inform. Viz -> Tabbed content blocks. Interaction -> Click to switch tabs. Justification -> Breaks down dense textual information into manageable, user-selectable sections. Method -> HTML/CSS/JS.
+        4. Competitive Analysis: Report Info -> Table 1 comparison. Goal -> Compare. Viz -> Interactive HTML Table. Interaction -> Row highlight on hover. Justification -> Enables direct, easy comparison of features against competitors. Method -> HTML/CSS/JS.
+        5. Launch Strategy: Report Info -> Phased launch plan. Goal -> Show Process. Viz -> Visual Timeline. Interaction -> Clickable phases to reveal details. Justification -> Intuitively presents the multi-year strategy. Method -> HTML/CSS/JS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <h1 class="text-2xl font-bold text-[#8C3B2A]" data-lang-key="mainTitle">
+          The Puranic Path
+        </h1>
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="#vision"
+            class="nav-link text-lg border-b-2 border-transparent"
+            data-lang-key="navVision"
+            >Vision</a
+          >
+          <a
+            href="#philosophy"
+            class="nav-link text-lg border-b-2 border-transparent"
+            data-lang-key="navPhilosophy"
+            >Philosophy</a
+          >
+          <a
+            href="#difference"
+            class="nav-link text-lg border-b-2 border-transparent"
+            data-lang-key="navDifference"
+            >Our Difference</a
+          >
+          <a
+            href="#sacred-sites"
+            class="nav-link text-lg border-b-2 border-transparent"
+            data-lang-key="navSacredSites"
+            >Sacred Sites</a
+          >
+          <a
+            href="#contact"
+            class="nav-link text-lg border-b-2 border-transparent"
+            data-lang-key="navContact"
+            >Contact</a
+          >
+          <div class="flex items-center border rounded-full p-1 bg-gray-200">
+            <button
+              id="lang-en"
+              class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+            >
+              EN
+            </button>
+            <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+              HI
+            </button>
+          </div>
+        </div>
+        <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden bg-[#FDFBF8] px-6 pb-4">
+        <a
+          href="#vision"
+          class="block py-2 nav-link"
+          data-lang-key="navVisionMobile"
+          >Vision</a
+        >
+        <a
+          href="#philosophy"
+          class="block py-2 nav-link"
+          data-lang-key="navPhilosophyMobile"
+          >Philosophy</a
+        >
+        <a
+          href="#difference"
+          class="block py-2 nav-link"
+          data-lang-key="navDifferenceMobile"
+          >Our Difference</a
+        >
+        <a
+          href="#sacred-sites"
+          class="block py-2 nav-link"
+          data-lang-key="navSacredSitesMobile"
+          >Sacred Sites</a
+        >
+        <a
+          href="#contact"
+          class="block py-2 nav-link"
+          data-lang-key="navContactMobile"
+          >Contact</a
+        >
+        <div
+          class="flex items-center border rounded-full p-1 bg-gray-200 mt-4 w-min"
+        >
+          <button
+            id="lang-en-mobile"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi-mobile" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section
+        id="vision"
+        class="py-20 bg-gradient-to-b from-[#FDFBF8] to-[#FBEEDB]"
+      >
+        <div class="container mx-auto px-6 text-center">
+          <h1
+            class="text-5xl md:text-6xl font-bold text-[#8C3B2A] mb-4"
+            data-lang-key="mainTitle"
+          >
+            The Puranic Path
+          </h1>
+          <h2
+            class="text-2xl md:text-3xl text-[#4A2E2A] mb-8"
+            data-lang-key="subTitle"
+          >
+            An Authentic Pilgrimage Experience
+          </h2>
+          <p
+            class="max-w-3xl mx-auto text-lg leading-relaxed"
+            data-lang-key="visionText"
+          >
+            "The Puranic Path" is a specialized religious tourism agency created
+            to restore the traditional, scripturally-mandated form of Hindu
+            pilgrimage (*tīrthayātrā*). Our purpose is not merely to offer a
+            tour, but to facilitate a holistic, immersive, and transformative
+            spiritual experience aligned with the deepest tenets of Sanatana
+            Dharma, centered on authenticity and simplicity over modern
+            comforts.
+          </p>
+        </div>
+      </section>
+
+      <section id="philosophy" class="py-20">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2
+              class="text-4xl font-bold text-[#8C3B2A]"
+              data-lang-key="philosophyTitle"
+            >
+              The Philosophical Foundation of Our Journey
+            </h2>
+            <p
+              class="mt-4 text-lg max-w-3xl mx-auto"
+              data-lang-key="philosophyIntro"
+            >
+              Every decision we make is inspired by the scriptures. We view
+              pilgrimage not as tourism, but as a spiritual discipline
+              (*tapas*). This section explains the core principles that shape
+              every experience we offer, transforming a simple journey into a
+              profound *yātrā*.
+            </p>
+          </div>
+
+          <div class="max-w-5xl mx-auto">
+            <div
+              class="flex flex-wrap justify-center border-b-2 border-[#8C3B2A]/20 mb-8"
+            >
+              <button
+                class="tab-button py-2 px-6 text-lg font-semibold active"
+                data-tab="tirtha"
+                data-lang-key="tabTirtha"
+              >
+                The Essence of a Tīrtha
+              </button>
+              <button
+                class="tab-button py-2 px-6 text-lg font-semibold"
+                data-tab="purpose"
+                data-lang-key="tabPurpose"
+              >
+                Purpose of Pilgrimage
+              </button>
+              <button
+                class="tab-button py-2 px-6 text-lg font-semibold"
+                data-tab="yatri"
+                data-lang-key="tabYatri"
+              >
+                The Ideal Pilgrim
+              </button>
+            </div>
+
+            <div id="tab-content">
+              <div class="tab-pane active" id="tirtha">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                  <h3
+                    class="text-3xl font-bold mb-4 text-center"
+                    data-lang-key="tirthaTitle"
+                  >
+                    A Place of Crossing Over
+                  </h3>
+                  <p
+                    class="text-lg leading-relaxed mb-6"
+                    data-lang-key="tirthaText"
+                  >
+                    The Sanskrit word *tīrtha* literally means a "ford" or a
+                    "crossing place." It is a sacred junction where the mundane
+                    and divine worlds intersect. Its purpose is to help the
+                    pilgrim cross the great ocean of *saṃsāra*—the cycle of
+                    birth and rebirth. Our services are designed around the
+                    three types of *tīrthas* described in the Skanda Purāṇa:
+                  </p>
+                  <div class="grid md:grid-cols-3 gap-8 text-center mt-6">
+                    <div class="border p-4 rounded-lg">
+                      <h4
+                        class="text-2xl font-bold mb-2"
+                        data-lang-key="sthavaraTitle"
+                      >
+                        Sthāvara Tīrtha
+                      </h4>
+                      <p data-lang-key="sthavaraText">
+                        (Immovable) The physical holy places like Kashi,
+                        Haridwar, and the Ganga river. Our journeys are centered
+                        on these sacred geographies.
+                      </p>
+                    </div>
+                    <div class="border p-4 rounded-lg">
+                      <h4
+                        class="text-2xl font-bold mb-2"
+                        data-lang-key="jangamaTitle"
+                      >
+                        Jaṅgama Tīrtha
+                      </h4>
+                      <p data-lang-key="jangamaText">
+                        (Movable) A holy person—a true Guru, sage, or saint. We
+                        provide opportunities for guidance from learned Pandits
+                        and revered saints.
+                      </p>
+                    </div>
+                    <div class="border p-4 rounded-lg">
+                      <h4
+                        class="text-2xl font-bold mb-2"
+                        data-lang-key="manasaTitle"
+                      >
+                        Mānasa Tīrtha
+                      </h4>
+                      <p data-lang-key="manasaText">
+                        (Mental) The virtues within the mind—truth, forgiveness,
+                        compassion, and self-control. Our entire journey is
+                        designed to cultivate this "inner tīrtha."
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane hidden" id="purpose">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                  <h3
+                    class="text-3xl font-bold mb-4 text-center"
+                    data-lang-key="purposeTitle"
+                  >
+                    Why We Undertake a Yātrā
+                  </h3>
+                  <p
+                    class="text-lg leading-relaxed mb-6"
+                    data-lang-key="purposeText"
+                  >
+                    A *tīrthayātrā* is undertaken for profound reasons that
+                    transcend tourism. Our services are designed to help
+                    pilgrims achieve these scripturally-sanctioned goals:
+                  </p>
+                  <ul class="list-disc list-inside space-y-3 text-lg">
+                    <li data-lang-key="purpose1">
+                      <strong>Accumulation of Merit (*Puṇya*):</strong> To
+                      perform actions that lead to favorable circumstances in
+                      this life and the next.
+                    </li>
+                    <li data-lang-key="purpose2">
+                      <strong>Atonement for Sins (*Prāyaścitta*):</strong> The
+                      hardships of the journey serve as a purificatory austerity
+                      for past misdeeds.
+                    </li>
+                    <li data-lang-key="purpose3">
+                      <strong>Spiritual Purification (*Citta Śuddhi*):</strong>
+                      The ultimate goal—to cleanse the mind of impurities like
+                      greed and ego, bringing one closer to liberation
+                      (*mokṣa*).
+                    </li>
+                    <li data-lang-key="purpose4">
+                      <strong>Ancestral Rites (*Piṇḍa Dāna*):</strong> To
+                      fulfill one's sacred duty to the ancestors at powerful
+                      designated sites.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tab-pane hidden" id="yatri">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                  <h3
+                    class="text-3xl font-bold mb-4 text-center"
+                    data-lang-key="yatriTitle"
+                  >
+                    Conduct of an Ideal Pilgrim (*Yātrī*)
+                  </h3>
+                  <p class="text-lg leading-relaxed" data-lang-key="yatriText1">
+                    The Puranas emphasize that the benefits of a pilgrimage
+                    depend on the pilgrim's inner state and conduct. We actively
+                    promote this prescribed code of conduct.
+                  </p>
+                  <blockquote
+                    class="border-l-4 border-[#FF6700] pl-4 italic text-lg my-6"
+                    data-lang-key="yatriQuote"
+                  >
+                    "A successful pilgrim is one whose hands, feet and mind are
+                    well controlled, who is free from vanity, and content with
+                    what little he gets."
+                  </blockquote>
+                  <p class="text-lg leading-relaxed" data-lang-key="yatriText2">
+                    The journey is meant to involve a degree of hardship
+                    (*tapas*). This is not a flaw but a central feature,
+                    intensifying one's faith (*śraddhā*) and focus. This
+                    principle informs our choice of simple accommodations and
+                    unhurried pacing.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="difference" class="py-20 bg-[#FBEEDB]">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2
+              class="text-4xl font-bold text-[#8C3B2A]"
+              data-lang-key="differenceTitle"
+            >
+              The Puranic Path Difference
+            </h2>
+            <p
+              class="mt-4 text-lg max-w-3xl mx-auto"
+              data-lang-key="differenceIntro"
+            >
+              Our approach is a complete rejection of the modern tourism model.
+              We have built our service on four pillars of authenticity,
+              ensuring an experience that is unavailable anywhere else.
+            </p>
+          </div>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3
+                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
+                data-lang-key="pillar1Title"
+              >
+                1. Sacred Itineraries
+              </h3>
+              <p class="text-lg" data-lang-key="pillar1Text">
+                Our routes are not designed for speed or convenience, but to
+                follow the spiritual logic of the Puranic scriptures (*Kṣetra
+                Māhātmya*). The journey's flow mirrors the sacred stories,
+                creating a cohesive and meaningful experience at an unhurried
+                pace, allowing time for reflection and ritual.
+              </p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3
+                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
+                data-lang-key="pillar2Title"
+              >
+                2. The Dharmśālā Ecosystem
+              </h3>
+              <p class="text-lg" data-lang-key="pillar2Text">
+                We exclusively use traditional *dharmśālās*—accommodations built
+                for pilgrims. This is a non-negotiable principle. Staying in a
+                clean, vetted *dharmśālā* fosters an environment of simplicity,
+                community, and humility, free from the commercial distractions
+                of hotels.
+              </p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3
+                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
+                data-lang-key="pillar3Title"
+              >
+                3. Authentic Guidance
+              </h3>
+              <p class="text-lg" data-lang-key="pillar3Text">
+                Our guides are not just tour managers; they are spiritual
+                facilitators and storytellers (*Yātrī Paṇḍās*). They bring each
+                sacred site to life by narrating its Puranic stories (*kathā*).
+                We also manage a network of qualified, reputable *Paṇḍitas* for
+                the correct performance of all rituals.
+              </p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3
+                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
+                data-lang-key="pillar4Title"
+              >
+                4. The Power of Kathā
+              </h3>
+              <p class="text-lg" data-lang-key="pillar4Text">
+                Every pilgrim receives a custom-published guidebook,
+                meticulously researched from the Puranas. This companion
+                contains the stories, glories (*māhātmya*), and ritual
+                procedures for your specific journey, making the act of
+                listening to stories (*Kathā Śravaṇa*) a core part of your
+                experience.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sacred-sites" class="py-20">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2
+              class="text-4xl font-bold text-[#8C3B2A]"
+              data-lang-key="sacredSitesTitle"
+            >
+              The Sacred Geography of Bharatavarsha
+            </h2>
+            <p
+              class="mt-4 text-lg max-w-3xl mx-auto"
+              data-lang-key="sacredSitesIntro"
+            >
+              As detailed in the Skanda Mahapurana and glorified in the
+              Bhaktamal, India is a sacred landscape dotted with
+              Tīrthas—gateways to the divine. Here are some of the most
+              significant sites, each with a profound story that forms the heart
+              of our pilgrimages.
+            </p>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div
+              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
+            >
+              <h3
+                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
+                data-lang-key="sitePuriTitle"
+              >
+                Puruṣottama Kṣetra (Puri)
+              </h3>
+              <p class="text-lg" data-lang-key="sitePuriText">
+                The abode of Lord Jagannath, a form of Vishnu. The Skanda Purana
+                glorifies this as a foremost tīrtha where the divine Mahaprasad
+                liberates all who partake in it. The annual Ratha Yatra is a
+                spectacle of devotion, drawing millions to witness the Lord of
+                the Universe on His chariot.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
+            >
+              <h3
+                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
+                data-lang-key="siteBadrinathTitle"
+              >
+                Badarikāśrama (Badrinath)
+              </h3>
+              <p class="text-lg" data-lang-key="siteBadrinathText">
+                Considered the supreme tīrtha for the current age of Kali. Here,
+                in the high Himalayas, the twin sages Nara and Narayana perform
+                eternal penance for the world's welfare. A single dip in the
+                freezing Alakananda river is said to wash away a lifetime of
+                sins.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
+            >
+              <h3
+                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
+                data-lang-key="siteDwarkaTitle"
+              >
+                Dvārakā
+              </h3>
+              <p class="text-lg" data-lang-key="siteDwarkaText">
+                The magnificent capital of Lord Krishna, established on the
+                western coast. The main Dvārakādhīśa temple stands as a
+                testament to His divine rule. The scriptures say a pilgrimage
+                here is incomplete without visiting Bet Dwarka, the island
+                believed to be His personal residence.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
+            >
+              <h3
+                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
+                data-lang-key="siteTirupatiTitle"
+              >
+                Veṅkaṭācala (Tirupati)
+              </h3>
+              <p class="text-lg" data-lang-key="siteTirupatiText">
+                The sacred hills where Lord Venkateswara, a form of Vishnu,
+                resides to grant blessings to devotees in the Kali Yuga. The
+                Purana narrates the immense merit (*puṇya*) gained by having the
+                *darśana* of the Lord after a purifying bath in the Swami
+                Pushkarini tank.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
+            >
+              <h3
+                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
+                data-lang-key="sitePushkarTitle"
+              >
+                Puṣkara
+              </h3>
+              <p class="text-lg" data-lang-key="sitePushkarText">
+                The primary tīrtha dedicated to Lord Brahma, the creator. It is
+                said that a lotus flower (*puṣpa*) fell from His hand (*kara*)
+                here, creating the sacred Pushkar Lake. A ritual bath in its
+                waters, especially on Kartik Purnima, is considered an act of
+                unparalleled merit.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
+            >
+              <h3
+                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
+                data-lang-key="siteKashiTitle"
+              >
+                Kāśī (Varanasi)
+              </h3>
+              <p class="text-lg" data-lang-key="siteKashiText">
+                The City of Liberation, resting on the trident of Lord Shiva.
+                The Kāśī Khaṇḍa of the Skanda Purana states that anyone who dies
+                within its sacred boundaries is granted certain *mokṣa*. It is
+                the eternal city, never forsaken by Shiva, even during cosmic
+                dissolution.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
+            >
+              <h3
+                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
+                data-lang-key="siteUjjainTitle"
+              >
+                Avantī (Ujjain)
+              </h3>
+              <p class="text-lg" data-lang-key="siteUjjainText">
+                Home to the powerful Mahākāleśvara Jyotirlinga, where Lord Shiva
+                resides as the master of time. The sanctity of the Shipra river
+                is praised extensively, and a bath in its waters followed by the
+                *darśana* of Mahakal is central to a pilgrimage here.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
+            >
+              <h3
+                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
+                data-lang-key="siteSomnathTitle"
+              >
+                Prabhāsa Kṣetra (Somnath)
+              </h3>
+              <p class="text-lg" data-lang-key="siteSomnathText">
+                The site of the first of the twelve Jyotirlingas, Somanātha, the
+                Lord of the Moon. The Purana narrates its glorious history, its
+                repeated destruction, and its divine reconstruction, symbolizing
+                the eternal and unconquerable nature of Dharma.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
+            >
+              <h3
+                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
+                data-lang-key="siteVrindavanTitle"
+              >
+                Vrindavan & Braj Bhumi
+              </h3>
+              <p class="text-lg" data-lang-key="siteVrindavanText">
+                While the Puranas lay the foundation, the Bhaktamal fills this
+                land with divine love. This is the eternal playground of Radha
+                and Krishna, sanctified by the footsteps of countless saints
+                like Surdas and Mirabai, where every particle of dust is
+                considered sacred.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="py-20 bg-[#FBEEDB]">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2
+              class="text-4xl font-bold text-[#8C3B2A]"
+              data-lang-key="contactTitle"
+            >
+              Inquire & Begin Your Journey
+            </h2>
+            <p
+              class="mt-4 text-lg max-w-2xl mx-auto"
+              data-lang-key="contactIntro"
+            >
+              Take the first step towards a truly transformative spiritual
+              experience. Reach out to us to learn more about our curated yatras
+              and how we can facilitate your sacred journey.
+            </p>
+          </div>
+          <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+            <form
+              action="https://formsubmit.co/shaleensingh238@gmail.com"
+              method="POST"
+            >
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="name"
+                    class="block text-lg font-medium mb-2"
+                    data-lang-key="formName"
+                    >Full Name</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#FF6700] focus:border-[#FF6700]"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="email"
+                    class="block text-lg font-medium mb-2"
+                    data-lang-key="formEmail"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#FF6700] focus:border-[#FF6700]"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="mt-6">
+                <label
+                  for="yatra-select"
+                  class="block text-lg font-medium mb-2"
+                  data-lang-key="formYatra"
+                  >Select a Yatra Circuit</label
+                >
+                <select
+                  id="yatra-select"
+                  name="yatra"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#FF6700] focus:border-[#FF6700]"
+                >
+                  <option data-lang-key="optionTriveni">
+                    Triveni Sangam Circuit (Ayodhya-Prayagraj-Varanasi)
+                  </option>
+                  <option data-lang-key="optionCharDham">
+                    Char Dham Yatra (Coming Soon)
+                  </option>
+                  <option data-lang-key="optionJyotirlinga">
+                    Dvādaśa Jyotirliṅga Yatra (Coming Soon)
+                  </option>
+                  <option data-lang-key="optionInquiry">General Inquiry</option>
+                </select>
+              </div>
+              <div class="mt-6">
+                <label
+                  for="message"
+                  class="block text-lg font-medium mb-2"
+                  data-lang-key="formMessage"
+                  >Your Message</label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#FF6700] focus:border-[#FF6700]"
+                  required
+                ></textarea>
+              </div>
+              <div class="mt-8 text-center">
+                <button
+                  type="submit"
+                  class="bg-[#8C3B2A] text-white text-xl font-bold py-3 px-12 rounded-lg hover:bg-[#FF6700] transition-colors duration-300"
+                  data-lang-key="formSubmit"
+                >
+                  Send Inquiry
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+        <p class="mt-2 text-sm" data-lang-key="footerDisclaimer">
+          This is a conceptual presentation.
+        </p>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
