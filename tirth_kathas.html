@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tirtha Kathas - Stories of Sacred Tirthas</title>
+    <link rel="icon" type="image/png" href="Path2.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      html[lang="en"] h1,
+      html[lang="en"] h2,
+      html[lang="en"] h3,
+      html[lang="en"] h4,
+      html[lang="en"] h5,
+      html[lang="en"] h6 {
+        font-family: "Lora", serif;
+      }
+      .filter-btn.active {
+        background-color: #8c3b2a;
+        color: #fdfbf8;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div>
+          <h1
+            class="text-2xl font-bold text-[#8C3B2A]"
+            data-lang-key="mainTitle"
+          >
+            The Puranic Path
+          </h1>
+          <p class="text-sm" data-lang-key="pageTitle">Tirtha Kathas</p>
+        </div>
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+      <div class="text-center mb-12">
+        <h2
+          class="text-4xl font-bold text-[#8C3B2A]"
+          data-lang-key="kathasHeader"
+        >
+          Sacred Stories of the Tirthas
+        </h2>
+        <p class="mt-4 text-lg max-w-3xl mx-auto" data-lang-key="kathasIntro">
+          Bharatavarsha is a living, sacred landscape. Select a Tirtha from the
+          list to discover its Puranic story and significance, as narrated in
+          the scriptures.
+        </p>
+      </div>
+
+      <div
+        class="max-w-7xl mx-auto md:grid md:grid-cols-3 md:gap-8 bg-white shadow-lg rounded-lg p-4"
+      >
+        <div class="md:col-span-1 border-r border-gray-200 pr-4">
+          <h3
+            class="text-2xl font-bold text-[#8C3B2A] mb-4"
+            data-lang-key="filterTitle"
+          >
+            Filter by Category
+          </h3>
+          <div id="filter-buttons" class="flex flex-wrap gap-2 mb-4">
+            <!-- Filter buttons will be inserted here -->
+          </div>
+          <div id="katha-list" class="max-h-[70vh] overflow-y-auto space-y-1">
+            <!-- List of Tirthas will be dynamically inserted here -->
+          </div>
+        </div>
+        <div id="katha-display" class="md:col-span-2 mt-8 md:mt-0 pl-4">
+          <div class="max-h-[70vh] overflow-y-auto pr-2">
+            <img
+              id="katha-image"
+              src=""
+              alt=""
+              class="w-full h-64 object-cover rounded-lg mb-4 shadow-md"
+            />
+            <h3
+              id="katha-title"
+              class="text-3xl font-bold text-[#8C3B2A] mb-4"
+            ></h3>
+            <div id="katha-story" class="text-lg leading-relaxed space-y-4">
+              <!-- Story will be displayed here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const tirthasData = {
+          en: [
+            {
+              name: "Kāśī (Varanasi)",
+              category: "Shaiva",
+              image: "images/kashi.jpg",
+              story:
+                "Lord Shiva established Kashi as his permanent abode. He promised that anyone who dies within its sacred boundaries will have the *tarak-mantra* whispered into their ear by Shiva himself, granting them immediate *moksha* (liberation).",
+            },
+            {
+              name: "Kedārnātha",
+              category: "Shaiva",
+              image: "images/kedarnath.jpg",
+              story:
+                "After the Kurukshetra war, the Pandavas sought forgiveness from Lord Shiva. Shiva, in the form of a bull, dived into the ground to avoid them, leaving his hump behind at Kedarnath. Worshipping this hump is considered equivalent to worshipping the entirety of Lord Shiva.",
+            },
+            {
+              name: "Somnath",
+              category: "Shaiva",
+              image: "images/somnath.jpg",
+              story:
+                "The Moon God, Chandra, was cursed by Daksha to wane into nothingness. He performed penance to Lord Shiva here, who partially freed him from the curse. As Shiva relieved the Moon's sorrow, he became known as Somnath (Lord of the Moon).",
+            },
+            {
+              name: "Mallikarjuna (Śrīśailam)",
+              category: "Shaiva",
+              image: "images/mallikarjuna.jpg",
+              story:
+                "A disappointed Kartikeya retreated to the Kroncha mountain after a dispute with Ganesha. To console him, Shiva and Parvati appeared as an Arjuna tree and a Mallika flower respectively. Together they are worshipped as Mallikarjuna.",
+            },
+            {
+              name: "Mahakaleshwar (Ujjain)",
+              category: "Shaiva",
+              image: "images/mahakaleshwar.jpg",
+              story:
+                "To protect the city of Avanti from the demon Dushan, Lord Shiva emerged from the earth as Mahakal (The Great Time). He reduced the demon to ashes and agreed to reside there permanently as the Mahakaleshwar Jyotirlinga.",
+            },
+            {
+              name: "Gokarna",
+              category: "Shaiva",
+              image: "images/gokarna.jpg",
+              story:
+                "Ravana obtained the invincible Atma-Linga from Shiva. Lord Ganesha, disguised as a boy, tricked him into placing it on the ground, where it became permanently fixed. In his rage, Ravana twisted it, giving the place the name Gokarna ('Cow's Ear').",
+            },
+            {
+              name: "Rameswaram",
+              category: "Shaiva",
+              image: "images/rameswaram.jpg",
+              story:
+                "To atone for killing Ravana, Lord Rama decided to worship Shiva. He consecrated a Shivalinga made of sand by Sita, which became the main deity, Ramanathaswamy (The Lord worshipped by Rama).",
+            },
+            {
+              name: "Trimbakeshwar",
+              category: "Shaiva",
+              image: "images/trimbakeshwar.jpg",
+              story:
+                "Sage Gautama performed penance to bring the Ganga river here to atone for the sin of killing a cow. Pleased, Shiva released a stream which became the Godavari river and established himself as the Trimbakeshwar Jyotirlinga.",
+            },
+            {
+              name: "Grishneshwar",
+              category: "Shaiva",
+              image: "images/grishneshwar.jpg",
+              story:
+                "The devout Ghushma's son was murdered by her jealous sister. Unshaken in her faith, she continued her daily worship. Pleased, Shiva restored her son to life and manifested as the Grishneshwar Jyotirlinga at her request.",
+            },
+            {
+              name: "Vaidyanath (Deoghar)",
+              category: "Shaiva",
+              image: "images/vaidyanath.jpg",
+              story:
+                "Ravana was carrying a Jyotirlinga to Lanka, with the condition not to place it on the ground. Lord Vishnu, disguised as a boy, offered to hold it while Ravana relieved himself. Vishnu placed it on the ground, where it became fixed as Vaidyanath, the 'Lord of Physicians'.",
+            },
+            {
+              name: "Arunachala (Tiruvannamalai)",
+              category: "Shaiva",
+              image: "images/arunachala.jpg",
+              story:
+                "Brahma and Vishnu argued over their supremacy. Shiva appeared as an infinite pillar of fire (Agni Lingam). Vishnu failed to find its bottom, and Brahma falsely claimed to have seen the top. Shiva cursed Brahma and blessed Vishnu. The fiery pillar cooled down into the holy hill of Arunachala.",
+            },
+            {
+              name: "Kalahasti",
+              category: "Shaiva",
+              image: "images/kalahasti.jpg",
+              story:
+                "A spider (Sri), a snake (Kala), and an elephant (Hasti) worshipped a Shivalinga here. They fought over their methods of worship and died. Pleased with their devotion, Shiva granted them liberation and named the place Sri Kalahasti.",
+            },
+            {
+              name: "Ayodhyā",
+              category: "Vaishnava",
+              image: "images/ayodhya.jpg",
+              story:
+                "The eternal capital of the Ikshvaku dynasty and the birthplace of Lord Rama. Every particle of dust here is considered sacred, having been touched by his lotus feet. A pilgrimage here is a journey into the heart of *Ram Rajya*.",
+            },
+            {
+              name: "Braj Bhūmi (Vrindavan)",
+              category: "Vaishnava",
+              image: "images/vrindavan.jpg",
+              story:
+                "The divine realm (*dhama*) of Radha and Krishna. Mathura is Krishna's birthplace, while Vrindavan is the intimate setting of his childhood pastimes and the divine Rasa Lila. A pilgrimage here cultivates a deep, personal feeling of love (*prema-bhakti*).",
+            },
+            {
+              name: "Jagannath Puri",
+              category: "Vaishnava",
+              image: "images/puri.jpg",
+              story:
+                "King Indradyumna commissioned the celestial architect Vishwakarma to carve the deities. The impatient king opened the workshop door early, and Vishwakarma vanished, leaving the deities in their unique, unfinished form, signifying that God is beyond human conception.",
+            },
+            {
+              name: "Badrinath",
+              category: "Vaishnava",
+              image: "images/badrinath.jpg",
+              story:
+                "To protect Lord Vishnu from harsh weather during his penance, Goddess Lakshmi took the form of a Badri (jujube) tree. Pleased, Vishnu declared that this place would be known by her name, and he would be worshipped as Badrinath (Lord of the Badri forest).",
+            },
+            {
+              name: "Gaya",
+              category: "Vaishnava",
+              image: "images/gaya.jpg",
+              story:
+                "The pious demon Gayasura offered his body for a sacrifice. Lord Vishnu placed his foot on Gayasura's head to stabilize him, leaving a footprint (the Vishnupad). In return, Gaya became the most sacred spot for offering *pindas* to ancestors.",
+            },
+            {
+              name: "Pandharpur",
+              category: "Vaishnava",
+              image: "images/pandharpur.jpg",
+              story:
+                "Lord Krishna came to bless the devout Pundalik, who was serving his parents. Engrossed in his duty, Pundalik threw a brick (*vit*) for the Lord to stand on and wait. The Lord remains in that form to this day as Vitthala, the Lord who waits for his devotee.",
+            },
+            {
+              name: "Chitrakoot",
+              category: "Vaishnava",
+              image: "images/chitrakoot.jpg",
+              story:
+                "The forest where Rama, Sita, and Lakshmana spent eleven and a half years of their exile. It was here that Bharata came to plead with Rama to return, taking his sandals (*padukas*) to place on the throne as a symbol of his rule.",
+            },
+            {
+              name: "Panchavati (Nashik)",
+              category: "Vaishnava",
+              image: "images/panchavati.jpg",
+              story:
+                "The site on the Godavari river where Rama, Sita, and Lakshmana built their hermitage. It was here that Surpanakha was disfigured and Sita was abducted by Ravana, setting the stage for the war in Lanka.",
+            },
+            {
+              name: "Hampi (Kishkindha)",
+              category: "Vaishnava",
+              image: "images/hampi.jpg",
+              story:
+                "The kingdom of the Vanaras, as described in the Ramayan. It was here, near the Pampa Sarovar, that Lord Rama met Hanuman and Sugriva, forging the alliance that would lead to the search for Sita and the eventual invasion of Lanka.",
+            },
+            {
+              name: "Dakor",
+              category: "Vaishnava",
+              image: "images/dakor.jpg",
+              story:
+                "A devotee named Bodana would walk to Dwarka every year to offer a tulsi leaf. When he grew old, Krishna, pleased with his devotion, told him to bring a cart and that He would come with him to Dakor. Bodana brought the deity in secret. The priests of Dwarka pursued him, but Krishna remained in Dakor as Ranchhodrai.",
+            },
+            {
+              name: "Guruvayur",
+              category: "Vaishnava",
+              image: "images/guruvayur.jpg",
+              story:
+                "The deity of Guruvayur was originally worshipped by Lord Brahma. At the end of a cosmic age, it was given to Guru (Brihaspati) and Vayu (the Wind God) to install in a new sacred place on earth. They installed it in this holy spot, which became known as Guruvayur.",
+            },
+            {
+              name: "Kanchipuram",
+              category: "Vaishnava",
+              image: "images/kanchipuram.jpg",
+              story:
+                "Home to the Varadaraja Perumal temple. Lord Brahma performed a grand yajna here to have a vision of Lord Vishnu. Vishnu emerged from the sacrificial fire as Varadaraja, the 'King who gives boons', and promised to reside here to bless all devotees.",
+            },
+            {
+              name: "Melukote",
+              category: "Vaishnava",
+              image: "images/melukote.jpg",
+              story:
+                "The great acharya Ramanuja recovered the utsava-murti (processional deity) of Cheluvanarayana Swamy from a Muslim emperor in Delhi. The emperor's daughter, who was devoted to the deity, followed it to Melukote and merged into the Lord. She is worshipped as Bibi Nachiyar.",
+            },
+            {
+              name: "Kāmākhyā",
+              category: "Shakta",
+              image: "images/kamakhya.jpg",
+              story:
+                "One of the most potent Shakti Pithas, where the *yoni* (womb) of Goddess Sati fell. The temple contains no idol but a rock fissure from which a natural spring flows, celebrating the creative power of the universe.",
+            },
+            {
+              name: "Vindhyachal",
+              category: "Shakta",
+              image: "images/vindhyachal.jpg",
+              story:
+                "After escaping from Kansa's grasp, the divine energy Yogamaya chose the Vindhya mountains as her abode. She resides here as Vindhyavasini, the 'dweller of the Vindhyas', protecting and blessing her devotees.",
+            },
+            {
+              name: "Kollur",
+              category: "Shakta",
+              image: "images/kollur.jpg",
+              story:
+                "A sage named Kola performed penance here. A demon named Mookasura gained a boon of invincibility and terrorized the sages. The Divine Mother, combining the powers of the Trimurti, appeared as Mookambika, slew the demon, and resided here to protect the righteous.",
+            },
+            {
+              name: "Vaishno Devi",
+              category: "Shakta",
+              image: "images/vaishno_devi.jpg",
+              story:
+                "The goddess Vaishnavi, an incarnation of the combined energies of the three goddesses, was performing penance when she was harassed by the tantric Bhairon Nath. She fled to a cave in the Trikuta mountains, eventually beheading him. His head landed where the Bhairon temple now stands. She then took her static form in the cave to bless devotees.",
+            },
+            {
+              name: "Srisailam (Bhramaramba)",
+              category: "Shakta",
+              image: "images/srisailam_shakta.jpg",
+              story:
+                "This is the Shakti Pitha where the neck of Goddess Sati is said to have fallen. The goddess is worshipped as Bhramaramba. A demon named Arunasura had a boon that he could not be killed by any two or four-legged creature. The goddess took the form of a swarm of bees (*bhramaras*) and killed him.",
+            },
+            {
+              name: "Naimisharanya",
+              category: "Other",
+              image: "images/naimisharanya.jpg",
+              story:
+                "The sages, seeking a safe place for penance in the Kali Yuga, asked Lord Brahma. He released a divine wheel (*chakra*), which landed in this forest, creating the Chakra Tirtha. It was here that Suta Goswami narrated all eighteen Puranas to the assembled sages.",
+            },
+            {
+              name: "Narmada River",
+              category: "Other",
+              image: "images/narmada.jpg",
+              story:
+                "Born from the sweat of Lord Shiva, the Narmada is so pure that her mere sight (*darshan*) is said to absolve sins. Every stone in her riverbed is a self-manifested Shivalinga (Banalinga). The Narmada Parikrama is one of the most profound pilgrimages.",
+            },
+            {
+              name: "Pushkar",
+              category: "Other",
+              image: "images/pushkar.jpg",
+              story:
+                "The primary tirtha of Lord Brahma. A lotus flower (*pushpa*) fell from his hand (*kara*), creating the sacred Pushkar Lake. A ritual bath here, especially on Kartik Purnima, is considered an act of unparalleled merit.",
+            },
+            {
+              name: "Haridwar",
+              category: "Other",
+              image: "images/haridwar.jpg",
+              story:
+                "One of the four sites where drops of the nectar of immortality (*amrita*) fell during the Samudra Manthan. It is the 'Gateway to the Lord' (Hari-dwar), where the Ganga river enters the plains. A bath at Har Ki Pauri is believed to wash away sins.",
+            },
+            {
+              name: "Prayag (Triveni Sangam)",
+              category: "Other",
+              image: "images/prayag.jpg",
+              story:
+                "The sacred confluence of the Ganga, Yamuna, and the mythical Saraswati rivers. The *Skanda Purana* states that a bath here grants immense spiritual merit. It is also the site where Lord Caitanya instructed Rupa Goswami on the science of bhakti.",
+            },
+            {
+              name: "Kurukshetra",
+              category: "Other",
+              image: "images/kurukshetra.jpg",
+              story:
+                "The battlefield where the Mahabharata war was fought and where Lord Krishna delivered the timeless wisdom of the Bhagavad Gita to Arjuna. The Brahma Sarovar here is said to have been created by Lord Brahma himself.",
+            },
+            {
+              name: "Śrī Raṅgam",
+              category: "Caitanya",
+              image: "images/srirangam.jpg",
+              story:
+                "Lord Caitanya spent four months here, overwhelmed with ecstatic love for Lord Ranganatha. He engaged in deep philosophical discussions, establishing the supremacy of Krishna-bhakti and inspiring a young Gopala Bhatta, who would become one of the Six Goswamis.",
+            },
+            {
+              name: "Uḍupi",
+              category: "Caitanya",
+              image: "images/udupi.jpg",
+              story:
+                "Lord Caitanya visited the temple established by Madhvacharya. He engaged in a profound philosophical debate with the Tattvavadis, refuting their dualistic philosophy and establishing the sublime truth of *acintya-bhedābheda-tattva* (inconceivable oneness and difference).",
+            },
+            {
+              name: "Ahobilam",
+              category: "Vaishnava",
+              image: "images/ahobilam.jpg",
+              story:
+                "The place where Lord Vishnu appeared as Narasimha to kill the demon Hiranyakashipu. The nine temples here (Nava Narasimha) are located in the hills where different events of this lila took place, from the Ugra Stambha (pillar from which he emerged) to the Jwala Narasimha (where he washed his hands).",
+            },
+            {
+              name: "Simhachalam",
+              category: "Vaishnava",
+              image: "images/simhachalam.jpg",
+              story:
+                "The deity of Varaha-Narasimha was covered in a thick layer of sandalwood paste by Prahlada Maharaja to cool his ferocious anger after killing Hiranyakashipu. To this day, the deity is covered in sandalwood paste for the entire year, and its true form is revealed for only 12 hours on the day of Akshaya Tritiya.",
+            },
+            {
+              name: "Bhimashankar",
+              category: "Shaiva",
+              image: "images/bhimashankar.jpg",
+              story:
+                "Lord Shiva took a formidable form (Bhima) to defeat the demon Tripurasura, who was harassing the sages in this region. After the battle, the sweat from Shiva's body formed the Bhima river. He then manifested as the Bhimashankar Jyotirlinga.",
+            },
+            {
+              name: "Omkareshwar",
+              category: "Shaiva",
+              image: "images/omkareshwar.jpg",
+              story:
+                "The Vindhya mountain performed penance to please Lord Shiva. Pleased, Shiva appeared and blessed him. At the request of the gods and sages, Shiva established himself here in two forms: Omkareshwar on one side of the Narmada island and Amareshwar on the other, together forming one Jyotirlinga.",
+            },
+            {
+              name: "Nageshwar (Nagnath)",
+              category: "Shaiva",
+              image: "images/nageshwar.jpg",
+              story:
+                "A demon named Daruka imprisoned a devout devotee of Shiva named Supriya. Supriya continued his worship in prison. Shiva appeared, killed the demon, and established himself as the Nageshwar Jyotirlinga to protect his devotees.",
+            },
+            {
+              name: "Gangotri",
+              category: "Other",
+              image: "images/gangotri.jpg",
+              story:
+                "The source of the Ganga river. King Bhagiratha performed severe penance for centuries to bring the celestial river Ganga to earth to liberate his ancestors. Lord Shiva agreed to catch the powerful river in his matted locks to prevent her force from shattering the earth.",
+            },
+            {
+              name: "Yamunotri",
+              category: "Other",
+              image: "images/yamunotri.jpg",
+              story:
+                "The source of the Yamuna river. The sage Asita Muni lived here. When he became too old to go to the Ganga for his daily bath, a stream of the Ganga appeared for him next to the Yamuna. The Yamuna is the sister of Yama, the god of death, and a bath in her waters is said to remove the fear of death.",
+            },
+            {
+              name: "Dhanushkodi",
+              category: "Vaishnava",
+              image: "images/dhanushkodi.jpg",
+              story:
+                "After crowning Vibhishana as the king of Lanka, Lord Rama broke the Rama Setu bridge with the end of his bow (*dhanush*) at Vibhishana's request, to mark the boundary. A bath at the confluence of the two seas here is considered highly sacred.",
+            },
+            {
+              name: "Sabarimala",
+              category: "Other",
+              image: "images/sabarimala.jpg",
+              story:
+                "The abode of Lord Ayyappan, a deity who is the son of Shiva and Mohini (the female form of Vishnu). Devotees undertake a rigorous 41-day vow of celibacy and austerity before making the arduous trek through the forest to the temple.",
+            },
+            {
+              name: "Tiruchendur",
+              category: "Other",
+              image: "images/tiruchendur.jpg",
+              story:
+                "The only major temple of Lord Kartikeya (Murugan) located on the seashore. It is believed that after defeating the demon Surapadman at this site, Kartikeya worshipped his father, Lord Shiva, to atone for the violence of the war.",
+            },
+            {
+              name: "Palani",
+              category: "Other",
+              image: "images/palani.jpg",
+              story:
+                "The sage Narada brought a divine mango to Mount Kailash. Ganesha won it through wisdom. A disappointed Kartikeya renounced the world and came to this hill. He is worshipped here as a young ascetic, Dandayudhapani, holding a staff.",
+            },
+            {
+              name: "Ranakpur",
+              category: "Other",
+              image: "images/ranakpur.jpg",
+              story:
+                "A Jain devotee named Dharna Shah had a divine vision of a celestial temple. He received a grant from the local king and commissioned an architect named Depa. The magnificent temple, with its 1,444 uniquely carved pillars, was built based on this divine inspiration.",
+            },
+            {
+              name: "Kolhapur",
+              category: "Shakta",
+              image: "images/kolhapur.jpg",
+              story:
+                "Home to the Mahalakshmi (Ambabai) temple. It is believed that the goddess resides here permanently. The sage Agastya is said to have worshipped her here. The deity is unique as it is made of gemstone and is considered self-manifested.",
+            },
+          ],
+          hi: [
+            {
+              name: "काशी (वाराणसी)",
+              category: "शैव",
+              image: "images/kashi.jpg",
+              story:
+                "भगवान शिव ने काशी को अपना स्थायी निवास बनाया। उन्होंने वचन दिया कि जो कोई भी इसकी पवित्र सीमाओं के भीतर मरता है, उसके कान में शिव स्वयं *तारक-मंत्र* का उपदेश देंगे, जिससे उसे तत्काल *मोक्ष* प्राप्त होगा।",
+            },
+            {
+              name: "केदारनाथ",
+              category: "शैव",
+              image: "images/kedarnath.jpg",
+              story:
+                "कुरुक्षेत्र युद्ध के बाद, पांडवों ने भगवान शिव से क्षमा मांगी। शिव, एक बैल का रूप धारण कर, उनसे बचने के लिए जमीन में समा गए, और केदारनाथ में अपनी पीठ का कूबड़ छोड़ गए। इस कूबड़ की पूजा करना संपूर्ण भगवान शिव की पूजा के बराबर माना जाता है।",
+            },
+            {
+              name: "सोमनाथ",
+              category: "शैव",
+              image: "images/somnath.jpg",
+              story:
+                "चंद्र देव को दक्ष ने क्षीण होने का श्राप दिया था। उन्होंने यहाँ भगवान शिव की तपस्या की, जिन्होंने उन्हें आंशिक रूप से श्राप से मुक्त किया। चूँकि शिव ने चंद्रमा का दुःख हर लिया, वे सोमनाथ (चंद्रमा के स्वामी) कहलाए।",
+            },
+            {
+              name: "मल्लिकार्जुन (श्रीशैलम)",
+              category: "शैव",
+              image: "images/mallikarjuna.jpg",
+              story:
+                "गणेश के साथ विवाद के बाद निराश कार्तिकेय क्रौंच पर्वत पर चले गए। उन्हें सांत्वना देने के लिए, शिव और पार्वती क्रमशः अर्जुन वृक्ष और मल्लिका फूल के रूप में प्रकट हुए। वे एक साथ मल्लिकार्जुन के रूप में पूजे जाते हैं।",
+            },
+            {
+              name: "महाकालेश्वर (उज्जैन)",
+              category: "शैव",
+              image: "images/mahakaleshwar.jpg",
+              story:
+                "अवंती शहर को दूषण नामक राक्षस से बचाने के लिए, भगवान शिव पृथ्वी से महाकाल (महान समय) के रूप में प्रकट हुए। उन्होंने राक्षस को भस्म कर दिया और महाकालेश्वर ज्योतिर्लिंग के रूप में स्थायी रूप से वहाँ निवास करने के लिए सहमत हुए।",
+            },
+            {
+              name: "गोकर्ण",
+              category: "शैव",
+              image: "images/gokarna.jpg",
+              story:
+                "रावण ने शिव से अजेय आत्म-लिंग प्राप्त किया। भगवान गणेश ने एक बालक का वेश धारण कर उसे जमीन पर रखने के लिए छल किया, जहाँ वह स्थायी रूप से स्थापित हो गया। क्रोध में रावण ने उसे मोड़ा, जिससे उस स्थान का नाम गोकर्ण ('गाय का कान') पड़ा।",
+            },
+            {
+              name: "रामेश्वरम",
+              category: "शैव",
+              image: "images/rameswaram.jpg",
+              story:
+                "रावण का वध करने के प्रायश्चित के लिए, भगवान राम ने शिव की पूजा करने का निर्णय लिया। उन्होंने सीता द्वारा बनाए गए रेत के शिवलिंग की प्रतिष्ठा की, जो मुख्य देवता, रामनाथस्वामी (राम द्वारा पूजित स्वामी) बने।",
+            },
+            {
+              name: "त्र्यंबकेश्वर",
+              category: "शैव",
+              image: "images/trimbakeshwar.jpg",
+              story:
+                "गौतम ऋषि ने गोहत्या के पाप से मुक्ति के लिए गंगा नदी को यहाँ लाने के लिए तपस्या की। प्रसन्न होकर, शिव ने एक धारा छोड़ी जो गोदावरी नदी बन गई और स्वयं त्र्यंबकेश्वर ज्योतिर्लिंग के रूप में स्थापित हो गए।",
+            },
+            {
+              name: "घृष्णेश्वर",
+              category: "शैव",
+              image: "images/grishneshwar.jpg",
+              story:
+                "धर्मपरायण घुश्मा के पुत्र की उसकी ईर्ष्यालु बहन ने हत्या कर दी। अपनी आस्था में अटूट, उसने अपनी दैनिक पूजा जारी रखी। प्रसन्न होकर, शिव ने उसके पुत्र को जीवन दान दिया और उसके अनुरोध पर घृष्णेश्वर ज्योतिर्लिंग के रूप में प्रकट हुए।",
+            },
+            {
+              name: "वैद्यनाथ (देवघर)",
+              category: "शैव",
+              image: "images/vaidyanath.jpg",
+              story:
+                "रावण एक ज्योतिर्लिंग को लंका ले जा रहा था, इस शर्त पर कि उसे जमीन पर न रखे। भगवान विष्णु ने एक बालक का वेश धारण कर उसे पकड़ने की पेशकश की और उसे जमीन पर रख दिया, जहाँ वह वैद्यनाथ, 'चिकित्सकों के भगवान' के रूप में स्थापित हो गया।",
+            },
+            {
+              name: "अरुणाचल (तिरुवन्नामलाई)",
+              category: "शैव",
+              image: "images/arunachala.jpg",
+              story:
+                "ब्रह्मा और विष्णु में श्रेष्ठता को लेकर विवाद हुआ। शिव एक अनंत अग्नि स्तंभ (अग्नि लिंगम) के रूप में प्रकट हुए। विष्णु इसका तल नहीं खोज पाए, और ब्रह्मा ने झूठ बोला। शिव ने ब्रह्मा को श्राप दिया। अग्नि स्तंभ अरुणाचल की पवित्र पहाड़ी के रूप में शांत हो गया।",
+            },
+            {
+              name: "कालहस्ती",
+              category: "शैव",
+              image: "images/kalahasti.jpg",
+              story:
+                "एक मकड़ी (श्री), एक सांप (काल), और एक हाथी (हस्ती) यहाँ एक शिवलिंग की पूजा करते थे। वे अपनी पूजा के तरीकों पर लड़े और मर गए। उनकी भक्ति से प्रसन्न होकर, शिव ने उन्हें मोक्ष प्रदान किया और उस स्थान का नाम श्री कालहस्ती रखा।",
+            },
+            {
+              name: "अयोध्या",
+              category: "वैष्णव",
+              image: "images/ayodhya.jpg",
+              story:
+                "इक्ष्वाकु वंश की शाश्वत राजधानी और भगवान राम का जन्मस्थान। यहाँ की धूल का हर कण पवित्र माना जाता है। यहाँ की तीर्थयात्रा *राम राज्य* के हृदय की यात्रा है।",
+            },
+            {
+              name: "ब्रज भूमि (वृंदावन)",
+              category: "वैष्णव",
+              image: "images/vrindavan.jpg",
+              story:
+                "राधा और कृष्ण का दिव्य क्षेत्र (*धाम*)। मथुरा कृष्ण का जन्मस्थान है, जबकि वृंदावन उनकी बाल लीलाओं और दिव्य रास लीला का अंतरंग स्थल है। यहाँ की तीर्थयात्रा *प्रेम-भक्ति* की गहरी, व्यक्तिगत भावना को विकसित करती है।",
+            },
+            {
+              name: "जगन्नाथ पुरी",
+              category: "वैष्णव",
+              image: "images/puri.jpg",
+              story:
+                "राजा इंद्रद्युम्न ने विश्वकर्मा को देवताओं को तराशने का काम सौंपा। अधीर राजा ने कार्यशाला का दरवाजा जल्दी खोल दिया, और विश्वकर्मा गायब हो गए, जिससे देवता अपने अद्वितीय, अधूरे रूप में रह गए, यह दर्शाता है कि भगवान मानव कल्पना से परे हैं।",
+            },
+            {
+              name: "बद्रीनाथ",
+              category: "वैष्णव",
+              image: "images/badrinath.jpg",
+              story:
+                "अपनी तपस्या के दौरान भगवान विष्णु को कठोर मौसम से बचाने के लिए, देवी लक्ष्मी ने एक बद्री (बेर) के पेड़ का रूप ले लिया। प्रसन्न होकर, विष्णु ने घोषणा की कि यह स्थान उनके नाम से जाना जाएगा, और वे बद्रीनाथ (बद्री वन के स्वामी) के रूप में पूजे जाएंगे।",
+            },
+            {
+              name: "गया",
+              category: "वैष्णव",
+              image: "images/gaya.jpg",
+              story:
+                "पवित्र राक्षस गयासुर ने अपना शरीर एक यज्ञ के लिए अर्पित किया। भगवान विष्णु ने उसे स्थिर करने के लिए उसके सिर पर अपना पैर रखा, जिससे एक पदचिह्न (विष्णुपद) छूट गया। बदले में, गया पूर्वजों को *पिंड* अर्पित करने के लिए सबसे पवित्र स्थान बन गया।",
+            },
+            {
+              name: "पंढरपुर",
+              category: "वैष्णव",
+              image: "images/pandharpur.jpg",
+              story:
+                "भगवान कृष्ण भक्त पुंडलिक को आशीर्वाद देने आए, जो अपने माता-पिता की सेवा कर रहे थे। अपने कर्तव्य में लीन, पुंडलिक ने भगवान के खड़े होने के लिए एक ईंट (*विठ्*) फेंकी। भगवान आज भी उसी रूप में विट्ठल के रूप में खड़े हैं, जो अपने भक्त की प्रतीक्षा करते हैं।",
+            },
+            {
+              name: "चित्रकूट",
+              category: "वैष्णव",
+              image: "images/chitrakoot.jpg",
+              story:
+                "वह वन जहाँ राम, सीता और लक्ष्मण ने अपने वनवास के साढ़े ग्यारह वर्ष बिताए। यहीं पर भरत राम से लौटने की विनती करने आए थे, और उनकी *पादुकाओं* को सिंहासन पर रखकर शासन करने के प्रतीक के रूप में ले गए।",
+            },
+            {
+              name: "पंचवटी (नासिक)",
+              category: "वैष्णव",
+              image: "images/panchavati.jpg",
+              story:
+                "गोदावरी नदी के तट पर वह स्थल जहाँ राम, सीता और लक्ष्मण ने अपनी कुटिया बनाई। यहीं पर शूर्पणखा का अपमान हुआ और रावण द्वारा सीता का हरण किया गया, जिससे लंका में युद्ध की नींव पड़ी।",
+            },
+            {
+              name: "हम्पी (किष्किंधा)",
+              category: "वैष्णव",
+              image: "images/hampi.jpg",
+              story:
+                "वानरों का राज्य, जैसा कि रामायण में वर्णित है। यहीं पंपा सरोवर के पास भगवान राम हनुमान और सुग्रीव से मिले, जिससे सीता की खोज और लंका पर आक्रमण का मार्ग प्रशस्त हुआ।",
+            },
+            {
+              name: "डाकोर",
+              category: "वैष्णव",
+              image: "images/dakor.jpg",
+              story:
+                "बोडाना नामक एक भक्त हर साल द्वारका जाता था। जब वह बूढ़ा हो गया, तो कृष्ण उसके साथ एक गाड़ी में डाकोर आ गए। द्वारका के पुजारियों ने उसका पीछा किया, लेकिन कृष्ण रणछोड़राय के रूप में डाकोर में ही रह गए।",
+            },
+            {
+              name: "गुरुवायुर",
+              category: "वैष्णव",
+              image: "images/guruvayur.jpg",
+              story:
+                "गुरुवायुर की मूर्ति की पूजा मूल रूप से भगवान ब्रह्मा करते थे। एक युग के अंत में, इसे गुरु (बृहस्पति) और वायु (पवन देव) को पृथ्वी पर एक नए पवित्र स्थान पर स्थापित करने के लिए दिया गया, जिसे गुरुवायुर के नाम से जाना गया।",
+            },
+            {
+              name: "कांचीपुरम",
+              category: "वैष्णव",
+              image: "images/kanchipuram.jpg",
+              story:
+                "वरदराज पेरुमल मंदिर का घर। भगवान ब्रह्मा ने यहाँ भगवान विष्णु के दर्शन के लिए एक भव्य यज्ञ किया। विष्णु यज्ञ की अग्नि से वरदराज, 'वरदान देने वाले राजा' के रूप में प्रकट हुए।",
+            },
+            {
+              name: "मेलुकोटे",
+              category: "वैष्णव",
+              image: "images/melukote.jpg",
+              story:
+                "महान आचार्य रामानुज ने चेलुवनारायण स्वामी की उत्सव-मूर्ति को दिल्ली के एक मुस्लिम सम्राट से पुनः प्राप्त किया। सम्राट की बेटी, जो मूर्ति की भक्त थी, उसके पीछे मेलुकोटे तक आई और भगवान में विलीन हो गई।",
+            },
+            {
+              name: "कामाख्या",
+              category: "शाक्त",
+              image: "images/kamakhya.jpg",
+              story:
+                "सबसे शक्तिशाली शक्ति पीठों में से एक, जहाँ देवी सती की *योनि* गिरी थी। मंदिर में कोई मूर्ति नहीं है, बल्कि एक चट्टान की दरार है जिससे एक प्राकृतिक झरना बहता है, जो ब्रह्मांड की रचनात्मक शक्ति का जश्न मनाता है।",
+            },
+            {
+              name: "विंध्याचल",
+              category: "शाक्त",
+              image: "images/vindhyachal.jpg",
+              story:
+                "कंस के चंगुल से बचने के बाद, दिव्य ऊर्जा योगमाया ने विंध्य पर्वतों को अपना निवास चुना। वह यहाँ विंध्यवासिनी, 'विंध्य की निवासिनी' के रूप में निवास करती हैं, अपने भक्तों की रक्षा और आशीर्वाद देती हैं।",
+            },
+            {
+              name: "कोल्लूर",
+              category: "शाक्त",
+              image: "images/kollur.jpg",
+              story:
+                "एक राक्षस मूकासुर ने ऋषियों को आतंकित किया। देवी माँ, त्रिदेवों की शक्तियों को मिलाकर, मूकाम्बिका के रूप में प्रकट हुईं, राक्षस का वध किया और धर्मियों की रक्षा के लिए यहाँ निवास किया।",
+            },
+            {
+              name: "वैष्णो देवी",
+              category: "शाक्त",
+              image: "images/vaishno_devi.jpg",
+              story:
+                "देवी वैष्णवी, तीन देवियों की संयुक्त ऊर्जा का अवतार, तपस्या कर रही थीं जब तांत्रिक भैरों नाथ ने उन्हें परेशान किया। वह एक गुफा में भाग गईं, अंततः उसका सिर काट दिया। वह भक्तों को आशीर्वाद देने के लिए गुफा में अपने स्थिर रूप में स्थित हो गईं।",
+            },
+            {
+              name: "श्रीशैलम (भ्रमराम्बा)",
+              category: "शाक्त",
+              image: "images/srisailam_shakta.jpg",
+              story:
+                "यह वह शक्ति पीठ है जहाँ देवी सती की गर्दन गिरी थी। देवी को भ्रमराम्बा के रूप में पूजा जाता है। देवी ने मधुमक्खियों (*भ्रमर*) का रूप धारण कर अरुणासुर नामक राक्षस का वध किया।",
+            },
+            {
+              name: "नैमिषारण्य",
+              category: "अन्य",
+              image: "images/naimisharanya.jpg",
+              story:
+                "ऋषियों ने कलियुग में तपस्या के लिए एक सुरक्षित स्थान मांगा। ब्रह्मा ने एक दिव्य चक्र छोड़ा, जो इस जंगल में गिरा, जिससे चक्र तीर्थ का निर्माण हुआ। यहीं पर सूत गोस्वामी ने सभी अठारह पुराणों का वर्णन किया।",
+            },
+            {
+              name: "नर्मदा नदी",
+              category: "अन्य",
+              image: "images/narmada.jpg",
+              story:
+                "भगवान शिव के पसीने से जन्मी, नर्मदा इतनी पवित्र है कि उसके मात्र *दर्शन* से पापों का नाश हो जाता है। उसके नदी तल का हर पत्थर एक स्वयंभू शिवलिंग (बाणलिंग) है। नर्मदा परिक्रमा सबसे गहन तीर्थयात्राओं में से एक है।",
+            },
+            {
+              name: "पुष्कर",
+              category: "अन्य",
+              image: "images/pushkar.jpg",
+              story:
+                "भगवान ब्रह्मा का प्राथमिक तीर्थ। उनके हाथ (*कर*) से एक कमल का फूल (*पुष्प*) गिरा, जिससे पवित्र पुष्कर झील का निर्माण हुआ। यहाँ स्नान, विशेष रूप से कार्तिक पूर्णिमा पर, अद्वितीय पुण्य का कार्य माना जाता है।",
+            },
+            {
+              name: "हरिद्वार",
+              category: "अन्य",
+              image: "images/haridwar.jpg",
+              story:
+                "उन चार स्थलों में से एक जहाँ समुद्र मंथन के दौरान अमृत की बूंदें गिरी थीं। यह 'भगवान का द्वार' (हरि-द्वार) है, जहाँ गंगा नदी मैदानों में प्रवेश करती है। हर की पौड़ी पर स्नान से पाप धुल जाते हैं।",
+            },
+            {
+              name: "प्रयाग (त्रिवेणी संगम)",
+              category: "अन्य",
+              image: "images/prayag.jpg",
+              story:
+                "गंगा, यमुना और पौराणिक सरस्वती नदियों का पवित्र संगम। स्कंद पुराण कहता है कि यहाँ स्नान करने से अपार आध्यात्मिक पुण्य मिलता है। यह वह स्थल भी है जहाँ भगवान चैतन्य ने रूप गोस्वामी को भक्ति का विज्ञान सिखाया।",
+            },
+            {
+              name: "कुरुक्षेत्र",
+              category: "अन्य",
+              image: "images/kurukshetra.jpg",
+              story:
+                "वह युद्धक्षेत्र जहाँ महाभारत का युद्ध लड़ा गया और जहाँ भगवान कृष्ण ने अर्जुन को भगवद गीता का कालातीत ज्ञान दिया। यहाँ का ब्रह्म सरोवर स्वयं भगवान ब्रह्मा द्वारा बनाया गया माना जाता है।",
+            },
+            {
+              name: "श्री रंगम",
+              category: "चैतन्य",
+              image: "images/srirangam.jpg",
+              story:
+                "भगवान चैतन्य ने यहाँ चार महीने बिताए, भगवान रंगनाथ के प्रति परमानंद प्रेम में अभिभूत होकर। उन्होंने गहन दार्शनिक चर्चाओं में भाग लिया, कृष्ण-भक्ति की सर्वोच्चता स्थापित की और एक युवा गोपाल भट्ट को प्रेरित किया, जो बाद में वृंदावन के छह गोस्वामियों में से एक बने।",
+            },
+            {
+              name: "उडुपी",
+              category: "चैतन्य",
+              image: "images/udupi.jpg",
+              story:
+                "भगवान चैतन्य ने माधवाचार्य द्वारा स्थापित मंदिर का दौरा किया। उन्होंने तत्ववादियों के साथ एक गहन दार्शनिक बहस में भाग लिया, उनके द्वैतवादी दर्शन का खंडन किया और *अचिन्त्य-भेदाभेद-तत्त्व* (अकल्पनीय एकता और भिन्नता) के उदात्त सत्य की स्थापना की।",
+            },
+            {
+              name: "अहोबिलम",
+              category: "वैष्णव",
+              image: "images/ahobilam.jpg",
+              story:
+                "वह स्थान जहाँ भगवान विष्णु ने राक्षस हिरण्यकशिपु का वध करने के लिए नरसिंह के रूप में अवतार लिया। यहाँ के नौ मंदिर (नव नरसिंह) उन पहाड़ियों में स्थित हैं जहाँ इस लीला की विभिन्न घटनाएँ हुईं।",
+            },
+            {
+              name: "सिंहाचलम",
+              category: "वैष्णव",
+              image: "images/simhachalam.jpg",
+              story:
+                "प्रह्लाद महाराज ने हिरण्यकशिपु का वध करने के बाद वराह-नरसिंह के उग्र क्रोध को शांत करने के लिए मूर्ति को चंदन के लेप की एक मोटी परत से ढक दिया। आज भी, मूर्ति पूरे वर्ष चंदन के लेप से ढकी रहती है, और इसका वास्तविक रूप केवल अक्षय तृतीया के दिन 12 घंटों के लिए प्रकट होता है।",
+            },
+            {
+              name: "भीमाशंकर",
+              category: "शैव",
+              image: "images/bhimashankar.jpg",
+              story:
+                "भगवान शिव ने इस क्षेत्र में ऋषियों को परेशान करने वाले राक्षस त्रिपुरासुर को हराने के लिए एक विकराल रूप (भीम) धारण किया। युद्ध के बाद, शिव के शरीर के पसीने से भीमा नदी का निर्माण हुआ। फिर वे भीमाशंकर ज्योतिर्लिंग के रूप में प्रकट हुए।",
+            },
+            {
+              name: "ओंकारेश्वर",
+              category: "शैव",
+              image: "images/omkareshwar.jpg",
+              story:
+                "विंध्य पर्वत ने भगवान शिव को प्रसन्न करने के लिए तपस्या की। प्रसन्न होकर, शिव प्रकट हुए और उन्हें आशीर्वाद दिया। देवताओं और ऋषियों के अनुरोध पर, शिव ने यहाँ दो रूपों में स्वयं को स्थापित किया: नर्मदा द्वीप के एक तरफ ओंकारेश्वर और दूसरी तरफ अमरेश्वर, जो मिलकर एक ज्योतिर्लिंग बनाते हैं।",
+            },
+            {
+              name: "नागेश्वर (नागनाथ)",
+              category: "शैव",
+              image: "images/nageshwar.jpg",
+              story:
+                "दारुका नामक एक राक्षस ने शिव के एक भक्त सुप्रिय को बंदी बना लिया। सुप्रिय ने जेल में अपनी पूजा जारी रखी। शिव प्रकट हुए, राक्षस का वध किया, और अपने भक्तों की रक्षा के लिए नागेश्वर ज्योतिर्लिंग के रूप में स्वयं को स्थापित किया।",
+            },
+            {
+              name: "गंगोत्री",
+              category: "अन्य",
+              image: "images/gangotri.jpg",
+              story:
+                "गंगा नदी का स्रोत। राजा भगीरथ ने अपने पूर्वजों को मुक्त करने के लिए दिव्य नदी गंगा को पृथ्वी पर लाने के लिए सदियों तक कठोर तपस्या की। भगवान शिव ने पृथ्वी को उसके बल से टूटने से बचाने के लिए शक्तिशाली नदी को अपनी जटाओं में पकड़ने के लिए सहमति व्यक्त की।",
+            },
+            {
+              name: "यमुनोत्री",
+              category: "अन्य",
+              image: "images/yamunotri.jpg",
+              story:
+                "यमुना नदी का स्रोत। असित मुनि यहाँ रहते थे। जब वे अपने दैनिक स्नान के लिए गंगा जाने के लिए बहुत बूढ़े हो गए, तो यमुना के बगल में उनके लिए गंगा की एक धारा प्रकट हुई। यमुना मृत्यु के देवता यम की बहन है, और उसके जल में स्नान से मृत्यु का भय दूर हो जाता है।",
+            },
+            {
+              name: "धनुषकोडी",
+              category: "वैष्णव",
+              image: "images/dhanushkodi.jpg",
+              story:
+                "विभीषण को लंका का राजा बनाने के बाद, भगवान राम ने विभीषण के अनुरोध पर सीमा को चिह्नित करने के लिए अपने धनुष (*धनुष*) के अंत से राम सेतु पुल को तोड़ दिया। यहाँ दो समुद्रों के संगम पर स्नान को अत्यधिक पवित्र माना जाता है।",
+            },
+            {
+              name: "शिर्डी",
+              category: "अन्य",
+              image: "images/shirdi.jpg",
+              story:
+                "महान संत साईं बाबा का निवास, जिन्हें हिंदू और मुस्लिम दोनों पूजते हैं। वे एक साधारण फकीर के रूप में रहते थे, चमत्कार करते थे और 'श्रद्धा' (विश्वास) और 'सबुरी' (धैर्य) के सिद्धांतों को सिखाते थे। मंदिर परिसर एक प्रमुख तीर्थ स्थल है।",
+            },
+            {
+              name: "सबरीमाला",
+              category: "अन्य",
+              image: "images/sabarimala.jpg",
+              story:
+                "भगवान अय्यप्पन का निवास, एक देवता जो शिव और मोहिनी (विष्णु का स्त्री रूप) के पुत्र हैं। भक्त मंदिर तक जंगल के माध्यम से कठिन यात्रा करने से पहले 41 दिनों के ब्रह्मचर्य और तपस्या का कठोर व्रत करते हैं।",
+            },
+            {
+              name: "तिरुचेंदूर",
+              category: "अन्य",
+              image: "images/tiruchendur.jpg",
+              story:
+                "समुद्र तट पर स्थित भगवान कार्तिकेय (मुरुगन) का एकमात्र प्रमुख मंदिर। माना जाता है कि इस स्थल पर राक्षस सूरपद्मन को हराने के बाद, कार्तिकेय ने युद्ध की हिंसा के प्रायश्चित के लिए अपने पिता भगवान शिव की पूजा की।",
+            },
+            {
+              name: "पलानी",
+              category: "अन्य",
+              image: "images/palani.jpg",
+              story:
+                "नारद मुनि कैलाश पर्वत पर एक दिव्य आम लाए। गणेश ने इसे ज्ञान से जीता। निराश कार्तिकेय ने दुनिया त्याग दी और इस पहाड़ी पर आ गए। उन्हें यहाँ एक युवा तपस्वी, दंडायुधपाणि के रूप में पूजा जाता है, जो एक छड़ी धारण करते हैं।",
+            },
+            {
+              name: "रणकपुर",
+              category: "अन्य",
+              image: "images/ranakpur.jpg",
+              story:
+                "धरना शाह नामक एक जैन भक्त को एक दिव्य मंदिर का दिव्य दर्शन हुआ। उन्होंने स्थानीय राजा से अनुदान प्राप्त किया और दीपा नामक एक वास्तुकार को नियुक्त किया। 1,444 विशिष्ट नक्काशीदार स्तंभों वाला शानदार मंदिर इस दिव्य प्रेरणा के आधार पर बनाया गया था।",
+            },
+            {
+              name: "कोल्हापुर",
+              category: "शाक्त",
+              image: "images/kolhapur.jpg",
+              story:
+                "महालक्ष्मी (अंबाबाई) मंदिर का घर। माना जाता है कि देवी यहाँ स्थायी रूप से निवास करती हैं। कहा जाता है कि अगस्त्य ऋषि ने यहाँ उनकी पूजा की थी। मूर्ति अद्वितीय है क्योंकि यह रत्न से बनी है और इसे स्वयंभू माना जाता है।",
+            },
+          ],
+        };
+
+        // Add Hindi data by copying English data if it's missing (for demonstration)
+        if (tirthasData.hi.length < tirthasData.en.length) {
+          tirthasData.hi = tirthasData.en.map((en_tirtha) => {
+            // This is a placeholder. You would replace these with actual Hindi translations.
+            return {
+              ...en_tirtha,
+              // Example of how you would structure the Hindi name
+              // name: getHindiName(en_tirtha.name),
+              // story: getHindiStory(en_tirtha.story)
+            };
+          });
+          // Manually add one known translation to show functionality
+          tirthasData.hi[0] = {
+            name: "काशी (वाराणसी)",
+            category: "शैव",
+            image: "images/kashi.jpg",
+            story:
+              "भगवान शिव ने काशी को अपना स्थायी निवास बनाया। उन्होंने वचन दिया कि जो कोई भी इसकी पवित्र सीमाओं के भीतर मरता है, उसके कान में शिव स्वयं *तारक-मंत्र* का उपदेश देंगे, जिससे उसे तत्काल *मोक्ष* प्राप्त होगा।",
+          };
+        }
+
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            pageTitle: "Tirtha Kathas",
+            kathasHeader: "Sacred Stories of the Tirthas",
+            kathasIntro:
+              "Bharatavarsha is a living, sacred landscape. Select a Tirtha from the list to discover its Puranic story and significance, as narrated in the scriptures.",
+            filterTitle: "Filter by Category",
+            footerRights: "© 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            pageTitle: "तीर्थ कथाएँ",
+            kathasHeader: "तीर्थों की पवित्र कथाएँ",
+            kathasIntro:
+              "भारतवर्ष एक जीवंत, पवित्र परिदृश्य है। शास्त्रों में वर्णित अनुसार, किसी तीर्थ का चयन करके उसकी पौराणिक कथा और महत्व की खोज करें।",
+            filterTitle: "श्रेणी के अनुसार फ़िल्टर करें",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const kathaList = document.getElementById("katha-list");
+        const kathaTitle = document.getElementById("katha-title");
+        const kathaStory = document.getElementById("katha-story");
+        const kathaImage = document.getElementById("katha-image");
+        const filterButtonsContainer =
+          document.getElementById("filter-buttons");
+        let currentLang = "en";
+        let currentFilter = "All";
+
+        function updateLanguage(lang) {
+          currentLang = lang;
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            document
+              .getElementById("lang-hi")
+              .classList.add("bg-[#8C3B2A]", "text-white");
+            document
+              .getElementById("lang-en")
+              .classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            document
+              .getElementById("lang-en")
+              .classList.add("bg-[#8C3B2A]", "text-white");
+            document
+              .getElementById("lang-hi")
+              .classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+          populateFilterButtons();
+          populateKathaList();
+        }
+
+        function displayKatha(index) {
+          // Ensure index is valid for the current language data
+          if (index >= tirthasData[currentLang].length) {
+            console.error("Invalid index for katha data:", index);
+            return;
+          }
+          const tirtha = tirthasData[currentLang][index];
+          kathaTitle.textContent = tirtha.name;
+          kathaStory.innerHTML = `<p>${tirtha.story}</p>`;
+          kathaImage.src = tirtha.image;
+          kathaImage.alt = tirtha.name;
+
+          document.querySelectorAll("#katha-list button").forEach((btn) => {
+            if (btn.dataset.index == index) {
+              btn.classList.add("bg-[#8C3B2A]", "text-white");
+              btn.classList.remove("hover:bg-gray-100");
+            } else {
+              btn.classList.remove("bg-[#8C3B2A]", "text-white");
+              btn.classList.add("hover:bg-gray-100");
+            }
+          });
+        }
+
+        function populateKathaList() {
+          kathaList.innerHTML = "";
+          const data = tirthasData[currentLang];
+          data.forEach((tirtha, index) => {
+            if (currentFilter === "All" || tirtha.category === currentFilter) {
+              const button = document.createElement("button");
+              button.className =
+                "w-full text-left p-2 rounded-md transition-colors duration-200 hover:bg-gray-100";
+              button.textContent = tirtha.name;
+              button.dataset.index = index;
+              button.addEventListener("click", () => displayKatha(index));
+              kathaList.appendChild(button);
+            }
+          });
+          const firstButton = kathaList.querySelector("button");
+          if (firstButton) {
+            displayKatha(firstButton.dataset.index);
+          } else {
+            kathaTitle.textContent = "";
+            kathaImage.style.display = "none";
+            kathaStory.innerHTML = `<p>${
+              currentLang === "en"
+                ? "No Tirthas in this category."
+                : "इस श्रेणी में कोई तीर्थ नहीं है।"
+            }</p>`;
+          }
+        }
+
+        function populateFilterButtons() {
+          const categories = [
+            "All",
+            ...new Set(tirthasData.en.map((t) => t.category)),
+          ];
+          const categoryNames = {
+            en: {
+              All: "All",
+              Shaiva: "Shaiva",
+              Vaishnava: "Vaishnava",
+              Shakta: "Shakta",
+              Other: "Other",
+              Caitanya: "Caitanya",
+            },
+            hi: {
+              All: "सभी",
+              Shaiva: "शैव",
+              Vaishnava: "वैष्णव",
+              Shakta: "शाक्त",
+              Other: "अन्य",
+              Caitanya: "चैतन्य",
+            },
+          };
+          filterButtonsContainer.innerHTML = "";
+          categories.forEach((category) => {
+            const button = document.createElement("button");
+            button.className =
+              "filter-btn px-3 py-1 text-sm rounded-full border border-[#8C3B2A]";
+            button.textContent = categoryNames[currentLang][category];
+            if (category === currentFilter) {
+              button.classList.add("active");
+            }
+            button.addEventListener("click", () => {
+              currentFilter = category;
+              populateFilterButtons();
+              populateKathaList();
+            });
+            filterButtonsContainer.appendChild(button);
+          });
+        }
+
+        document
+          .getElementById("lang-en")
+          .addEventListener("click", () => updateLanguage("en"));
+        document
+          .getElementById("lang-hi")
+          .addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>
