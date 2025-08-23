@@ -831,22 +831,29 @@
           const content = languageContent[lang];
           document.querySelectorAll("[data-lang-key]").forEach((element) => {
             const key = element.getAttribute("data-lang-key");
+
             if (content[key]) {
               element.innerHTML = content[key];
             }
           });
 
           if (lang === "hi") {
-            langHiBtn.classList.add("bg-", "text-white");
-            langEnBtn.classList.remove("bg-", "text-white");
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+            langHiMobileBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnMobileBtn.classList.remove("bg-[#8C3B2A]", "text-white");
           } else {
-            langEnBtn.classList.add("bg-", "text-white");
-            langHiBtn.classList.remove("bg-", "text-white");
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+            langEnMobileBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiMobileBtn.classList.remove("bg-[#8C3B2A]", "text-white");
           }
         }
 
         langEnBtn.addEventListener("click", () => updateLanguage("en"));
         langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+        langEnMobileBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiMobileBtn.addEventListener("click", () => updateLanguage("hi"));
 
         // Set initial language
         updateLanguage("en");
