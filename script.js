@@ -101,6 +101,11 @@ document.addEventListener("DOMContentLoaded", function () {
       optionInquiry: "General Inquiry",
       formMessage: "Your Message",
       formSubmit: "Send Inquiry",
+      newsletterTitle: "Blog / Puranic Wisdom (Gyan Ganga)",
+      newsletterIntro:
+        "Stay connected to the source. Sign up for our monthly newsletter to receive new stories, scriptural insights, and updates on our sacred yatras directly in your inbox.",
+      newsletterPlaceholder: "Enter your email address",
+      newsletterButton: "Sign Up",
       footerRights: "© 2025 The Puranic Path. All Rights Reserved.",
       footerDisclaimer: "This is a conceptual presentation.",
     },
@@ -205,6 +210,11 @@ document.addEventListener("DOMContentLoaded", function () {
       optionInquiry: "सामान्य पूछताछ",
       formMessage: "आपका संदेश",
       formSubmit: "पूछताछ भेजें",
+      newsletterTitle: "ब्लॉग / पौराणिक ज्ञान (ज्ञान गंगा)",
+      newsletterIntro:
+        "स्रोत से जुड़े रहें। नई कहानियाँ, शास्त्रीय अंतर्दृष्टि और हमारी पवित्र यात्राओं पर अपडेट सीधे अपने इनबॉक्स में प्राप्त करने के लिए हमारे मासिक न्यूज़लेटर के लिए साइन अप करें।",
+      newsletterPlaceholder: "अपना ईमेल पता दर्ज करें",
+      newsletterButton: "साइन अप करें",
       footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
       footerDisclaimer: "यह एक वैचारिक प्रस्तुति है।",
     },
