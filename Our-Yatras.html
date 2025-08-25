@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Yatras - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      html[lang="en"] h1,
+      html[lang="en"] h2,
+      html[lang="en"] h3,
+      html[lang="en"] h4,
+      html[lang="en"] h5,
+      html[lang="en"] h6 {
+        font-family: "Lora", serif;
+      }
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+      }
+      /* Style for the map container */
+      .map-container {
+        height: 12rem; /* 192px */
+        width: 100%;
+        border-radius: 0.5rem;
+      }
+      /* Style for the custom mandir icon */
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div>
+          <h1
+            class="text-2xl font-bold text-[#8C3B2A]"
+            data-lang-key="mainTitle"
+          >
+            The Puranic Path
+          </h1>
+          <p class="text-sm" data-lang-key="pageTitle">Our Yatras</p>
+        </div>
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+      <div class="text-center mb-12">
+        <h2
+          class="text-4xl font-bold text-[#8C3B2A]"
+          data-lang-key="yatrasHeader"
+        >
+          Our Pilgrimage Offerings
+        </h2>
+        <p class="mt-4 text-lg max-w-3xl mx-auto" data-lang-key="yatrasIntro">
+          Each of our yatras is more than a journey; it is a spiritual immersion
+          designed according to the sacred narratives of the Puranas. Explore
+          our offerings to find the path that calls to your soul.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        <!-- Yatra Card 1: Kashi -->
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <div class="md:flex md:justify-between md:items-center mb-4">
+            <div>
+              <h3
+                class="text-3xl font-bold text-[#8C3B2A]"
+                data-lang-key="kashiName"
+              >
+                Kashi Divya Darshan
+              </h3>
+              <p class="text-lg text-[#FF6700]" data-lang-key="kashiDuration">
+                7 Days / 6 Nights
+              </p>
+            </div>
+            <a
+              href="https://forms.gle/AnKHBFHNh7w49A9TA"
+              target="_blank"
+              class="mt-4 md:mt-0 inline-block bg-[#8C3B2A] text-white text-lg font-bold py-2 px-6 rounded-lg hover:bg-[#FF6700] transition-colors duration-300"
+              data-lang-key="inquireBtn"
+              >Inquire Now</a
+            >
+          </div>
+          <p class="text-lg mb-6" data-lang-key="kashiTheme">
+            An immersive journey into the heart of Lord Shiva's eternal city,
+            exploring the sacred sites as described in the Kāśī Khaṇḍa of the
+            Skand Purana.
+          </p>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xl font-bold mb-2" data-lang-key="routeMapTitle">
+                Route Map
+              </h4>
+              <div id="map-kashi" class="map-container"></div>
+            </div>
+            <div>
+              <h4
+                class="text-xl font-bold mb-2"
+                data-lang-key="inclusionsTitle"
+              >
+                What's Included
+              </h4>
+              <ul class="list-disc list-inside space-y-1 text-lg">
+                <li data-lang-key="incDharmshala">
+                  Stays in traditional, vetted Dharmshalas
+                </li>
+                <li data-lang-key="incMeals">Daily Sattvic meals (prasad)</li>
+                <li data-lang-key="incPustika">
+                  The proprietary "Katha Pustika" for Kashi
+                </li>
+                <li data-lang-key="incGuide">
+                  Expert guidance from a trained Kathā-vācaka
+                </li>
+                <li data-lang-key="incPuja">
+                  Arrangements for essential pujas and rituals
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-6 border-t pt-4">
+            <button
+              class="accordion-toggle w-full text-left text-xl font-bold flex justify-between items-center"
+            >
+              <span data-lang-key="itineraryTitle">Detailed Itinerary</span>
+              <span class="transform transition-transform duration-300">▼</span>
+            </button>
+            <div class="accordion-content mt-4 text-lg">
+              <p data-lang-key="kashiItinerary">
+                <strong
+                  >Day 1-2: Arrival in Prayag, Triveni Sangam Snan.</strong
+                >
+                Journey to Kashi.
+                <strong>Day 3-4: Ganga Snan & Vishwanath Darshan.</strong>
+                Explore the ghats and listen to the Kathas of Manikarnika.
+                <strong>Day 5: Hidden Temples Tour.</strong> Visit Kala Bhairav,
+                Annapurna, and other ancient shrines.
+                <strong>Day 6: Sarnath & Ramnagar Fort.</strong> Explore the
+                Buddhist heritage and the history of the Kashi Naresh.
+                <strong>Day 7: Morning Aarti & Departure.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Yatra Card 2: Char Dham -->
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <div class="md:flex md:justify-between md:items-center mb-4">
+            <div>
+              <h3
+                class="text-3xl font-bold text-[#8C3B2A]"
+                data-lang-key="charDhamName"
+              >
+                Himalayan Char Dham Yatra
+              </h3>
+              <p
+                class="text-lg text-[#FF6700]"
+                data-lang-key="charDhamDuration"
+              >
+                12 Days / 11 Nights
+              </p>
+            </div>
+            <a
+              href="https://forms.gle/AnKHBFHNh7w49A9TA"
+              target="_blank"
+              class="mt-4 md:mt-0 inline-block bg-[#8C3B2A] text-white text-lg font-bold py-2 px-6 rounded-lg hover:bg-[#FF6700] transition-colors duration-300"
+              data-lang-key="inquireBtn"
+              >Inquire Now</a
+            >
+          </div>
+          <p class="text-lg mb-6" data-lang-key="charDhamTheme">
+            A sacred journey to the four abodes in the Himalayas, undertaken
+            with the reverence and austerity prescribed in the scriptures to
+            attain spiritual merit.
+          </p>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xl font-bold mb-2" data-lang-key="routeMapTitle">
+                Route Map
+              </h4>
+              <div id="map-chardham" class="map-container"></div>
+            </div>
+            <div>
+              <h4
+                class="text-xl font-bold mb-2"
+                data-lang-key="inclusionsTitle"
+              >
+                What's Included
+              </h4>
+              <ul class="list-disc list-inside space-y-1 text-lg">
+                <li data-lang-key="incDharmshala">
+                  Stays in traditional, vetted Dharmshalas
+                </li>
+                <li data-lang-key="incMeals">Daily Sattvic meals (prasad)</li>
+                <li data-lang-key="incPustikaCharDham">
+                  The proprietary "Katha Pustika" for Char Dham
+                </li>
+                <li data-lang-key="incGuide">
+                  Expert guidance from a trained Kathā-vācaka
+                </li>
+                <li data-lang-key="incPuja">
+                  Arrangements for essential pujas and rituals
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-6 border-t pt-4">
+            <button
+              class="accordion-toggle w-full text-left text-xl font-bold flex justify-between items-center"
+            >
+              <span data-lang-key="itineraryTitle">Detailed Itinerary</span>
+              <span class="transform transition-transform duration-300">▼</span>
+            </button>
+            <div class="accordion-content mt-4 text-lg">
+              <p data-lang-key="charDhamItinerary">
+                <strong>Day 1-3: Haridwar to Yamunotri.</strong> Sacred dip at
+                Yamunotri Kund.
+                <strong>Day 4-6: Journey to Gangotri.</strong> Snan in the holy
+                Bhagirathi. <strong>Day 7-9: Trek to Kedarnath.</strong> Darshan
+                of the Jyotirlinga.
+                <strong>Day 10-11: Journey to Badrinath.</strong> Darshan of
+                Badrinath Vishal and Mana village visit.
+                <strong>Day 12: Return to Haridwar.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Yatra Card 3: Jyotirlinga -->
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <div class="md:flex md:justify-between md:items-center mb-4">
+            <div>
+              <h3
+                class="text-3xl font-bold text-[#8C3B2A]"
+                data-lang-key="jyotirlingaName"
+              >
+                Dwadash Jyotirlinga Anubhuti
+              </h3>
+              <p
+                class="text-lg text-[#FF6700]"
+                data-lang-key="jyotirlingaDuration"
+              >
+                21 Days / 20 Nights
+              </p>
+            </div>
+            <a
+              href="https://forms.gle/AnKHBFHNh7w49A9TA"
+              target="_blank"
+              class="mt-4 md:mt-0 inline-block bg-[#8C3B2A] text-white text-lg font-bold py-2 px-6 rounded-lg hover:bg-[#FF6700] transition-colors duration-300"
+              data-lang-key="inquireBtn"
+              >Inquire Now</a
+            >
+          </div>
+          <p class="text-lg mb-6" data-lang-key="jyotirlingaTheme">
+            A comprehensive pilgrimage to the twelve self-manifested lingams of
+            Lord Shiva, a journey of immense spiritual significance for
+            attaining the highest grace.
+          </p>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xl font-bold mb-2" data-lang-key="routeMapTitle">
+                Route Map
+              </h4>
+              <div id="map-jyotirlinga" class="map-container"></div>
+            </div>
+            <div>
+              <h4
+                class="text-xl font-bold mb-2"
+                data-lang-key="inclusionsTitle"
+              >
+                What's Included
+              </h4>
+              <ul class="list-disc list-inside space-y-1 text-lg">
+                <li data-lang-key="incDharmshala">
+                  Stays in traditional, vetted Dharmshalas
+                </li>
+                <li data-lang-key="incMeals">Daily Sattvic meals (prasad)</li>
+                <li data-lang-key="incPustikaJyotirlinga">
+                  A comprehensive "Katha Pustika" for all 12 Jyotirlingas
+                </li>
+                <li data-lang-key="incGuide">
+                  Expert guidance from a trained Kathā-vācaka
+                </li>
+                <li data-lang-key="incPuja">
+                  Arrangements for essential pujas and rituals
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-6 border-t pt-4">
+            <button
+              class="accordion-toggle w-full text-left text-xl font-bold flex justify-between items-center"
+            >
+              <span data-lang-key="itineraryTitle">Detailed Itinerary</span>
+              <span class="transform transition-transform duration-300">▼</span>
+            </button>
+            <div class="accordion-content mt-4 text-lg">
+              <p data-lang-key="jyotirlingaItinerary">
+                A meticulously planned 21-day circuit covering Somnath,
+                Mallikarjuna, Mahakaleshwar, Omkareshwar, Kedarnath,
+                Bhimashankar, Kashi Vishwanath, Trimbakeshwar, Vaidyanath,
+                Nageshwar, Rameswaram, and Grishneshwar, with proper time for
+                travel and worship at each sacred site.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Yatra Card 4: Braj Mandal -->
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <div class="md:flex md:justify-between md:items-center mb-4">
+            <div>
+              <h3
+                class="text-3xl font-bold text-[#8C3B2A]"
+                data-lang-key="brajName"
+              >
+                Braj Mandal Parikrama
+              </h3>
+              <p class="text-lg text-[#FF6700]" data-lang-key="brajDuration">
+                10 Days / 9 Nights
+              </p>
+            </div>
+            <a
+              href="https://forms.gle/AnKHBFHNh7w49A9TA"
+              target="_blank"
+              class="mt-4 md:mt-0 inline-block bg-[#8C3B2A] text-white text-lg font-bold py-2 px-6 rounded-lg hover:bg-[#FF6700] transition-colors duration-300"
+              data-lang-key="inquireBtn"
+              >Inquire Now</a
+            >
+          </div>
+          <p class="text-lg mb-6" data-lang-key="brajTheme">
+            Immerse yourself in the divine love of Radha and Krishna by visiting
+            the sacred forests, lakes, and temples of Braj, the land of their
+            eternal pastimes, as glorified in the Bhaktmal and Bhagavata Purana.
+          </p>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xl font-bold mb-2" data-lang-key="routeMapTitle">
+                Route Map
+              </h4>
+              <div id="map-braj" class="map-container"></div>
+            </div>
+            <div>
+              <h4
+                class="text-xl font-bold mb-2"
+                data-lang-key="inclusionsTitle"
+              >
+                What's Included
+              </h4>
+              <ul class="list-disc list-inside space-y-1 text-lg">
+                <li data-lang-key="incDharmshala">
+                  Stays in traditional, vetted Dharmshalas
+                </li>
+                <li data-lang-key="incMeals">Daily Sattvic meals (prasad)</li>
+                <li data-lang-key="incPustikaBraj">
+                  The proprietary "Katha Pustika" for Braj Mandal
+                </li>
+                <li data-lang-key="incGuide">
+                  Expert guidance from a trained Kathā-vācaka
+                </li>
+                <li data-lang-key="incPuja">
+                  Arrangements for essential pujas and rituals
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-6 border-t pt-4">
+            <button
+              class="accordion-toggle w-full text-left text-xl font-bold flex justify-between items-center"
+            >
+              <span data-lang-key="itineraryTitle">Detailed Itinerary</span>
+              <span class="transform transition-transform duration-300">▼</span>
+            </button>
+            <div class="accordion-content mt-4 text-lg">
+              <p data-lang-key="brajItinerary">
+                <strong>Day 1-2: Mathura.</strong> Krishna Janmasthan and
+                Vishram Ghat. <strong>Day 3-5: Vrindavan.</strong> Darshan at
+                Banke Bihari, ISKCON, and Radha Raman temples.
+                <strong>Day 6: Govardhan Parikrama.</strong>
+                <strong>Day 7: Nandgaon & Barsana.</strong> The towns of Nanda
+                Maharaj and Radha Rani.
+                <strong>Day 8-9: Gokul & Mahavan.</strong> Explore Krishna's
+                childhood places. <strong>Day 10: Departure.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Yatra Card 5: Shakti Pitha -->
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <div class="md:flex md:justify-between md:items-center mb-4">
+            <div>
+              <h3
+                class="text-3xl font-bold text-[#8C3B2A]"
+                data-lang-key="shaktiName"
+              >
+                Shakti Pitha Darshan (Eastern Circuit)
+              </h3>
+              <p class="text-lg text-[#FF6700]" data-lang-key="shaktiDuration">
+                8 Days / 7 Nights
+              </p>
+            </div>
+            <a
+              href="https://forms.gle/AnKHBFHNh7w49A9TA"
+              target="_blank"
+              class="mt-4 md:mt-0 inline-block bg-[#8C3B2A] text-white text-lg font-bold py-2 px-6 rounded-lg hover:bg-[#FF6700] transition-colors duration-300"
+              data-lang-key="inquireBtn"
+              >Inquire Now</a
+            >
+          </div>
+          <p class="text-lg mb-6" data-lang-key="shaktiTheme">
+            A powerful pilgrimage to the sacred sites where parts of Goddess
+            Sati's body fell, invoking the blessings of the Divine Mother in her
+            various forms.
+          </p>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xl font-bold mb-2" data-lang-key="routeMapTitle">
+                Route Map
+              </h4>
+              <div id="map-shakti" class="map-container"></div>
+            </div>
+            <div>
+              <h4
+                class="text-xl font-bold mb-2"
+                data-lang-key="inclusionsTitle"
+              >
+                What's Included
+              </h4>
+              <ul class="list-disc list-inside space-y-1 text-lg">
+                <li data-lang-key="incDharmshala">
+                  Stays in traditional, vetted Dharmshalas
+                </li>
+                <li data-lang-key="incMeals">Daily Sattvic meals (prasad)</li>
+                <li data-lang-key="incPustikaShakti">
+                  The proprietary "Katha Pustika" for Shakti Pithas
+                </li>
+                <li data-lang-key="incGuide">
+                  Expert guidance from a trained Kathā-vācaka
+                </li>
+                <li data-lang-key="incPuja">
+                  Arrangements for essential pujas and rituals
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-6 border-t pt-4">
+            <button
+              class="accordion-toggle w-full text-left text-xl font-bold flex justify-between items-center"
+            >
+              <span data-lang-key="itineraryTitle">Detailed Itinerary</span>
+              <span class="transform transition-transform duration-300">▼</span>
+            </button>
+            <div class="accordion-content mt-4 text-lg">
+              <p data-lang-key="shaktiItinerary">
+                <strong>Day 1-2: Kolkata.</strong> Darshan at Kalighat Temple.
+                <strong>Day 3-5: Guwahati.</strong> Visit the powerful Kamakhya
+                Temple. <strong>Day 6-7: Tarapith.</strong> Experience the
+                unique traditions at the Tara Maa temple.
+                <strong>Day 8: Departure from Kolkata.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Yatra Card 6: Ramayan Yatra -->
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <div class="md:flex md:justify-between md:items-center mb-4">
+            <div>
+              <h3
+                class="text-3xl font-bold text-[#8C3B2A]"
+                data-lang-key="ramayanName"
+              >
+                Ramayan Yatra (The Exile Path)
+              </h3>
+              <p class="text-lg text-[#FF6700]" data-lang-key="ramayanDuration">
+                14 Days / 13 Nights
+              </p>
+            </div>
+            <a
+              href="https://forms.gle/AnKHBFHNh7w49A9TA"
+              target="_blank"
+              class="mt-4 md:mt-0 inline-block bg-[#8C3B2A] text-white text-lg font-bold py-2 px-6 rounded-lg hover:bg-[#FF6700] transition-colors duration-300"
+              data-lang-key="inquireBtn"
+              >Inquire Now</a
+            >
+          </div>
+          <p class="text-lg mb-6" data-lang-key="ramayanTheme">
+            Follow in the sacred footsteps of Lord Rama, Sita, and Lakshmana
+            during their exile, from Ayodhya to Rameswaram, reliving the
+            timeless narrative of the Ramayan.
+          </p>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xl font-bold mb-2" data-lang-key="routeMapTitle">
+                Route Map
+              </h4>
+              <div id="map-ramayan" class="map-container"></div>
+            </div>
+            <div>
+              <h4
+                class="text-xl font-bold mb-2"
+                data-lang-key="inclusionsTitle"
+              >
+                What's Included
+              </h4>
+              <ul class="list-disc list-inside space-y-1 text-lg">
+                <li data-lang-key="incDharmshala">
+                  Stays in traditional, vetted Dharmshalas
+                </li>
+                <li data-lang-key="incMeals">Daily Sattvic meals (prasad)</li>
+                <li data-lang-key="incPustikaRamayan">
+                  The proprietary "Katha Pustika" for the Ramayan Path
+                </li>
+                <li data-lang-key="incGuide">
+                  Expert guidance from a trained Kathā-vācaka
+                </li>
+                <li data-lang-key="incPuja">
+                  Arrangements for essential pujas and rituals
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-6 border-t pt-4">
+            <button
+              class="accordion-toggle w-full text-left text-xl font-bold flex justify-between items-center"
+            >
+              <span data-lang-key="itineraryTitle">Detailed Itinerary</span>
+              <span class="transform transition-transform duration-300">▼</span>
+            </button>
+            <div class="accordion-content mt-4 text-lg">
+              <p data-lang-key="ramayanItinerary">
+                <strong>Day 1-2: Ayodhya.</strong> Janmabhoomi Darshan.
+                <strong>Day 3-5: Chitrakoot.</strong> Kamadgiri Parikrama.
+                <strong>Day 6-8: Panchavati (Nashik).</strong> Visit Sita Gufa.
+                <strong>Day 9-11: Kishkindha (Hampi).</strong> Explore the
+                Vanara kingdom. <strong>Day 12-13: Rameswaram.</strong> Darshan
+                of the Jyotirlinga. <strong>Day 14: Departure.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Yatra Card 7: Dakshin Tirtha -->
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <div class="md:flex md:justify-between md:items-center mb-4">
+            <div>
+              <h3
+                class="text-3xl font-bold text-[#8C3B2A]"
+                data-lang-key="dakshinName"
+              >
+                Dakshin Tirtha Yatra
+              </h3>
+              <p class="text-lg text-[#FF6700]" data-lang-key="dakshinDuration">
+                11 Days / 10 Nights
+              </p>
+            </div>
+            <a
+              href="https://forms.gle/AnKHBFHNh7w49A9TA"
+              target="_blank"
+              class="mt-4 md:mt-0 inline-block bg-[#8C3B2A] text-white text-lg font-bold py-2 px-6 rounded-lg hover:bg-[#FF6700] transition-colors duration-300"
+              data-lang-key="inquireBtn"
+              >Inquire Now</a
+            >
+          </div>
+          <p class="text-lg mb-6" data-lang-key="dakshinTheme">
+            Explore the magnificent temples and profound spiritual traditions of
+            South India, visiting key sites glorified by the Alvars, Nayanmars,
+            and great Acharyas.
+          </p>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xl font-bold mb-2" data-lang-key="routeMapTitle">
+                Route Map
+              </h4>
+              <div id="map-dakshin" class="map-container"></div>
+            </div>
+            <div>
+              <h4
+                class="text-xl font-bold mb-2"
+                data-lang-key="inclusionsTitle"
+              >
+                What's Included
+              </h4>
+              <ul class="list-disc list-inside space-y-1 text-lg">
+                <li data-lang-key="incDharmshala">
+                  Stays in traditional, vetted Dharmshalas
+                </li>
+                <li data-lang-key="incMeals">Daily Sattvic meals (prasad)</li>
+                <li data-lang-key="incPustikaDakshin">
+                  The proprietary "Katha Pustika" for South Indian Tirthas
+                </li>
+                <li data-lang-key="incGuide">
+                  Expert guidance from a trained Kathā-vācaka
+                </li>
+                <li data-lang-key="incPuja">
+                  Arrangements for essential pujas and rituals
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-6 border-t pt-4">
+            <button
+              class="accordion-toggle w-full text-left text-xl font-bold flex justify-between items-center"
+            >
+              <span data-lang-key="itineraryTitle">Detailed Itinerary</span>
+              <span class="transform transition-transform duration-300">▼</span>
+            </button>
+            <div class="accordion-content mt-4 text-lg">
+              <p data-lang-key="dakshinItinerary">
+                <strong>Day 1-2: Rameswaram.</strong>
+                <strong>Day 3-4: Madurai.</strong> Meenakshi Temple Darshan.
+                <strong>Day 5-6: Srirangam.</strong> Ranganathaswamy Temple.
+                <strong>Day 7-8: Kanchipuram.</strong> Visit key Shiva and
+                Vishnu temples. <strong>Day 9-10: Guruvayur.</strong> Darshan of
+                Guruvayurappan. <strong>Day 11: Departure from Kochi.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Yatra Card 8: Narmada Parikrama -->
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <div class="md:flex md:justify-between md:items-center mb-4">
+            <div>
+              <h3
+                class="text-3xl font-bold text-[#8C3B2A]"
+                data-lang-key="narmadaName"
+              >
+                Narmada Parikrama (Conceptual)
+              </h3>
+              <p class="text-lg text-[#FF6700]" data-lang-key="narmadaDuration">
+                Custom Duration
+              </p>
+            </div>
+            <a
+              href="https://forms.gle/AnKHBFHNh7w49A9TA"
+              target="_blank"
+              class="mt-4 md:mt-0 inline-block bg-[#8C3B2A] text-white text-lg font-bold py-2 px-6 rounded-lg hover:bg-[#FF6700] transition-colors duration-300"
+              data-lang-key="inquireBtn"
+              >Inquire Now</a
+            >
+          </div>
+          <p class="text-lg mb-6" data-lang-key="narmadaTheme">
+            The ultimate pilgrimage of austerity and devotion. We facilitate
+            sections of this sacred circumambulation of the Narmada river, the
+            daughter of Lord Shiva, for sincere seekers.
+          </p>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xl font-bold mb-2" data-lang-key="routeMapTitle">
+                Route Map
+              </h4>
+              <div id="map-narmada" class="map-container"></div>
+            </div>
+            <div>
+              <h4
+                class="text-xl font-bold mb-2"
+                data-lang-key="inclusionsTitle"
+              >
+                What's Included
+              </h4>
+              <ul class="list-disc list-inside space-y-1 text-lg">
+                <li data-lang-key="incDharmshala">
+                  Stays in traditional, vetted Dharmshalas
+                </li>
+                <li data-lang-key="incMeals">Daily Sattvic meals (prasad)</li>
+                <li data-lang-key="incPustikaNarmada">
+                  The proprietary "Katha Pustika" for Narmada Khanda
+                </li>
+                <li data-lang-key="incGuide">
+                  Expert guidance from a trained Kathā-vācaka
+                </li>
+                <li data-lang-key="incPuja">
+                  Arrangements for essential pujas and rituals
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-6 border-t pt-4">
+            <button
+              class="accordion-toggle w-full text-left text-xl font-bold flex justify-between items-center"
+            >
+              <span data-lang-key="itineraryTitle">Detailed Itinerary</span>
+              <span class="transform transition-transform duration-300">▼</span>
+            </button>
+            <div class="accordion-content mt-4 text-lg">
+              <p data-lang-key="narmadaItinerary">
+                Due to the nature of this yatra, itineraries are custom-designed
+                for small, dedicated groups. The focus is on covering key
+                sections on foot (*padayātrā*) and experiencing the profound
+                spiritual culture of the Narmada riverbank.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Yatra Card 9: Ganga Darshan -->
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <div class="md:flex md:justify-between md:items-center mb-4">
+            <div>
+              <h3
+                class="text-3xl font-bold text-[#8C3B2A]"
+                data-lang-key="gangaName"
+              >
+                Ganga Darshan Yatra
+              </h3>
+              <p class="text-lg text-[#FF6700]" data-lang-key="gangaDuration">
+                15 Days / 14 Nights
+              </p>
+            </div>
+            <a
+              href="https://forms.gle/AnKHBFHNh7w49A9TA"
+              target="_blank"
+              class="mt-4 md:mt-0 inline-block bg-[#8C3B2A] text-white text-lg font-bold py-2 px-6 rounded-lg hover:bg-[#FF6700] transition-colors duration-300"
+              data-lang-key="inquireBtn"
+              >Inquire Now</a
+            >
+          </div>
+          <p class="text-lg mb-6" data-lang-key="gangaTheme">
+            A journey along the sacred path of Mother Ganga, from her pristine
+            source in the Himalayas to her confluence with the sea, experiencing
+            her purifying power at every stage.
+          </p>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-xl font-bold mb-2" data-lang-key="routeMapTitle">
+                Route Map
+              </h4>
+              <div id="map-ganga" class="map-container"></div>
+            </div>
+            <div>
+              <h4
+                class="text-xl font-bold mb-2"
+                data-lang-key="inclusionsTitle"
+              >
+                What's Included
+              </h4>
+              <ul class="list-disc list-inside space-y-1 text-lg">
+                <li data-lang-key="incDharmshala">
+                  Stays in traditional, vetted Dharmshalas
+                </li>
+                <li data-lang-key="incMeals">Daily Sattvic meals (prasad)</li>
+                <li data-lang-key="incPustikaGanga">
+                  The proprietary "Katha Pustika" for the Ganga Mahatmya
+                </li>
+                <li data-lang-key="incGuide">
+                  Expert guidance from a trained Kathā-vācaka
+                </li>
+                <li data-lang-key="incPuja">
+                  Arrangements for essential pujas and rituals
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-6 border-t pt-4">
+            <button
+              class="accordion-toggle w-full text-left text-xl font-bold flex justify-between items-center"
+            >
+              <span data-lang-key="itineraryTitle">Detailed Itinerary</span>
+              <span class="transform transition-transform duration-300">▼</span>
+            </button>
+            <div class="accordion-content mt-4 text-lg">
+              <p data-lang-key="gangaItinerary">
+                <strong>Day 1-3: Gangotri.</strong>
+                <strong>Day 4-5: Rishikesh.</strong> Attend Ganga Aarti at
+                Triveni Ghat. <strong>Day 6-7: Haridwar.</strong> Snan at Har Ki
+                Pauri. <strong>Day 8-9: Prayag.</strong> Triveni Sangam Snan.
+                <strong>Day 10-12: Kashi.</strong> Experience the ghats.
+                <strong>Day 13-14: Ganga Sagar.</strong> Sacred dip at the
+                confluence. <strong>Day 15: Departure from Kolkata.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8">
+      <div class="container mx-auto px-6 text-center">
+        <!-- New Logos Section -->
+        <div class="flex justify-center items-center space-x-6 mb-6">
+          <!-- Email Link -->
+          <a
+            href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcSKkjxRMWdkbslccXJfNflQpgLHJwjhmqwdnhTthjmqWPCllgqjJGFVZsfLRGwdLbmwXMqzp"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Email"
+          >
+            <img
+              src="images/email-logo.png"
+              alt="Email Logo"
+              class="w-8 h-8 hover:opacity-80 transition-opacity"
+            />
+          </a>
+          <!-- LinkedIn Link -->
+          <a
+            href="https://www.linkedin.com/in/shaleen-singh-552413313/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="LinkedIn"
+          >
+            <img
+              src="images/linkedin-logo.png"
+              alt="LinkedIn Logo"
+              class="w-8 h-8 hover:opacity-80 transition-opacity"
+            />
+          </a>
+          <!-- WhatsApp Link -->
+          <a
+            href="https://wa.me/918707757628"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="WhatsApp"
+          >
+            <img
+              src="images/whatsapp-logo.png"
+              alt="WhatsApp Logo"
+              class="w-8 h-8 hover:opacity-80 transition-opacity"
+            />
+          </a>
+        </div>
+
+        <!-- Existing Footer Text -->
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            pageTitle: "Our Yatras",
+            yatrasHeader: "Our Pilgrimage Offerings",
+            yatrasIntro:
+              "Each of our yatras is more than a journey; it is a spiritual immersion designed according to the sacred narratives of the Puranas. Explore our offerings to find the path that calls to your soul.",
+            inquireBtn: "Inquire Now",
+            routeMapTitle: "Route Map",
+            inclusionsTitle: "What's Included",
+            itineraryTitle: "Detailed Itinerary",
+            incDharmshala: "Stays in traditional, vetted Dharmshalas",
+            incMeals: "Daily Sattvic meals (prasad)",
+            incGuide: "Expert guidance from a trained Kathā-vācaka",
+            incPuja: "Arrangements for essential pujas and rituals",
+            kashiName: "Kashi Divya Darshan",
+            kashiDuration: "7 Days / 6 Nights",
+            kashiTheme:
+              "An immersive journey into the heart of Lord Shiva's eternal city, exploring the sacred sites as described in the Kāśī Khaṇḍa of the Skand Purana.",
+            mapAyodhya: "Ayodhya",
+            mapPrayag: "Prayag",
+            mapKashi: "Kashi",
+            incPustika: 'The proprietary "Katha Pustika" for Kashi',
+            kashiItinerary:
+              "<strong>Day 1-2: Arrival in Prayag, Triveni Sangam Snan.</strong> Journey to Kashi. <strong>Day 3-4: Ganga Snan & Vishwanath Darshan.</strong> Explore the ghats and listen to the Kathas of Manikarnika. <strong>Day 5: Hidden Temples Tour.</strong> Visit Kala Bhairav, Annapurna, and other ancient shrines. <strong>Day 6: Sarnath & Ramnagar Fort.</strong> Explore the Buddhist heritage and the history of the Kashi Naresh. <strong>Day 7: Morning Aarti & Departure.</strong>",
+            charDhamName: "Himalayan Char Dham Yatra",
+            charDhamDuration: "12 Days / 11 Nights",
+            charDhamTheme:
+              "A sacred journey to the four abodes in the Himalayas, undertaken with the reverence and austerity prescribed in the scriptures to attain spiritual merit.",
+            mapYamunotri: "Yamunotri",
+            mapGangotri: "Gangotri",
+            mapKedarnath: "Kedarnath",
+            mapBadrinath: "Badrinath",
+            incPustikaCharDham: 'The proprietary "Katha Pustika" for Char Dham',
+            charDhamItinerary:
+              "<strong>Day 1-3: Haridwar to Yamunotri.</strong> Sacred dip at Yamunotri Kund. <strong>Day 4-6: Journey to Gangotri.</strong> Snan in the holy Bhagirathi. <strong>Day 7-9: Trek to Kedarnath.</strong> Darshan of the Jyotirlinga. <strong>Day 10-11: Journey to Badrinath.</strong> Darshan of Badrinath Vishal and Mana village visit. <strong>Day 12: Return to Haridwar.</strong>",
+            jyotirlingaName: "Dwadash Jyotirlinga Anubhuti",
+            jyotirlingaDuration: "21 Days / 20 Nights",
+            jyotirlingaTheme:
+              "A comprehensive pilgrimage to the twelve self-manifested lingams of Lord Shiva, a journey of immense spiritual significance for attaining the highest grace.",
+            mapPanchIndia:
+              "A spiritual journey covering sites across India, from Somnath in the West to Vaidyanath in the East, and Rameswaram in the South.",
+            incPustikaJyotirlinga:
+              'A comprehensive "Katha Pustika" for all 12 Jyotirlingas',
+            jyotirlingaItinerary:
+              "A meticulously planned 21-day circuit covering Somnath, Mallikarjuna, Mahakaleshwar, Omkareshwar, Kedarnath, Bhimashankar, Kashi Vishwanath, Trimbakeshwar, Vaidyanath, Nageshwar, Rameswaram, and Grishneshwar, with proper time for travel and worship at each sacred site.",
+            brajName: "Braj Mandal Parikrama",
+            brajDuration: "10 Days / 9 Nights",
+            brajTheme:
+              "Immerse yourself in the divine love of Radha and Krishna by visiting the sacred forests, lakes, and temples of Braj, the land of their eternal pastimes, as glorified in the Bhaktmal and Bhagavata Purana.",
+            mapBraj:
+              "A journey centered around Mathura and Vrindavan, including Govardhan, Gokul, Barsana, and Nandgaon.",
+            incPustikaBraj: 'The proprietary "Katha Pustika" for Braj Mandal',
+            brajItinerary:
+              "<strong>Day 1-2: Mathura.</strong> Krishna Janmasthan and Vishram Ghat. <strong>Day 3-5: Vrindavan.</strong> Darshan at Banke Bihari, ISKCON, and Radha Raman temples. <strong>Day 6: Govardhan Parikrama.</strong> <strong>Day 7: Nandgaon & Barsana.</strong> The towns of Nanda Maharaj and Radha Rani. <strong>Day 8-9: Gokul & Mahavan.</strong> Explore Krishna's childhood places. <strong>Day 10: Departure.</strong>",
+            shaktiName: "Shakti Pitha Darshan (Eastern Circuit)",
+            shaktiDuration: "8 Days / 7 Nights",
+            shaktiTheme:
+              "A powerful pilgrimage to the sacred sites where parts of Goddess Sati's body fell, invoking the blessings of the Divine Mother in her various forms.",
+            mapShakti:
+              "A journey covering key Shakti Pithas in Eastern India, including Kalighat (Kolkata), Kamakhya (Guwahati), and Tarapith.",
+            incPustikaShakti:
+              'The proprietary "Katha Pustika" for Shakti Pithas',
+            shaktiItinerary:
+              "<strong>Day 1-2: Kolkata.</strong> Darshan at Kalighat Temple. <strong>Day 3-5: Guwahati.</strong> Visit the powerful Kamakhya Temple. <strong>Day 6-7: Tarapith.</strong> Experience the unique traditions at the Tara Maa temple. <strong>Day 8: Departure from Kolkata.</strong>",
+            ramayanName: "Ramayan Yatra (The Exile Path)",
+            ramayanDuration: "14 Days / 13 Nights",
+            ramayanTheme:
+              "Follow in the sacred footsteps of Lord Rama, Sita, and Lakshmana during their exile, from Ayodhya to Rameswaram, reliving the timeless narrative of the Ramayan.",
+            mapRamayan:
+              "A journey from Ayodhya, through Chitrakoot, Panchavati (Nashik), Kishkindha (Hampi), and culminating at Rameswaram.",
+            incPustikaRamayan:
+              'The proprietary "Katha Pustika" for the Ramayan Path',
+            ramayanItinerary:
+              "<strong>Day 1-2: Ayodhya.</strong> Janmabhoomi Darshan. <strong>Day 3-5: Chitrakoot.</strong> Kamadgiri Parikrama. <strong>Day 6-8: Panchavati (Nashik).</strong> Visit Sita Gufa. <strong>Day 9-11: Kishkindha (Hampi).</strong> Explore the Vanara kingdom. <strong>Day 12-13: Rameswaram.</strong> Darshan of the Jyotirlinga. <strong>Day 14: Departure.</strong>",
+            dakshinName: "Dakshin Tirtha Yatra",
+            dakshinDuration: "11 Days / 10 Nights",
+            dakshinTheme:
+              "Explore the magnificent temples and profound spiritual traditions of South India, visiting key sites glorified by the Alvars, Nayanmars, and great Acharyas.",
+            mapDakshin:
+              "A journey through Tamil Nadu and Kerala, covering Rameswaram, Madurai, Srirangam, Kanchipuram, and Guruvayur.",
+            incPustikaDakshin:
+              'The proprietary "Katha Pustika" for South Indian Tirthas',
+            dakshinItinerary:
+              "<strong>Day 1-2: Rameswaram.</strong> <strong>Day 3-4: Madurai.</strong> Meenakshi Temple Darshan. <strong>Day 5-6: Srirangam.</strong> Ranganathaswamy Temple. <strong>Day 7-8: Kanchipuram.</strong> Visit key Shiva and Vishnu temples. <strong>Day 9-10: Guruvayur.</strong> Darshan of Guruvayurappan. <strong>Day 11: Departure from Kochi.</strong>",
+            narmadaName: "Narmada Parikrama (Conceptual)",
+            narmadaDuration: "Custom Duration",
+            narmadaTheme:
+              "The ultimate pilgrimage of austerity and devotion. We facilitate sections of this sacred circumambulation of the Narmada river, the daughter of Lord Shiva, for sincere seekers.",
+            mapNarmada:
+              "Facilitated sections between key Tirthas like Omkareshwar, Maheshwar, and the source at Amarkantak.",
+            incPustikaNarmada:
+              'The proprietary "Katha Pustika" for Narmada Khanda',
+            narmadaItinerary:
+              "Due to the nature of this yatra, itineraries are custom-designed for small, dedicated groups. The focus is on covering key sections on foot (*padayātrā*) and experiencing the profound spiritual culture of the Narmada riverbank.",
+            gangaName: "Ganga Darshan Yatra",
+            gangaDuration: "15 Days / 14 Nights",
+            gangaTheme:
+              "A journey along the sacred path of Mother Ganga, from her pristine source in the Himalayas to her confluence with the sea, experiencing her purifying power at every stage.",
+            mapGanga:
+              "From Gangotri, through Rishikesh, Haridwar, Prayag, Kashi, and culminating at Ganga Sagar in West Bengal.",
+            incPustikaGanga:
+              'The proprietary "Katha Pustika" for the Ganga Mahatmya',
+            gangaItinerary:
+              "<strong>Day 1-3: Gangotri.</strong> <strong>Day 4-5: Rishikesh.</strong> Attend Ganga Aarti at Triveni Ghat. <strong>Day 6-7: Haridwar.</strong> Snan at Har Ki Pauri. <strong>Day 8-9: Prayag.</strong> Triveni Sangam Snan. <strong>Day 10-12: Kashi.</strong> Experience the ghats. <strong>Day 13-14: Ganga Sagar.</strong> Sacred dip at the confluence. <strong>Day 15: Departure from Kolkata.</strong>",
+            footerRights: "© 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            pageTitle: "हमारी यात्राएं",
+            yatrasHeader: "हमारी तीर्थयात्रा पेशकश",
+            yatrasIntro:
+              "हमारी प्रत्येक यात्रा केवल एक सफर नहीं है; यह पुराणों की पवित्र कथाओं के अनुसार डिजाइन किया गया एक आध्यात्मिक विसर्जन है। अपनी आत्मा को बुलाने वाले मार्ग को खोजने के लिए हमारी पेशकशों का अन्वेषण करें।",
+            inquireBtn: "अभी पूछताछ करें",
+            routeMapTitle: "मार्ग नक्शा",
+            inclusionsTitle: "क्या शामिल है",
+            itineraryTitle: "विस्तृत यात्रा कार्यक्रम",
+            incDharmshala: "पारंपरिक, जांची-परखी धर्मशालाओं में रहना",
+            incMeals: "दैनिक सात्विक भोजन (प्रसाद)",
+            incGuide: "एक प्रशिक्षित कथा-वाचक से विशेषज्ञ मार्गदर्शन",
+            incPuja: "आवश्यक पूजा और अनुष्ठानों की व्यवस्था",
+            kashiName: "काशी दिव्य दर्शन",
+            kashiDuration: "७ दिन / ६ रातें",
+            kashiTheme:
+              "भगवान शिव के शाश्वत शहर के हृदय में एक गहन यात्रा, स्कंद पुराण के काशी खंड में वर्णित पवित्र स्थलों की खोज।",
+            mapAyodhya: "अयोध्या",
+            mapPrayag: "प्रयाग",
+            mapKashi: "काशी",
+            incPustika: 'काशी के लिए मालिकाना "कथा पुस्तिका"',
+            kashiItinerary:
+              "<strong>दिन १-२: प्रयाग में आगमन, त्रिवेणी संगम स्नान।</strong> काशी की यात्रा। <strong>दिन ३-४: गंगा स्नान और विश्वनाथ दर्शन।</strong> घाटों का अन्वेषण करें और मणिकर्णिका की कथाएं सुनें। <strong>दिन ५: गुप्त मंदिरों का दौरा।</strong> काल भैरव, अन्नपूर्णा और अन्य प्राचीन मंदिरों के दर्शन। <strong>दिन ६: सारनाथ और रामनगर किला।</strong> बौद्ध विरासत और काशी नरेश के इतिहास का अन्वेषण। <strong>दिन ७: सुबह की आरती और प्रस्थान।</strong>",
+            charDhamName: "हिमालयी चार धाम यात्रा",
+            charDhamDuration: "१२ दिन / ११ रातें",
+            charDhamTheme:
+              "हिमालय में चार धामों की एक पवित्र यात्रा, जो आध्यात्मिक पुण्य प्राप्त करने के लिए शास्त्रों में निर्धारित श्रद्धा और तपस्या के साथ की जाती है।",
+            mapYamunotri: "यमुनोत्री",
+            mapGangotri: "गंगोत्री",
+            mapKedarnath: "केदारनाथ",
+            mapBadrinath: "बद्रीनाथ",
+            incPustikaCharDham: 'चार धाम के लिए मालिकाना "कथा पुस्तिका"',
+            charDhamItinerary:
+              "<strong>दिन १-३: हरिद्वार से यमुनोत्री।</strong> यमुनोत्री कुंड में पवित्र डुबकी। <strong>दिन ४-६: गंगोत्री की यात्रा।</strong> पवित्र भागीरथी में स्नान। <strong>दिन ७-९: केदारनाथ की चढ़ाई।</strong> ज्योतिर्लिंग के दर्शन। <strong>दिन १०-११: बद्रीनाथ की यात्रा।</strong> बद्रीनाथ विशाल के दर्शन और माणा गांव का दौरा। <strong>दिन १२: हरिद्वार वापसी।</strong>",
+            jyotirlingaName: "द्वादश ज्योतिर्लिंग अनुभूति",
+            jyotirlingaDuration: "२१ दिन / २० रातें",
+            jyotirlingaTheme:
+              "भगवान शिव के बारह स्वयंभू लिंगों की एक व्यापक तीर्थयात्रा, जो सर्वोच्च कृपा प्राप्त करने के लिए अत्यधिक आध्यात्मिक महत्व की यात्रा है।",
+            mapPanchIndia:
+              "पश्चिम में सोमनाथ से लेकर पूर्व में वैद्यनाथ और दक्षिण में रामेश्वरम तक, पूरे भारत में स्थलों को कवर करने वाली एक आध्यात्मिक यात्रा।",
+            incPustikaJyotirlinga:
+              'सभी १२ ज्योतिर्लिंगों के लिए एक व्यापक "कथा पुस्तिका"',
+            jyotirlingaItinerary:
+              "सोमनाथ, मल्लिकार्जुन, महाकालेश्वर, ओंकारेश्वर, केदारनाथ, भीमाशंकर, काशी विश्वनाथ, त्र्यंबकेश्वर, वैद्यनाथ, नागेश्वर, रामेश्वरम और घृष्णेश्वर को कवर करने वाला एक सावधानीपूर्वक नियोजित २१-दिवसीय सर्किट, जिसमें प्रत्येक पवित्र स्थल पर यात्रा और पूजा के लिए उचित समय है।",
+            brajName: "ब्रज मंडल परिक्रमा",
+            brajDuration: "१० दिन / ९ रातें",
+            brajTheme:
+              "भक्तमाल और भागवत पुराण में महिमामंडित ब्रज के पवित्र वनों, झीलों और मंदिरों का दौरा करके राधा और कृष्ण के दिव्य प्रेम में डूब जाएं।",
+            mapBraj:
+              "मथुरा और वृंदावन के आसपास केंद्रित एक यात्रा, जिसमें गोवर्धन, गोकुल, बरसाना और नंदगांव शामिल हैं।",
+            incPustikaBraj: 'ब्रज मंडल के लिए मालिकाना "कथा पुस्तिका"',
+            brajItinerary:
+              "<strong>दिन १-२: मथुरा।</strong> कृष्ण जन्मस्थान और विश्राम घाट। <strong>दिन ३-५: वृंदावन।</strong> बांके बिहारी, इस्कॉन और राधा रमण मंदिरों में दर्शन। <strong>दिन ६: गोवर्धन परिक्रमा।</strong> <strong>दिन ७: नंदगांव और बरसाना।</strong> नंद महाराज और राधा रानी के शहर। <strong>दिन ८-९: गोकुल और महावन।</strong> कृष्ण के बचपन के स्थानों का अन्वेषण करें। <strong>दिन १०: प्रस्थान।</strong>",
+            shaktiName: "शक्ति पीठ दर्शन (पूर्वी सर्किट)",
+            shaktiDuration: "८ दिन / ७ रातें",
+            shaktiTheme:
+              "देवी सती के शरीर के अंग गिरने वाले पवित्र स्थलों की एक शक्तिशाली तीर्थयात्रा, उनके विभिन्न रूपों में देवी माँ का आशीर्वाद प्राप्त करना।",
+            mapShakti:
+              "पूर्वी भारत में प्रमुख शक्ति पीठों को कवर करने वाली एक यात्रा, जिसमें कालीघाट (कोलकाता), कामाख्या (गुवाहाटी), और तारापीठ शामिल हैं।",
+            incPustikaShakti: 'शक्ति पीठों के लिए मालिकाना "कथा पुस्तिका"',
+            shaktiItinerary:
+              "<strong>दिन १-२: कोलकाता।</strong> कालीघाट मंदिर में दर्शन। <strong>दिन ३-५: गुवाहाटी।</strong> शक्तिशाली कामाख्या मंदिर के दर्शन। <strong>दिन ६-७: तारापीठ।</strong> तारा मां मंदिर में अनूठी परंपराओं का अनुभव करें। <strong>दिन ८: कोलकाता से प्रस्थान।</strong>",
+            ramayanName: "रामायण यात्रा (वनवास पथ)",
+            ramayanDuration: "१४ दिन / १३ रातें",
+            ramayanTheme:
+              "अयोध्या से रामेश्वरम तक, अपने वनवास के दौरान भगवान राम, सीता और लक्ष्मण के पवित्र पदचिन्हों पर चलें, रामायण की कालातीत कथा को फिर से जीएं।",
+            mapRamayan:
+              "अयोध्या से, चित्रकूट, पंचवटी (नासिक), किष्किंधा (हम्पी) के माध्यम से, और रामेश्वरम में समापन वाली एक यात्रा।",
+            incPustikaRamayan: 'रामायण पथ के लिए मालिकाना "कथा पुस्तिका"',
+            ramayanItinerary:
+              "<strong>दिन १-२: अयोध्या।</strong> जन्मभूमि दर्शन। <strong>दिन ३-५: चित्रकूट।</strong> कामदगिरि परिक्रमा। <strong>दिन ६-८: पंचवटी (नासिक)।</strong> सीता गुफा के दर्शन। <strong>दिन ९-११: किष्किंधा (हम्पी)।</strong> वानर साम्राज्य का अन्वेषण करें। <strong>दिन १२-१३: रामेश्वरम।</strong> ज्योतिर्लिंग के दर्शन। <strong>दिन १४: प्रस्थान।</strong>",
+            dakshinName: "दक्षिण तीर्थ यात्रा",
+            dakshinDuration: "११ दिन / १० रातें",
+            dakshinTheme:
+              "दक्षिण भारत के शानदार मंदिरों और गहन आध्यात्मिक परंपराओं का अन्वेषण करें, आलवार, नयनार और महान आचार्यों द्वारा महिमामंडित प्रमुख स्थलों का दौरा करें।",
+            mapDakshin:
+              "तमिलनाडु और केरल के माध्यम से एक यात्रा, जिसमें रामेश्वरम, मदुरै, श्रीरंगम, कांचीपुरम और गुरुवायुर शामिल हैं।",
+            incPustikaDakshin:
+              'दक्षिण भारतीय तीर्थों के लिए मालिकाना "कथा पुस्तिका"',
+            dakshinItinerary:
+              "<strong>दिन १-२: रामेश्वरम।</strong> <strong>दिन ३-४: मदुरै।</strong> मीनाक्षी मंदिर दर्शन। <strong>दिन ५-६: श्रीरंगम।</strong> रंगनाथस्वामी मंदिर। <strong>दिन ७-८: कांचीपुरम।</strong> प्रमुख शिव और विष्णु मंदिरों के दर्शन। <strong>दिन ९-१०: गुरुवायुर।</strong> गुरुवायुरप्पन के दर्शन। <strong>दिन ११: कोच्चि से प्रस्थान।</strong>",
+            narmadaName: "नर्मदा परिक्रमा (वैचारिक)",
+            narmadaDuration: "कस्टम अवधि",
+            narmadaTheme:
+              "तपस्या और भक्ति की अंतिम तीर्थयात्रा। हम सच्चे साधकों के लिए नर्मदा नदी, भगवान शिव की पुत्री, की इस पवित्र परिक्रमा के कुछ हिस्सों को सुगम बनाते हैं।",
+            mapNarmada:
+              "ओंकारेश्वर, महेश्वर और अमरकंटक स्थित स्रोत जैसे प्रमुख तीर्थों के बीच सुगम खंड।",
+            incPustikaNarmada: 'नर्मदा खंड के लिए मालिकाना "कथा पुस्तिका"',
+            narmadaItinerary:
+              "इस यात्रा की प्रकृति के कारण, यात्रा कार्यक्रम छोटे, समर्पित समूहों के लिए कस्टम-डिज़ाइन किए गए हैं। ध्यान प्रमुख खंडों को पैदल (*पदयात्रा*) तय करने और नर्मदा नदी के किनारे की गहन आध्यात्मिक संस्कृति का अनुभव करने पर है।",
+            gangaName: "गंगा दर्शन यात्रा",
+            gangaDuration: "१५ दिन / १४ रातें",
+            gangaTheme:
+              "हिमालय में उनके प्राचीन स्रोत से लेकर समुद्र के साथ उनके संगम तक, माँ गंगा के पवित्र पथ के साथ एक यात्रा, हर चरण में उनकी शुद्ध करने वाली शक्ति का अनुभव करना।",
+            mapGanga:
+              "गंगोत्री से, ऋषिकेश, हरिद्वार, प्रयाग, काशी के माध्यम से, और पश्चिम बंगाल में गंगा सागर में समापन।",
+            incPustikaGanga: 'गंगा महात्म्य के लिए मालिकाना "कथा पुस्तिका"',
+            gangaItinerary:
+              "<strong>दिन १-३: गंगोत्री।</strong> <strong>दिन ४-५: ऋषिकेश।</strong> त्रिवेणी घाट पर गंगा आरती में भाग लें। <strong>दिन ६-७: हरिद्वार।</strong> हर की पौड़ी पर स्नान। <strong>दिन ८-९: प्रयाग।</strong> त्रिवेणी संगम स्नान। <strong>दिन १०-१२: काशी।</strong> घाटों का अनुभव करें। <strong>दिन १३-१४: गंगा सागर।</strong> संगम पर पवित्र डुबकी। <strong>दिन १५: कोलकाता से प्रस्थान।</strong>",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        // --- Map Data and Functions ---
+        const locations = {
+          kashi: { lat: 25.3176, lng: 82.9739 },
+          prayag: { lat: 25.4358, lng: 81.8463 },
+          ayodhya: { lat: 26.7951, lng: 82.1942 },
+          yamunotri: { lat: 31.0152, lng: 78.4553 },
+          gangotri: { lat: 30.9947, lng: 78.9394 },
+          kedarnath: { lat: 30.7346, lng: 79.0669 },
+          badrinath: { lat: 30.7433, lng: 79.4938 },
+          somnath: { lat: 20.888, lng: 70.4013 },
+          mallikarjuna: { lat: 16.0733, lng: 78.8683 },
+          mahakaleshwar: { lat: 23.1828, lng: 75.7684 },
+          omkareshwar: { lat: 22.2462, lng: 76.1485 },
+          bhimashankar: { lat: 19.0722, lng: 73.5369 },
+          trimbakeshwar: { lat: 19.9348, lng: 73.5348 },
+          vaidyanath: { lat: 24.4925, lng: 86.6933 },
+          nageshwar: { lat: 22.3367, lng: 69.0833 },
+          rameswaram: { lat: 9.2876, lng: 79.3129 },
+          grishneshwar: { lat: 20.0249, lng: 75.168 },
+          mathura: { lat: 27.4924, lng: 77.6737 },
+          vrindavan: { lat: 27.5804, lng: 77.7053 },
+          govardhan: { lat: 27.5015, lng: 77.4601 },
+          kalighat: { lat: 22.5195, lng: 88.3426 },
+          kamakhya: { lat: 26.1664, lng: 91.7056 },
+          chitrakoot: { lat: 25.1745, lng: 80.8603 },
+          panchavati: { lat: 20.0066, lng: 73.7809 },
+          hampi: { lat: 15.335, lng: 76.46 },
+          madurai: { lat: 9.9252, lng: 78.1198 },
+          srirangam: { lat: 10.8614, lng: 78.69 },
+          kanchipuram: { lat: 12.8376, lng: 79.7039 },
+          guruvayur: { lat: 10.5946, lng: 76.0396 },
+          amarkantak: { lat: 22.676, lng: 81.7562 },
+          rishikesh: { lat: 30.0869, lng: 78.2676 },
+          haridwar: { lat: 29.9457, lng: 78.1642 },
+          ganga_sagar: { lat: 21.65, lng: 88.0772 },
+        };
+
+        const mandirIcon = L.divIcon({
+          html: '<div class="mandir-icon">🛕</div>',
+          className: "",
+          iconSize: [24, 24],
+          iconAnchor: [12, 24],
+          popupAnchor: [0, -24],
+        });
+
+        let activeMaps = {};
+
+        function initMap(containerId, points) {
+          if (activeMaps[containerId]) {
+            activeMaps[containerId].remove();
+          }
+          const map = L.map(containerId, { scrollWheelZoom: false });
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution:
+              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          }).addTo(map);
+
+          const latLngs = [];
+          points.forEach((point) => {
+            const marker = L.marker([point.lat, point.lng], {
+              icon: mandirIcon,
+            }).addTo(map);
+            marker.bindPopup(point.name);
+            latLngs.push([point.lat, point.lng]);
+          });
+
+          if (latLngs.length > 0) {
+            const bounds = L.latLngBounds(latLngs);
+            map.fitBounds(bounds.pad(0.2));
+          }
+
+          if (latLngs.length > 1) {
+            L.polyline(latLngs, { color: "#8C3B2A", weight: 3 }).addTo(map);
+          }
+
+          activeMaps[containerId] = map;
+        }
+
+        function initializeAllMaps(lang) {
+          const content = languageContent[lang];
+
+          initMap("map-kashi", [
+            { ...locations.ayodhya, name: content.mapAyodhya },
+            { ...locations.prayag, name: content.mapPrayag },
+            { ...locations.kashi, name: content.mapKashi },
+          ]);
+
+          initMap("map-chardham", [
+            { ...locations.yamunotri, name: content.mapYamunotri },
+            { ...locations.gangotri, name: content.mapGangotri },
+            { ...locations.kedarnath, name: content.mapKedarnath },
+            { ...locations.badrinath, name: content.mapBadrinath },
+          ]);
+
+          initMap("map-jyotirlinga", [
+            { ...locations.somnath, name: "Somnath" },
+            { ...locations.nageshwar, name: "Nageshwar" },
+            { ...locations.bhimashankar, name: "Bhimashankar" },
+            { ...locations.trimbakeshwar, name: "Trimbakeshwar" },
+            { ...locations.grishneshwar, name: "Grishneshwar" },
+            { ...locations.omkareshwar, name: "Omkareshwar" },
+            { ...locations.mahakaleshwar, name: "Mahakaleshwar" },
+            { ...locations.mallikarjuna, name: "Mallikarjuna" },
+            { ...locations.rameswaram, name: "Rameswaram" },
+            { ...locations.vaidyanath, name: "Vaidyanath" },
+            { ...locations.kashi, name: "Kashi Vishwanath" },
+            { ...locations.kedarnath, name: "Kedarnath" },
+          ]);
+
+          initMap("map-braj", [
+            { ...locations.mathura, name: "Mathura" },
+            { ...locations.vrindavan, name: "Vrindavan" },
+            { ...locations.govardhan, name: "Govardhan" },
+          ]);
+
+          initMap("map-shakti", [
+            { ...locations.kalighat, name: "Kalighat" },
+            { ...locations.kamakhya, name: "Kamakhya" },
+          ]);
+
+          initMap("map-ramayan", [
+            { ...locations.ayodhya, name: "Ayodhya" },
+            { ...locations.chitrakoot, name: "Chitrakoot" },
+            { ...locations.panchavati, name: "Panchavati" },
+            { ...locations.hampi, name: "Kishkindha" },
+            { ...locations.rameswaram, name: "Rameswaram" },
+          ]);
+
+          initMap("map-dakshin", [
+            { ...locations.rameswaram, name: "Rameswaram" },
+            { ...locations.madurai, name: "Madurai" },
+            { ...locations.srirangam, name: "Srirangam" },
+            { ...locations.kanchipuram, name: "Kanchipuram" },
+            { ...locations.guruvayur, name: "Guruvayur" },
+          ]);
+
+          initMap("map-narmada", [
+            { ...locations.amarkantak, name: "Amarkantak (Source)" },
+            { ...locations.omkareshwar, name: "Omkareshwar" },
+          ]);
+
+          initMap("map-ganga", [
+            { ...locations.gangotri, name: "Gangotri" },
+            { ...locations.haridwar, name: "Haridwar" },
+            { ...locations.prayag, name: "Prayag" },
+            { ...locations.kashi, name: "Kashi" },
+            { ...locations.ganga_sagar, name: "Ganga Sagar" },
+          ]);
+        }
+
+        // --- General UI Functions ---
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+          initializeAllMaps(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        document.querySelectorAll(".accordion-toggle").forEach((button) => {
+          button.addEventListener("click", () => {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector("span:last-child");
+            if (content.style.maxHeight) {
+              content.style.maxHeight = null;
+              icon.style.transform = "rotate(0deg)";
+            } else {
+              content.style.maxHeight = content.scrollHeight + "px";
+              icon.style.transform = "rotate(180deg)";
+            }
+          });
+        });
+
+        // --- Initial Load ---
+        updateLanguage("en");
+
+        // Invalidate map sizes after a short delay to ensure they render correctly
+        setTimeout(() => {
+          Object.values(activeMaps).forEach((map) => {
+            if (map) map.invalidateSize();
+          });
+        }, 500);
+      });
+    </script>
+  </body>
+</html>
