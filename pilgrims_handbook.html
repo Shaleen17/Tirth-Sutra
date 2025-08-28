@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pilgrim's Handbook - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      html[lang="en"] h1,
+      html[lang="en"] h2,
+      html[lang="en"] h3,
+      html[lang="en"] h4,
+      html[lang="en"] h5,
+      html[lang="en"] h6 {
+        font-family: "Lora", serif;
+      }
+      .quiz-option {
+        transition: all 0.2s ease-in-out;
+      }
+      .quiz-option:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .quiz-option.selected {
+        background-color: #8c3b2a;
+        color: white;
+        border-color: #8c3b2a;
+      }
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+      }
+      .gallery-item .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        padding: 1rem;
+        text-align: center;
+      }
+      .gallery-item:hover .overlay {
+        opacity: 1;
+      }
+      .gallery-item img {
+        transition: transform 0.3s ease-in-out;
+      }
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div>
+          <h1
+            class="text-2xl font-bold text-[#8C3B2A]"
+            data-lang-key="mainTitle"
+          >
+            The Puranic Path
+          </h1>
+          <p class="text-sm" data-lang-key="pageTitle">Pilgrim's Handbook</p>
+        </div>
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+      <!-- Pilgrim's Handbook Section -->
+      <section id="handbook" class="mb-16">
+        <div class="text-center mb-12">
+          <h2
+            class="text-4xl font-bold text-[#8C3B2A]"
+            data-lang-key="handbookTitle"
+          >
+            A Guide for the Sincere Pilgrim
+          </h2>
+          <p
+            class="mt-4 text-lg max-w-3xl mx-auto"
+            data-lang-key="handbookIntro"
+          >
+            A yatra is a spiritual discipline, not a vacation. This handbook,
+            based on the wisdom of the Skanda Purana and Tirth Ank, is designed
+            to prepare your mind, body, and soul for the transformative journey
+            ahead.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-bold mb-3" data-lang-key="prepTitle">
+              Spiritual Preparation (मानसिक तैयारी)
+            </h3>
+            <p data-lang-key="prepText">
+              The journey begins before you leave home. A yatra with the right
+              intention (*Sankalpa*) and inner disposition (*Bhāva*) bears
+              immense fruit. Reflect on your purpose: is it for inner peace
+              (*śānti*), ancestral welfare (*pitṛ-mokṣa*), or pure devotion
+              (*bhakti*)? This inner pilgrimage (*Manas Tirtha*) is the
+              foundation of the outer one.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-bold mb-3" data-lang-key="packingTitle">
+              Packing Guide (आवश्यक सामग्री)
+            </h3>
+            <ul class="list-disc list-inside space-y-2">
+              <li data-lang-key="pack1">
+                Modest, comfortable clothing (e.g., kurta, dhoti, sari). Avoid
+                revealing attire.
+              </li>
+              <li data-lang-key="pack2">
+                A simple shawl for cool evenings or temple entry.
+              </li>
+              <li data-lang-key="pack3">
+                Your personal prayer beads (*japmala*) and any small scriptures.
+              </li>
+              <li data-lang-key="pack4">
+                A journal to record reflections. Simplicity is key.
+              </li>
+              <li data-lang-key="pack5">
+                **What Not to Carry:** Leave behind worldly distractions like
+                unnecessary electronics, and any non-sattvic items.
+              </li>
+            </ul>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-bold mb-3" data-lang-key="maryadaTitle">
+              Yatra Maryada (यात्रा मर्यादा)
+            </h3>
+            <ul class="list-disc list-inside space-y-2">
+              <li data-lang-key="maryada1">
+                Maintain a sattvic diet. Consumption of non-vegetarian food,
+                alcohol, and tobacco is strictly prohibited.
+              </li>
+              <li data-lang-key="maryada2">
+                **The Rule of Dāna:** Giving charity (*dāna*) at a Tirtha
+                multiplies merit.
+              </li>
+              <li data-lang-key="maryada3">
+                **The Rule of Pratigraha:** The Skanda Purana strictly warns
+                against accepting gifts (*pratigraha*) at a Tirtha, as it
+                diminishes the pilgrim's merit.
+              </li>
+              <li data-lang-key="maryada4">
+                Embrace austerity (*tapas*). The simple living in Dharmshalas is
+                an integral part of the spiritual experience.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Visual Gallery Section -->
+      <section id="gallery" class="py-16 bg-[#FBEEDB] rounded-lg">
+        <div class="text-center mb-12">
+          <h2
+            class="text-4xl font-bold text-[#8C3B2A]"
+            data-lang-key="galleryTitle"
+          >
+            Glimpses of the Path (दिव्य दर्शन)
+          </h2>
+          <p
+            class="mt-4 text-lg max-w-3xl mx-auto"
+            data-lang-key="galleryIntro"
+          >
+            Witness the moments of grace and devotion from our sacred journeys.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 px-4">
+          <div class="gallery-item rounded-lg shadow-md">
+            <img
+              src="images/gallery1.jpg"
+              alt="Pilgrims at Ganga Aarti"
+              class="w-full h-full object-cover"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x400/FF6700/FFFFFF?text=Ganga+Aarti';"
+            />
+            <div class="overlay">
+              <p data-lang-key="caption1">
+                Evening Aarti on the banks of the Ganga.
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item rounded-lg shadow-md">
+            <img
+              src="images/gallery2.jpg"
+              alt="Guide narrating a story"
+              class="w-full h-full object-cover"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x400/8C3B2A/FFFFFF?text=Kath%C4%81';"
+            />
+            <div class="overlay">
+              <p data-lang-key="caption2">
+                Listening to the sacred *kathā* of the Tirtha.
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item rounded-lg shadow-md">
+            <img
+              src="images/gallery3.jpg"
+              alt="Simple interior of a Dharmshala"
+              class="w-full h-full object-cover"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x400/4A2E2A/FFFFFF?text=Dharmshala';"
+            />
+            <div class="overlay">
+              <p data-lang-key="caption3">
+                Simple, sattvic living in a traditional Dharmshala.
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item rounded-lg shadow-md">
+            <img
+              src="images/gallery4.jpg"
+              alt="Pilgrim in reflection"
+              class="w-full h-full object-cover"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x400/D9A05B/FFFFFF?text=Reflection';"
+            />
+            <div class="overlay">
+              <p data-lang-key="caption4">
+                A moment of quiet reflection and prayer.
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item rounded-lg shadow-md">
+            <img
+              src="images/gallery5.jpg"
+              alt="Himalayan temple view"
+              class="w-full h-full object-cover"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x400/FF6700/FFFFFF?text=Himalayas';"
+            />
+            <div class="overlay">
+              <p data-lang-key="caption5">
+                The majestic Himalayas, a path of austerity.
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item rounded-lg shadow-md">
+            <img
+              src="images/gallery6.jpg"
+              alt="Group of pilgrims"
+              class="w-full h-full object-cover"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x400/8C3B2A/FFFFFF?text=Yatris';"
+            />
+            <div class="overlay">
+              <p data-lang-key="caption6">
+                Sharing the journey with fellow pilgrims (*satsaṅga*).
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section id="testimonials" class="py-16">
+        <div class="text-center mb-12">
+          <h2
+            class="text-4xl font-bold text-[#8C3B2A]"
+            data-lang-key="testimonialsTitle"
+          >
+            Words from Yatris (यात्रियों के अनुभव)
+          </h2>
+          <p
+            class="mt-4 text-lg max-w-3xl mx-auto"
+            data-lang-key="testimonialsIntro"
+          >
+            The true measure of a yatra is the transformation within. Hear from
+            those who have walked the Puranic Path.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div
+            class="bg-white p-6 rounded-lg shadow-lg flex items-start space-x-4"
+          >
+            <img
+              src="images/yatri1.jpg"
+              alt="Aarav Sharma"
+              class="w-20 h-20 rounded-full object-cover border-2 border-[#8C3B2A]"
+              onerror="this.onerror=null;this.src='https://placehold.co/100x100/FBEEDB/4A2E2A?text=AS';"
+            />
+            <div>
+              <p class="text-lg italic" data-lang-key="testi1Text">
+                "This was not a tour; it was a spiritual homecoming. The stories
+                shared by our guide brought the temples to life. I left Kashi
+                with a peace I have never known before."
+              </p>
+              <p class="mt-4 font-bold" data-lang-key="testi1Name">
+                - Aarav Sharma, Mumbai
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-white p-6 rounded-lg shadow-lg flex items-start space-x-4"
+          >
+            <img
+              src="images/yatri2.jpg"
+              alt="Priya Mehta"
+              class="w-20 h-20 rounded-full object-cover border-2 border-[#8C3B2A]"
+              onerror="this.onerror=null;this.src='https://placehold.co/100x100/FBEEDB/4A2E2A?text=PM';"
+            />
+            <div>
+              <p class="text-lg italic" data-lang-key="testi2Text">
+                "Staying in the Dharmshalas was a profound experience. It
+                stripped away the distractions and allowed me to focus on the
+                real purpose of my journey. The Katha Pustika is a treasure I
+                will keep forever."
+              </p>
+              <p class="mt-4 font-bold" data-lang-key="testi2Name">
+                - Priya Mehta, Delhi
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Find Your Path Quiz Section -->
+      <section id="quiz" class="py-16 bg-[#FBEEDB] rounded-lg">
+        <div class="text-center mb-12">
+          <h2
+            class="text-4xl font-bold text-[#8C3B2A]"
+            data-lang-key="quizTitle"
+          >
+            Find Your Path (अपना पथ खोजें)
+          </h2>
+          <p class="mt-4 text-lg max-w-3xl mx-auto" data-lang-key="quizIntro">
+            Answer a few simple questions to discover which sacred journey is
+            calling to your soul.
+          </p>
+        </div>
+        <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+          <div id="quiz-question-1">
+            <h3 class="text-2xl font-bold mb-4" data-lang-key="q1Title">
+              1. What is your primary spiritual goal?
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <button
+                class="quiz-option border-2 p-4 rounded-lg"
+                data-answer="peace"
+                data-lang-key="q1a1"
+              >
+                Inner Peace & Liberation
+              </button>
+              <button
+                class="quiz-option border-2 p-4 rounded-lg"
+                data-answer="ancestors"
+                data-lang-key="q1a2"
+              >
+                Ancestral Blessings
+              </button>
+              <button
+                class="quiz-option border-2 p-4 rounded-lg"
+                data-answer="love"
+                data-lang-key="q1a3"
+              >
+                Divine Love & Devotion
+              </button>
+              <button
+                class="quiz-option border-2 p-4 rounded-lg"
+                data-answer="austerity"
+                data-lang-key="q1a4"
+              >
+                Austerity & Penance
+              </button>
+            </div>
+          </div>
+          <div id="quiz-question-2" class="hidden mt-8">
+            <h3 class="text-2xl font-bold mb-4" data-lang-key="q2Title">
+              2. What kind of landscape calls to your soul?
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <button
+                class="quiz-option border-2 p-4 rounded-lg"
+                data-answer="mountains"
+                data-lang-key="q2a1"
+              >
+                Majestic Mountains
+              </button>
+              <button
+                class="quiz-option border-2 p-4 rounded-lg"
+                data-answer="rivers"
+                data-lang-key="q2a2"
+              >
+                Sacred Rivers & Ancient Cities
+              </button>
+              <button
+                class="quiz-option border-2 p-4 rounded-lg"
+                data-answer="forests"
+                data-lang-key="q2a3"
+              >
+                Divine Forests & Pastoral Lands
+              </button>
+              <button
+                class="quiz-option border-2 p-4 rounded-lg"
+                data-answer="pan-india"
+                data-lang-key="q2a4"
+              >
+                The Breadth of Bharatavarsha
+              </button>
+            </div>
+          </div>
+          <div id="quiz-question-3" class="hidden mt-8">
+            <h3 class="text-2xl font-bold mb-4" data-lang-key="q3Title">
+              3. How much time can you dedicate to your journey?
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <button
+                class="quiz-option border-2 p-4 rounded-lg"
+                data-answer="short"
+                data-lang-key="q3a1"
+              >
+                About a Week
+              </button>
+              <button
+                class="quiz-option border-2 p-4 rounded-lg"
+                data-answer="medium"
+                data-lang-key="q3a2"
+              >
+                About Two Weeks
+              </button>
+              <button
+                class="quiz-option border-2 p-4 rounded-lg"
+                data-answer="long"
+                data-lang-key="q3a3"
+              >
+                Three Weeks or More
+              </button>
+              <button
+                class="quiz-option border-2 p-4 rounded-lg"
+                data-answer="custom"
+                data-lang-key="q3a4"
+              >
+                I need a custom duration
+              </button>
+            </div>
+          </div>
+          <div id="quiz-result" class="hidden mt-8 text-center">
+            <h3 class="text-2xl font-bold" data-lang-key="resultTitle">
+              Your Recommended Path:
+            </h3>
+            <p
+              id="result-text"
+              class="text-3xl font-bold text-[#8C3B2A] my-4"
+            ></p>
+            <p id="result-desc" class="text-lg mb-6"></p>
+            <a
+              href="https://forms.gle/DDcny8eBtyQp8hUS9"
+              target="_blank"
+              class="inline-block bg-[#8C3B2A] text-white text-lg font-bold py-3 px-8 rounded-lg hover:bg-[#FF6700] transition-colors duration-300"
+              data-lang-key="inquireBtn"
+              >Inquire to Learn More</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8">
+      <div class="container mx-auto px-6 text-center">
+        <div class="flex justify-center items-center space-x-6 mb-6">
+          <!-- Social Media Logos -->
+          <a
+            href="mailto:shaleensingh238@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Email"
+          >
+            <img
+              src="images/email-logo.png"
+              alt="Email Logo"
+              class="w-8 h-8 hover:opacity-80 transition-opacity"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/shaleen-singh-552413313/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="LinkedIn"
+          >
+            <img
+              src="images/linkedin-logo.png"
+              alt="LinkedIn Logo"
+              class="w-8 h-8 hover:opacity-80 transition-opacity"
+            />
+          </a>
+          <a
+            href="https://wa.me/918707757628"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="WhatsApp"
+          >
+            <img
+              src="images/whatsapp-logo.png"
+              alt="WhatsApp Logo"
+              class="w-8 h-8 hover:opacity-80 transition-opacity"
+            />
+          </a>
+        </div>
+
+        <!-- Copyright and Legal Links -->
+        <div class="text-sm text-gray-300">
+          <p data-lang-key="footerRights" class="mb-2">
+            &copy; 2025 The Puranic Path. All Rights Reserved.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row justify-center items-center sm:space-x-4"
+          >
+            <a
+              href="terms_and_conditions.html"
+              target="_blank"
+              class="hover:text-white"
+              data-lang-key="footerTerms"
+              >Terms & Condition</a
+            >
+            <span class="hidden sm:inline">|</span>
+            <a
+              href="privacy_policy.html"
+              target="_blank"
+              class="hover:text-white"
+              data-lang-key="footerPrivacy"
+              >Privacy Policy</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            pageTitle: "Pilgrim's Handbook",
+            handbookTitle: "A Guide for the Sincere Pilgrim",
+            handbookIntro:
+              "A yatra is a spiritual discipline, not a vacation. This handbook, based on the wisdom of the Skanda Purana and Tirth Ank, is designed to prepare your mind, body, and soul for the transformative journey ahead.",
+            prepTitle: "Spiritual Preparation (मानसिक तैयारी)",
+            prepText:
+              "The journey begins before you leave home. A yatra with the right intention (*Sankalpa*) and inner disposition (*Bhāva*) bears immense fruit. Reflect on your purpose: is it for inner peace (*śānti*), ancestral welfare (*pitṛ-mokṣa*), or pure devotion (*bhakti*)? This inner pilgrimage (*Manas Tirtha*) is the foundation of the outer one.",
+            packingTitle: "Packing Guide (आवश्यक सामग्री)",
+            pack1:
+              "Modest, comfortable clothing (e.g., kurta, dhoti, sari). Avoid revealing attire.",
+            pack2: "A simple shawl for cool evenings or temple entry.",
+            pack3:
+              "Your personal prayer beads (*japmala*) and any small scriptures.",
+            pack4: "A journal to record reflections. Simplicity is key.",
+            pack5:
+              "<strong>What Not to Carry:</strong> Leave behind worldly distractions like unnecessary electronics, and any non-sattvic items.",
+            maryadaTitle: "Yatra Maryada (यात्रा मर्यादा)",
+            maryada1:
+              "Maintain a sattvic diet. Consumption of non-vegetarian food, alcohol, and tobacco is strictly prohibited.",
+            maryada2:
+              "<strong>The Rule of Dāna:</strong> Giving charity (*dāna*) at a Tirtha multiplies merit.",
+            maryada3:
+              "<strong>The Rule of Pratigraha:</strong> The Skanda Purana strictly warns against accepting gifts (*pratigraha*) at a Tirtha, as it diminishes the pilgrim's merit.",
+            maryada4:
+              "Embrace austerity (*tapas*). The simple living in Dharmshalas is an integral part of the spiritual experience.",
+            galleryTitle: "Glimpses of the Path (दिव्य दर्शन)",
+            galleryIntro:
+              "Witness the moments of grace and devotion from our sacred journeys.",
+            caption1: "Evening Aarti on the banks of the Ganga.",
+            caption2: "Listening to the sacred *kathā* of the Tirtha.",
+            caption3: "Simple, sattvic living in a traditional Dharmshala.",
+            caption4: "A moment of quiet reflection and prayer.",
+            caption5: "The majestic Himalayas, a path of austerity.",
+            caption6: "Sharing the journey with fellow pilgrims (*satsaṅga*).",
+            testimonialsTitle: "Words from Yatris (यात्रियों के अनुभव)",
+            testimonialsIntro:
+              "The true measure of a yatra is the transformation within. Hear from those who have walked the Puranic Path.",
+            testi1Text:
+              '"This was not a tour; it was a spiritual homecoming. The stories shared by our guide brought the temples to life. I left Kashi with a peace I have never known before."',
+            testi1Name: "- Aarav Sharma, Mumbai",
+            testi2Text:
+              '"Staying in the Dharmshalas was a profound experience. It stripped away the distractions and allowed me to focus on the real purpose of my journey. The Katha Pustika is a treasure I will keep forever."',
+            testi2Name: "- Priya Mehta, Delhi",
+            quizTitle: "Find Your Path (अपना पथ खोजें)",
+            quizIntro:
+              "Answer a few simple questions to discover which sacred journey is calling to your soul.",
+            q1Title: "1. What is your primary spiritual goal?",
+            q1a1: "Inner Peace & Liberation",
+            q1a2: "Ancestral Blessings",
+            q1a3: "Divine Love & Devotion",
+            q1a4: "Austerity & Penance",
+            q2Title: "2. What kind of landscape calls to your soul?",
+            q2a1: "Majestic Mountains",
+            q2a2: "Sacred Rivers & Ancient Cities",
+            q2a3: "Divine Forests & Pastoral Lands",
+            q2a4: "The Breadth of Bharatavarsha",
+            q3Title: "3. How much time can you dedicate to your journey?",
+            q3a1: "About a Week",
+            q3a2: "About Two Weeks",
+            q3a3: "Three Weeks or More",
+            q3a4: "I need a custom duration",
+            resultTitle: "Your Recommended Path:",
+            inquireBtn: "Inquire to Learn More",
+            footerTerms: "Terms & Condition",
+            footerPrivacy: "Privacy Policy",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            pageTitle: "तीर्थयात्री दर्शिका",
+            handbookTitle: "सच्चे तीर्थयात्री के लिए एक मार्गदर्शिका",
+            handbookIntro:
+              "यात्रा एक आध्यात्मिक अनुशासन है, छुट्टी नहीं। यह दर्शिका स्कंद पुराण और तीर्थ अंक के ज्ञान पर आधारित है, जो आपको आगे की परिवर्तनकारी यात्रा के लिए मन, शरीर और आत्मा से तैयार करने के लिए डिज़ाइन की गई है।",
+            prepTitle: "आध्यात्मिक तैयारी (Spiritual Preparation)",
+            prepText:
+              "यात्रा घर छोड़ने से पहले शुरू होती है। सही इरादे (*संकल्प*) और आंतरिक भाव (*भाव*) के साथ की गई यात्रा से अपार फल मिलता है। अपने उद्देश्य पर विचार करें: क्या यह आंतरिक शांति (*शांति*), पितरों का कल्याण (*पितृ-मोक्ष*), या शुद्ध भक्ति (*भक्ति*) के लिए है? यह आंतरिक तीर्थ (*मानस तीर्थ*) बाहरी तीर्थ का आधार है।",
+            packingTitle: "पैकिंग गाइड (Packing Guide)",
+            pack1:
+              "सादे, आरामदायक कपड़े (जैसे कुर्ता, धोती, साड़ी)। दिखावटी पोशाक से बचें।",
+            pack2: "ठंडी शामों या मंदिर में प्रवेश के लिए एक साधारण शॉल।",
+            pack3:
+              "आपकी व्यक्तिगत प्रार्थना माला (*जपमाला*) और कोई भी छोटी शास्त्र।",
+            pack4: "विचारों को दर्ज करने के लिए एक पत्रिका। सादगी ही कुंजी है।",
+            pack5:
+              "<strong>क्या न ले जाएं:</strong> अनावश्यक इलेक्ट्रॉनिक्स और गैर-सात्विक वस्तुओं जैसे सांसारिक विकर्षणों को पीछे छोड़ दें।",
+            maryadaTitle: "यात्रा मर्यादा (Yatra Maryada)",
+            maryada1:
+              "सात्विक आहार बनाए रखें। मांसाहारी भोजन, शराब और तंबाकू का सेवन सख्त वर्जित है।",
+            maryada2:
+              "<strong>दान का नियम:</strong> तीर्थ पर दान (*दान*) करने से पुण्य कई गुना बढ़ जाता है।",
+            maryada3:
+              "<strong>प्रतिग्रह का नियम:</strong> स्कंद पुराण तीर्थ पर उपहार (*प्रतिग्रह*) स्वीकार करने के खिलाफ सख्त चेतावनी देता है, क्योंकि यह तीर्थयात्री के पुण्य को कम करता है।",
+            maryada4:
+              "तपस्या (*तप*) को अपनाएं। धर्मशालाओं में सादा जीवन आध्यात्मिक अनुभव का एक अभिन्न अंग है।",
+            galleryTitle: "पथ की झलकियाँ (दिव्य दर्शन)",
+            galleryIntro:
+              "हमारी पवित्र यात्राओं से कृपा और भक्ति के क्षणों के साक्षी बनें।",
+            caption1: "गंगा के तट पर संध्या आरती।",
+            caption2: "तीर्थ की पवित्र *कथा* सुनते हुए।",
+            caption3: "एक पारंपरिक धर्मशाला में सादा, सात्विक जीवन।",
+            caption4: "शांत चिंतन और प्रार्थना का एक क्षण।",
+            caption5: "राजसी हिमालय, तपस्या का मार्ग।",
+            caption6: "साथी तीर्थयात्रियों (*सत्संग*) के साथ यात्रा साझा करना।",
+            testimonialsTitle: "यात्रियों के अनुभव (Words from Yatris)",
+            testimonialsIntro:
+              "यात्रा का सच्चा माप भीतर का परिवर्तन है। उन लोगों से सुनें जो पौराणिक पथ पर चले हैं।",
+            testi1Text:
+              '"यह एक टूर नहीं था; यह एक आध्यात्मिक घर वापसी थी। हमारे गाइड द्वारा साझा की गई कहानियों ने मंदिरों को जीवंत कर दिया। मैंने काशी को एक ऐसी शांति के साथ छोड़ा जो मैंने पहले कभी नहीं जानी थी।"',
+            testi1Name: "- आरव शर्मा, मुंबई",
+            testi2Text:
+              '"धर्मशालाओं में रहना एक गहरा अनुभव था। इसने विकर्षणों को दूर कर दिया और मुझे अपनी यात्रा के वास्तविक उद्देश्य पर ध्यान केंद्रित करने की अनुमति दी। कथा पुस्तिका एक खजाना है जिसे मैं हमेशा अपने पास रखूँगा।"',
+            testi2Name: "- प्रिया मेहता, दिल्ली",
+            quizTitle: "अपना पथ खोजें (Find Your Path)",
+            quizIntro:
+              "यह जानने के लिए कुछ सरल प्रश्नों के उत्तर दें कि कौन सी पवित्र यात्रा आपकी आत्मा को बुला रही है।",
+            q1Title: "१. आपका मुख्य आध्यात्मिक लक्ष्य क्या है?",
+            q1a1: "आंतरिक शांति और मुक्ति",
+            q1a2: "पैतृक आशीर्वाद",
+            q1a3: "दिव्य प्रेम और भक्ति",
+            q1a4: "तपस्या और प्रायश्चित",
+            q2Title: "२. किस तरह का परिदृश्य आपकी आत्मा को बुलाता है?",
+            q2a1: "राजसी पर्वत",
+            q2a2: "पवित्र नदियाँ और प्राचीन शहर",
+            q2a3: "दिव्य वन और देहाती भूमि",
+            q2a4: "भारतवर्ष की चौड़ाई",
+            q3Title: "३. आप अपनी यात्रा के लिए कितना समय समर्पित कर सकते हैं?",
+            q3a1: "लगभग एक सप्ताह",
+            q3a2: "लगभग दो सप्ताह",
+            q3a3: "तीन सप्ताह या अधिक",
+            q3a4: "मुझे एक कस्टम अवधि चाहिए",
+            resultTitle: "आपका अनुशंसित पथ:",
+            inquireBtn: "अधिक जानने के लिए पूछताछ करें",
+            footerTerms: "नियम एवं शर्तें",
+            footerPrivacy: "गोपनीयता नीति",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        // Quiz Logic
+        const q1 = document.getElementById("quiz-question-1");
+        const q2 = document.getElementById("quiz-question-2");
+        const q3 = document.getElementById("quiz-question-3");
+        const resultDiv = document.getElementById("quiz-result");
+        const resultText = document.getElementById("result-text");
+        const resultDesc = document.getElementById("result-desc");
+        let answers = {};
+
+        document
+          .querySelectorAll("#quiz-question-1 .quiz-option")
+          .forEach((btn) => {
+            btn.addEventListener("click", () => {
+              answers.q1 = btn.dataset.answer;
+              q1.classList.add("hidden");
+              q2.classList.remove("hidden");
+            });
+          });
+
+        document
+          .querySelectorAll("#quiz-question-2 .quiz-option")
+          .forEach((btn) => {
+            btn.addEventListener("click", () => {
+              answers.q2 = btn.dataset.answer;
+              q2.classList.add("hidden");
+              q3.classList.remove("hidden");
+            });
+          });
+
+        document
+          .querySelectorAll("#quiz-question-3 .quiz-option")
+          .forEach((btn) => {
+            btn.addEventListener("click", () => {
+              answers.q3 = btn.dataset.answer;
+              q3.classList.add("hidden");
+              showResult();
+            });
+          });
+
+        function showResult() {
+          let yatraName = "";
+          let yatraDesc = "";
+          const lang = document.documentElement.lang;
+
+          if (
+            answers.q1 === "peace" &&
+            answers.q2 === "rivers" &&
+            answers.q3 === "short"
+          ) {
+            yatraName =
+              lang === "hi" ? "काशी दिव्य दर्शन" : "Kashi Divya Darshan";
+            yatraDesc =
+              lang === "hi"
+                ? "यह यात्रा मन की शांति और मुक्ति चाहने वालों के लिए है।"
+                : "This yatra is for those seeking peace of mind and liberation.";
+          } else if (
+            answers.q1 === "austerity" &&
+            answers.q2 === "mountains" &&
+            (answers.q3 === "medium" || answers.q3 === "long")
+          ) {
+            yatraName =
+              lang === "hi"
+                ? "हिमालयी चार धाम यात्रा"
+                : "Himalayan Char Dham Yatra";
+            yatraDesc =
+              lang === "hi"
+                ? "यह यात्रा तपस्या और आध्यात्मिक योग्यता के लिए है।"
+                : "This journey is for austerity and spiritual merit.";
+          } else if (answers.q1 === "love" && answers.q2 === "forests") {
+            yatraName =
+              lang === "hi" ? "ब्रज मंडल परिक्रमा" : "Braj Mandal Parikrama";
+            yatraDesc =
+              lang === "hi"
+                ? "यह यात्रा दिव्य प्रेम और भक्ति में डूबने के लिए है।"
+                : "This pilgrimage is for immersing oneself in divine love and devotion.";
+          } else if (answers.q3 === "long") {
+            yatraName =
+              lang === "hi"
+                ? "द्वादश ज्योतिर्लिंग अनुभूति"
+                : "Dwadash Jyotirlinga Anubhuti";
+            yatraDesc =
+              lang === "hi"
+                ? "यह एक व्यापक यात्रा है जो पूरे भारत में भगवान शिव की कृपा प्राप्त करने के लिए है।"
+                : "A comprehensive journey to attain the grace of Lord Shiva across India.";
+          } else {
+            yatraName =
+              lang === "hi" ? "गंगा दर्शन यात्रा" : "Ganga Darshan Yatra";
+            yatraDesc =
+              lang === "hi"
+                ? "यह यात्रा माँ गंगा के पवित्र पथ का अनुसरण करने के लिए है।"
+                : "This yatra is for following the sacred path of Mother Ganga.";
+          }
+
+          resultText.textContent = yatraName;
+          resultDesc.textContent = yatraDesc;
+          resultDiv.classList.remove("hidden");
+        }
+
+        // Set initial language
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>
