@@ -102,6 +102,10 @@ document.addEventListener("DOMContentLoaded", function () {
       optionInquiry: "General Inquiry",
       formMessage: "Your Message",
       formSubmit: "Send Inquiry",
+      ctaTitle: "Your Path Awaits...",
+      ctaIntro:
+        "The sacred call of the Tirthas is timeless. A journey of a thousand miles begins with a single step. We are meticulously preparing the way for you to begin your authentic, scripture-guided pilgrimage. Soon, you will be able to place your yatra request and lift your spiritual journey.",
+      ctaButton: "Book Your Yatra",
       newsletterTitle: "Blog / Puranic Wisdom (Gyan Ganga)",
       newsletterIntro:
         "Stay connected to the source. Sign up for our monthly newsletter to receive new stories, scriptural insights, and updates on our sacred yatras directly in your inbox.",
@@ -214,6 +218,10 @@ document.addEventListener("DOMContentLoaded", function () {
       optionInquiry: "सामान्य पूछताछ",
       formMessage: "आपका संदेश",
       formSubmit: "पूछताछ भेजें",
+      ctaTitle: "आपका पथ प्रतीक्षा कर रहा है...",
+      ctaIntro:
+        "तीर्थों का पवित्र आह्वान कालातीत है। हजारों मील की यात्रा एक ही कदम से शुरू होती है। हम आपके लिए अपनी प्रामाणिक, शास्त्र-निर्देशित तीर्थयात्रा शुरू करने का मार्ग सावधानीपूर्वक तैयार कर रहे हैं। शीघ्र ही, आप अपनी यात्रा का अनुरोध कर सकेंगे और अपनी आध्यात्मिक यात्रा को उन्नत कर सकेंगे।",
+      ctaButton: "अपनी यात्रा बुक करें",
       newsletterTitle: "ब्लॉग / पौराणिक ज्ञान (ज्ञान गंगा)",
       newsletterIntro:
         "स्रोत से जुड़े रहें। नई कहानियाँ, शास्त्रीय अंतर्दृष्टि और हमारी पवित्र यात्राओं पर अपडेट सीधे अपने इनबॉक्स में प्राप्त करने के लिए हमारे मासिक न्यूज़लेटर के लिए साइन अप करें।",
