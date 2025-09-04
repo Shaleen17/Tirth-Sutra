@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kamakhya: The Bleeding Goddess - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+          >The Puranic Path</a
+        >
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/kamakhya_hero.jpg"
+          alt="Kamakhya Temple on Nilachal Hills"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">Assam</p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Kamakhya: The Bleeding Goddess
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Welcome to the sacred Nilachal Hills in Guwahati, home to the
+              Kamakhya Temple, one of the most potent and revered Maha Shakti
+              Pithas in all of India. This is not a temple of conventional
+              idols, but a sanctuary of the living, breathing creative force of
+              the universe—the Divine Mother in her most primal form. A
+              pilgrimage here is a journey into the heart of Tantra and the
+              profound worship of Shakti, the divine feminine energy.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Puranic Origin: The Womb of Creation
+            </h2>
+            <p data-lang-key="historyText1">
+              The *Kalika Purana* narrates that after the self-immolation of
+              Goddess Sati, a grief-stricken Lord Shiva wandered the cosmos
+              carrying her body. To restore cosmic balance, Lord Vishnu used his
+              Sudarshana Chakra to dismember the body, and the pieces fell
+              across the Indian subcontinent. It is here, on Nilachal hill, that
+              her *yoni* (womb or vulva), the very source of all creation, is
+              believed to have fallen. Thus, this Tirtha represents the origin
+              point of life itself.
+            </p>
+
+            <img
+              src="images/kamakhya_inner.jpg"
+              alt="The inner sanctum representing the yoni"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>Darshan of the Yoni-Mudra Pitha:</strong> The temple's
+              sanctum sanctorum (*garbhagriha*) contains no idol. Instead,
+              devotees worship a rock fissure in the shape of a yoni, from which
+              a natural underground spring perpetually flows. This *yoni-mudra
+              pitha* is considered the living form of the Goddess. Touching the
+              sacred water and offering a red cloth is the central act of
+              worship.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>Ambubachi Mela: The Festival of Menstruation.</strong>
+              This unique four-day festival, held annually during the monsoon,
+              celebrates the menstruation of the Goddess. The temple remains
+              closed for three days as it is believed the Mother Earth is
+              undergoing her annual cycle of fertility. On the fourth day, the
+              temple reopens to massive crowds who come to receive the sacred
+              *rakta bastra* (pieces of red cloth moistened with the sacred
+              fluid), a powerful symbol of fertility and creative power.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>A Center of Tantra:</strong> Kamakhya has been a revered
+              center for Tantra for centuries. The energy of the place is
+              palpable, attracting spiritual seekers and Tantrics from all over
+              the world who come to perform their *sādhanā* and connect with the
+              primal energy of Shakti.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p><strong data-lang-key="infoState">State:</strong> Assam</p>
+                  <p>
+                    <strong data-lang-key="infoDeity">Primary Deity:</strong>
+                    Goddess Kamakhya (Shakti)
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="kamakhya-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="kashi.html" class="block group">
+                    <img
+                      src="images/card_kashi.jpg"
+                      alt="Kashi"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyKashi"
+                    >
+                      Kashi: The Eternal City
+                    </p>
+                  </a>
+                  <a href="puri.html" class="block group">
+                    <img
+                      src="images/card_puri.jpg"
+                      alt="Puri"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyPuri"
+                    >
+                      Puri: Abode of Jagannath
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Assam",
+            pageTitle: "Kamakhya: The Bleeding Goddess",
+            introText:
+              "Welcome to the sacred Nilachal Hills in Guwahati, home to the Kamakhya Temple, one of the most potent and revered Maha Shakti Pithas in all of India. This is not a temple of conventional idols, but a sanctuary of the living, breathing creative force of the universe—the Divine Mother in her most primal form. A pilgrimage here is a journey into the heart of Tantra and the profound worship of Shakti, the divine feminine energy.",
+            historyTitle: "The Puranic Origin: The Womb of Creation",
+            historyText1:
+              "The *Kalika Purana* narrates that after the self-immolation of Goddess Sati, a grief-stricken Lord Shiva wandered the cosmos carrying her body. To restore cosmic balance, Lord Vishnu used his Sudarshana Chakra to dismember the body, and the pieces fell across the Indian subcontinent. It is here, on Nilachal hill, that her *yoni* (womb or vulva), the very source of all creation, is believed to have fallen. Thus, this Tirtha represents the origin point of life itself.",
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              "<strong>Darshan of the Yoni-Mudra Pitha:</strong> The temple's sanctum sanctorum (*garbhagriha*) contains no idol. Instead, devotees worship a rock fissure in the shape of a yoni, from which a natural underground spring perpetually flows. This *yoni-mudra pitha* is considered the living form of the Goddess. Touching the sacred water and offering a red cloth is the central act of worship.",
+            expText2:
+              "<strong>Ambubachi Mela: The Festival of Menstruation.</strong> This unique four-day festival, held annually during the monsoon, celebrates the menstruation of the Goddess. The temple remains closed for three days as it is believed the Mother Earth is undergoing her annual cycle of fertility. On the fourth day, the temple reopens to massive crowds who come to receive the sacred *rakta bastra* (pieces of red cloth moistened with the sacred fluid), a powerful symbol of fertility and creative power.",
+            expText3:
+              "<strong>A Center of Tantra:</strong> Kamakhya has been a revered center for Tantra for centuries. The energy of the place is palpable, attracting spiritual seekers and Tantrics from all over the world who come to perform their *sādhanā* and connect with the primal energy of Shakti.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Deity:",
+            mapTitle: "Location Map",
+            kamakhyaMarker: "Kamakhya Temple",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyKashi: "Kashi: The Eternal City",
+            enjoyPuri: "Puri: Abode of Jagannath",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "असम",
+            pageTitle: "कामाख्या: रक्तस्रावी देवी",
+            introText:
+              "गुवाहाटी की पवित्र नीलाचल पहाड़ियों में आपका स्वागत है, जो कामाख्या मंदिर का घर है, जो पूरे भारत में सबसे शक्तिशाली और पूजनीय महा शक्ति पीठों में से एक है। यह पारंपरिक मूर्तियों का मंदिर नहीं है, बल्कि ब्रह्मांड की जीवंत, सांस लेने वाली रचनात्मक शक्ति का एक अभयारण्य है - अपने सबसे आदिम रूप में दिव्य माँ। यहाँ की तीर्थयात्रा तंत्र के हृदय में और शक्ति, दिव्य स्त्री ऊर्जा की गहन पूजा में एक यात्रा है।",
+            historyTitle: "पौराणिक उत्पत्ति: सृष्टि का गर्भ",
+            historyText1:
+              "*कालिका पुराण* में वर्णन है कि देवी सती के आत्मदाह के बाद, दुखी भगवान शिव उनके शरीर को लेकर ब्रह्मांड में घूमते रहे। ब्रह्मांडीय संतुलन को बहाल करने के लिए, भगवान विष्णु ने अपने सुदर्शन चक्र का उपयोग करके शरीर के टुकड़े-टुकड़े कर दिए, और वे टुकड़े भारतीय उपमहाद्वीप में गिरे। यहीं, नीलाचल पहाड़ी पर, माना जाता है कि उनकी *योनि* (गर्भ या भग), जो सभी सृष्टि का स्रोत है, गिरी थी। इस प्रकार, यह तीर्थ स्वयं जीवन के उत्पत्ति बिंदु का प्रतिनिधित्व करता है।",
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>योनि-मुद्रा पीठ का दर्शन:</strong> मंदिर के गर्भगृह में कोई मूर्ति नहीं है। इसके बजाय, भक्त योनि के आकार की एक चट्टान की दरार की पूजा करते हैं, जिससे एक प्राकृतिक भूमिगत झरना लगातार बहता है। इस *योनि-मुद्रा पीठ* को देवी का जीवंत रूप माना जाता है। पवित्र जल को छूना और लाल कपड़ा चढ़ाना पूजा का केंद्रीय कार्य है।",
+            expText2:
+              "<strong>अंबुबाची मेला: मासिक धर्म का त्योहार।</strong> मानसून के दौरान प्रतिवर्ष आयोजित होने वाला यह अनूठा चार दिवसीय त्योहार, देवी के मासिक धर्म का जश्न मनाता है। मंदिर तीन दिनों तक बंद रहता है क्योंकि माना जाता है कि धरती माता अपनी वार्षिक उर्वरता के चक्र से गुजर रही है। चौथे दिन, मंदिर भारी भीड़ के लिए फिर से खुलता है जो पवित्र *रक्त बस्त्र* (पवित्र तरल से सिक्त लाल कपड़े के टुकड़े) प्राप्त करने के लिए आते हैं, जो उर्वरता और रचनात्मक शक्ति का एक शक्तिशाली प्रतीक है।",
+            expText3:
+              "<strong>तंत्र का एक केंद्र:</strong> कामाख्या सदियों से तंत्र का एक प्रतिष्ठित केंद्र रहा है। इस स्थान की ऊर्जा स्पष्ट है, जो दुनिया भर से आध्यात्मिक साधकों और तांत्रिकों को आकर्षित करती है जो अपनी *साधना* करने और शक्ति की आदिम ऊर्जा से जुड़ने के लिए आते हैं।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "प्रमुख देवता:",
+            mapTitle: "स्थान का नक्शा",
+            kamakhyaMarker: "कामाख्या मंदिर",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyKashi: "काशी: शाश्वत नगरी",
+            enjoyPuri: "पुरी: जगन्नाथ का धाम",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let kamakhyaMap;
+
+        function initKamakhyaMap(lang) {
+          const content = languageContent[lang];
+          const kamakhyaCoords = [26.1662, 91.7058];
+
+          if (!kamakhyaMap) {
+            kamakhyaMap = L.map("kamakhya-map", {
+              scrollWheelZoom: false,
+            }).setView(kamakhyaCoords, 15);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(kamakhyaMap);
+          } else {
+            kamakhyaMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker) {
+                kamakhyaMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const marker = L.marker(kamakhyaCoords, { icon: mandirIcon }).addTo(
+            kamakhyaMap
+          );
+          marker.bindPopup(`<b>${content.kamakhyaMarker}</b>`).openPopup();
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initKamakhyaMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

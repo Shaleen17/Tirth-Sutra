@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Konark: The Sun Chariot - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+          >The Puranic Path</a
+        >
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/konark_hero.jpg"
+          alt="The Konark Sun Temple chariot wheel"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">Odisha</p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Konark: The Sun Chariot
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Welcome to the magnificent Sun Temple at Konark, a UNESCO World
+              Heritage site and one of the most stunning architectural marvels
+              in all of India. This is not merely a temple but a colossal
+              representation of the Sun God Surya's celestial chariot, frozen in
+              stone. A visit to Konark is a journey into the heart of ancient
+              astronomy, engineering, and the profound Vedic worship of the Sun
+              as the source of all life.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Puranic Origin: A Prince's Penance
+            </h2>
+            <p data-lang-key="historyText1">
+              The *Samba Purana* narrates the story of Samba, the handsome son
+              of Lord Krishna, who was cursed with leprosy. Advised by the sage
+              Narada, Samba performed severe penance for twelve years at this
+              sacred spot on the shores of the Chandrabhaga River. Pleased by
+              his devotion, the Sun God Surya appeared and cured him of his
+              affliction. In gratitude, Samba constructed a magnificent temple
+              in Surya's honor, establishing this site as a powerful Tirtha for
+              healing and purification.
+            </p>
+
+            <img
+              src="images/konark_carvings.jpg"
+              alt="Intricate carvings on the walls of the Konark Temple"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">
+              Key Architectural & Spiritual Experiences
+            </h2>
+            <p data-lang-key="expText1">
+              <strong>The Celestial Chariot:</strong> The entire temple is
+              designed in the shape of a gigantic chariot with 24 intricately
+              carved stone wheels, pulled by seven powerful horses. The 24
+              wheels represent the 24 hours of the day and also serve as precise
+              sundials, capable of telling time accurately.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>The Three Images of Surya:</strong> The temple was
+              designed so that the sun's rays would illuminate the three main
+              images of Surya at different times of the day. The morning sun
+              would shine on the youthful form of Surya on the southern side,
+              the midday sun on the powerful, mature form on the western side,
+              and the evening sun on the aged form on the northern side,
+              symbolizing the entire cycle of life.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>A Symphony in Stone:</strong> Every inch of the temple is
+              covered with exquisite carvings depicting a vibrant panorama of
+              life—celestial beings, musicians, dancers, scenes of courtly life,
+              and intricate geometric patterns. It is a testament to the
+              unparalleled skill of the ancient Kalingan artisans.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong> Odisha
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity">Primary Deity:</strong>
+                    Surya (The Sun God)
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="konark-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="puri.html" class="block group">
+                    <img
+                      src="images/card_puri.jpg"
+                      alt="Puri"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyPuri"
+                    >
+                      Puri: Abode of Jagannath
+                    </p>
+                  </a>
+                  <a href="gangasagar.html" class="block group">
+                    <img
+                      src="images/card_gangasagar.jpg"
+                      alt="Gangasagar"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyGangasagar"
+                    >
+                      Gangasagar: The Great Confluence
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Odisha",
+            pageTitle: "Konark: The Sun Chariot",
+            introText:
+              "Welcome to the magnificent Sun Temple at Konark, a UNESCO World Heritage site and one of the most stunning architectural marvels in all of India. This is not merely a temple but a colossal representation of the Sun God Surya's celestial chariot, frozen in stone. A visit to Konark is a journey into the heart of ancient astronomy, engineering, and the profound Vedic worship of the Sun as the source of all life.",
+            historyTitle: "The Puranic Origin: A Prince's Penance",
+            historyText1:
+              "The *Samba Purana* narrates the story of Samba, the handsome son of Lord Krishna, who was cursed with leprosy. Advised by the sage Narada, Samba performed severe penance for twelve years at this sacred spot on the shores of the Chandrabhaga River. Pleased by his devotion, the Sun God Surya appeared and cured him of his affliction. In gratitude, Samba constructed a magnificent temple in Surya's honor, establishing this site as a powerful Tirtha for healing and purification.",
+            experiencesTitle: "Key Architectural & Spiritual Experiences",
+            expText1:
+              "<strong>The Celestial Chariot:</strong> The entire temple is designed in the shape of a gigantic chariot with 24 intricately carved stone wheels, pulled by seven powerful horses. The 24 wheels represent the 24 hours of the day and also serve as precise sundials, capable of telling time accurately.",
+            expText2:
+              "<strong>The Three Images of Surya:</strong> The temple was designed so that the sun's rays would illuminate the three main images of Surya at different times of the day. The morning sun would shine on the youthful form of Surya on the southern side, the midday sun on the powerful, mature form on the western side, and the evening sun on the aged form on the northern side, symbolizing the entire cycle of life.",
+            expText3:
+              "<strong>A Symphony in Stone:</strong> Every inch of the temple is covered with exquisite carvings depicting a vibrant panorama of life—celestial beings, musicians, dancers, scenes of courtly life, and intricate geometric patterns. It is a testament to the unparalleled skill of the ancient Kalingan artisans.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Deity:",
+            mapTitle: "Location Map",
+            konarkMarker: "Konark Sun Temple",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyPuri: "Puri: Abode of Jagannath",
+            enjoyGangasagar: "Gangasagar: The Great Confluence",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "ओडिशा",
+            pageTitle: "कोणार्क: सूर्य रथ",
+            introText:
+              "कोणार्क के शानदार सूर्य मंदिर में आपका स्वागत है, जो एक यूनेस्को विश्व धरोहर स्थल है और पूरे भारत में सबसे आश्चर्यजनक वास्तुशिल्प चमत्कारों में سے एक है। यह केवल एक मंदिर नहीं है, बल्कि सूर्य देव सूर्य के दिव्य रथ का एक विशाल प्रतिनिधित्व है, जो पत्थर में जम गया है। कोणार्क की यात्रा प्राचीन खगोल विज्ञान, इंजीनियरिंग और सूर्य को सभी जीवन के स्रोत के रूप में गहन वैदिक पूजा के हृदय में एक यात्रा है।",
+            historyTitle: "पौराणिक उत्पत्ति: एक राजकुमार की तपस्या",
+            historyText1:
+              "*सांब पुराण* में भगवान कृष्ण के सुंदर पुत्र सांब की कहानी का वर्णन है, जिन्हें कुष्ठ रोग का श्राप मिला था। ऋषि नारद की सलाह पर, सांब ने चंद्रभागा नदी के तट पर इस पवित्र स्थान पर बारह वर्षों तक कठोर तपस्या की। उनकी भक्ति से प्रसन्न होकर, सूर्य देव सूर्य प्रकट हुए और उन्हें उनकी पीड़ा से मुक्त कर दिया। कृतज्ञता में, सांब ने सूर्य के सम्मान में एक शानदार मंदिर का निर्माण किया, इस स्थल को उपचार और शुद्धि के लिए एक शक्तिशाली तीर्थ के रूप में स्थापित किया।",
+            experiencesTitle: "मुख्य वास्तुशिल्प और आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>दिव्य रथ:</strong> पूरा मंदिर 24 जटिल नक्काशीदार पत्थर के पहियों वाले एक विशाल रथ के आकार में बनाया गया है, जिसे सात शक्तिशाली घोड़े खींचते हैं। 24 पहिये दिन के 24 घंटों का प्रतिनिधित्व करते हैं और सटीक धूपघड़ी के रूप में भी काम करते हैं, जो समय को सटीक रूप से बताने में सक्षम हैं।",
+            expText2:
+              "<strong>सूर्य की तीन छवियाँ:</strong> मंदिर को इस तरह से डिजाइन किया गया था कि सूर्य की किरणें दिन के अलग-अलग समय में सूर्य की तीन मुख्य छवियों को रोशन करें। सुबह का सूरज दक्षिणी तरफ सूर्य के युवा रूप पर चमकता, दोपहर का सूरज पश्चिमी तरफ शक्तिशाली, परिपक्व रूप पर, और शाम का सूरज उत्तरी तरफ वृद्ध रूप पर, जो जीवन के पूरे चक्र का प्रतीक है।",
+            expText3:
+              "<strong>पत्थर में एक सिम्फनी:</strong> मंदिर का हर इंच उत्कृष्ट नक्काशी से ढका हुआ है जो जीवन का एक जीवंत चित्रमाला दर्शाता है - दिव्य प्राणी, संगीतकार, नर्तक, दरबारी जीवन के दृश्य और जटिल ज्यामितीय पैटर्न। यह प्राचीन कलिंग कारीगरों के अद्वितीय कौशल का एक प्रमाण है।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "प्रमुख देवता:",
+            mapTitle: "स्थान का नक्शा",
+            konarkMarker: "कोणार्क सूर्य मंदिर",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyPuri: "पुरी: जगन्नाथ का धाम",
+            enjoyGangasagar: "गंगासागर: महासंगम",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let konarkMap;
+
+        function initKonarkMap(lang) {
+          const content = languageContent[lang];
+          const konarkCoords = [19.8876, 86.0945];
+
+          if (!konarkMap) {
+            konarkMap = L.map("konark-map", { scrollWheelZoom: false }).setView(
+              konarkCoords,
+              15
+            );
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(konarkMap);
+          } else {
+            konarkMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker) {
+                konarkMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const marker = L.marker(konarkCoords, { icon: mandirIcon }).addTo(
+            konarkMap
+          );
+          marker.bindPopup(`<b>${content.konarkMarker}</b>`).openPopup();
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initKonarkMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

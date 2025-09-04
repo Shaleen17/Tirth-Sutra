@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prayag: The King of Tirthas - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+          >The Puranic Path</a
+        >
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/prayag_hero.jpg"
+          alt="The Triveni Sangam at Prayagraj"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">
+              Uttar Pradesh
+            </p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Prayag: The King of Tirthas
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Welcome to Prayag (modern Prayagraj), the sacred Tirtha revered in
+              the scriptures as *Tirtharaj*—the King of all Pilgrimage Centers.
+              It is here that the three holiest rivers in Sanatana Dharma, the
+              Ganga, Yamuna, and the mythical Saraswati, join in a holy
+              confluence known as the Triveni Sangam. A pilgrimage to Prayag is
+              considered one of the most meritorious acts a devotee can perform.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Puranic Origin: The First Sacrifice
+            </h2>
+            <p data-lang-key="historyText1">
+              The *Puranas* narrate that after the creation of the universe,
+              Lord Brahma, the Creator, performed the very first *Prakrishta
+              Yajna* (excellent sacrifice) at this exact spot. The name "Prayag"
+              is derived from this monumental event. This act sanctified the
+              land for eternity, making it a focal point of cosmic energy and a
+              place of immense spiritual power, attracting gods, sages, and
+              humans alike.
+            </p>
+
+            <img
+              src="images/kumbh_mela.jpg"
+              alt="Sadhus at the Kumbh Mela in Prayag"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>The Holy Dip at Triveni Sangam:</strong> The most
+              important ritual at Prayag is the holy bath at the Triveni Sangam.
+              Pilgrims take a boat to the confluence point where the distinct
+              colors of the Ganga and Yamuna can be seen merging. A dip here,
+              where the invisible Saraswati also joins, is believed to wash away
+              the sins of countless lifetimes and liberate one from the cycle of
+              rebirth.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>The Kumbh Mela:</strong> Prayag is one of the four sacred
+              sites where the monumental Kumbh Mela takes place. Held every 12
+              years, it is the largest spiritual gathering on Earth. Witnessing
+              the *Shahi Snan* (royal bath) of the Naga Sadhus and taking a dip
+              during this auspicious time is an experience of unparalleled
+              spiritual magnitude.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>Akshayavat and Hanuman Temple:</strong> Within the
+              Allahabad Fort lies the sacred and immortal banyan tree, the
+              *Akshayavat*. It is believed that resting in its shade grants
+              liberation. Nearby is a famous temple dedicated to a reclining
+              form of Lord Hanuman, who is said to guard the sacred city.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong> Uttar
+                    Pradesh
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity"
+                      >Primary Association:</strong
+                    >
+                    Triveni Sangam (The Three Rivers)
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="prayag-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="kashi.html" class="block group">
+                    <img
+                      src="images/card_kashi.jpg"
+                      alt="Kashi"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyKashi"
+                    >
+                      Kashi: The Eternal City
+                    </p>
+                  </a>
+                  <a href="haridwar.html" class="block group">
+                    <img
+                      src="images/card_haridwar.jpg"
+                      alt="Haridwar"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyHaridwar"
+                    >
+                      Haridwar: Gateway to the Gods
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Uttar Pradesh",
+            pageTitle: "Prayag: The King of Tirthas",
+            introText:
+              "Welcome to Prayag (modern Prayagraj), the sacred Tirtha revered in the scriptures as *Tirtharaj*—the King of all Pilgrimage Centers. It is here that the three holiest rivers in Sanatana Dharma, the Ganga, Yamuna, and the mythical Saraswati, join in a holy confluence known as the Triveni Sangam. A pilgrimage to Prayag is considered one of the most meritorious acts a devotee can perform.",
+            historyTitle: "The Puranic Origin: The First Sacrifice",
+            historyText1:
+              'The *Puranas* narrate that after the creation of the universe, Lord Brahma, the Creator, performed the very first *Prakrishta Yajna* (excellent sacrifice) at this exact spot. The name "Prayag" is derived from this monumental event. This act sanctified the land for eternity, making it a focal point of cosmic energy and a place of immense spiritual power, attracting gods, sages, and humans alike.',
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              "<strong>The Holy Dip at Triveni Sangam:</strong> The most important ritual at Prayag is the holy bath at the Triveni Sangam. Pilgrims take a boat to the confluence point where the distinct colors of the Ganga and Yamuna can be seen merging. A dip here, where the invisible Saraswati also joins, is believed to wash away the sins of countless lifetimes and liberate one from the cycle of rebirth.",
+            expText2:
+              "<strong>The Kumbh Mela:</strong> Prayag is one of the four sacred sites where the monumental Kumbh Mela takes place. Held every 12 years, it is the largest spiritual gathering on Earth. Witnessing the *Shahi Snan* (royal bath) of the Naga Sadhus and taking a dip during this auspicious time is an experience of unparalleled spiritual magnitude.",
+            expText3:
+              "<strong>Akshayavat and Hanuman Temple:</strong> Within the Allahabad Fort lies the sacred and immortal banyan tree, the *Akshayavat*. It is believed that resting in its shade grants liberation. Nearby is a famous temple dedicated to a reclining form of Lord Hanuman, who is said to guard the sacred city.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Association:",
+            mapTitle: "Location Map",
+            prayagMarker: "Triveni Sangam",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyKashi: "Kashi: The Eternal City",
+            enjoyHaridwar: "Haridwar: Gateway to the Gods",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "उत्तर प्रदेश",
+            pageTitle: "प्रयाग: तीर्थों का राजा",
+            introText:
+              "प्रयाग (आधुनिक प्रयागराज) में आपका स्वागत है, वह पवित्र तीर्थ जिसे शास्त्रों में *तीर्थराज* - सभी तीर्थ केंद्रों के राजा के रूप में पूजा जाता है। यहीं पर सनातन धर्म की तीन सबसे पवित्र नदियाँ, गंगा, यमुना और पौराणिक सरस्वती, त्रिवेणी संगम नामक एक पवित्र संगम में मिलती हैं। प्रयाग की तीर्थयात्रा को एक भक्त द्वारा किए जाने वाले सबसे पुण्यदायी कार्यों में से एक माना जाता है।",
+            historyTitle: "पौराणिक उत्पत्ति: प्रथम यज्ञ",
+            historyText1:
+              "*पुराणों* में वर्णन है कि ब्रह्मांड की रचना के बाद, प्रजापति भगवान ब्रह्मा ने इसी स्थान पर पहला *प्रकृष्ट यज्ञ* किया था। 'प्रयाग' नाम इसी स्मारकीय घटना से लिया गया है। इस कार्य ने इस भूमि को अनंत काल के लिए पवित्र कर दिया, जिससे यह ब्रह्मांडीय ऊर्जा का एक केंद्र बिंदु और अपार आध्यात्मिक शक्ति का स्थान बन गया, जो देवताओं, ऋषियों और मनुष्यों को समान रूप से आकर्षित करता है।",
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>त्रिवेणी संगम पर पवित्र डुबकी:</strong> प्रयाग में सबसे महत्वपूर्ण अनुष्ठान त्रिवेणी संगम पर पवित्र स्नान है। तीर्थयात्री संगम बिंदु तक नाव लेते हैं जहाँ गंगा और यमुना के अलग-अलग रंगों को विलीन होते देखा जा सकता है। यहाँ एक डुबकी, जहाँ अदृश्य सरस्वती भी मिलती है, अनगिनत जन्मों के पापों को धोने और पुनर्जन्म के चक्र से मुक्त करने वाली मानी जाती है।",
+            expText2:
+              "<strong>कुंभ मेला:</strong> प्रयाग उन चार पवित्र स्थलों में से एक है जहाँ स्मारकीय कुंभ मेला लगता है। हर 12 साल में आयोजित होने वाला यह पृथ्वी पर सबसे बड़ा आध्यात्मिक जमावड़ा है। नागा साधुओं के *शाही स्नान* का साक्षी बनना और इस शुभ समय के दौरान डुबकी लगाना अद्वितीय आध्यात्मिक परिमाण का एक अनुभव है।",
+            expText3:
+              "<strong>अक्षयवट और हनुमान मंदिर:</strong> इलाहाबाद किले के भीतर पवित्र और अमर बरगद का पेड़, *अक्षयवट* स्थित है। माना जाता है कि इसकी छाया में विश्राम करने से मुक्ति मिलती है। पास में ही भगवान हनुमान के लेटे हुए रूप को समर्पित एक प्रसिद्ध मंदिर है, जिनके बारे में कहा जाता है कि वे इस पवित्र शहर की रक्षा करते हैं।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "मुख्य संबंध:",
+            mapTitle: "स्थान का नक्शा",
+            prayagMarker: "त्रिवेणी संगम",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyKashi: "काशी: शाश्वत नगरी",
+            enjoyHaridwar: "हरिद्वार: देवताओं का द्वार",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let prayagMap;
+
+        // CORRECTED MAP INITIALIZATION FUNCTION
+        function initPrayagMap(lang) {
+          const content = languageContent[lang];
+          const prayagCoords = [25.4358, 81.8463];
+
+          if (prayagMap) {
+            prayagMap.remove(); // First remove the old map instance if it exists
+            prayagMap = null;
+          }
+
+          // Use a small timeout to ensure the container is ready
+          setTimeout(function () {
+            prayagMap = L.map("prayag-map", { scrollWheelZoom: false }).setView(
+              prayagCoords,
+              14
+            );
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(prayagMap);
+
+            const mandirIcon = L.divIcon({
+              html: '<div class="mandir-icon">📍</div>', // Using a location pin for the confluence
+              className: "",
+              iconSize: [24, 24],
+              iconAnchor: [12, 24],
+              popupAnchor: [0, -24],
+            });
+
+            const marker = L.marker(prayagCoords, { icon: mandirIcon }).addTo(
+              prayagMap
+            );
+            marker.bindPopup(`<b>${content.prayagMarker}</b>`).openPopup();
+          }, 100); // 100ms delay
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initPrayagMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

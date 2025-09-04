@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jyotirlingas of Maharashtra - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <h1
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+        >
+          The Puranic Path
+        </h1>
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/maharashtra_hero.jpg"
+          alt="Sahyadri mountains landscape"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">Maharashtra</p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Jyotirlingas of Maharashtra
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Embark on a powerful spiritual circuit through the sacred land of
+              Maharashtra, home to three of the twelve divine Jyotirlingas.
+              These are not mere idols, but *svayambhu* (self-manifested)
+              pillars of cosmic light, representing the infinite, formless
+              reality of Lord Shiva. A pilgrimage to these potent sites is a
+              journey into the heart of Shaivism, blessed by ancient rivers and
+              timeless legends.
+            </p>
+
+            <h2 data-lang-key="historyTitle">The Pillars of Light</h2>
+            <p data-lang-key="historyText1">
+              The *Shiva Purana* describes the Jyotirlingas as places where Lord
+              Shiva appeared as a fiery column of infinite light. A yatra to
+              these sites is believed to destroy the sins of countless lifetimes
+              and bestow immense spiritual merit upon the devotee.
+            </p>
+
+            <img
+              src="images/trimbakeshwar_temple.jpg"
+              alt="Trimbakeshwar Temple complex"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">
+              The Three Sacred Abodes of Shiva
+            </h2>
+            <p data-lang-key="expText1">
+              <strong>Trimbakeshwar: The Source of Godavari.</strong> Located
+              near Nashik, this unique Jyotirlinga has three faces representing
+              the divine trinity of Brahma, Vishnu, and Mahesh (Shiva). It is
+              here that the sage Gautama performed penance to bring the sacred
+              Godavari river to earth. A holy dip at the Kushavarta Kund is a
+              primary ritual before seeking the Lord's *darśana*.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>Bhimashankar: Lord of the Sahyadris.</strong> Nestled
+              amidst the dense forests of the Sahyadri mountains, this
+              Jyotirlinga is also the source of the Bhima river. Lord Shiva is
+              said to have manifested here in a formidable (*Bhima*) form to
+              defeat the demon Tripurasura. The trek to this temple is an
+              experience of both natural beauty and profound devotion.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>Grishneshwar: The Lord of Compassion.</strong> Situated
+              near the Ellora Caves, this temple is a testament to the power of
+              unwavering faith. The *Shiva Purana* narrates the story of a
+              devout woman named Ghushma, whose son was murdered. Unshaken in
+              her devotion, she continued her daily worship, and Lord Shiva,
+              pleased by her piety, restored her son to life and manifested here
+              as Grishneshwar, the Lord of Compassion.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong>
+                    Maharashtra
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity">Primary Deity:</strong>
+                    Lord Shiva
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="maharashtra-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="kashi.html" class="block group">
+                    <img
+                      src="images/kashi_ghat_life.jpg"
+                      alt="Kashi"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyKashi"
+                    >
+                      Kashi: The Eternal City
+                    </p>
+                  </a>
+                  <a href="dwarka.html" class="block group">
+                    <img
+                      src="images/dwarka_hero.jpg"
+                      alt="Dwarka"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyDwarka"
+                    >
+                      Dwarka: Kingdom of Krishna
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Maharashtra",
+            pageTitle: "Jyotirlingas of Maharashtra",
+            introText:
+              "Embark on a powerful spiritual circuit through the sacred land of Maharashtra, home to three of the twelve divine Jyotirlingas. These are not mere idols, but *svayambhu* (self-manifested) pillars of cosmic light, representing the infinite, formless reality of Lord Shiva. A pilgrimage to these potent sites is a journey into the heart of Shaivism, blessed by ancient rivers and timeless legends.",
+            historyTitle: "The Pillars of Light",
+            historyText1:
+              "The *Shiva Purana* describes the Jyotirlingas as places where Lord Shiva appeared as a fiery column of infinite light. A yatra to these sites is believed to destroy the sins of countless lifetimes and bestow immense spiritual merit upon the devotee.",
+            experiencesTitle: "The Three Sacred Abodes of Shiva",
+            expText1:
+              "<strong>Trimbakeshwar: The Source of Godavari.</strong> Located near Nashik, this unique Jyotirlinga has three faces representing the divine trinity of Brahma, Vishnu, and Mahesh (Shiva). It is here that the sage Gautama performed penance to bring the sacred Godavari river to earth. A holy dip at the Kushavarta Kund is a primary ritual before seeking the Lord's *darśana*.",
+            expText2:
+              "<strong>Bhimashankar: Lord of the Sahyadris.</strong> Nestled amidst the dense forests of the Sahyadri mountains, this Jyotirlinga is also the source of the Bhima river. Lord Shiva is said to have manifested here in a formidable (*Bhima*) form to defeat the demon Tripurasura. The trek to this temple is an experience of both natural beauty and profound devotion.",
+            expText3:
+              "<strong>Grishneshwar: The Lord of Compassion.</strong> Situated near the Ellora Caves, this temple is a testament to the power of unwavering faith. The *Shiva Purana* narrates the story of a devout woman named Ghushma, whose son was murdered. Unshaken in her devotion, she continued her daily worship, and Lord Shiva, pleased by her piety, restored her son to life and manifested here as Grishneshwar, the Lord of Compassion.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Deity:",
+            mapTitle: "Location Map",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyKashi: "Kashi: The Eternal City",
+            enjoyDwarka: "Dwarka: Kingdom of Krishna",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "महाराष्ट्र",
+            pageTitle: "महाराष्ट्र के ज्योतिर्लिंग",
+            introText:
+              "महाराष्ट्र की पवित्र भूमि के माध्यम से एक शक्तिशाली आध्यात्मिक सर्किट पर चलें, जो बारह दिव्य ज्योतिर्लिंगों में से तीन का घर है। ये केवल मूर्तियाँ नहीं हैं, बल्कि *स्वयंभू* (स्व-प्रकट) ब्रह्मांडीय प्रकाश के स्तंभ हैं, जो भगवान शिव की अनंत, निराकार वास्तविकता का प्रतिनिधित्व करते हैं। इन शक्तिशाली स्थलों की तीर्थयात्रा शैव धर्म के हृदय में एक यात्रा है, जो प्राचीन नदियों और कालातीत किंवदंतियों से धन्य है।",
+            historyTitle: "प्रकाश के स्तंभ",
+            historyText1:
+              "*शिव पुराण* में ज्योतिर्लिंगों का वर्णन उन स्थानों के रूप में किया गया है जहाँ भगवान शिव अनंत प्रकाश के एक उग्र स्तंभ के रूप में प्रकट हुए थे। माना जाता है कि इन स्थलों की यात्रा अनगिनत जन्मों के पापों को नष्ट कर देती है और भक्त को अपार आध्यात्मिक पुण्य प्रदान करती है।",
+            experiencesTitle: "शिव के तीन पवित्र धाम",
+            expText1:
+              "<strong>त्र्यंबकेश्वर: गोदावरी का स्रोत।</strong> नासिक के पास स्थित, इस अद्वितीय ज्योतिर्लिंग के तीन मुख हैं जो ब्रह्मा, विष्णु और महेश (शिव) की दिव्य त्रिमूर्ति का प्रतिनिधित्व करते हैं। यहीं पर गौतम ऋषि ने पवित्र गोदावरी नदी को पृथ्वी पर लाने के लिए तपस्या की थी। भगवान के *दर्शन* से पहले कुशावर्त कुंड में एक पवित्र डुबकी एक प्राथमिक अनुष्ठान है।",
+            expText2:
+              "<strong>भीमाशंकर: सह्याद्री के भगवान।</strong> सह्याद्री पहाड़ों के घने जंगलों के बीच बसा यह ज्योतिर्लिंग भीमा नदी का भी स्रोत है। कहा जाता है कि भगवान शिव ने राक्षस त्रिपुरासुर को हराने के लिए यहाँ एक विकराल (*भीम*) रूप में प्रकट हुए थे। इस मंदिर की यात्रा प्राकृतिक सुंदरता और गहन भक्ति दोनों का अनुभव है।",
+            expText3:
+              "<strong>घृष्णेश्वर: करुणा के भगवान।</strong> एलोरा गुफाओं के पास स्थित यह मंदिर अटूट विश्वास की शक्ति का एक प्रमाण है। *शिव पुराण* में घुश्मा नामक एक भक्त महिला की कहानी का वर्णन है, जिसके बेटे की हत्या कर दी गई थी। अपनी भक्ति में अटूट, उसने अपनी दैनिक पूजा जारी रखी, और भगवान शिव, उसकी धर्मपरायणता से प्रसन्न होकर, उसके बेटे को जीवन दान दिया और यहाँ करुणा के भगवान, घृष्णेश्वर के रूप में प्रकट हुए।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "प्रमुख देवता:",
+            mapTitle: "स्थान का नक्शा",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyKashi: "काशी: शाश्वत नगरी",
+            enjoyDwarka: "द्वारका: कृष्ण का राज्य",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let maharashtraMap;
+
+        function initMaharashtraMap(lang) {
+          const locations = {
+            trimbakeshwar: {
+              lat: 19.9348,
+              lng: 73.5348,
+              name: "Trimbakeshwar",
+            },
+            bhimashankar: { lat: 19.0722, lng: 73.5369, name: "Bhimashankar" },
+            grishneshwar: { lat: 20.0249, lng: 75.168, name: "Grishneshwar" },
+          };
+
+          if (!maharashtraMap) {
+            maharashtraMap = L.map("maharashtra-map", {
+              scrollWheelZoom: false,
+            }).setView([19.5, 74.5], 7);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(maharashtraMap);
+          } else {
+            maharashtraMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker || layer instanceof L.Polyline) {
+                maharashtraMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const latLngs = [];
+          Object.keys(locations).forEach((key) => {
+            const loc = locations[key];
+            const marker = L.marker([loc.lat, loc.lng], {
+              icon: mandirIcon,
+            }).addTo(maharashtraMap);
+            marker.bindPopup(`<b>${loc.name}</b>`);
+            latLngs.push([loc.lat, loc.lng]);
+          });
+
+          L.polyline(latLngs, { color: "#8C3B2A", weight: 3 }).addTo(
+            maharashtraMap
+          );
+
+          const bounds = L.latLngBounds(latLngs);
+          maharashtraMap.fitBounds(bounds.pad(0.5));
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initMaharashtraMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Char Dham: Himalayan Peaks - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .prose-custom blockquote {
+        border-left: 4px solid #ff6700;
+        padding-left: 1rem;
+        margin: 1.5rem 0;
+        font-style: italic;
+        color: #8c3b2a;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <h1
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+        >
+          The Puranic Path
+        </h1>
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/card_chardham.jpg"
+          alt="Himalayan peaks at sunrise"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">Uttarakhand</p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Char Dham: Himalayan Peaks
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              The Himalayan Char Dham Yatra is not merely a journey through
+              difficult terrain; it is an ascent towards the divine. Nestled
+              high in the Garhwal Himalayas, the four sacred abodes of
+              Yamunotri, Gangotri, Kedarnath, and Badrinath form a circuit of
+              immense spiritual power. This pilgrimage is considered a paramount
+              duty for a devout Hindu, a form of austerity (*tapas*) that
+              cleanses lifetimes of sins and opens the gateway to liberation
+              (*mokṣa*).
+            </p>
+
+            <h2 data-lang-key="historyTitle">The Yatra as Tapas (Austerity)</h2>
+            <p data-lang-key="historyText1">
+              The Skanda Purana glorifies pilgrimage undertaken on foot
+              (*padayātrā*) as the "greatest penance." The very act of leaving
+              the comforts of home, facing the harsh weather, and navigating the
+              challenging mountain paths is a form of spiritual discipline. It
+              disciplines the body and purifies the mind, making the pilgrim
+              receptive to the divine vibrations of these sacred sites. Each
+              step taken with devotion is a step closer to the ultimate truth.
+            </p>
+
+            <img
+              src="images/kedarnath_trek.jpg"
+              alt="Pilgrims trekking towards Kedarnath"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">The Four Sacred Abodes</h2>
+            <p data-lang-key="expText1">
+              <strong>Yamunotri: Source of Purity.</strong> The yatra
+              traditionally begins at Yamunotri, the source of the Yamuna River.
+              A dip in the hot springs (*Tapt Kund*) and the worship of the
+              Goddess Yamuna is said to protect the pilgrim from an untimely
+              death.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>Gangotri: The Descent of Ganga.</strong> Here, at the
+              source of the holy Ganga, pilgrims pay homage to Mother Ganga. It
+              is believed that King Bhagiratha performed severe penance here to
+              bring the celestial river to earth to liberate his ancestors.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>Kedarnath: The Abode of Shiva.</strong> Home to one of the
+              twelve sacred Jyotirlingas, Kedarnath is the seat of Lord Shiva in
+              his ascetic form. The trek to this temple, set against a backdrop
+              of snow-clad peaks, is a journey to the very heart of Shaivism.
+            </p>
+            <p data-lang-key="expText4">
+              <strong>Badrinath: The Abode of Vishnu.</strong> The yatra
+              culminates at Badrinath, the abode of Lord Vishnu in his form as
+              Badrinarayan. It is here that the pilgrim receives the final
+              blessings, completing the sacred circuit and accumulating
+              immeasurable spiritual merit.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong>
+                    Uttarakhand
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity">Primary Deities:</strong>
+                    Yamuna, Ganga, Shiva, Vishnu
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="chardham-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="kashi.html" class="block group">
+                    <img
+                      src="images/kashi_hero.jpg"
+                      alt="Kashi"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyKashi"
+                    >
+                      Kashi: The Eternal City
+                    </p>
+                  </a>
+                  <a href="ganga.html" class="block group">
+                    <img
+                      src="images/card_gangasagar.jpg"
+                      alt="Ganga Sagar"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyGanga"
+                    >
+                      Ganga Darshan Yatra
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Uttarakhand",
+            pageTitle: "Char Dham: Himalayan Peaks",
+            introText:
+              "The Himalayan Char Dham Yatra is not merely a journey through difficult terrain; it is an ascent towards the divine. Nestled high in the Garhwal Himalayas, the four sacred abodes of Yamunotri, Gangotri, Kedarnath, and Badrinath form a circuit of immense spiritual power. This pilgrimage is considered a paramount duty for a devout Hindu, a form of austerity (*tapas*) that cleanses lifetimes of sins and opens the gateway to liberation (*mokṣa*).",
+            historyTitle: "The Yatra as Tapas (Austerity)",
+            historyText1:
+              'The Skanda Purana glorifies pilgrimage undertaken on foot (*padayātrā*) as the "greatest penance." The very act of leaving the comforts of home, facing the harsh weather, and navigating the challenging mountain paths is a form of spiritual discipline. It disciplines the body and purifies the mind, making the pilgrim receptive to the divine vibrations of these sacred sites. Each step taken with devotion is a step closer to the ultimate truth.',
+            experiencesTitle: "The Four Sacred Abodes",
+            expText1:
+              "<strong>Yamunotri: Source of Purity.</strong> The yatra traditionally begins at Yamunotri, the source of the Yamuna River. A dip in the hot springs (*Tapt Kund*) and the worship of the Goddess Yamuna is said to protect the pilgrim from an untimely death.",
+            expText2:
+              "<strong>Gangotri: The Descent of Ganga.</strong> Here, at the source of the holy Ganga, pilgrims pay homage to Mother Ganga. It is believed that King Bhagiratha performed severe penance here to bring the celestial river to earth to liberate his ancestors.",
+            expText3:
+              "<strong>Kedarnath: The Abode of Shiva.</strong> Home to one of the twelve sacred Jyotirlingas, Kedarnath is the seat of Lord Shiva in his ascetic form. The trek to this temple, set against a backdrop of snow-clad peaks, is a journey to the very heart of Shaivism.",
+            expText4:
+              "<strong>Badrinath: The Abode of Vishnu.</strong> The yatra culminates at Badrinath, the abode of Lord Vishnu in his form as Badrinarayan. It is here that the pilgrim receives the final blessings, completing the sacred circuit and accumulating immeasurable spiritual merit.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Deities:",
+            mapTitle: "Location Map",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyKashi: "Kashi: The Eternal City",
+            enjoyGanga: "Ganga Darshan Yatra",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "उत्तराखंड",
+            pageTitle: "चार धाम: हिमालयी शिखर",
+            introText:
+              "हिमालयी चार धाम यात्रा केवल कठिन भूभाग से होकर गुजरने वाली यात्रा नहीं है; यह दिव्यता की ओर एक आरोहण है। गढ़वाल हिमालय में ऊँचे बसे, यमुनोत्री, गंगोत्री, केदारनाथ और बद्रीनाथ के चार पवित्र धाम अपार आध्यात्मिक शक्ति का एक परिपथ बनाते हैं। इस तीर्थयात्रा को एक धर्मनिष्ठ हिंदू के लिए एक सर्वोच्च कर्तव्य माना जाता है, तपस्या (*तप*) का एक रूप जो जन्मों के पापों को धोता है और मुक्ति (*मोक्ष*) का द्वार खोलता है।",
+            historyTitle: "यात्रा तपस्या के रूप में",
+            historyText1:
+              'स्कंद पुराण में पैदल (*पदयात्रा*) की गई तीर्थयात्रा को "सबसे बड़ी तपस्या" के रूप में महिमामंडित किया गया है। घर के सुख-सुविधाओं को छोड़ने, कठोर मौसम का सामना करने और चुनौतीपूर्ण पहाड़ी रास्तों पर चलने का कार्य ही आध्यात्मिक अनुशासन का एक रूप है। यह शरीर को अनुशासित करता है और मन को शुद्ध करता है, जिससे तीर्थयात्री इन पवित्र स्थलों के दिव्य स्पंदनों के प्रति ग्रहणशील हो जाता है। भक्ति के साथ उठाया गया प्रत्येक कदम परम सत्य के एक कदम और करीब ले जाता है।',
+            experiencesTitle: "चार पवित्र धाम",
+            expText1:
+              "<strong>यमुनोत्री: पवित्रता का स्रोत।</strong> यात्रा पारंपरिक रूप से यमुनोत्री से शुरू होती है, जो यमुना नदी का स्रोत है। गर्म झरनों (*तप्त कुंड*) में डुबकी लगाने और देवी यमुना की पूजा करने से तीर्थयात्री को अकाल मृत्यु से बचाया जाता है।",
+            expText2:
+              "<strong>गंगोत्री: गंगा का अवतरण।</strong> यहाँ, पवित्र गंगा के स्रोत पर, तीर्थयात्री माँ गंगा को श्रद्धांजलि अर्पित करते हैं। माना जाता है कि राजा भगीरथ ने अपने पूर्वजों को मुक्त करने के लिए दिव्य नदी को पृथ्वी पर लाने के लिए यहाँ कठोर तपस्या की थी।",
+            expText3:
+              "<strong>केदारनाथ: शिव का निवास।</strong> बारह पवित्र ज्योतिर्लिंगों में से एक का घर, केदारनाथ भगवान शिव का उनके तपस्वी रूप में आसन है। बर्फ से ढकी चोटियों की पृष्ठभूमि में स्थित इस मंदिर की यात्रा शैव धर्म के केंद्र की यात्रा है।",
+            expText4:
+              "<strong>बद्रीनाथ: विष्णु का निवास।</strong> यात्रा का समापन बद्रीनाथ में होता है, जो भगवान विष्णु का उनके बद्रीनारायण रूप में निवास है। यहीं पर तीर्थयात्री अंतिम आशीर्वाद प्राप्त करता है, पवित्र परिपथ को पूरा करता है और अथाह आध्यात्मिक पुण्य अर्जित करता है।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "प्रमुख देवता:",
+            mapTitle: "स्थान का नक्शा",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyKashi: "काशी: शाश्वत नगरी",
+            enjoyGanga: "गंगा दर्शन यात्रा",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let chardhamMap;
+
+        function initCharDhamMap(lang) {
+          const locations = {
+            yamunotri: {
+              lat: 31.0152,
+              lng: 78.4553,
+              name: languageContent[lang].expText1.match(
+                /<strong>(.*?)<\/strong>/
+              )[1],
+            },
+            gangotri: {
+              lat: 30.9947,
+              lng: 78.9394,
+              name: languageContent[lang].expText2.match(
+                /<strong>(.*?)<\/strong>/
+              )[1],
+            },
+            kedarnath: {
+              lat: 30.7346,
+              lng: 79.0669,
+              name: languageContent[lang].expText3.match(
+                /<strong>(.*?)<\/strong>/
+              )[1],
+            },
+            badrinath: {
+              lat: 30.7433,
+              lng: 79.4938,
+              name: languageContent[lang].expText4.match(
+                /<strong>(.*?)<\/strong>/
+              )[1],
+            },
+          };
+
+          if (!chardhamMap) {
+            chardhamMap = L.map("chardham-map", {
+              scrollWheelZoom: false,
+            }).setView([30.8, 78.9], 8);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(chardhamMap);
+          } else {
+            chardhamMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker || layer instanceof L.Polyline) {
+                chardhamMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const points = [
+            locations.yamunotri,
+            locations.gangotri,
+            locations.kedarnath,
+            locations.badrinath,
+          ];
+          const latLngs = [];
+
+          points.forEach((point) => {
+            const marker = L.marker([point.lat, point.lng], {
+              icon: mandirIcon,
+            }).addTo(chardhamMap);
+            marker.bindPopup(`<b>${point.name}</b>`);
+            latLngs.push([point.lat, point.lng]);
+          });
+
+          L.polyline(latLngs, { color: "#8C3B2A", weight: 3 }).addTo(
+            chardhamMap
+          );
+
+          const bounds = L.latLngBounds(latLngs);
+          chardhamMap.fitBounds(bounds.pad(0.2));
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initCharDhamMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

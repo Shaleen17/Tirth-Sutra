@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Haridwar: Gateway to the Gods - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+          >The Puranic Path</a
+        >
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/haridwar_hero.jpg"
+          alt="Ganga Aarti at Har Ki Pauri, Haridwar"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">Uttarakhand</p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Haridwar: Gateway to the Gods
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Welcome to Haridwar, the 'Gateway to the Lord', one of the seven
+              holiest places (*Sapta Puri*) for Hindus. It is here that the
+              sacred river Ganga emerges from the mountains and begins her
+              journey across the plains. A pilgrimage to Haridwar is an
+              immersion into the purifying power of Mother Ganga, a Tirtha made
+              sacred by the nectar of immortality and the footprints of the
+              gods.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Puranic Origin: The Nectar of Immortality
+            </h2>
+            <p data-lang-key="historyText1">
+              The *Puranas* narrate the story of the *Samudra Manthan* (the
+              churning of the cosmic ocean), from which the pot of nectar
+              (*Amrita Kumbha*) emerged. During the ensuing struggle between the
+              Devas and Asuras, a few drops of this divine nectar fell to earth
+              at four sacred locations. Haridwar is one of these blessed sites,
+              making its waters eternally sacred. It is for this reason that the
+              monumental Kumbh Mela is held here every 12 years, drawing
+              millions of pilgrims to its banks.
+            </p>
+
+            <img
+              src="images/har_ki_pauri.jpg"
+              alt="Devotees at Har Ki Pauri ghat"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>Ganga Aarti at Har Ki Pauri:</strong> The most enchanting
+              experience in Haridwar is the evening Ganga Aarti at Har Ki Pauri,
+              the 'Footsteps of the Lord'. This is the precise spot where the
+              Ganga leaves the mountains. As the sun sets, priests perform a
+              mesmerizing ritual with large fire lamps, and thousands of
+              devotees offer floating lamps to the river, creating a
+              breathtaking spectacle of light, sound, and devotion.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>Holy Dip at Brahma Kund:</strong> The primary bathing ghat
+              at Har Ki Pauri is known as Brahma Kund. A dip in these holy
+              waters, especially during auspicious times, is believed to wash
+              away all sins and pave the way for liberation (*mokṣa*). The
+              powerful current and pure water invigorate the body and soul.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>Mansa Devi and Chandi Devi Temples:</strong> Perched atop
+              two adjacent hills are the sacred temples of Mansa Devi and Chandi
+              Devi. These are considered *Siddha Pithas*, places where one's
+              wishes are fulfilled. Pilgrims undertake a trek or use the ropeway
+              to seek the blessings of these powerful forms of the Divine
+              Mother.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong>
+                    Uttarakhand
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity"
+                      >Primary Association:</strong
+                    >
+                    Holy Ganga & The Trinity
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="haridwar-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="kashi.html" class="block group">
+                    <img
+                      src="images/card_kashi.jpg"
+                      alt="Kashi"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyKashi"
+                    >
+                      Kashi: The Eternal City
+                    </p>
+                  </a>
+                  <a href="chardham.html" class="block group">
+                    <img
+                      src="images/card_chardham.jpg"
+                      alt="Char Dham"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyCharDham"
+                    >
+                      Char Dham: Himalayan Peaks
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Uttarakhand",
+            pageTitle: "Haridwar: Gateway to the Gods",
+            introText:
+              "Welcome to Haridwar, the 'Gateway to the Lord', one of the seven holiest places (*Sapta Puri*) for Hindus. It is here that the sacred river Ganga emerges from the mountains and begins her journey across the plains. A pilgrimage to Haridwar is an immersion into the purifying power of Mother Ganga, a Tirtha made sacred by the nectar of immortality and the footprints of the gods.",
+            historyTitle: "The Puranic Origin: The Nectar of Immortality",
+            historyText1:
+              "The *Puranas* narrate the story of the *Samudra Manthan* (the churning of the cosmic ocean), from which the pot of nectar (*Amrita Kumbha*) emerged. During the ensuing struggle between the Devas and Asuras, a few drops of this divine nectar fell to earth at four sacred locations. Haridwar is one of these blessed sites, making its waters eternally sacred. It is for this reason that the monumental Kumbh Mela is held here every 12 years, drawing millions of pilgrims to its banks.",
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              "<strong>Ganga Aarti at Har Ki Pauri:</strong> The most enchanting experience in Haridwar is the evening Ganga Aarti at Har Ki Pauri, the 'Footsteps of the Lord'. This is the precise spot where the Ganga leaves the mountains. As the sun sets, priests perform a mesmerizing ritual with large fire lamps, and thousands of devotees offer floating lamps to the river, creating a breathtaking spectacle of light, sound, and devotion.",
+            expText2:
+              "<strong>Holy Dip at Brahma Kund:</strong> The primary bathing ghat at Har Ki Pauri is known as Brahma Kund. A dip in these holy waters, especially during auspicious times, is believed to wash away all sins and pave the way for liberation (*mokṣa*). The powerful current and pure water invigorate the body and soul.",
+            expText3:
+              "<strong>Mansa Devi and Chandi Devi Temples:</strong> Perched atop two adjacent hills are the sacred temples of Mansa Devi and Chandi Devi. These are considered *Siddha Pithas*, places where one's wishes are fulfilled. Pilgrims undertake a trek or use the ropeway to seek the blessings of these powerful forms of the Divine Mother.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Association:",
+            mapTitle: "Location Map",
+            haridwarMarker: "Har Ki Pauri Ghat",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyKashi: "Kashi: The Eternal City",
+            enjoyCharDham: "Char Dham: Himalayan Peaks",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "उत्तराखंड",
+            pageTitle: "हरिद्वार: देवताओं का द्वार",
+            introText:
+              "हरिद्वार में आपका स्वागत है, 'भगवान का द्वार', हिंदुओं के लिए सात सबसे पवित्र स्थानों (*सप्त पुरी*) में से एक। यहीं पर पवित्र नदी गंगा पहाड़ों से निकलकर मैदानों में अपनी यात्रा शुरू करती है। हरिद्वार की तीर्थयात्रा माँ गंगा की शुद्ध करने वाली शक्ति में एक विसर्जन है, एक ऐसा तीर्थ जो अमरता के अमृत और देवताओं के पदचिन्हों से पवित्र है।",
+            historyTitle: "पौराणिक उत्पत्ति: अमरता का अमृत",
+            historyText1:
+              "*पुराणों* में *समुद्र मंथन* की कहानी का वर्णन है, जिसमें से अमृत का बर्तन (*अमृत कुंभ*) निकला। देवों और असुरों के बीच हुए संघर्ष के दौरान, इस दिव्य अमृत की कुछ बूँदें चार पवित्र स्थानों पर पृथ्वी पर गिरीं। हरिद्वार इन धन्य स्थलों में से एक है, जो इसके जल को शाश्वत रूप से पवित्र बनाता है। इसी कारण से हर 12 साल में यहाँ स्मारकीय कुंभ मेला आयोजित किया जाता है, जो लाखों तीर्थयात्रियों को अपने तटों पर आकर्षित करता है।",
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>हर की पौड़ी पर गंगा आरती:</strong> हरिद्वार में सबसे करामाती अनुभव हर की पौड़ी, 'भगवान के पदचिह्न' पर शाम की गंगा आरती है। यह वही सटीक स्थान है जहाँ गंगा पहाड़ों को छोड़ती है। जैसे ही सूरज ढलता है, पुजारी बड़े अग्नि दीपों के साथ एक मंत्रमुग्ध कर देने वाला अनुष्ठान करते हैं, और हजारों भक्त नदी को तैरते हुए दीपक चढ़ाते हैं, जिससे प्रकाश, ध्वनि और भक्ति का एक लुभावना दृश्य बनता है।",
+            expText2:
+              "<strong>ब्रह्म कुंड में पवित्र डुबकी:</strong> हर की पौड़ी पर प्राथमिक स्नान घाट को ब्रह्म कुंड के नाम से जाना जाता है। इन पवित्र जलों में एक डुबकी, विशेष रूप से शुभ समय के दौरान, सभी पापों को धोने और मुक्ति (*मोक्ष*) का मार्ग प्रशस्त करने वाली मानी जाती है। शक्तिशाली धारा और शुद्ध जल शरीर और आत्मा को स्फूर्ति प्रदान करते हैं।",
+            expText3:
+              "<strong>मनसा देवी और चंडी देवी मंदिर:</strong> दो निकटवर्ती पहाड़ियों की चोटी पर मनसा देवी और चंडी देवी के पवित्र मंदिर स्थित हैं। इन्हें *सिद्ध पीठ* माना जाता है, ऐसे स्थान जहाँ इच्छाएँ पूरी होती हैं। तीर्थयात्री इन शक्तिशाली देवी माँ के रूपों का आशीर्वाद लेने के लिए ट्रेक करते हैं या रोपवे का उपयोग करते हैं।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "मुख्य संबंध:",
+            mapTitle: "स्थान का नक्शा",
+            haridwarMarker: "हर की पौड़ी घाट",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyKashi: "काशी: शाश्वत नगरी",
+            enjoyCharDham: "चार धाम: हिमालयी शिखर",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let haridwarMap;
+
+        function initHaridwarMap(lang) {
+          const content = languageContent[lang];
+          const haridwarCoords = [29.9561, 78.17];
+
+          if (!haridwarMap) {
+            haridwarMap = L.map("haridwar-map", {
+              scrollWheelZoom: false,
+            }).setView(haridwarCoords, 15);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(haridwarMap);
+          } else {
+            haridwarMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker) {
+                haridwarMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const marker = L.marker(haridwarCoords, { icon: mandirIcon }).addTo(
+            haridwarMap
+          );
+          marker.bindPopup(`<b>${content.haridwarMarker}</b>`).openPopup();
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initHaridwarMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

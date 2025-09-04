@@ -4,6 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Puranic Path - An Authentic Pilgrimage Agency</title>
+
+    <!-- === DOMAIN LOCK SCRIPT - ADD THIS HERE === -->
+    <script>
+      const authorizedDomain = "shaleen17.github.io";
+      const currentDomain = window.location.hostname;
+      if (currentDomain && currentDomain !== authorizedDomain) {
+        document.documentElement.innerHTML = `
+                <head>
+                    <title>Access Denied</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; color: #4A2E2A; background-color: #FDFBF8; }
+                        a { color: #8C3B2A; text-decoration: none; font-weight: bold; }
+                    </style>
+                </head>
+                <body>
+                    <h1>Access Denied</h1>
+                    <p>This content is protected and can only be viewed on the official website.</p>
+                    <p>यह सामग्री सुरक्षित है और इसे केवल आधिकारिक वेबसाइट पर ही देखा जा सकता है।</p>
+                    <a href="https://shaleen17.github.io/Tirth-Sutra/">Visit the Official Website</a>
+                </body>
+            `;
+      }
+    </script>
+    <!-- === END OF SCRIPT === -->
     <link rel="icon" type="image/png" href="BrandLogo.jpg" />
     <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -459,178 +483,73 @@
         </div>
       </section>
 
-      <section id="sacred-sites" class="py-20">
+      <!-- Explore Sacred Bharatavarsha Section -->
+      <section id="explore" class="py-20">
         <div class="container mx-auto px-6">
           <div class="text-center mb-12">
             <h2
               class="text-4xl font-bold text-[#8C3B2A]"
-              data-lang-key="sacredSitesTitle"
+              data-lang-key="exploreTitle"
             >
-              The Sacred Geography of Bharatavarsha
+              Explore Sacred Bharatavarsha
             </h2>
             <p
               class="mt-4 text-lg max-w-3xl mx-auto"
-              data-lang-key="sacredSitesIntro"
+              data-lang-key="exploreIntro"
             >
-              As detailed in the Skanda Mahapurana and glorified in the
-              Bhaktamal, India is a sacred landscape dotted with
-              Tīrthas—gateways to the divine. Here are some of the most
-              significant sites, each with a profound story that forms the heart
-              of our pilgrimages.
+              Discover the timeless stories and spiritual vibrations of India's
+              most sacred Tirthas. Select a region to begin your journey.
             </p>
           </div>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
-            >
-              <h3
-                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
-                data-lang-key="sitePuriTitle"
+
+          <!-- Region Filter -->
+          <div class="flex justify-center mb-8">
+            <div class="relative">
+              <button
+                id="region-filter-button"
+                class="bg-white border border-gray-300 rounded-lg px-6 py-3 text-lg w-64 text-left flex justify-between items-center"
               >
-                Puruṣottama Kṣetra (Puri)
-              </h3>
-              <p class="text-lg" data-lang-key="sitePuriText">
-                The abode of Lord Jagannath, a form of Vishnu. The Skanda Purana
-                glorifies this as a foremost tīrtha where the divine Mahaprasad
-                liberates all who partake in it. The annual Ratha Yatra is a
-                spectacle of devotion, drawing millions to witness the Lord of
-                the Universe on His chariot.
-              </p>
-            </div>
-            <div
-              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
-            >
-              <h3
-                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
-                data-lang-key="siteBadrinathTitle"
+                <span data-lang-key="regions">Regions</span>
+                <span>▼</span>
+              </button>
+              <div
+                id="region-filter-dropdown"
+                class="hidden absolute z-10 mt-2 w-full md:w-[48rem] bg-white rounded-lg shadow-xl p-6"
               >
-                Badarikāśrama (Badrinath)
-              </h3>
-              <p class="text-lg" data-lang-key="siteBadrinathText">
-                Considered the supreme tīrtha for the current age of Kali. Here,
-                in the high Himalayas, the twin sages Nara and Narayana perform
-                eternal penance for the world's welfare. A single dip in the
-                freezing Alakananda river is said to wash away a lifetime of
-                sins.
-              </p>
+                <div
+                  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-sm"
+                >
+                  <!-- Filter content here -->
+                </div>
+                <div class="mt-4 text-center">
+                  <button
+                    id="clear-filters-btn"
+                    class="text-sm text-[#8C3B2A] hover:underline"
+                    data-lang-key="clearFilters"
+                  >
+                    Clear All
+                  </button>
+                </div>
+              </div>
             </div>
-            <div
-              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
+          </div>
+
+          <!-- Yatra Cards Grid -->
+          <div
+            id="yatra-cards-grid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            <!-- Cards will be dynamically inserted here -->
+          </div>
+
+          <div class="text-center mt-12">
+            <button
+              id="discover-more-btn"
+              class="inline-block bg-[#8C3B2A] text-white text-lg font-bold py-3 px-8 rounded-lg hover:bg-[#FF6700] transition-colors duration-300"
+              data-lang-key="discoverMore"
             >
-              <h3
-                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
-                data-lang-key="siteDwarkaTitle"
-              >
-                Dvārakā
-              </h3>
-              <p class="text-lg" data-lang-key="siteDwarkaText">
-                The magnificent capital of Lord Krishna, established on the
-                western coast. The main Dvārakādhīśa temple stands as a
-                testament to His divine rule. The scriptures say a pilgrimage
-                here is incomplete without visiting Bet Dwarka, the island
-                believed to be His personal residence.
-              </p>
-            </div>
-            <div
-              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
-            >
-              <h3
-                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
-                data-lang-key="siteTirupatiTitle"
-              >
-                Veṅkaṭācala (Tirupati)
-              </h3>
-              <p class="text-lg" data-lang-key="siteTirupatiText">
-                The sacred hills where Lord Venkateswara, a form of Vishnu,
-                resides to grant blessings to devotees in the Kali Yuga. The
-                Purana narrates the immense merit (*puṇya*) gained by having the
-                *darśana* of the Lord after a purifying bath in the Swami
-                Pushkarini tank.
-              </p>
-            </div>
-            <div
-              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
-            >
-              <h3
-                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
-                data-lang-key="sitePushkarTitle"
-              >
-                Puṣkara
-              </h3>
-              <p class="text-lg" data-lang-key="sitePushkarText">
-                The primary tīrtha dedicated to Lord Brahma, the creator. It is
-                said that a lotus flower (*puṣpa*) fell from His hand (*kara*)
-                here, creating the sacred Pushkar Lake. A ritual bath in its
-                waters, especially on Kartik Purnima, is considered an act of
-                unparalleled merit.
-              </p>
-            </div>
-            <div
-              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
-            >
-              <h3
-                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
-                data-lang-key="siteKashiTitle"
-              >
-                Kāśī (Varanasi)
-              </h3>
-              <p class="text-lg" data-lang-key="siteKashiText">
-                The City of Liberation, resting on the trident of Lord Shiva.
-                The Kāśī Khaṇḍa of the Skanda Purana states that anyone who dies
-                within its sacred boundaries is granted certain *mokṣa*. It is
-                the eternal city, never forsaken by Shiva, even during cosmic
-                dissolution.
-              </p>
-            </div>
-            <div
-              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
-            >
-              <h3
-                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
-                data-lang-key="siteUjjainTitle"
-              >
-                Avantī (Ujjain)
-              </h3>
-              <p class="text-lg" data-lang-key="siteUjjainText">
-                Home to the powerful Mahākāleśvara Jyotirlinga, where Lord Shiva
-                resides as the master of time. The sanctity of the Shipra river
-                is praised extensively, and a bath in its waters followed by the
-                *darśana* of Mahakal is central to a pilgrimage here.
-              </p>
-            </div>
-            <div
-              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
-            >
-              <h3
-                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
-                data-lang-key="siteSomnathTitle"
-              >
-                Prabhāsa Kṣetra (Somnath)
-              </h3>
-              <p class="text-lg" data-lang-key="siteSomnathText">
-                The site of the first of the twelve Jyotirlingas, Somanātha, the
-                Lord of the Moon. The Purana narrates its glorious history, its
-                repeated destruction, and its divine reconstruction, symbolizing
-                the eternal and unconquerable nature of Dharma.
-              </p>
-            </div>
-            <div
-              class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
-            >
-              <h3
-                class="text-2xl font-bold mb-3 text-[#8C3B2A]"
-                data-lang-key="siteVrindavanTitle"
-              >
-                Vrindavan & Braj Bhumi
-              </h3>
-              <p class="text-lg" data-lang-key="siteVrindavanText">
-                While the Puranas lay the foundation, the Bhaktamal fills this
-                land with divine love. This is the eternal playground of Radha
-                and Krishna, sanctified by the footsteps of countless saints
-                like Surdas and Mirabai, where every particle of dust is
-                considered sacred.
-              </p>
-            </div>
+              Discover More Yatras
+            </button>
           </div>
         </div>
       </section>
@@ -748,8 +667,12 @@
     <section id="yatra-inquiry" class="py-20 bg-[#FBEEDB]">
       <div class="container mx-auto px-6 text-center">
         <div class="max-w-3xl mx-auto">
-          <!-- Subtle Icon -->
-          <div class="text-5xl text-[#8C3B2A] opacity-50 mb-4">ॐ</div>
+          <!-- Replaced the Om symbol with an image -->
+          <img
+            src="nilachakra_logo.jpg"
+            alt="Sacred Symbol"
+            class="h-16 w-16 mx-auto mb-4 opacity-100"
+          />
           <h2
             class="text-4xl font-bold text-[#8C3B2A]"
             data-lang-key="ctaTitle"
@@ -819,7 +742,7 @@
         <div class="flex justify-center items-center space-x-6 mb-6">
           <!-- Social Media Logos -->
           <a
-            href="mailto:shaleensingh238@gmail.com"
+            href="mailto:tirthsutra@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
             title="Email"
@@ -884,5 +807,6 @@
       </div>
     </footer>
     <script src="script.js"></script>
+    <script src="scriptx.js"></script>
   </body>
 </html>

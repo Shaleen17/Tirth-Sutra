@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vaishno Devi: Mountain Mother - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+          >The Puranic Path</a
+        >
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/vaishnodevi_hero.jpg"
+          alt="The Trikuta mountains at dusk"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">
+              Jammu & Kashmir
+            </p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Vaishno Devi: Mountain Mother
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Embark on a profound journey of faith and endurance to the holy
+              cave of Mata Vaishno Devi, nestled in the Trikuta Mountains. This
+              is one of the most revered Tirthas in India, where the Divine
+              Mother is worshipped in her primal, rock-manifested forms. The
+              arduous trek to her abode is not a challenge, but an offering of
+              devotion (*bhakti*) and austerity (*tapas*), a pilgrimage that
+              tests the body to elevate the soul.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Legend of the Divine Maiden
+            </h2>
+            <p data-lang-key="historyText1">
+              Legend holds that the Divine Mother was born as Vaishnavi, a
+              supremely beautiful and powerful maiden. To fulfill her spiritual
+              purpose, she renounced worldly comforts and undertook severe
+              austerities in a cave in the Trikuta mountains. Her growing
+              spiritual power attracted the attention of a tantric named Bhairon
+              Nath, who pursued her. To escape him, the Goddess fled, creating
+              springs and passages with her divine weapons. Finally, at the holy
+              cave, she assumed her formidable form as Mahakali and beheaded
+              Bhairon Nath, whose head landed on an adjacent peak. Realizing his
+              folly, Bhairon Nath begged for forgiveness, and the merciful
+              Mother granted him a boon that no pilgrimage to her shrine would
+              be complete without a visit to his.
+            </p>
+
+            <img
+              src="images/vaishnodevi_trek.jpg"
+              alt="Pilgrims on the trek to Vaishno Devi"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>The Sacred Trek (Yatra):</strong> The 13-kilometer trek
+              from the base town of Katra to the holy Bhawan is the heart of the
+              pilgrimage. Every step taken while chanting "Jai Mata Di" is an
+              act of devotion. The path is a test of will and faith, and
+              completing it fills the pilgrim with a sense of immense
+              accomplishment and grace.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>Darshan of the Holy Pindis:</strong> Inside the sacred
+              cave, the Goddess is not present in the form of an idol. Instead,
+              she is worshipped as three natural rock formations known as
+              *Pindis*. These represent her three forms: Mahakali (the power of
+              dissolution), Mahalakshmi (the power of sustenance), and
+              Mahasaraswati (the power of creation). The *darśana* of these
+              sacred Pindis is a powerful, soul-stirring experience.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>Visit to Bhairon Ghati:</strong> After the darshan at the
+              holy cave, pilgrims must undertake a further, steeper trek to
+              Bhairon Ghati to visit the temple of Bhairon Nath. This act
+              fulfills the boon of the Goddess and is considered essential to
+              completing the yatra and receiving its full blessings.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong> Jammu &
+                    Kashmir
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity">Primary Deity:</strong>
+                    Mata Vaishno Devi (Shakti)
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="vaishnodevi-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="kamakhya.html" class="block group">
+                    <img
+                      src="images/card_kamakhya.jpg"
+                      alt="Kamakhya"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyKamakhya"
+                    >
+                      Kamakhya: The Bleeding Goddess
+                    </p>
+                  </a>
+                  <a href="chardham.html" class="block group">
+                    <img
+                      src="images/card_chardham.jpg"
+                      alt="Char Dham"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyCharDham"
+                    >
+                      Char Dham: Himalayan Peaks
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Jammu & Kashmir",
+            pageTitle: "Vaishno Devi: Mountain Mother",
+            introText:
+              "Embark on a profound journey of faith and endurance to the holy cave of Mata Vaishno Devi, nestled in the Trikuta Mountains. This is one of the most revered Tirthas in India, where the Divine Mother is worshipped in her primal, rock-manifested forms. The arduous trek to her abode is not a challenge, but an offering of devotion (*bhakti*) and austerity (*tapas*), a pilgrimage that tests the body to elevate the soul.",
+            historyTitle: "The Legend of the Divine Maiden",
+            historyText1:
+              "Legend holds that the Divine Mother was born as Vaishnavi, a supremely beautiful and powerful maiden. To fulfill her spiritual purpose, she renounced worldly comforts and undertook severe austerities in a cave in the Trikuta mountains. Her growing spiritual power attracted the attention of a tantric named Bhairon Nath, who pursued her. To escape him, the Goddess fled, creating springs and passages with her divine weapons. Finally, at the holy cave, she assumed her formidable form as Mahakali and beheaded Bhairon Nath, whose head landed on an adjacent peak. Realizing his folly, Bhairon Nath begged for forgiveness, and the merciful Mother granted him a boon that no pilgrimage to her shrine would be complete without a visit to his.",
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              '<strong>The Sacred Trek (Yatra):</strong> The 13-kilometer trek from the base town of Katra to the holy Bhawan is the heart of the pilgrimage. Every step taken while chanting "Jai Mata Di" is an act of devotion. The path is a test of will and faith, and completing it fills the pilgrim with a sense of immense accomplishment and grace.',
+            expText2:
+              "<strong>Darshan of the Holy Pindis:</strong> Inside the sacred cave, the Goddess is not present in the form of an idol. Instead, she is worshipped as three natural rock formations known as *Pindis*. These represent her three forms: Mahakali (the power of dissolution), Mahalakshmi (the power of sustenance), and Mahasaraswati (the power of creation). The *darśana* of these sacred Pindis is a powerful, soul-stirring experience.",
+            expText3:
+              "<strong>Visit to Bhairon Ghati:</strong> After the darshan at the holy cave, pilgrims must undertake a further, steeper trek to Bhairon Ghati to visit the temple of Bhairon Nath. This act fulfills the boon of the Goddess and is considered essential to completing the yatra and receiving its full blessings.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Deity:",
+            mapTitle: "Location Map",
+            vaishnoDeviMarker: "Mata Vaishno Devi Bhawan",
+            bhaironGhatiMarker: "Bhairon Ghati Temple",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyKamakhya: "Kamakhya: The Bleeding Goddess",
+            enjoyCharDham: "Char Dham: Himalayan Peaks",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "जम्मू और कश्मीर",
+            pageTitle: "वैष्णो देवी: पर्वत माता",
+            introText:
+              "त्रिकुटा पर्वत में स्थित माता वैष्णो देवी की पवित्र गुफा की आस्था और सहनशक्ति की गहन यात्रा पर निकलें। यह भारत के सबसे प्रतिष्ठित तीर्थों में से एक है, जहाँ देवी माँ को उनके आदिम, चट्टान-प्रकट रूपों में पूजा जाता है। उनके निवास तक की कठिन यात्रा कोई चुनौती नहीं है, बल्कि भक्ति और तपस्या का एक अर्पण है, एक ऐसी तीर्थयात्रा जो आत्मा को उन्नत करने के लिए शरीर का परीक्षण करती है।",
+            historyTitle: "दिव्य कन्या की कथा",
+            historyText1:
+              "किंवदंती है कि देवी माँ का जन्म वैष्णवी के रूप में हुआ था, जो एक अत्यंत सुंदर और शक्तिशाली कन्या थीं। अपने आध्यात्मिक उद्देश्य को पूरा करने के लिए, उन्होंने सांसारिक सुखों को त्याग दिया और त्रिकुटा पहाड़ों की एक गुफा में कठोर तपस्या की। उनकी बढ़ती आध्यात्मिक शक्ति ने भैरों नाथ नामक एक तांत्रिक का ध्यान आकर्षित किया, जिसने उनका पीछा किया। उससे बचने के लिए, देवी भाग गईं, अपने दिव्य हथियारों से झरने और मार्ग बनाती हुईं। अंत में, पवित्र गुफा में, उन्होंने महाकाली का अपना विकराल रूप धारण किया और भैरों नाथ का सिर काट दिया, जिसका सिर एक निकटवर्ती चोटी पर जा गिरा। अपनी मूर्खता का एहसास होने पर, भैरों नाथ ने क्षमा मांगी, और दयालु माँ ने उन्हें एक वरदान दिया कि उनके मंदिर के दर्शन के बिना उनकी तीर्थयात्रा पूरी नहीं होगी।",
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>पवित्र ट्रेक (यात्रा):</strong> आधार शहर कटरा से पवित्र भवन तक की 13 किलोमीटर की यात्रा तीर्थयात्रा का हृदय है। 'जय माता दी' का जाप करते हुए उठाया गया हर कदम भक्ति का एक कार्य है। यह पथ इच्छाशक्ति और विश्वास की परीक्षा है, और इसे पूरा करने से तीर्थयात्री को अपार उपलब्धि और कृपा की अनुभूति होती है।",
+            expText2:
+              "<strong>पवित्र पिण्डियों का दर्शन:</strong> पवित्र गुफा के अंदर, देवी एक मूर्ति के रूप में मौजूद नहीं हैं। इसके बजाय, उन्हें *पिण्डियों* के रूप में जानी जाने वाली तीन प्राकृतिक चट्टानों के रूप में पूजा जाता है। ये उनके तीन रूपों का प्रतिनिधित्व करती हैं: महाकाली (विघटन की शक्ति), महालक्ष्मी (पालन की शक्ति), और महासरस्वती (सृजन की शक्ति)। इन पवित्र पिण्डियों का *दर्शन* एक शक्तिशाली, आत्मा को झकझोर देने वाला अनुभव है।",
+            expText3:
+              "<strong>भैरों घाटी की यात्रा:</strong> पवित्र गुफा में दर्शन के बाद, तीर्थयात्रियों को भैरों नाथ के मंदिर के दर्शन के लिए भैरों घाटी तक एक और, खड़ी चढ़ाई करनी पड़ती है। यह कार्य देवी के वरदान को पूरा करता है और यात्रा को पूरा करने और उसका पूरा आशीर्वाद प्राप्त करने के लिए आवश्यक माना जाता है।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "प्रमुख देवता:",
+            mapTitle: "स्थान का नक्शा",
+            vaishnoDeviMarker: "माता वैष्णो देवी भवन",
+            bhaironGhatiMarker: "भैरों घाटी मंदिर",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyKamakhya: "कामाख्या: रक्तस्रावी देवी",
+            enjoyCharDham: "चार धाम: हिमालयी शिखर",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let vaishnoDeviMap;
+
+        function initVaishnoDeviMap(lang) {
+          const content = languageContent[lang];
+          const vaishnoDeviCoords = [33.0298, 74.9493];
+          const bhaironGhatiCoords = [33.0315, 74.951];
+
+          if (!vaishnoDeviMap) {
+            vaishnoDeviMap = L.map("vaishnodevi-map", {
+              scrollWheelZoom: false,
+            }).setView(vaishnoDeviCoords, 15);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(vaishnoDeviMap);
+          } else {
+            vaishnoDeviMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker || layer instanceof L.Polyline) {
+                vaishnoDeviMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const marker1 = L.marker(vaishnoDeviCoords, {
+            icon: mandirIcon,
+          }).addTo(vaishnoDeviMap);
+          marker1.bindPopup(`<b>${content.vaishnoDeviMarker}</b>`).openPopup();
+
+          const marker2 = L.marker(bhaironGhatiCoords, {
+            icon: mandirIcon,
+          }).addTo(vaishnoDeviMap);
+          marker2.bindPopup(`<b>${content.bhaironGhatiMarker}</b>`);
+
+          const latLngs = [vaishnoDeviCoords, bhaironGhatiCoords];
+          L.polyline(latLngs, {
+            color: "#8C3B2A",
+            weight: 3,
+            dashArray: "5, 5",
+          }).addTo(vaishnoDeviMap);
+
+          const bounds = L.latLngBounds(latLngs);
+          vaishnoDeviMap.fitBounds(bounds.pad(0.2));
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initVaishnoDeviMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

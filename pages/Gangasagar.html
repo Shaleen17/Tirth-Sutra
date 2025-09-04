@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gangasagar: The Great Confluence - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+          >The Puranic Path</a
+        >
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/gangasagar_hero.jpg"
+          alt="The confluence of the Ganga and the Bay of Bengal"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">West Bengal</p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Gangasagar: The Great Confluence
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Welcome to Gangasagar, the sacred Tirtha where the holy Ganga,
+              after a long journey from her Himalayan source, finally merges
+              with the ocean. This great confluence is more than a geographical
+              point; it is a profound symbol of the individual soul (*jīvātman*)
+              merging with the infinite cosmic consciousness (*paramātman*). A
+              pilgrimage here, especially on Makar Sankranti, is considered an
+              act of immense spiritual merit.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Puranic Origin: Liberation of the Sagarputras
+            </h2>
+            <p data-lang-key="historyText1">
+              The *Ramayana* and *Mahabharata* narrate the story of King Sagara
+              and his 60,000 sons. During an Ashwamedha Yajna, the sons
+              wrongfully accused the great sage Kapila Muni of stealing the
+              sacrificial horse and were instantly burnt to ashes by the power
+              of his meditative gaze. For their souls to attain liberation, the
+              water of the celestial river Ganga was required. Generations
+              later, King Sagara's descendant, Bhagiratha, performed severe
+              austerities and succeeded in bringing Mother Ganga down to earth.
+              She flowed over the ashes of the Sagarputras at this very spot,
+              granting them *mokṣa*.
+            </p>
+
+            <img
+              src="images/kapil_muni_ashram.jpg"
+              alt="The Kapil Muni Temple at Gangasagar"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>The Holy Dip (Sagar Snan):</strong> The central ritual of
+              the pilgrimage is the holy dip at the confluence of the Ganga and
+              the Bay of Bengal. It is famously said, *"Sab tirath bar bar,
+              Gangasagar ek bar"* (One can visit other Tirthas repeatedly, but a
+              single visit to Gangasagar is equivalent). Taking this bath,
+              especially during the auspicious time of Makar Sankranti, is
+              believed to wash away the sins of a lifetime.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>Worship at Kapila Muni Temple:</strong> After the holy
+              dip, pilgrims proceed to the temple dedicated to the great sage
+              Kapila Muni. Offering prayers here is an essential part of the
+              yatra, acknowledging the sage's pivotal role in the liberation of
+              the Sagarputras and the establishment of this sacred Tirtha.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>Makar Sankranti Mela:</strong> The Gangasagar Mela, held
+              annually in January, is the second-largest spiritual gathering in
+              India after the Kumbh Mela. Millions of devotees, monks, and
+              ascetics throng to this island to take the holy dip, creating an
+              atmosphere of intense and unparalleled devotion.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong> West
+                    Bengal
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity"
+                      >Primary Association:</strong
+                    >
+                    Holy Ganga & Kapila Muni
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="gangasagar-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="kashi.html" class="block group">
+                    <img
+                      src="images/card_kashi.jpg"
+                      alt="Kashi"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyKashi"
+                    >
+                      Kashi: The Eternal City
+                    </p>
+                  </a>
+                  <a href="puri.html" class="block group">
+                    <img
+                      src="images/card_puri.jpg"
+                      alt="Puri"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyPuri"
+                    >
+                      Puri: Abode of Jagannath
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "West Bengal",
+            pageTitle: "Gangasagar: The Great Confluence",
+            introText:
+              "Welcome to Gangasagar, the sacred Tirtha where the holy Ganga, after a long journey from her Himalayan source, finally merges with the ocean. This great confluence is more than a geographical point; it is a profound symbol of the individual soul (*jīvātman*) merging with the infinite cosmic consciousness (*paramātman*). A pilgrimage here, especially on Makar Sankranti, is considered an act of immense spiritual merit.",
+            historyTitle: "The Puranic Origin: Liberation of the Sagarputras",
+            historyText1:
+              "The *Ramayana* and *Mahabharata* narrate the story of King Sagara and his 60,000 sons. During an Ashwamedha Yajna, the sons wrongfully accused the great sage Kapila Muni of stealing the sacrificial horse and were instantly burnt to ashes by the power of his meditative gaze. For their souls to attain liberation, the water of the celestial river Ganga was required. Generations later, King Sagara's descendant, Bhagiratha, performed severe austerities and succeeded in bringing Mother Ganga down to earth. She flowed over the ashes of the Sagarputras at this very spot, granting them *mokṣa*.",
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              '<strong>The Holy Dip (Sagar Snan):</strong> The central ritual of the pilgrimage is the holy dip at the confluence of the Ganga and the Bay of Bengal. It is famously said, *"Sab tirath bar bar, Gangasagar ek bar"* (One can visit other Tirthas repeatedly, but a single visit to Gangasagar is equivalent). Taking this bath, especially during the auspicious time of Makar Sankranti, is believed to wash away the sins of a lifetime.',
+            expText2:
+              "<strong>Worship at Kapila Muni Temple:</strong> After the holy dip, pilgrims proceed to the temple dedicated to the great sage Kapila Muni. Offering prayers here is an essential part of the yatra, acknowledging the sage's pivotal role in the liberation of the Sagarputras and the establishment of this sacred Tirtha.",
+            expText3:
+              "<strong>Makar Sankranti Mela:</strong> The Gangasagar Mela, held annually in January, is the second-largest spiritual gathering in India after the Kumbh Mela. Millions of devotees, monks, and ascetics throng to this island to take the holy dip, creating an atmosphere of intense and unparalleled devotion.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Association:",
+            mapTitle: "Location Map",
+            gangasagarMarker: "Kapila Muni Temple, Gangasagar",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyKashi: "Kashi: The Eternal City",
+            enjoyPuri: "Puri: Abode of Jagannath",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "पश्चिम बंगाल",
+            pageTitle: "गंगासागर: महासंगम",
+            introText:
+              "गंगासागर में आपका स्वागत है, वह पवित्र तीर्थ जहाँ पवित्र गंगा, अपने हिमालयी स्रोत से एक लंबी यात्रा के बाद, अंत में सागर में विलीन हो जाती है। यह महासंगम एक भौगोलिक बिंदु से कहीं अधिक है; यह व्यक्तिगत आत्मा (*जीवात्मन*) का अनंत ब्रह्मांडीय चेतना (*परमात्मन*) में विलीन होने का एक गहरा प्रतीक है। यहाँ की तीर्थयात्रा, विशेष रूप से मकर संक्रांति पर, अत्यधिक आध्यात्मिक पुण्य का कार्य माना जाता है।",
+            historyTitle: "पौराणिक उत्पत्ति: सगरपुत्रों की मुक्ति",
+            historyText1:
+              "*रामायण* और *महाभारत* में राजा सगर और उनके 60,000 पुत्रों की कहानी का वर्णन है। एक अश्वमेध यज्ञ के दौरान, पुत्रों ने महान ऋषि कपिल मुनि पर यज्ञ के घोड़े को चुराने का झूठा आरोप लगाया और उनकी ध्यानमग्न दृष्टि की शक्ति से तुरंत भस्म हो गए। उनकी आत्माओं को मुक्ति प्राप्त करने के लिए, दिव्य नदी गंगा के जल की आवश्यकता थी। पीढ़ियों बाद, राजा सगर के वंशज, भगीरथ ने कठोर तपस्या की और माँ गंगा को पृथ्वी पर लाने में सफल हुए। वह इसी स्थान पर सगरपुत्रों की राख के ऊपर से बहीं, जिससे उन्हें *मोक्ष* प्राप्त हुआ।",
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>पवित्र डुबकी (सागर स्नान):</strong> तीर्थयात्रा का केंद्रीय अनुष्ठान गंगा और बंगाल की खाड़ी के संगम पर पवित्र डुबकी है। यह प्रसिद्ध रूप से कहा जाता है, *'सब तीरथ बार बार, गंगासागर एक बार'*। इस स्नान को करने से, विशेष रूप से मकर संक्रांति के शुभ समय के दौरान, जीवन भर के पाप धुल जाते हैं।",
+            expText2:
+              "<strong>कपिल मुनि मंदिर में पूजा:</strong> पवित्र डुबकी के बाद, तीर्थयात्री महान ऋषि कपिल मुनि को समर्पित मंदिर की ओर बढ़ते हैं। यहाँ प्रार्थना करना यात्रा का एक अनिवार्य हिस्सा है, जो सगरपुत्रों की मुक्ति और इस पवित्र तीर्थ की स्थापना में ऋषि की महत्वपूर्ण भूमिका को स्वीकार करता है।",
+            expText3:
+              "<strong>मकर संक्रांति मेला:</strong> जनवरी में प्रतिवर्ष आयोजित होने वाला गंगासागर मेला, कुंभ मेले के बाद भारत में दूसरा सबसे बड़ा आध्यात्मिक जमावड़ा है। लाखों भक्त, भिक्षु और तपस्वी पवित्र डुबकी लगाने के लिए इस द्वीप पर आते हैं, जिससे तीव्र और अद्वितीय भक्ति का वातावरण बनता है।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "मुख्य संबंध:",
+            mapTitle: "स्थान का नक्शा",
+            gangasagarMarker: "कपिल मुनि मंदिर, गंगासागर",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyKashi: "काशी: शाश्वत नगरी",
+            enjoyPuri: "पुरी: जगन्नाथ का धाम",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let gangasagarMap;
+
+        function initGangasagarMap(lang) {
+          const content = languageContent[lang];
+          const gangasagarCoords = [21.65, 88.0778];
+
+          if (!gangasagarMap) {
+            gangasagarMap = L.map("gangasagar-map", {
+              scrollWheelZoom: false,
+            }).setView(gangasagarCoords, 13);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(gangasagarMap);
+          } else {
+            gangasagarMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker) {
+                gangasagarMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const marker = L.marker(gangasagarCoords, { icon: mandirIcon }).addTo(
+            gangasagarMap
+          );
+          marker.bindPopup(`<b>${content.gangasagarMarker}</b>`).openPopup();
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initGangasagarMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

@@ -4,6 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Our Yatras - The Puranic Path</title>
+    <!-- === DOMAIN LOCK SCRIPT - ADD THIS HERE === -->
+    <script>
+      const authorizedDomain = "shaleen17.github.io";
+      const currentDomain = window.location.hostname;
+      if (currentDomain && currentDomain !== authorizedDomain) {
+        document.documentElement.innerHTML = `
+                <head>
+                    <title>Access Denied</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; color: #4A2E2A; background-color: #FDFBF8; }
+                        a { color: #8C3B2A; text-decoration: none; font-weight: bold; }
+                    </style>
+                </head>
+                <body>
+                    <h1>Access Denied</h1>
+                    <p>This content is protected and can only be viewed on the official website.</p>
+                    <p>यह सामग्री सुरक्षित है और इसे केवल आधिकारिक वेबसाइट पर ही देखा जा सकता है।</p>
+                    <a href="https://shaleen17.github.io/Tirth-Sutra/">Visit the Official Website</a>
+                </body>
+            `;
+      }
+    </script>
+    <!-- === END OF SCRIPT === -->
     <link rel="icon" type="image/png" href="BrandLogo.jpg" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -832,7 +855,7 @@
         <div class="flex justify-center items-center space-x-6 mb-6">
           <!-- Social Media Logos -->
           <a
-            href="mailto:shaleensingh238@gmail.com"
+            href="mailto:tirthsutra@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
             title="Email"

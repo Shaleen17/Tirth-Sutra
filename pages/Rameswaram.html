@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rameswaram: Rama's Bridge - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <h1
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+        >
+          The Puranic Path
+        </h1>
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/rameswaram_hero.jpg"
+          alt="Rama Setu bridge aerial view"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">Tamil Nadu</p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Rameswaram: Rama's Bridge
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Step onto the sacred island of Rameswaram, a land sanctified by
+              the footsteps of Lord Rama himself. As one of the original four
+              Char Dhams and home to a powerful Jyotirlinga, this Tirtha is
+              where the great traditions of Shaivism and Vaishnavism merge. To
+              be here is to witness the living legacy of the Ramayana and to
+              experience the profound unity of Dharma.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Puranic Origin: Atonement and Devotion
+            </h2>
+            <p data-lang-key="historyText1">
+              As narrated in the Ramayana, after the victorious war in Lanka and
+              the defeat of the learned demon-king Ravana, Lord Rama was advised
+              by the sages to atone for the sin of *Brahmahatya* (the killing of
+              a Brahmin). To do so, he decided to consecrate a Shivalinga and
+              worship Lord Shiva. He dispatched Hanuman to bring a lingam from
+              Mount Kailash. When Hanuman was delayed, Goddess Sita fashioned a
+              lingam from the sand of the seashore, which Rama then consecrated.
+              This became the principal deity, Ramanathaswamy—"The Lord
+              worshipped by Rama."
+            </p>
+
+            <img
+              src="images/rameswaram_corridor.jpg"
+              alt="The long corridor of Ramanathaswamy Temple"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>Ramanathaswamy Temple Darshan:</strong> The magnificence
+              of this temple is breathtaking, renowned for having the longest
+              temple corridor in the world. Pilgrims first worship the sand
+              lingam made by Sita before offering prayers to the Vishwalingam
+              brought by Hanuman from Kailash.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>The 22 Teerthams Snan:</strong> A unique and essential
+              ritual at Rameswaram is the sacred bath in the 22 holy water
+              bodies, or *Teerthams*, located within the temple complex. Each
+              well and tank is believed to possess unique purifying powers, and
+              a bath in all 22 is said to wash away a lifetime of sins.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>Dhanushkodi and Rama Setu:</strong> A journey to
+              Dhanushkodi, the southernmost tip of the island, is a pilgrimage
+              to the end of the land. It is here that one can witness the Adam's
+              Bridge, or *Rama Setu*, the chain of limestone shoals that Lord
+              Rama's Vanara army built to cross over to Lanka. A holy dip at the
+              confluence of the two seas here is considered an act of immense
+              merit.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong> Tamil Nadu
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity">Primary Deity:</strong>
+                    Lord Shiva (Ramanathaswamy)
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="rameswaram-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="kashi.html" class="block group">
+                    <img
+                      src="images/card_kashi.jpg"
+                      alt="Kashi"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyKashi"
+                    >
+                      Kashi: The Eternal City
+                    </p>
+                  </a>
+                  <a href="ramayan_yatra.html" class="block group">
+                    <img
+                      src="images/card_ramayan.jpg"
+                      alt="Ramayan Yatra"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyRamayan"
+                    >
+                      Ramayan Yatra (The Exile Path)
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Tamil Nadu",
+            pageTitle: "Rameswaram: Rama's Bridge",
+            introText:
+              "Step onto the sacred island of Rameswaram, a land sanctified by the footsteps of Lord Rama himself. As one of the original four Char Dhams and home to a powerful Jyotirlinga, this Tirtha is where the great traditions of Shaivism and Vaishnavism merge. To be here is to witness the living legacy of the Ramayana and to experience the profound unity of Dharma.",
+            historyTitle: "The Puranic Origin: Atonement and Devotion",
+            historyText1:
+              'As narrated in the Ramayana, after the victorious war in Lanka and the defeat of the learned demon-king Ravana, Lord Rama was advised by the sages to atone for the sin of *Brahmahatya* (the killing of a Brahmin). To do so, he decided to consecrate a Shivalinga and worship Lord Shiva. He dispatched Hanuman to bring a lingam from Mount Kailash. When Hanuman was delayed, Goddess Sita fashioned a lingam from the sand of the seashore, which Rama then consecrated. This became the principal deity, Ramanathaswamy—"The Lord worshipped by Rama."',
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              "<strong>Ramanathaswamy Temple Darshan:</strong> The magnificence of this temple is breathtaking, renowned for having the longest temple corridor in the world. Pilgrims first worship the sand lingam made by Sita before offering prayers to the Vishwalingam brought by Hanuman from Kailash.",
+            expText2:
+              "<strong>The 22 Teerthams Snan:</strong> A unique and essential ritual at Rameswaram is the sacred bath in the 22 holy water bodies, or *Teerthams*, located within the temple complex. Each well and tank is believed to possess unique purifying powers, and a bath in all 22 is said to wash away a lifetime of sins.",
+            expText3:
+              "<strong>Dhanushkodi and Rama Setu:</strong> A journey to Dhanushkodi, the southernmost tip of the island, is a pilgrimage to the end of the land. It is here that one can witness the Adam's Bridge, or *Rama Setu*, the chain of limestone shoals that Lord Rama's Vanara army built to cross over to Lanka. A holy dip at the confluence of the two seas here is considered an act of immense merit.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Deity:",
+            mapTitle: "Location Map",
+            rameswaramMarker: "Ramanathaswamy Temple",
+            dhanushkodiMarker: "Dhanushkodi (Rama Setu Point)",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyKashi: "Kashi: The Eternal City",
+            enjoyRamayan: "Ramayan Yatra (The Exile Path)",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "तमिलनाडु",
+            pageTitle: "रामेश्वरम: राम का सेतु",
+            introText:
+              "भगवान राम के पदचिन्हों से पवित्र हुई रामेश्वरम की पावन भूमि पर कदम रखें। मूल चार धामों में से एक और एक शक्तिशाली ज्योतिर्लिंग का घर होने के नाते, यह तीर्थ वह स्थान है जहाँ शैव और वैष्णव धर्म की महान परंपराओं का संगम होता है। यहाँ होना रामायण की जीवंत विरासत का साक्षी बनना और धर्म की गहन एकता का अनुभव करना है।",
+            historyTitle: "पौराणिक उत्पत्ति: प्रायश्चित और भक्ति",
+            historyText1:
+              'रामायण में वर्णित अनुसार, लंका में विजयी युद्ध और विद्वान राक्षस-राजा रावण की हार के बाद, भगवान राम को ऋषियों ने *ब्रह्महत्या* के पाप से प्रायश्चित करने की सलाह दी। ऐसा करने के लिए, उन्होंने एक शिवलिंग की प्रतिष्ठा करने और भगवान शिव की पूजा करने का निर्णय लिया। उन्होंने हनुमान को कैलाश पर्वत से एक लिंगम लाने के लिए भेजा। जब हनुमान को देर हो गई, तो देवी सीता ने समुद्र तट की रेत से एक लिंगम बनाया, जिसे राम ने प्रतिष्ठित किया। यह मुख्य देवता, रामनाथस्वामी - "राम द्वारा पूजित स्वामी" बन गए।',
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>रामनाथस्वामी मंदिर दर्शन:</strong> इस मंदिर की भव्यता लुभावनी है, जो दुनिया में सबसे लंबे मंदिर गलियारे के लिए प्रसिद्ध है। तीर्थयात्री पहले सीता द्वारा बनाए गए रेत के लिंगम की पूजा करते हैं, फिर कैलाश से हनुमान द्वारा लाए गए विश्वलिंगम की प्रार्थना करते हैं।",
+            expText2:
+              "<strong>२२ तीर्थम स्नान:</strong> रामेश्वरम में एक अनूठा और आवश्यक अनुष्ठान मंदिर परिसर के भीतर स्थित २२ पवित्र जल निकायों, या *तीर्थम* में पवित्र स्नान है। माना जाता है कि प्रत्येक कुएं और तालाब में अद्वितीय शुद्धिकरण शक्तियां होती हैं, और सभी २२ में स्नान करने से जीवन भर के पाप धुल जाते हैं।",
+            expText3:
+              "<strong>धनुषकोडी और राम सेतु:</strong> द्वीप के सबसे दक्षिणी सिरे धनुषकोडी की यात्रा, भूमि के अंत तक की तीर्थयात्रा है। यहीं पर कोई भी एडम्स ब्रिज, या *राम सेतु*, चूना पत्थर की चट्टानों की श्रृंखला देख सकता है जिसे भगवान राम की वानर सेना ने लंका जाने के लिए बनाया था। यहाँ दो समुद्रों के संगम पर एक पवित्र डुबकी को अत्यधिक पुण्य का कार्य माना जाता है।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "प्रमुख देवता:",
+            mapTitle: "स्थान का नक्शा",
+            rameswaramMarker: "रामनाथस्वामी मंदिर",
+            dhanushkodiMarker: "धनुषकोडी (राम सेतु पॉइंट)",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyKashi: "काशी: शाश्वत नगरी",
+            enjoyRamayan: "रामायण यात्रा (वनवास पथ)",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let rameswaramMap;
+
+        function initRameswaramMap(lang) {
+          const content = languageContent[lang];
+          const rameswaramCoords = [9.2876, 79.3129];
+          const dhanushkodiCoords = [9.1531, 79.4442];
+
+          if (!rameswaramMap) {
+            rameswaramMap = L.map("rameswaram-map", {
+              scrollWheelZoom: false,
+            }).setView(rameswaramCoords, 10);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(rameswaramMap);
+          } else {
+            rameswaramMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker || layer instanceof L.Polyline) {
+                rameswaramMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const marker1 = L.marker(rameswaramCoords, {
+            icon: mandirIcon,
+          }).addTo(rameswaramMap);
+          marker1.bindPopup(`<b>${content.rameswaramMarker}</b>`).openPopup();
+
+          const marker2 = L.marker(dhanushkodiCoords, {
+            icon: mandirIcon,
+          }).addTo(rameswaramMap);
+          marker2.bindPopup(`<b>${content.dhanushkodiMarker}</b>`);
+
+          const latLngs = [rameswaramCoords, dhanushkodiCoords];
+          L.polyline(latLngs, {
+            color: "#8C3B2A",
+            weight: 3,
+            dashArray: "5, 5",
+          }).addTo(rameswaramMap);
+
+          const bounds = L.latLngBounds(latLngs);
+          rameswaramMap.fitBounds(bounds.pad(0.2));
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initRameswaramMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

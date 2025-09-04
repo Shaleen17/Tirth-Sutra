@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kashi: The Eternal City - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .prose-custom blockquote {
+        border-left: 4px solid #ff6700;
+        padding-left: 1rem;
+        margin: 1.5rem 0;
+        font-style: italic;
+        color: #8c3b2a;
+      }
+      /* Style for the map container */
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0; /* Ensures map is interactive */
+      }
+      /* Style for the custom mandir icon */
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <h1
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+        >
+          The Puranic Path
+        </h1>
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/kashi_hero.jpg"
+          alt="Ghats of Kashi at sunrise"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">
+              Uttar Pradesh
+            </p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Kashi: The Eternal City
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              "Older than history, older than tradition, older even than
+              legend..." This is how the world sees Kashi, but for the devout,
+              it is simply the earthly abode of Lord Shiva. To be here is to
+              stand at the very center of the Hindu cosmos, a city of light
+              (*prakāśa*) where the fires of creation and dissolution burn
+              eternally, a sacred ford (*Tirtha*) designed to carry the soul
+              across the ocean of existence.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Cosmic Significance of Kashi
+            </h2>
+            <p data-lang-key="historyText1">
+              According to the *Kāśī Khaṇḍa* of the Skand Purana, Kashi was not
+              built upon the earth but manifested from the divine effulgence of
+              Lord Shiva himself, resting upon his trident (*triśūla*). It is
+              therefore known as *Avimukta Kṣetra*—the sacred space that Lord
+              Shiva never forsakes, even during the cosmic dissolution
+              (*pralaya*). It is here that Shiva grants the sacred
+              *tāraka-mantra* to every soul that departs, ensuring their
+              immediate liberation (*mokṣa*).
+            </p>
+
+            <img
+              src="images/kashi_vishwanath.jpg"
+              alt="Kashi Vishwanath Temple"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>Ganga Snan & Aarti:</strong> A dip in the holy Ganga at
+              sunrise is not a mere bath but a purification of the soul. In the
+              evening, the Dashashwamedh Ghat comes alive with the Ganga Aarti,
+              a mesmerizing ritual of fire, incense, and chant. The rhythmic
+              clang of bells, the fragrance of sandalwood, and the sight of
+              countless lamps floating on the dark waters create a spectacle of
+              profound devotion that connects one to millennia of faith.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>Vishwanath Darshan:</strong> A visit to the Kashi
+              Vishwanath Temple, one of the twelve sacred Jyotirlingas, is the
+              culmination of the pilgrimage. To have the *darśana* of the Lord
+              of the Universe in his eternal city is an experience of immense
+              spiritual merit, a moment of profound connection with the formless
+              divine manifested for the devotee.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>Exploring the Ghats:</strong> The Ghats of Kashi are the
+              soul of the city. From the quiet reverence of Assi Ghat, where the
+              poet Tulsidas composed the Ramcharitmanas, to the profound reality
+              of Manikarnika, the great cremation ground, each of the 84 ghats
+              tells a timeless story of life, death, and faith.
+            </p>
+
+            <img
+              src="images/kashi_ghat_life.jpg"
+              alt="Life on the ghats of Kashi"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="geoTitle">The Sacred Geography of Kashi</h2>
+            <p data-lang-key="geoText1">
+              The *Kāśī Khaṇḍa* describes the city as being divided into three
+              sacred segments (*khaṇḍas*), each presided over by a form of Lord
+              Shiva. A true pilgrimage involves visiting all three.
+            </p>
+            <ul class="list-disc list-inside space-y-2 mt-4">
+              <li data-lang-key="geo1">
+                <strong>Oṃkāreśvara Khaṇḍa:</strong> The northern part of the
+                city, representing the sacred syllable "Oṃ".
+              </li>
+              <li data-lang-key="geo2">
+                <strong>Viśveśvara Khaṇḍa:</strong> The central part, home to
+                the main Vishwanath Jyotirlinga, the Lord of All.
+              </li>
+              <li data-lang-key="geo3">
+                <strong>Kedāra Khaṇḍa:</strong> The southern part, believed to
+                bestow the merit of visiting the Himalayan Kedarnath.
+              </li>
+            </ul>
+
+            <h2 data-lang-key="maryadaTitle">
+              A Pilgrim's Conduct (Yatra Maryada)
+            </h2>
+            <p data-lang-key="maryadaText1">
+              The scriptures are clear that the benefit of a pilgrimage depends
+              on the inner disposition (*bhāva*) of the pilgrim. Kashi is a zone
+              of heightened karmic accountability. The Skanda Purana warns: *"A
+              sin committed elsewhere becomes reduced in a Tirtha. But what is
+              committed in the Tirtha is never destroyed anywhere."*
+            </p>
+            <p data-lang-key="maryadaText2">
+              Therefore, a pilgrim must practice self-restraint (*samyama*),
+              observe a sattvic diet, and engage in charity (*dāna*). Most
+              importantly, one must refrain from accepting gifts (*pratigraha*),
+              as this is said to diminish the accumulated spiritual merit of the
+              yatra.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong> Uttar
+                    Pradesh
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity">Primary Deity:</strong>
+                    Lord Shiva
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="kashi-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+              <!-- END OF MAP SECTION -->
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="Braj.html" class="block group">
+                    <img
+                      src="images/card_braj.jpg"
+                      alt="Braj Bhumi"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyBraj"
+                    >
+                      Braj Bhumi: Land of Divine Love
+                    </p>
+                  </a>
+                  <a href="Char_Dham.html" class="block group">
+                    <img
+                      src="images/card_chardham.jpg"
+                      alt="Char Dham"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyCharDham"
+                    >
+                      Char Dham: Himalayan Peaks
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Uttar Pradesh",
+            pageTitle: "Kashi: The Eternal City",
+            introText:
+              "'Older than history, older than tradition, older even than legend...' This is how the world sees Kashi (Varanasi), but for the devout, it is simply the earthly abode of Lord Shiva. To be here is to stand at the very center of the Hindu cosmos, a city of light (*prakāśa*) where the fires of creation and dissolution burn eternally, a sacred ford (*Tirtha*) designed to carry the soul across the ocean of existence.",
+            historyTitle: "The Cosmic Significance of Kashi",
+            historyText1:
+              "According to the *Kāśī Khaṇḍa* of the Skand Purana, Kashi was not built upon the earth but manifested from the divine effulgence of Lord Shiva himself, resting upon his trident (*triśūla*). It is therefore known as *Avimukta Kṣetra*—the sacred space that Lord Shiva never forsakes, even during the cosmic dissolution (*pralaya*). It is here that Shiva grants the sacred *tāraka-mantra* to every soul that departs, ensuring their immediate liberation (*mokṣa*).",
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              "**Ganga Snan & Aarti:** A dip in the holy Ganga at sunrise is not a mere bath but a purification of the soul. In the evening, the Dashashwamedh Ghat comes alive with the Ganga Aarti, a mesmerizing ritual of fire, incense, and chant. The rhythmic clang of bells, the fragrance of sandalwood, and the sight of countless lamps floating on the dark waters create a spectacle of profound devotion that connects one to millennia of faith.",
+            expText2:
+              "**Vishwanath Darshan:** A visit to the Kashi Vishwanath Temple, one of the twelve sacred Jyotirlingas, is the culmination of the pilgrimage. To have the *darśana* of the Lord of the Universe in his eternal city is an experience of immense spiritual merit, a moment of profound connection with the formless divine manifested for the devotee.",
+            expText3:
+              "**Exploring the Ghats:** The Ghats of Kashi are the soul of the city. From the quiet reverence of Assi Ghat, where the poet Tulsidas composed the Ramcharitmanas, to the profound reality of Manikarnika, the great cremation ground, each of the 84 ghats tells a timeless story of life, death, and faith.",
+            geoTitle: "The Sacred Geography of Kashi",
+            geoText1:
+              "The *Kāśī Khaṇḍa* describes the city as being divided into three sacred segments (*khaṇḍas*), each presided over by a form of Lord Shiva. A true pilgrimage involves visiting all three.",
+            geo1: '<strong>Oṃkāreśvara Khaṇḍa:</strong> The northern part of the city, representing the sacred syllable "Oṃ".',
+            geo2: "<strong>Viśveśvara Khaṇḍa:</strong> The central part, home to the main Vishwanath Jyotirlinga, the Lord of All.",
+            geo3: "<strong>Kedāra Khaṇḍa:</strong> The southern part, believed to bestow the merit of visiting the Himalayan Kedarnath.",
+            maryadaTitle: "A Pilgrim's Conduct (Yatra Maryada)",
+            maryadaText1:
+              'The scriptures are clear that the benefit of a pilgrimage depends on the inner disposition (*bhāva*) of the pilgrim. Kashi is a zone of heightened karmic accountability. The Skanda Purana warns: *"A sin committed elsewhere becomes reduced in a Tirtha. But what is committed in the Tirtha is never destroyed anywhere."*',
+            maryadaText2:
+              "Therefore, a pilgrim must practice self-restraint (*samyama*), observe a sattvic diet, and engage in charity (*dāna*). Most importantly, one must refrain from accepting gifts (*pratigraha*), as this is said to diminish the accumulated spiritual merit of the yatra.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Deity:",
+            mapTitle: "Location Map",
+            kashiMarker: "Kashi",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyBraj: "Braj Bhumi: Land of Divine Love",
+            enjoyCharDham: "Char Dham: Himalayan Peaks",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "उत्तर प्रदेश",
+            pageTitle: "काशी: शाश्वत नगरी",
+            introText:
+              "'इतिहास से भी पुराना, परंपरा से भी पुराना, किंवदंतियों से भी पुराना...' दुनिया काशी (वाराणसी) को इस तरह देखती है, लेकिन भक्तों के लिए, यह केवल भगवान शिव का पार्थिव निवास है। यहाँ होना हिंदू ब्रह्मांड के केंद्र में खड़े होने जैसा है, एक प्रकाश (*प्रकाश*) का शहर जहाँ सृष्टि और विघटन की अग्नि शाश्वत रूप से जलती है, एक पवित्र पारगमन-स्थल (*तीर्थ*) जो आत्मा को अस्तित्व के सागर के पार ले जाने के लिए बनाया गया है।",
+            historyTitle: "काशी का ब्रह्मांडीय महत्व",
+            historyText1:
+              "स्कंद पुराण के *काशी खंड* के अनुसार, काशी का निर्माण पृथ्वी पर नहीं हुआ था, बल्कि यह भगवान शिव के दिव्य तेज से स्वयं प्रकट हुआ था, जो उनके त्रिशूल (*त्रिशूल*) पर टिका हुआ है। इसलिए इसे *अविमुक्त क्षेत्र* के रूप में जाना जाता है - वह पवित्र स्थान जिसे भगवान शिव कभी नहीं त्यागते, यहाँ तक कि ब्रह्मांडीय विघटन (*प्रलय*) के दौरान भी। यहीं पर शिव प्रत्येक departing आत्मा को पवित्र *तारक-मंत्र* प्रदान करते हैं, जिससे उनकी तत्काल मुक्ति (*मोक्ष*) सुनिश्चित होती है।",
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "**गंगा स्नान और आरती:** सूर्योदय के समय पवित्र गंगा में डुबकी लगाना केवल स्नान नहीं है, बल्कि आत्मा का शुद्धिकरण है। शाम को, दशाश्वमेध घाट गंगा आरती से जीवंत हो उठता है, जो अग्नि, धूप और मंत्रों का एक मंत्रमुग्ध कर देने वाला अनुष्ठान है। घंटियों की लयबद्ध ध्वनि, चंदन की सुगंध, और अंधेरे जल पर तैरते अनगिनत दीपों का दृश्य गहन भक्ति का एक ऐसा spectacle बनाता है जो व्यक्ति को सहस्राब्दियों की आस्था से जोड़ता है।",
+            expText2:
+              "**विश्वनाथ दर्शन:** बारह पवित्र ज्योतिर्लिंगों में से एक, काशी विश्वनाथ मंदिर की यात्रा, तीर्थयात्रा का समापन है। उनके शाश्वत शहर में ब्रह्मांड के स्वामी का *दर्शन* करना अत्यधिक आध्यात्मिक पुण्य का अनुभव है, भक्त के लिए प्रकट हुए निराकार परमात्मा के साथ एक गहन संबंध का क्षण।",
+            expText3:
+              "**घाटों का अन्वेषण:** काशी के घाट शहर की आत्मा हैं। अस्सी घाट की शांत श्रद्धा से, जहाँ कवि तुलसीदास ने रामचरितमानस की रचना की, से लेकर महान श्मशान घाट, मणिकर्णिका की गहन वास्तविकता तक, 84 घाटों में से प्रत्येक जीवन, मृत्यु और आस्था की एक कालातीत कहानी कहता है।",
+            geoTitle: "काशी का पवित्र भूगोल",
+            geoText1:
+              "*काशी खंड* शहर को तीन पवित्र खंडों (*खंड*) में विभाजित होने का वर्णन करता है, जिनमें से प्रत्येक पर भगवान शिव का एक रूप विराजमान है। एक सच्ची तीर्थयात्रा में तीनों का दौरा शामिल है।",
+            geo1: "<strong>ओंकारेश्वर खंड:</strong> शहर का उत्तरी भाग, जो पवित्र अक्षर 'ॐ' का प्रतिनिधित्व करता है।",
+            geo2: "<strong>विश्वेश्वर खंड:</strong> मध्य भाग, जो मुख्य विश्वनाथ ज्योतिर्लिंग, सभी के स्वामी का घर है।",
+            geo3: "<strong>केदार खंड:</strong> दक्षिणी भाग, जिसके बारे में माना जाता है कि यह हिमालयी केदारनाथ जाने का पुण्य प्रदान करता है।",
+            maryadaTitle: "एक तीर्थयात्री का आचरण (यात्रा मर्यादा)",
+            maryadaText1:
+              "शास्त्र स्पष्ट करते हैं कि तीर्थयात्रा का लाभ तीर्थयात्री के आंतरिक भाव (*भाव*) पर निर्भर करता है। काशी कर्मिक जवाबदेही का एक बढ़ा हुआ क्षेत्र है। स्कंद पुराण चेतावनी देता है: *'कहीं और किया गया पाप तीर्थ में कम हो जाता है। लेकिन जो तीर्थ में किया जाता है वह कहीं भी नष्ट नहीं होता।'*",
+            maryadaText2:
+              "इसलिए, एक तीर्थयात्री को आत्म-संयम (*संयम*) का अभ्यास करना चाहिए, सात्विक आहार का पालन करना चाहिए, और दान (*दान*) में संलग्न होना चाहिए। सबसे महत्वपूर्ण बात, व्यक्ति को उपहार स्वीकार करने (*प्रतिग्रह*) से बचना चाहिए, क्योंकि कहा जाता है कि यह यात्रा के संचित आध्यात्मिक पुण्य को कम करता है।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "प्रमुख देवता:",
+            mapTitle: "स्थान का नक्शा",
+            kashiMarker: "काशी",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyBraj: "ब्रज भूमि: दिव्य प्रेम की भूमि",
+            enjoyCharDham: "चार धाम: हिमालयी शिखर",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let kashiMap;
+
+        function initKashiMap(lang) {
+          const content = languageContent[lang];
+          const kashiCoords = [25.3109, 82.9739]; // Correct coordinates for Kashi Vishwanath
+
+          if (!kashiMap) {
+            kashiMap = L.map("kashi-map", { scrollWheelZoom: false }).setView(
+              kashiCoords,
+              15
+            );
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(kashiMap);
+          } else {
+            kashiMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker) {
+                kashiMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const marker = L.marker(kashiCoords, { icon: mandirIcon }).addTo(
+            kashiMap
+          );
+          marker.bindPopup(`<b>${content.kashiMarker}</b>`).openPopup();
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initKashiMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

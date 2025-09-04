@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Braj Bhumi: Land of Divine Love - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+          >The Puranic Path</a
+        >
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/braj_hero.jpg"
+          alt="A vibrant Holi festival scene in Braj"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">
+              Uttar Pradesh
+            </p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Braj Bhumi: Land of Divine Love
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Enter Braj Bhumi, the sacred land where the divine becomes
+              intimately personal. This is not merely a place of pilgrimage; it
+              is the earthly manifestation of Goloka, the eternal abode of Radha
+              and Krishna. Here, every forest, river, and particle of dust is
+              saturated with the sweetness (*mādhurya*) of their divine pastimes
+              (*līlā*). A journey through Braj is an immersion into
+              *prema-bhakti*, the path of pure, unadulterated love for God.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Puranic Significance: A Living Dhama
+            </h2>
+            <p data-lang-key="historyText1">
+              The Bhagavata Purana and other Vaishnava texts describe Braj as a
+              living, spiritual landscape. Unlike other Tirthas that grant
+              liberation (*mokṣa*), Braj bestows the higher gift of *prema*, or
+              divine love. It is the stage upon which Lord Krishna performed his
+              most enchanting childhood and youthful pastimes, from stealing
+              butter in Gokul to the divine Rasa Lila in the forests of
+              Vrindavan. The entire region is considered a *dhama*—a divine
+              realm that descended to earth along with the Lord.
+            </p>
+
+            <img
+              src="images/govardhan_hill.jpg"
+              alt="Devotees performing parikrama around Govardhan Hill"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>Mathura: The Divine Birthplace.</strong> The pilgrimage
+              begins at the Krishna Janmasthan Temple Complex in Mathura, the
+              sacred site of Lord Krishna's birth. A visit to the Vishram Ghat
+              on the banks of the Yamuna, where the Lord rested after slaying
+              Kansa, is essential for purification.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>Vrindavan: The Forest of Devotion.</strong> The heart of
+              Braj, Vrindavan is home to thousands of temples. The *darśana* at
+              Banke Bihari Temple, where the Lord is worshipped in a playful
+              mood, and the Radha Raman Temple, with its self-manifested deity,
+              are profound experiences.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>Govardhan Parikrama:</strong> Circumambulating the sacred
+              Govardhan Hill is a central act of devotion. Lord Krishna famously
+              lifted this hill to protect the residents of Braj from the wrath
+              of Indra. The *parikrama* is a walk of faith, honoring the Lord as
+              the protector of his devotees.
+            </p>
+            <p data-lang-key="expText4">
+              <strong>Barsana and Nandgaon:</strong> Experience the unique
+              culture of Radha Rani's village, Barsana, and Lord Krishna's
+              childhood home, Nandgaon. The Lathmar Holi festival celebrated
+              here is a vibrant and playful enactment of the divine love between
+              Radha and the Gopis for Krishna.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong> Uttar
+                    Pradesh
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity">Primary Deities:</strong>
+                    Radha & Krishna
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="braj-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="dwarka.html" class="block group">
+                    <img
+                      src="images/card_dwarka.jpg"
+                      alt="Dwarka"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyDwarka"
+                    >
+                      Dwarka: Kingdom of Krishna
+                    </p>
+                  </a>
+                  <a href="puri.html" class="block group">
+                    <img
+                      src="images/card_puri.jpg"
+                      alt="Puri"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyPuri"
+                    >
+                      Puri: Abode of Jagannath
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Uttar Pradesh",
+            pageTitle: "Braj Bhumi: Land of Divine Love",
+            introText:
+              "Enter Braj Bhumi, the sacred land where the divine becomes intimately personal. This is not merely a place of pilgrimage; it is the earthly manifestation of Goloka, the eternal abode of Radha and Krishna. Here, every forest, river, and particle of dust is saturated with the sweetness (*mādhurya*) of their divine pastimes (*līlā*). A journey through Braj is an immersion into *prema-bhakti*, the path of pure, unadulterated love for God.",
+            historyTitle: "The Puranic Significance: A Living Dhama",
+            historyText1:
+              "The Bhagavata Purana and other Vaishnava texts describe Braj as a living, spiritual landscape. Unlike other Tirthas that grant liberation (*mokṣa*), Braj bestows the higher gift of *prema*, or divine love. It is the stage upon which Lord Krishna performed his most enchanting childhood and youthful pastimes, from stealing butter in Gokul to the divine Rasa Lila in the forests of Vrindavan. The entire region is considered a *dhama*—a divine realm that descended to earth along with the Lord.",
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              "<strong>Mathura: The Divine Birthplace.</strong> The pilgrimage begins at the Krishna Janmasthan Temple Complex in Mathura, the sacred site of Lord Krishna's birth. A visit to the Vishram Ghat on the banks of the Yamuna, where the Lord rested after slaying Kansa, is essential for purification.",
+            expText2:
+              "<strong>Vrindavan: The Forest of Devotion.</strong> The heart of Braj, Vrindavan is home to thousands of temples. The *darśana* at Banke Bihari Temple, where the Lord is worshipped in a playful mood, and the Radha Raman Temple, with its self-manifested deity, are profound experiences.",
+            expText3:
+              "<strong>Govardhan Parikrama:</strong> Circumambulating the sacred Govardhan Hill is a central act of devotion. Lord Krishna famously lifted this hill to protect the residents of Braj from the wrath of Indra. The *parikrama* is a walk of faith, honoring the Lord as the protector of his devotees.",
+            expText4:
+              "<strong>Barsana and Nandgaon:</strong> Experience the unique culture of Radha Rani's village, Barsana, and Lord Krishna's childhood home, Nandgaon. The Lathmar Holi festival celebrated here is a vibrant and playful enactment of the divine love between Radha and the Gopis for Krishna.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Deities:",
+            mapTitle: "Location Map",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyDwarka: "Dwarka: Kingdom of Krishna",
+            enjoyPuri: "Puri: Abode of Jagannath",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "उत्तर प्रदेश",
+            pageTitle: "ब्रज भूमि: दिव्य प्रेम की भूमि",
+            introText:
+              "ब्रज भूमि में प्रवेश करें, वह पवित्र भूमि जहाँ परमात्मा अंतरंग रूप से व्यक्तिगत हो जाता है। यह केवल एक तीर्थ स्थान नहीं है; यह गोलोक का पार्थिव प्राकट्य है, राधा और कृष्ण का शाश्वत निवास। यहाँ, हर जंगल, नदी और धूल का कण उनकी दिव्य लीलाओं (*लीला*) के माधुर्य (*माधुर्य*) से संतृप्त है। ब्रज की यात्रा *प्रेम-भक्ति* में एक विसर्जन है, जो ईश्वर के प्रति शुद्ध, unverfälscht प्रेम का मार्ग है।",
+            historyTitle: "पौराणिक महत्व: एक जीवंत धाम",
+            historyText1:
+              "भागवत पुराण और अन्य वैष्णव ग्रंथ ब्रज को एक जीवंत, आध्यात्मिक परिदृश्य के रूप में वर्णित करते हैं। अन्य तीर्थों के विपरीत जो मुक्ति (*मोक्ष*) प्रदान करते हैं, ब्रज *प्रेम* का उच्च उपहार प्रदान करता है। यह वह मंच है जिस पर भगवान कृष्ण ने अपनी सबसे आकर्षक बचपन और युवा लीलाएं कीं, गोकुल में मक्खन चुराने से लेकर वृंदावन के जंगलों में दिव्य रास लीला तक। पूरे क्षेत्र को एक *धाम* माना जाता है - एक दिव्य क्षेत्र जो भगवान के साथ पृथ्वी पर अवतरित हुआ।",
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>मथुरा: दिव्य जन्मस्थान।</strong> तीर्थयात्रा मथुरा में कृष्ण जन्मस्थान मंदिर परिसर से शुरू होती है, जो भगवान कृष्ण के जन्म का पवित्र स्थल है। यमुना के तट पर विश्राम घाट की यात्रा, जहाँ भगवान ने कंस का वध करने के बाद विश्राम किया था, शुद्धि के लिए आवश्यक है।",
+            expText2:
+              "<strong>वृंदावन: भक्ति का वन।</strong> ब्रज का हृदय, वृंदावन हजारों मंदिरों का घर है। बांके बिहारी मंदिर में *दर्शन*, जहाँ भगवान की एक चंचल मनोदशा में पूजा की जाती है, और राधा रमण मंदिर, अपनी स्व-प्रकट मूर्ति के साथ, गहन अनुभव हैं।",
+            expText3:
+              "<strong>गोवर्धन परिक्रमा:</strong> पवित्र गोवर्धन पहाड़ी की परिक्रमा करना भक्ति का एक केंद्रीय कार्य है। भगवान कृष्ण ने ब्रज के निवासियों को इंद्र के क्रोध से बचाने के लिए इस पहाड़ी को प्रसिद्ध रूप से उठाया था। *परिक्रमा* विश्वास की एक चाल है, जो भगवान को अपने भक्तों के रक्षक के रूप में सम्मानित करती है।",
+            expText4:
+              "<strong>बरसाना और नंदगाँव:</strong> राधा रानी के गाँव, बरसाना और भगवान कृष्ण के बचपन के घर, नंदगाँव की अनूठी संस्कृति का अनुभव करें। यहाँ मनाया जाने वाला लठमार होली त्योहार राधा और गोपियों के कृष्ण के प्रति दिव्य प्रेम का एक जीवंत और चंचल अभिनय है।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "प्रमुख देवता:",
+            mapTitle: "स्थान का नक्शा",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyDwarka: "द्वारका: कृष्ण का राज्य",
+            enjoyPuri: "पुरी: जगन्नाथ का धाम",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let brajMap;
+
+        function initBrajMap(lang) {
+          const locations = {
+            mathura: [27.4924, 77.6737],
+            vrindavan: [27.5804, 77.7053],
+            govardhan: [27.5015, 77.4601],
+            barsana: [27.6521, 77.382],
+          };
+
+          if (!brajMap) {
+            brajMap = L.map("braj-map", { scrollWheelZoom: false }).setView(
+              [27.55, 77.6],
+              10
+            );
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(brajMap);
+          } else {
+            brajMap.eachLayer((layer) => {
+              if (layer instanceof L.Marker || layer instanceof L.Polyline) {
+                brajMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const latLngs = [];
+          Object.keys(locations).forEach((key) => {
+            const coords = locations[key];
+            const marker = L.marker(coords, { icon: mandirIcon }).addTo(
+              brajMap
+            );
+            marker.bindPopup(
+              `<b>${key.charAt(0).toUpperCase() + key.slice(1)}</b>`
+            );
+            latLngs.push(coords);
+          });
+
+          L.polyline(latLngs, { color: "#8C3B2A", weight: 3 }).addTo(brajMap);
+
+          const bounds = L.latLngBounds(latLngs);
+          brajMap.fitBounds(bounds.pad(0.2));
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initBrajMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

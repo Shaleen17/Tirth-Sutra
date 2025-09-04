@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tirupati: Lord of Seven Hills - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+          >The Puranic Path</a
+        >
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/tirupati_hero.jpg"
+          alt="The golden gopuram of Tirumala Temple"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">
+              Andhra Pradesh
+            </p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Tirupati: Lord of Seven Hills
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Welcome to Tirumala, the sacred seven hills that are the earthly
+              Vaikuntha, the abode of Lord Venkateswara. As one of the most
+              revered and visited pilgrimage sites on the planet, Tirupati is a
+              Tirtha of immense faith, where millions come to seek the blessings
+              of the Lord, who is believed to reside here to protect and guide
+              humanity through the difficult age of Kali Yuga.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Puranic Origin: The Lord's Earthly Sojourn
+            </h2>
+            <p data-lang-key="historyText1">
+              The Puranas narrate that Lord Vishnu, in his form as Varaha, first
+              rescued the earth and chose these hills as his abode. Later, Lord
+              Vishnu descended to earth as Venkateswara in search of Goddess
+              Lakshmi. He settled on the Tirumala hills, where he performed
+              penance. To pay for his divine marriage to Padmavati, he took a
+              great loan from Kubera, the treasurer of the gods. It is believed
+              that devotees who make offerings at Tirupati are helping the Lord
+              repay this cosmic debt, and in return, he blesses them with
+              prosperity and removes their obstacles.
+            </p>
+
+            <img
+              src="images/tirupati_darshan.jpg"
+              alt="Devotees waiting for darshan at Tirumala"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>Venkateswara Swamy Darshan:</strong> The pinnacle of the
+              pilgrimage is the *darśana* of the magnificent, eight-foot tall
+              idol of Lord Venkateswara, adorned with precious jewels. The brief
+              moment a pilgrim gets in front of the deity is considered a
+              life-transforming experience, charged with intense spiritual
+              energy.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>Offering of Hair (Mundan):</strong> A unique and deeply
+              symbolic ritual at Tirupati is the offering of hair by devotees.
+              This act, known as *mundan*, represents the complete surrender of
+              one's ego and vanity at the lotus feet of the Lord. It is a
+              powerful act of humility and devotion.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>The Tirupati Laddu Prasadam:</strong> The Tirupati Laddu
+              is perhaps the most famous *prasadam* in the world. Made with a
+              special recipe in the temple's massive kitchen, this sacred
+              offering is a tangible form of the Lord's blessings, which
+              pilgrims carry back to share with family and friends.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong> Andhra
+                    Pradesh
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity">Primary Deity:</strong>
+                    Lord Venkateswara (Vishnu)
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="tirupati-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="rameswaram.html" class="block group">
+                    <img
+                      src="images/card_rameswaram.jpg"
+                      alt="Rameswaram"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyRameswaram"
+                    >
+                      Rameswaram: Rama's Bridge
+                    </p>
+                  </a>
+                  <a href="srisailam.html" class="block group">
+                    <img
+                      src="images/card_srisailam.jpg"
+                      alt="Srisailam"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoySrisailam"
+                    >
+                      Srisailam: Mallikarjuna's Peak
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Andhra Pradesh",
+            pageTitle: "Tirupati: Lord of Seven Hills",
+            introText:
+              "Welcome to Tirumala, the sacred seven hills that are the earthly Vaikuntha, the abode of Lord Venkateswara. As one of the most revered and visited pilgrimage sites on the planet, Tirupati is a Tirtha of immense faith, where millions come to seek the blessings of the Lord, who is believed to reside here to protect and guide humanity through the difficult age of Kali Yuga.",
+            historyTitle: "The Puranic Origin: The Lord's Earthly Sojourn",
+            historyText1:
+              "The Puranas narrate that Lord Vishnu, in his form as Varaha, first rescued the earth and chose these hills as his abode. Later, Lord Vishnu descended to earth as Venkateswara in search of Goddess Lakshmi. He settled on the Tirumala hills, where he performed penance. To pay for his divine marriage to Padmavati, he took a great loan from Kubera, the treasurer of the gods. It is believed that devotees who make offerings at Tirupati are helping the Lord repay this cosmic debt, and in return, he blesses them with prosperity and removes their obstacles.",
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              "<strong>Venkateswara Swamy Darshan:</strong> The pinnacle of the pilgrimage is the *darśana* of the magnificent, eight-foot tall idol of Lord Venkateswara, adorned with precious jewels. The brief moment a pilgrim gets in front of the deity is considered a life-transforming experience, charged with intense spiritual energy.",
+            expText2:
+              "<strong>Offering of Hair (Mundan):</strong> A unique and deeply symbolic ritual at Tirupati is the offering of hair by devotees. This act, known as *mundan*, represents the complete surrender of one's ego and vanity at the lotus feet of the Lord. It is a powerful act of humility and devotion.",
+            expText3:
+              "<strong>The Tirupati Laddu Prasadam:</strong> The Tirupati Laddu is perhaps the most famous *prasadam* in the world. Made with a special recipe in the temple's massive kitchen, this sacred offering is a tangible form of the Lord's blessings, which pilgrims carry back to share with family and friends.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Deity:",
+            mapTitle: "Location Map",
+            tirupatiMarker: "Sri Venkateswara Swamy Temple",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyRameswaram: "Rameswaram: Rama's Bridge",
+            enjoySrisailam: "Srisailam: Mallikarjuna's Peak",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "आंध्र प्रदेश",
+            pageTitle: "तिरुपति: सात पहाड़ियों के भगवान",
+            introText:
+              "तिरुमाला में आपका स्वागत है, जो पवित्र सात पहाड़ियाँ हैं जो पार्थिव वैकुंठ हैं, भगवान वेंकटेश्वर का निवास। ग्रह पर सबसे प्रतिष्ठित और देखे जाने वाले तीर्थ स्थलों में से एक के रूप में, तिरुपति immense आस्था का एक तीर्थ है, जहाँ लाखों लोग भगवान का आशीर्वाद लेने आते हैं, जिनके बारे में माना जाता है कि वे कलियुग के कठिन युग में मानवता की रक्षा और मार्गदर्शन करने के लिए यहाँ निवास करते हैं।",
+            historyTitle: "पौराणिक उत्पत्ति: भगवान का पार्थिव प्रवास",
+            historyText1:
+              "पुराणों में वर्णन है कि भगवान विष्णु ने वराह के रूप में पहले पृथ्वी को बचाया और इन पहाड़ियों को अपना निवास चुना। बाद में, भगवान विष्णु देवी लक्ष्मी की तलाश में वेंकटेश्वर के रूप में पृथ्वी पर अवतरित हुए। उन्होंने तिरुमाला की पहाड़ियों पर बस गए, जहाँ उन्होंने तपस्या की। पद्मावती से अपने दिव्य विवाह के लिए भुगतान करने के लिए, उन्होंने देवताओं के कोषाध्यक्ष कुबेर से एक बड़ा ऋण लिया। माना जाता है कि जो भक्त तिरुपति में प्रसाद चढ़ाते हैं, वे भगवान को इस ब्रह्मांडीय ऋण को चुकाने में मदद कर रहे हैं, और बदले में, वह उन्हें समृद्धि का आशीर्वाद देते हैं और उनकी बाधाओं को दूर करते हैं।",
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>वेंकटेश्वर स्वामी दर्शन:</strong> तीर्थयात्रा का शिखर कीमती गहनों से सजे भगवान वेंकटेश्वर की शानदार, आठ फुट ऊंची मूर्ति का *दर्शन* है। एक तीर्थयात्री को देवता के सामने जो संक्षिप्त क्षण मिलता है, उसे जीवन बदलने वाला अनुभव माना जाता है, जो तीव्र आध्यात्मिक ऊर्जा से भरा होता है।",
+            expText2:
+              "<strong>बालों का अर्पण (मुंडन):</strong> तिरुपति में एक अनूठा और गहरा प्रतीकात्मक अनुष्ठान भक्तों द्वारा बालों का अर्पण है। *मुंडन* के रूप में जाना जाने वाला यह कार्य, भगवान के कमल चरणों में अपने अहंकार और घमंड के पूर्ण समर्पण का प्रतिनिधित्व करता है। यह विनम्रता और भक्ति का एक शक्तिशाली कार्य है।",
+            expText3:
+              "<strong>तिरुपति लड्डू प्रसादम:</strong> तिरुपति लड्डू शायद दुनिया में सबसे प्रसिद्ध *प्रसादम* है। मंदिर की विशाल रसोई में एक विशेष नुस्खा के साथ बनाया गया, यह पवित्र प्रसाद भगवान के आशीर्वाद का एक मूर्त रूप है, जिसे तीर्थयात्री परिवार और दोस्तों के साथ साझा करने के लिए वापस ले जाते हैं।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "प्रमुख देवता:",
+            mapTitle: "स्थान का नक्शा",
+            tirupatiMarker: "श्री वेंकटेश्वर स्वामी मंदिर",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyRameswaram: "रामेश्वरम: राम का सेतु",
+            enjoySrisailam: "श्रीशैलम: मल्लिकार्जुन का शिखर",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let tirupatiMap;
+
+        function initTirupatiMap(lang) {
+          const content = languageContent[lang];
+          const tirupatiCoords = [13.6833, 79.3484];
+
+          if (!tirupatiMap) {
+            tirupatiMap = L.map("tirupati-map", {
+              scrollWheelZoom: false,
+            }).setView(tirupatiCoords, 14);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(tirupatiMap);
+          } else {
+            tirupatiMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker) {
+                tirupatiMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const marker = L.marker(tirupatiCoords, { icon: mandirIcon }).addTo(
+            tirupatiMap
+          );
+          marker.bindPopup(`<b>${content.tirupatiMarker}</b>`).openPopup();
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initTirupatiMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

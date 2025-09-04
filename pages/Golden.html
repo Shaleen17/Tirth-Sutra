@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Golden Temple: Pool of Nectar - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+          >The Puranic Path</a
+        >
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/goldentemple_hero.jpg"
+          alt="The Golden Temple shimmering at night"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">Punjab</p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Golden Temple: Pool of Nectar
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Welcome to Sri Harmandir Sahib, known to the world as the Golden
+              Temple. This is more than a place of worship; it is a Tirtha of
+              universal spirituality, a sanctuary of peace that opens its four
+              doors to people of all faiths. To be here is to witness the core
+              principles of Sanatana Dharma—selfless service (*seva*), community
+              (*sangat*), and equality—in living practice.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Sacred Origin: The Amrit Sarovar
+            </h2>
+            <p data-lang-key="historyText1">
+              The history of this sacred site is ancient. It is believed that
+              the fourth Sikh Guru, Guru Ram Das, excavated the holy tank, which
+              came to be known as *Amrit Sarovar* or the "Pool of Nectar." The
+              water is revered for its healing properties. His successor, Guru
+              Arjan Dev, designed and built the Harmandir Sahib in the center of
+              this sacred pool. Uniquely, he designed it to be on a lower level
+              than the surrounding land and with four entrances, symbolizing
+              that all are welcome, regardless of caste, creed, or status.
+            </p>
+
+            <img
+              src="images/goldentemple_langar.jpg"
+              alt="Volunteers serving food at the Langar"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>Listening to Gurbani Kirtan:</strong> The soul of the
+              Golden Temple is the continuous, melodious recitation of *Gurbani*
+              (hymns from the Guru Granth Sahib). The divine vibrations of the
+              kirtan resonate throughout the complex 24 hours a day, creating an
+              atmosphere of profound peace and contemplation.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>Partaking in the Langar:</strong> The Guru-ka-Langar (the
+              Guru's kitchen) is a remarkable institution that embodies the
+              principle of equality. Thousands of pilgrims, from the richest to
+              the poorest, sit together on the floor and are served a simple,
+              wholesome vegetarian meal by volunteers. Participating in this act
+              of *seva*—either by serving or eating—is a deeply humbling and
+              unifying experience.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>The Palki Sahib Ceremony:</strong> Witnessing the Palki
+              Sahib ceremony is a moving experience. Each night, the holy
+              scripture, the Guru Granth Sahib, is carried in a gilded palanquin
+              from the main shrine to its resting place. In the early morning,
+              it is carried back. The procession is accompanied by hymns and
+              fervent devotion.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong> Punjab
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity"
+                      >Primary Association:</strong
+                    >
+                    Universal Spirituality & Seva
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="goldentemple-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="kashi.html" class="block group">
+                    <img
+                      src="images/card_kashi.jpg"
+                      alt="Kashi"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyKashi"
+                    >
+                      Kashi: The Eternal City
+                    </p>
+                  </a>
+                  <a href="vaishno_devi.html" class="block group">
+                    <img
+                      src="images/card_vaishnodevi.jpg"
+                      alt="Vaishno Devi"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyVaishnoDevi"
+                    >
+                      Vaishno Devi: Mountain Mother
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Punjab",
+            pageTitle: "Golden Temple: Pool of Nectar",
+            introText:
+              "Welcome to Sri Harmandir Sahib, known to the world as the Golden Temple. This is more than a place of worship; it is a Tirtha of universal spirituality, a sanctuary of peace that opens its four doors to people of all faiths. To be here is to witness the core principles of Sanatana Dharma—selfless service (*seva*), community (*sangat*), and equality—in living practice.",
+            historyTitle: "The Sacred Origin: The Amrit Sarovar",
+            historyText1:
+              'The history of this sacred site is ancient. It is believed that the fourth Sikh Guru, Guru Ram Das, excavated the holy tank, which came to be known as *Amrit Sarovar* or the "Pool of Nectar." The water is revered for its healing properties. His successor, Guru Arjan Dev, designed and built the Harmandir Sahib in the center of this sacred pool. Uniquely, he designed it to be on a lower level than the surrounding land and with four entrances, symbolizing that all are welcome, regardless of caste, creed, or status.',
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              "<strong>Listening to Gurbani Kirtan:</strong> The soul of the Golden Temple is the continuous, melodious recitation of *Gurbani* (hymns from the Guru Granth Sahib). The divine vibrations of the kirtan resonate throughout the complex 24 hours a day, creating an atmosphere of profound peace and contemplation.",
+            expText2:
+              "<strong>Partaking in the Langar:</strong> The Guru-ka-Langar (the Guru's kitchen) is a remarkable institution that embodies the principle of equality. Thousands of pilgrims, from the richest to the poorest, sit together on the floor and are served a simple, wholesome vegetarian meal by volunteers. Participating in this act of *seva*—either by serving or eating—is a deeply humbling and unifying experience.",
+            expText3:
+              "<strong>The Palki Sahib Ceremony:</strong> Witnessing the Palki Sahib ceremony is a moving experience. Each night, the holy scripture, the Guru Granth Sahib, is carried in a gilded palanquin from the main shrine to its resting place. In the early morning, it is carried back. The procession is accompanied by hymns and fervent devotion.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Association:",
+            mapTitle: "Location Map",
+            goldenTempleMarker: "Sri Harmandir Sahib (Golden Temple)",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyKashi: "Kashi: The Eternal City",
+            enjoyVaishnoDevi: "Vaishno Devi: Mountain Mother",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "पंजाब",
+            pageTitle: "स्वर्ण मंदिर: अमृत का सरोवर",
+            introText:
+              "श्री हरमंदिर साहिब में आपका स्वागत है, जिसे दुनिया स्वर्ण मंदिर के नाम से जानती है। यह पूजा स्थल से कहीं बढ़कर है; यह सार्वभौमिक आध्यात्मिकता का एक तीर्थ है, शांति का एक अभयारण्य है जो सभी धर्मों के लोगों के लिए अपने चार दरवाजे खोलता है। यहाँ होना सनातन धर्म के मूल सिद्धांतों - निःस्वार्थ सेवा (*सेवा*), समुदाय (*संगत*), और समानता - को जीवंत अभ्यास में देखने जैसा है।",
+            historyTitle: "पवित्र उत्पत्ति: अमृत सरोवर",
+            historyText1:
+              "इस पवित्र स्थल का इतिहास प्राचीन है। माना जाता है कि चौथे सिख गुरु, गुरु राम दास ने पवित्र सरोवर की खुदाई की थी, जिसे *अमृत सरोवर* या 'अमृत का तालाब' के नाम से जाना जाने लगा। इसके जल को उसके उपचारात्मक गुणों के लिए पूजा जाता है। उनके उत्तराधिकारी, गुरु अर्जन देव ने इस पवित्र सरोवर के केंद्र में हरमंदिर साहिब का डिजाइन और निर्माण किया। विशेष रूप से, उन्होंने इसे आसपास की भूमि से निचले स्तर पर और चार प्रवेश द्वारों के साथ डिजाइन किया, जो यह दर्शाता है कि जाति, पंथ या स्थिति की परवाह किए बिना सभी का स्वागत है।",
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>गुरबानी कीर्तन सुनना:</strong> स्वर्ण मंदिर की आत्मा *गुरबानी* (गुरु ग्रंथ साहिब के भजन) का निरंतर, मधुर पाठ है। कीर्तन के दिव्य कंपन 24 घंटे पूरे परिसर में गूंजते हैं, जिससे गहन शांति और चिंतन का वातावरण बनता है।",
+            expText2:
+              "<strong>लंगर में भाग लेना:</strong> गुरु-का-लंगर (गुरु की रसोई) एक उल्लेखनीय संस्था है जो समानता के सिद्धांत का प्रतीक है। हजारों तीर्थयात्री, सबसे अमीर से लेकर सबसे गरीब तक, एक साथ फर्श पर बैठते हैं और स्वयंसेवकों द्वारा उन्हें एक सादा, पौष्टिक शाकाहारी भोजन परोसा जाता है। *सेवा* के इस कार्य में भाग लेना - चाहे सेवा करके या खाकर - एक गहरा विनम्र और एकीकृत अनुभव है।",
+            expText3:
+              "<strong>पालकी साहिब समारोह:</strong> पालकी साहिब समारोह का साक्षी बनना एक मार्मिक अनुभव है। प्रत्येक रात, पवित्र ग्रंथ, गुरु ग्रंथ साहिब को एक सुनहरी पालकी में मुख्य मंदिर से उसके विश्राम स्थल तक ले जाया जाता है। सुबह-सुबह, इसे वापस लाया जाता है। जुलूस भजनों और उत्कट भक्ति के साथ होता है।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "मुख्य संबंध:",
+            mapTitle: "स्थान का नक्शा",
+            goldenTempleMarker: "श्री हरमंदिर साहिब (स्वर्ण मंदिर)",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyKashi: "काशी: शाश्वत नगरी",
+            enjoyVaishnoDevi: "वैष्णो देवी: पर्वत माता",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let goldenTempleMap;
+
+        function initGoldenTempleMap(lang) {
+          const content = languageContent[lang];
+          const goldenTempleCoords = [31.62, 74.8765];
+
+          if (!goldenTempleMap) {
+            goldenTempleMap = L.map("goldentemple-map", {
+              scrollWheelZoom: false,
+            }).setView(goldenTempleCoords, 16);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(goldenTempleMap);
+          } else {
+            goldenTempleMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker) {
+                goldenTempleMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">☬</div>', // Using Khanda symbol for Sikhism
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const marker = L.marker(goldenTempleCoords, {
+            icon: mandirIcon,
+          }).addTo(goldenTempleMap);
+          marker.bindPopup(`<b>${content.goldenTempleMarker}</b>`).openPopup();
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initGoldenTempleMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

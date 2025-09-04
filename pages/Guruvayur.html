@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guruvayur: Dwarka of the South - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+          >The Puranic Path</a
+        >
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/guruvayur_hero.jpg"
+          alt="Devotees at Guruvayur Temple"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">Kerala</p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Guruvayur: Dwarka of the South
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Welcome to Guruvayur, the sacred Tirtha revered as the "Bhuloka
+              Vaikuntha" (Heaven on Earth) and the Dwarka of the South. This
+              holy town is home to the ancient and powerful temple of Lord
+              Guruvayurappan, a captivating four-armed form of Lord Krishna. A
+              pilgrimage here is an immersion into the vibrant and deeply
+              devotional traditions of Kerala, where faith is a palpable, living
+              force.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Puranic Origin: The Divine Installation
+            </h2>
+            <p data-lang-key="historyText1">
+              Legend holds that the sacred idol of Guruvayurappan was originally
+              worshipped by Lord Brahma himself. Foreseeing the end of his era,
+              Brahma entrusted the idol to Guru (Brihaspati, the preceptor of
+              the gods) and Vayu (the Wind God). He instructed them to find a
+              new, sacred place on earth for its installation to bless humanity
+              in the Kali Yuga. Guru and Vayu traveled south and found a
+              beautiful lotus lake, where they were advised by Lord Shiva to
+              consecrate the idol. The place thus came to be known as Guruvayur,
+              from "Guru" and "Vayu."
+            </p>
+
+            <img
+              src="images/guruvayur_temple.jpg"
+              alt="The main entrance of the Guruvayur Temple"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>Darshan of Guruvayurappan:</strong> The central experience
+              is the powerful *darśana* of the small, radiant idol of Lord
+              Guruvayurappan. Devotees often wait in long queues for a brief but
+              deeply moving glimpse of the Lord, whose divine presence is said
+              to heal both physical and spiritual ailments. The temple has a
+              strict dress code (mundu for men, sari for women) that must be
+              observed.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>Thulabharam Offering:</strong> A unique and powerful
+              ritual at Guruvayur is the *Thulabharam*, where a devotee weighs
+              themselves against an offering of their choice (like bananas,
+              jaggery, or coconuts). This act symbolizes the complete surrender
+              of the self to the Lord, offering one's entire being in an act of
+              profound humility.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>Punnathur Kotta (Elephant Sanctuary):</strong> A visit to
+              the Punnathur Kotta, the temple's elephant sanctuary, is a must.
+              All the elephants here are offerings made by devotees to the Lord.
+              Witnessing these majestic creatures, who are an integral part of
+              the temple's daily rituals and festivals, is a unique and joyous
+              experience.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong> Kerala
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity">Primary Deity:</strong>
+                    Lord Guruvayurappan (Krishna)
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="guruvayur-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="dwarka.html" class="block group">
+                    <img
+                      src="images/card_dwarka.jpg"
+                      alt="Dwarka"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyDwarka"
+                    >
+                      Dwarka: Kingdom of Krishna
+                    </p>
+                  </a>
+                  <a href="tirupati.html" class="block group">
+                    <img
+                      src="images/card_tirupati.jpg"
+                      alt="Tirupati"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyTirupati"
+                    >
+                      Tirupati: Lord of Seven Hills
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Kerala",
+            pageTitle: "Guruvayur: Dwarka of the South",
+            introText:
+              'Welcome to Guruvayur, the sacred Tirtha revered as the "Bhuloka Vaikuntha" (Heaven on Earth) and the Dwarka of the South. This holy town is home to the ancient and powerful temple of Lord Guruvayurappan, a captivating four-armed form of Lord Krishna. A pilgrimage here is an immersion into the vibrant and deeply devotional traditions of Kerala, where faith is a palpable, living force.',
+            historyTitle: "The Puranic Origin: The Divine Installation",
+            historyText1:
+              'Legend holds that the sacred idol of Guruvayurappan was originally worshipped by Lord Brahma himself. Foreseeing the end of his era, Brahma entrusted the idol to Guru (Brihaspati, the preceptor of the gods) and Vayu (the Wind God). He instructed them to find a new, sacred place on earth for its installation to bless humanity in the Kali Yuga. Guru and Vayu traveled south and found a beautiful lotus lake, where they were advised by Lord Shiva to consecrate the idol. The place thus came to be known as Guruvayur, from "Guru" and "Vayu."',
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              "<strong>Darshan of Guruvayurappan:</strong> The central experience is the powerful *darśana* of the small, radiant idol of Lord Guruvayurappan. Devotees often wait in long queues for a brief but deeply moving glimpse of the Lord, whose divine presence is said to heal both physical and spiritual ailments. The temple has a strict dress code (mundu for men, sari for women) that must be observed.",
+            expText2:
+              "<strong>Thulabharam Offering:</strong> A unique and powerful ritual at Guruvayur is the *Thulabharam*, where a devotee weighs themselves against an offering of their choice (like bananas, jaggery, or coconuts). This act symbolizes the complete surrender of the self to the Lord, offering one's entire being in an act of profound humility.",
+            expText3:
+              "<strong>Punnathur Kotta (Elephant Sanctuary):</strong> A visit to the Punnathur Kotta, the temple's elephant sanctuary, is a must. All the elephants here are offerings made by devotees to the Lord. Witnessing these majestic creatures, who are an integral part of the temple's daily rituals and festivals, is a unique and joyous experience.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Deity:",
+            mapTitle: "Location Map",
+            guruvayurMarker: "Guruvayur Temple",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyDwarka: "Dwarka: Kingdom of Krishna",
+            enjoyTirupati: "Tirupati: Lord of Seven Hills",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "केरल",
+            pageTitle: "गुरुवायुर: दक्षिण की द्वारका",
+            introText:
+              'गुरुवायुर में आपका स्वागत है, जिसे "भूलोक वैकुंठ" (पृथ्वी पर स्वर्ग) और दक्षिण की द्वारका के रूप में पूजा जाता है। यह पवित्र शहर भगवान गुरुवायुरप्पन के प्राचीन और शक्तिशाली मंदिर का घर है, जो भगवान कृष्ण का एक मनोरम चार-सशस्त्र रूप है। यहाँ की तीर्थयात्रा केरल की जीवंत और गहरी भक्तिपूर्ण परंपराओं में एक विसर्जन है, जहाँ आस्था एक स्पष्ट, जीवंत शक्ति है।',
+            historyTitle: "पौराणिक उत्पत्ति: दिव्य स्थापना",
+            historyText1:
+              'किंवदंती है कि गुरुवायुरप्पन की पवित्र मूर्ति की पूजा मूल रूप से स्वयं भगवान ब्रह्मा करते थे। अपने युग के अंत का पूर्वाभास करते हुए, ब्रह्मा ने मूर्ति को गुरु (बृहस्पति, देवताओं के उपदेशक) और वायु (पवन देवता) को सौंप दिया। उन्होंने उन्हें कलियुग में मानवता को आशीर्वाद देने के लिए इसकी स्थापना के लिए पृथ्वी पर एक नया, पवित्र स्थान खोजने का निर्देश दिया। गुरु और वायु ने दक्षिण की यात्रा की और एक सुंदर कमल झील पाई, जहाँ उन्हें भगवान शिव ने मूर्ति की प्रतिष्ठा करने की सलाह दी। इस प्रकार यह स्थान "गुरु" और "वायु" से गुरुवायुर के नाम से जाना जाने लगा।',
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>गुरुवायुरप्पन का दर्शन:</strong> केंद्रीय अनुभव भगवान गुरुवायुरप्पन की छोटी, दीप्तिमान मूर्ति का शक्तिशाली *दर्शन* है। भक्त अक्सर भगवान की एक संक्षिप्त लेकिन गहरी चलती झलक के लिए लंबी कतारों में प्रतीक्षा करते हैं, जिनके बारे में कहा जाता है कि उनकी दिव्य उपस्थिति शारीरिक और आध्यात्मिक दोनों बीमारियों को ठीक करती है। मंदिर में एक सख्त ड्रेस कोड (पुरुषों के लिए मुंडू, महिलाओं के लिए साड़ी) है जिसका पालन किया जाना चाहिए।",
+            expText2:
+              "<strong>तुलाभारम अर्पण:</strong> गुरुवायुर में एक अनूठा और शक्तिशाली अनुष्ठान *तुलाभारम* है, जहाँ एक भक्त अपनी पसंद के प्रसाद (जैसे केले, गुड़, या नारियल) के مقابل खुद को तौलता है। यह कार्य भगवान के प्रति स्वयं के पूर्ण समर्पण का प्रतीक है, जो गहन विनम्रता के कार्य में अपने पूरे अस्तित्व की पेशकश करता है।",
+            expText3:
+              "<strong>पुन्नाथुर कोट्टा (हाथी अभयारण्य):</strong> मंदिर के हाथी अभयारण्य, पुन्नाथुर कोट्टा की यात्रा अवश्य करनी चाहिए। यहाँ के सभी हाथी भक्तों द्वारा भगवान को चढ़ाए गए हैं। इन राजसी जीवों को देखना, जो मंदिर के दैनिक अनुष्ठानों और त्योहारों का एक अभिन्न अंग हैं, एक अनूठा और आनंदमय अनुभव है।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "प्रमुख देवता:",
+            mapTitle: "स्थान का नक्शा",
+            guruvayurMarker: "गुरुवायुर मंदिर",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyDwarka: "द्वारका: कृष्ण का राज्य",
+            enjoyTirupati: "तिरुपति: सात पहाड़ियों के भगवान",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let guruvayurMap;
+
+        function initGuruvayurMap(lang) {
+          const content = languageContent[lang];
+          const guruvayurCoords = [10.5945, 76.0396];
+
+          if (!guruvayurMap) {
+            guruvayurMap = L.map("guruvayur-map", {
+              scrollWheelZoom: false,
+            }).setView(guruvayurCoords, 15);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(guruvayurMap);
+          } else {
+            guruvayurMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker) {
+                guruvayurMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const marker = L.marker(guruvayurCoords, { icon: mandirIcon }).addTo(
+            guruvayurMap
+          );
+          marker.bindPopup(`<b>${content.guruvayurMarker}</b>`).openPopup();
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initGuruvayurMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

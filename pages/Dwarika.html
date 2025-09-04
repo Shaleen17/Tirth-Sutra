@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dwarka: Kingdom of Krishna - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <h1
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+        >
+          The Puranic Path
+        </h1>
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/dwarka_hero.jpg"
+          alt="Dwarkadhish Temple at sunset"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">Gujarat</p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Dwarka: Kingdom of Krishna
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Welcome to Dwarka, the legendary golden city of Lord Krishna,
+              established on the western shores of Bharatavarsha. As one of the
+              original four Char Dhams and one of the seven sacred Sapta Puris,
+              Dwarka is a pilgrimage site of paramount importance. To visit this
+              sacred land is to walk through the living history of the
+              *Mahabharata* and the *Bhagavata Purana*, connecting with the
+              divine majesty of Krishna as the King of Kings.
+            </p>
+
+            <h2 data-lang-key="historyTitle">The Puranic Origin of Dwarka</h2>
+            <p data-lang-key="historyText1">
+              After defeating Kansa, Lord Krishna led the Yadavas from Mathura
+              to escape the repeated attacks of Jarasandha. He invoked
+              Vishwakarma, the divine architect, to build a magnificent,
+              fortified city on land reclaimed from the sea. The result was
+              Dwarka, a city of gold, described in the scriptures as having
+              grand palaces, wide roads, and divine gardens. It is believed that
+              the ancient city was submerged by the sea after Lord Krishna's
+              departure from this world, and the modern city stands as its
+              inheritor.
+            </p>
+
+            <img
+              src="images/dwarkadhish_temple.jpg"
+              alt="Dwarkadhish Temple"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>Dwarkadhish Temple (Jagat Mandir):</strong> The heart of
+              the pilgrimage is the magnificent Dwarkadhish Temple. Its
+              five-story spire, supported by 72 pillars, is a marvel of Chalukya
+              architecture. A key ritual here is witnessing the *dhvaja* (flag)
+              being changed five times a day, a great honor for the families who
+              sponsor it.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>Gomti Ghat Snan:</strong> Taking a holy dip at the Gomti
+              Ghat, where the Gomti River meets the sea, is a vital ritual for
+              purifying the soul before seeking the *darśana* of Lord
+              Dwarkadhish.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>Bet Dwarka:</strong> A boat journey to the island of Bet
+              Dwarka is essential. This is believed to be the actual residential
+              palace of Lord Krishna and his queens. The island is dotted with
+              temples and has an atmosphere of intimate devotion.
+            </p>
+            <p data-lang-key="expText4">
+              <strong>Nageshwar Jyotirlinga:</strong> Located near Dwarka, this
+              is one of the twelve sacred Jyotirlingas of Lord Shiva. A visit
+              here is a powerful reminder of the unity between Shiva and Vishnu,
+              a core tenet of Sanatana Dharma.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong> Gujarat
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity">Primary Deity:</strong>
+                    Lord Krishna (Dwarkadhish)
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="dwarka-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="braj.html" class="block group">
+                    <img
+                      src="images/card_braj.jpg"
+                      alt="Braj Bhumi"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyBraj"
+                    >
+                      Braj Bhumi: Land of Divine Love
+                    </p>
+                  </a>
+                  <a href="puri.html" class="block group">
+                    <img
+                      src="images/puri_hero.jpg"
+                      alt="Puri"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyPuri"
+                    >
+                      Puri: Abode of Jagannath
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Gujarat",
+            pageTitle: "Dwarka: Kingdom of Krishna",
+            introText:
+              "Welcome to Dwarka, the legendary golden city of Lord Krishna, established on the western shores of Bharatavarsha. As one of the original four Char Dhams and one of the seven sacred Sapta Puris, Dwarka is a pilgrimage site of paramount importance. To visit this sacred land is to walk through the living history of the *Mahabharata* and the *Bhagavata Purana*, connecting with the divine majesty of Krishna as the King of Kings.",
+            historyTitle: "The Puranic Origin of Dwarka",
+            historyText1:
+              "After defeating Kansa, Lord Krishna led the Yadavas from Mathura to escape the repeated attacks of Jarasandha. He invoked Vishwakarma, the divine architect, to build a magnificent, fortified city on land reclaimed from the sea. The result was Dwarka, a city of gold, described in the scriptures as having grand palaces, wide roads, and divine gardens. It is believed that the ancient city was submerged by the sea after Lord Krishna's departure from this world, and the modern city stands as its inheritor.",
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              "<strong>Dwarkadhish Temple (Jagat Mandir):</strong> The heart of the pilgrimage is the magnificent Dwarkadhish Temple. Its five-story spire, supported by 72 pillars, is a marvel of Chalukya architecture. A key ritual here is witnessing the *dhvaja* (flag) being changed five times a day, a great honor for the families who sponsor it.",
+            expText2:
+              "<strong>Gomti Ghat Snan:</strong> Taking a holy dip at the Gomti Ghat, where the Gomti River meets the sea, is a vital ritual for purifying the soul before seeking the *darśana* of Lord Dwarkadhish.",
+            expText3:
+              "<strong>Bet Dwarka:</strong> A boat journey to the island of Bet Dwarka is essential. This is believed to be the actual residential palace of Lord Krishna and his queens. The island is dotted with temples and has an atmosphere of intimate devotion.",
+            expText4:
+              "<strong>Nageshwar Jyotirlinga:</strong> Located near Dwarka, this is one of the twelve sacred Jyotirlingas of Lord Shiva. A visit here is a powerful reminder of the unity between Shiva and Vishnu, a core tenet of Sanatana Dharma.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Deity:",
+            mapTitle: "Location Map",
+            dwarkaMarker: "Dwarkadhish Temple",
+            betDwarkaMarker: "Bet Dwarka",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyBraj: "Braj Bhumi: Land of Divine Love",
+            enjoyPuri: "Puri: Abode of Jagannath",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "गुजरात",
+            pageTitle: "द्वारका: कृष्ण का राज्य",
+            introText:
+              "भगवान कृष्ण की पौराणिक स्वर्ण नगरी द्वारका में आपका स्वागत है, जो भारतवर्ष के पश्चिमी तट पर स्थापित है। मूल चार धामों में से एक और सात पवित्र सप्त पुरियों में से एक के रूप में, द्वारका अत्यंत महत्वपूर्ण तीर्थ स्थल है। इस पवित्र भूमि की यात्रा करना *महाभारत* और *भागवत पुराण* के जीवंत इतिहास से गुजरना है, और राजाओं के राजा के रूप में कृष्ण की दिव्य महिमा से जुड़ना है।",
+            historyTitle: "द्वारका की पौराणिक उत्पत्ति",
+            historyText1:
+              "कंस का वध करने के बाद, भगवान कृष्ण ने जरासंध के बार-बार के हमलों से बचने के लिए यादवों को मथुरा से निकाला। उन्होंने दिव्य वास्तुकार विश्वकर्मा का आह्वान किया कि वे समुद्र से प्राप्त भूमि पर एक भव्य, किलाबंद शहर का निर्माण करें। परिणाम था द्वारका, सोने का एक शहर, जिसका वर्णन शास्त्रों में भव्य महलों, चौड़ी सड़कों और दिव्य उद्यानों के रूप में किया गया है। माना जाता है कि इस दुनिया से भगवान कृष्ण के प्रस्थान के बाद प्राचीन शहर समुद्र में डूब गया था, और आधुनिक शहर इसके उत्तराधिकारी के रूप में खड़ा है।",
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>द्वारकाधीश मंदिर (जगत मंदिर):</strong> तीर्थयात्रा का हृदय शानदार द्वारकाधीश मंदिर है। इसकी पांच मंजिला शिखर, जो 72 स्तंभों पर समर्थित है, चालुक्य वास्तुकला का एक चमत्कार है। यहाँ एक प्रमुख अनुष्ठान दिन में पांच बार *ध्वजा* (झंडा) को बदलते हुए देखना है, जो इसे प्रायोजित करने वाले परिवारों के लिए एक महान सम्मान है।",
+            expText2:
+              "<strong>गोमती घाट स्नान:</strong> गोमती घाट पर, जहाँ गोमती नदी समुद्र से मिलती है, एक पवित्र डुबकी लगाना भगवान द्वारकाधीश के *दर्शन* से पहले आत्मा को शुद्ध करने के लिए एक महत्वपूर्ण अनुष्ठान है।",
+            expText3:
+              "<strong>बेट द्वारका:</strong> बेट द्वारका द्वीप की नाव यात्रा आवश्यक है। यह भगवान कृष्ण और उनकी रानियों का वास्तविक आवासीय महल माना जाता है। यह द्वीप मंदिरों से भरा हुआ है और इसमें अंतरंग भक्ति का वातावरण है।",
+            expText4:
+              "<strong>नागेश्वर ज्योतिर्लिंग:</strong> द्वारका के पास स्थित, यह भगवान शिव के बारह पवित्र ज्योतिर्लिंगों में से एक है। यहाँ का दौरा शिव और विष्णु के बीच की एकता का एक शक्तिशाली अनुस्मारक है, जो सनातन धर्म का एक मूल सिद्धांत है।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "प्रमुख देवता:",
+            mapTitle: "स्थान का नक्शा",
+            dwarkaMarker: "द्वारकाधीश मंदिर",
+            betDwarkaMarker: "बेट द्वारका",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyBraj: "ब्रज भूमि: दिव्य प्रेम की भूमि",
+            enjoyPuri: "पुरी: जगन्नाथ का धाम",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let dwarkaMap;
+
+        function initDwarkaMap(lang) {
+          const content = languageContent[lang];
+          const dwarkaCoords = [22.2379, 68.9674];
+          const betDwarkaCoords = [22.4556, 69.0883];
+
+          if (!dwarkaMap) {
+            dwarkaMap = L.map("dwarka-map", { scrollWheelZoom: false }).setView(
+              dwarkaCoords,
+              10
+            );
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(dwarkaMap);
+          } else {
+            dwarkaMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker || layer instanceof L.Polyline) {
+                dwarkaMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const marker1 = L.marker(dwarkaCoords, { icon: mandirIcon }).addTo(
+            dwarkaMap
+          );
+          marker1.bindPopup(`<b>${content.dwarkaMarker}</b>`).openPopup();
+
+          const marker2 = L.marker(betDwarkaCoords, { icon: mandirIcon }).addTo(
+            dwarkaMap
+          );
+          marker2.bindPopup(`<b>${content.betDwarkaMarker}</b>`);
+
+          const latLngs = [dwarkaCoords, betDwarkaCoords];
+          const bounds = L.latLngBounds(latLngs);
+          dwarkaMap.fitBounds(bounds.pad(0.5));
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initDwarkaMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

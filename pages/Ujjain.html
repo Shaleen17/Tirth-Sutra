@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ujjain: The City of Mahakal - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+          >The Puranic Path</a
+        >
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/ujjain_hero.jpg"
+          alt="Mahakaleshwar Temple at night"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">
+              Madhya Pradesh
+            </p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Ujjain: The City of Mahakal
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Welcome to the ancient city of Ujjain, a Tirtha that stands
+              outside the conventional bounds of time. This is the sacred abode
+              of Mahakaleshwar, the great Lord of Time, one of the twelve divine
+              Jyotirlingas. As one of the seven sacred Sapta Puris, a pilgrimage
+              to Ujjain is a journey to confront the ultimate reality of
+              existence and to seek the blessings of Lord Shiva as the supreme
+              controller of the cosmos.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Puranic Origin: The Lord Emerges
+            </h2>
+            <p data-lang-key="historyText1">
+              The *Skanda Purana's Avantya Khanda* narrates that the city of
+              Avanti (the ancient name for Ujjain) was once terrorized by a
+              fierce demon named Dushan. The devout Brahmin priests of the city
+              prayed fervently to Lord Shiva for protection. Pleased by their
+              devotion, Lord Shiva split the earth and emerged in his formidable
+              form as Mahakal, the Great Time. With a single roar, he reduced
+              the demon to ashes. At the request of the grateful priests, he
+              agreed to reside here permanently as the Mahakaleshwar Jyotirlinga
+              to protect all his devotees.
+            </p>
+
+            <img
+              src="images/bhasma_aarti.jpg"
+              alt="The Bhasma Aarti ceremony at Mahakaleshwar"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>The Bhasma Aarti: A Ritual Beyond Time.</strong> The most
+              unique and powerful ritual at Ujjain is the Bhasma Aarti, which
+              takes place before dawn. This is the only Jyotirlinga where the
+              Lord is awakened with an offering of fresh funeral ash (*bhasma*),
+              symbolizing that Shiva is the ultimate reality beyond both life
+              and death. To witness this profound ceremony is a deeply
+              transformative experience.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>Holy Dip in the Shipra River:</strong> The sacred Shipra
+              river flows through Ujjain. A holy dip at the Ram Ghat is a vital
+              act of purification before seeking the *darśana* of Mahakal. This
+              river is also the site of the Simhastha Kumbh Mela, one of the
+              largest spiritual gatherings on earth, held every 12 years.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>Kal Bhairav Temple:</strong> A short distance from the
+              main temple is the ancient shrine of Kal Bhairav, the fierce
+              guardian of the city. Uniquely, the primary offering made to the
+              deity is liquor, which is miraculously consumed by the idol. A
+              visit here is considered essential to completing the pilgrimage to
+              Ujjain.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong> Madhya
+                    Pradesh
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity">Primary Deity:</strong>
+                    Lord Shiva (Mahakaleshwar)
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="ujjain-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="kashi.html" class="block group">
+                    <img
+                      src="images/card_kashi.jpg"
+                      alt="Kashi"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyKashi"
+                    >
+                      Kashi: The Eternal City
+                    </p>
+                  </a>
+                  <a href="maharashtra_jyotirlinga.html" class="block group">
+                    <img
+                      src="images/card_maharashtra.jpg"
+                      alt="Jyotirlingas of Maharashtra"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyMaharashtra"
+                    >
+                      Jyotirlingas of Maharashtra
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Madhya Pradesh",
+            pageTitle: "Ujjain: The City of Mahakal",
+            introText:
+              "Welcome to the ancient city of Ujjain, a Tirtha that stands outside the conventional bounds of time. This is the sacred abode of Mahakaleshwar, the great Lord of Time, one of the twelve divine Jyotirlingas. As one of the seven sacred Sapta Puris, a pilgrimage to Ujjain is a journey to confront the ultimate reality of existence and to seek the blessings of Lord Shiva as the supreme controller of the cosmos.",
+            historyTitle: "The Puranic Origin: The Lord Emerges",
+            historyText1:
+              "The *Skanda Purana's Avantya Khanda* narrates that the city of Avanti (the ancient name for Ujjain) was once terrorized by a fierce demon named Dushan. The devout Brahmin priests of the city prayed fervently to Lord Shiva for protection. Pleased by their devotion, Lord Shiva split the earth and emerged in his formidable form as Mahakal, the Great Time. With a single roar, he reduced the demon to ashes. At the request of the grateful priests, he agreed to reside here permanently as the Mahakaleshwar Jyotirlinga to protect all his devotees.",
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              "<strong>The Bhasma Aarti: A Ritual Beyond Time.</strong> The most unique and powerful ritual at Ujjain is the Bhasma Aarti, which takes place before dawn. This is the only Jyotirlinga where the Lord is awakened with an offering of fresh funeral ash (*bhasma*), symbolizing that Shiva is the ultimate reality beyond both life and death. To witness this profound ceremony is a deeply transformative experience.",
+            expText2:
+              "<strong>Holy Dip in the Shipra River:</strong> The sacred Shipra river flows through Ujjain. A holy dip at the Ram Ghat is a vital act of purification before seeking the *darśana* of Mahakal. This river is also the site of the Simhastha Kumbh Mela, one of the largest spiritual gatherings on earth, held every 12 years.",
+            expText3:
+              "<strong>Kal Bhairav Temple:</strong> A short distance from the main temple is the ancient shrine of Kal Bhairav, the fierce guardian of the city. Uniquely, the primary offering made to the deity is liquor, which is miraculously consumed by the idol. A visit here is considered essential to completing the pilgrimage to Ujjain.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Deity:",
+            mapTitle: "Location Map",
+            ujjainMarker: "Mahakaleshwar Jyotirlinga",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyKashi: "Kashi: The Eternal City",
+            enjoyMaharashtra: "Jyotirlingas of Maharashtra",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "मध्य प्रदेश",
+            pageTitle: "उज्जैन: महाकाल की नगरी",
+            introText:
+              "प्राचीन नगरी उज्जैन में आपका स्वागत है, एक ऐसा तीर्थ जो समय की पारंपरिक सीमाओं से परे है। यह महाकालेश्वर, समय के महान देवता, बारह दिव्य ज्योतिर्लिंगों में से एक का पवित्र निवास है। सात पवित्र सप्त पुरियों में से एक के रूप में, उज्जैन की तीर्थयात्रा अस्तित्व की अंतिम वास्तविकता का सामना करने और ब्रह्मांड के सर्वोच्च नियंत्रक के रूप में भगवान शिव का आशीर्वाद प्राप्त करने की एक यात्रा है।",
+            historyTitle: "पौराणिक उत्पत्ति: भगवान का प्राकट्य",
+            historyText1:
+              "*स्कंद पुराण* के *अवन्त्य खंड* में वर्णन है कि अवंती शहर (उज्जैन का प्राचीन नाम) कभी दूषण नामक एक भयंकर राक्षस से आतंकित था। शहर के धर्मनिष्ठ ब्राह्मण पुजारियों ने भगवान शिव से सुरक्षा के लिए fervently प्रार्थना की। उनकी भक्ति से प्रसन्न होकर, भगवान शिव ने पृथ्वी को विभाजित किया और महाकाल, महान समय के रूप में अपने विकराल रूप में प्रकट हुए। एक ही गर्जना से, उन्होंने राक्षस को भस्म कर दिया। आभारी पुजारियों के अनुरोध पर, उन्होंने अपने सभी भक्तों की रक्षा के लिए महाकालेश्वर ज्योतिर्लिंग के रूप में यहाँ स्थायी रूप से निवास करने के लिए सहमति व्यक्त की।",
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>भस्म आरती: समय से परे एक अनुष्ठान।</strong> उज्जैन में सबसे अनूठा और शक्तिशाली अनुष्ठान भस्म आरती है, जो भोर से पहले होती है। यह एकमात्र ज्योतिर्लिंग है जहाँ भगवान को ताजी चिता की राख (*भस्म*) के अर्पण से जगाया जाता है, जो यह दर्शाता है कि शिव जीवन और मृत्यु दोनों से परे अंतिम वास्तविकता हैं। इस गहन समारोह का साक्षी बनना एक गहरा परिवर्तनकारी अनुभव है।",
+            expText2:
+              "<strong>शिप्रा नदी में पवित्र डुबकी:</strong> पवित्र शिप्रा नदी उज्जैन से होकर बहती है। राम घाट पर एक पवित्र डुबकी महाकाल के *दर्शन* से पहले शुद्धि का एक महत्वपूर्ण कार्य है। यह नदी सिंहस्थ कुंभ मेले का भी स्थल है, जो पृथ्वी पर सबसे बड़े आध्यात्मिक समारोहों में से एक है, जो हर 12 साल में आयोजित होता है।",
+            expText3:
+              "<strong>काल भैरव मंदिर:</strong> मुख्य मंदिर से थोड़ी दूरी पर काल भैरव का प्राचीन मंदिर है, जो शहर के उग्र संरक्षक हैं। विशिष्ट रूप से, देवता को किया जाने वाला प्राथमिक प्रसाद शराब है, जिसका मूर्ति द्वारा चमत्कारिक रूप से सेवन किया जाता है। उज्जैन की तीर्थयात्रा को पूरा करने के लिए यहाँ का दौरा आवश्यक माना जाता है।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "प्रमुख देवता:",
+            mapTitle: "स्थान का नक्शा",
+            ujjainMarker: "महाकालेश्वर ज्योतिर्लिंग",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyKashi: "काशी: शाश्वत नगरी",
+            enjoyMaharashtra: "महाराष्ट्र के ज्योतिर्लिंग",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let ujjainMap;
+
+        function initUjjainMap(lang) {
+          const content = languageContent[lang];
+          const ujjainCoords = [23.1828, 75.7684];
+
+          if (!ujjainMap) {
+            ujjainMap = L.map("ujjain-map", { scrollWheelZoom: false }).setView(
+              ujjainCoords,
+              15
+            );
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(ujjainMap);
+          } else {
+            ujjainMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker) {
+                ujjainMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const marker = L.marker(ujjainCoords, { icon: mandirIcon }).addTo(
+            ujjainMap
+          );
+          marker.bindPopup(`<b>${content.ujjainMarker}</b>`).openPopup();
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initUjjainMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

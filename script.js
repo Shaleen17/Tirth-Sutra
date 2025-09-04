@@ -58,38 +58,29 @@ document.addEventListener("DOMContentLoaded", function () {
       pillar3Text:
         "Our guides are not just tour managers; they are spiritual facilitators and storytellers (*Yātrī Paṇḍās*). They bring each sacred site to life by narrating its Puranic stories (*kathā*). We also manage a network of qualified, reputable *Paṇḍitas* for the correct performance of all rituals.",
       pillar4Title: "4. The Power of Kathā",
-      pillar4Text:
-        "Every pilgrim receives a custom-published guidebook, meticulously researched from the Puranas. This companion contains the stories, glories (*māhātmya*), and ritual procedures for your specific journey, making the act of listening to stories (*Kathā Śravaṇa*) a core part of your experience.",
-      sacredSitesTitle: "The Sacred Geography of Bharatavarsha",
-      sacredSitesIntro:
-        "As detailed in the Skanda Mahapurana and glorified in the Bhaktamal, India is a sacred landscape dotted with Tīrthas—gateways to the divine. Here are some of the most significant sites, each with a profound story that forms the heart of our pilgrimages.",
-      sitePuriTitle: "Puruṣottama Kṣetra (Puri)",
-      sitePuriText:
-        "The abode of Lord Jagannath, a form of Vishnu. The Skanda Purana glorifies this as a foremost tīrtha where the divine Mahaprasad liberates all who partake in it. The annual Ratha Yatra is a spectacle of devotion, drawing millions to witness the Lord of the Universe on His chariot.",
-      siteBadrinathTitle: "Badarikāśrama (Badrinath)",
-      siteBadrinathText:
-        "Considered the supreme tīrtha for the current age of Kali. Here, in the high Himalayas, the twin sages Nara and Narayana perform eternal penance for the world's welfare. A single dip in the freezing Alakananda river is said to wash away a lifetime of sins.",
-      siteDwarkaTitle: "Dvārakā",
-      siteDwarkaText:
-        "The magnificent capital of Lord Krishna, established on the western coast. The main Dvārakādhīśa temple stands as a testament to His divine rule. The scriptures say a pilgrimage here is incomplete without visiting Bet Dwarka, the island believed to be His personal residence.",
-      siteTirupatiTitle: "Veṅkaṭācala (Tirupati)",
-      siteTirupatiText:
-        "The sacred hills where Lord Venkateswara, a form of Vishnu, resides to grant blessings to devotees in the Kali Yuga. The Purana narrates the immense merit (*puṇya*) gained by having the *darśana* of the Lord after a purifying bath in the Swami Pushkarini tank.",
-      sitePushkarTitle: "Puṣkara",
-      sitePushkarText:
-        "The primary tīrtha dedicated to Lord Brahma, the creator. It is said that a lotus flower (*puṣpa*) fell from His hand (*kara*) here, creating the sacred Pushkar Lake. A ritual bath in its waters, especially on Kartik Purnima, is considered an act of unparalleled merit.",
-      siteKashiTitle: "Kāśī (Varanasi)",
-      siteKashiText:
-        "The City of Liberation, resting on the trident of Lord Shiva. The Kāśī Khaṇḍa of the Skanda Purana states that anyone who dies within its sacred boundaries is granted certain *mokṣa*. It is the eternal city, never forsaken by Shiva, even during cosmic dissolution.",
-      siteUjjainTitle: "Avantī (Ujjain)",
-      siteUjjainText:
-        "Home to the powerful Mahākāleśvara Jyotirlinga, where Lord Shiva resides as the master of time. The sanctity of the Shipra river is praised extensively, and a bath in its waters followed by the *darśana* of Mahakal is central to a pilgrimage here.",
-      siteSomnathTitle: "Prabhāsa Kṣetra (Somnath)",
-      siteSomnathText:
-        "The site of the first of the twelve Jyotirlingas, Somanātha, the Lord of the Moon. The Purana narrates its glorious history, its repeated destruction, and its divine reconstruction, symbolizing the eternal and unconquerable nature of Dharma.",
-      siteVrindavanTitle: "Vrindavan & Braj Bhumi",
-      siteVrindavanText:
-        "While the Puranas lay the foundation, the Bhaktamal fills this land with divine love. This is the eternal playground of Radha and Krishna, sanctified by the footsteps of countless saints like Surdas and Mirabai, where every particle of dust is considered sacred.",
+      exploreTitle: "Explore Sacred Bharatavarsha",
+      exploreIntro:
+        "Discover the timeless stories and spiritual vibrations of India's most sacred Tirthas. Select a region to begin your journey.",
+      regions: "Regions",
+      regionNorth: "North India",
+      stateUP: "Uttar Pradesh",
+      stateUK: "Uttarakhand",
+      stateJK: "Jammu & Kashmir",
+      regionWest: "West India",
+      stateGUJ: "Gujarat",
+      stateMAH: "Maharashtra",
+      stateRAJ: "Rajasthan",
+      regionSouth: "South India",
+      stateTN: "Tamil Nadu",
+      stateAP: "Andhra Pradesh",
+      stateKER: "Kerala",
+      regionEast: "East India",
+      stateODI: "Odisha",
+      stateWB: "West Bengal",
+      stateASSAM: "Assam",
+      clearFilters: "Clear All",
+      discoverMore: "Discover More Yatras",
+      showLess: "Show Less",
       contactTitle: "Inquire & Begin Your Journey",
       contactIntro:
         "Take the first step towards a truly transformative spiritual experience. Reach out to us to learn more about our curated yatras and how we can facilitate your sacred journey.",
@@ -176,36 +167,29 @@ document.addEventListener("DOMContentLoaded", function () {
       pillar4Title: "4. कथा की शक्ति",
       pillar4Text:
         "प्रत्येक तीर्थयात्री को पुराणों से सावधानीपूर्वक शोध की गई एक कस्टम-प्रकाशित गाइडबुक मिलती है। इस साथी में आपकी विशिष्ट यात्रा के लिए कहानियाँ, महिमा (*महात्म्य*), और अनुष्ठान प्रक्रियाएं शामिल हैं, जो कहानियों को सुनने (*कथा श्रवण*) को आपके अनुभव का एक मुख्य हिस्सा बनाती हैं।",
-      sacredSitesTitle: "भारतवर्ष का पवित्र भूगोल",
-      sacredSitesIntro:
-        "जैसा कि स्कंद महापुराण में वर्णित है और भक्तमाल में महिमामंडित है, भारत एक पवित्र परिदृश्य है जो तीर्थों से भरा है - जो परमात्मा के प्रवेश द्वार हैं। यहाँ कुछ सबसे महत्वपूर्ण स्थल हैं, जिनमें से प्रत्येक की एक गहरी कहानी है जो हमारी तीर्थयात्राओं का हृदय बनती है।",
-      sitePuriTitle: "पुरुषोत्तम क्षेत्र (पुरी)",
-      sitePuriText:
-        "भगवान जगन्नाथ का निवास, विष्णु का एक रूप। स्कंद पुराण इसे एक प्रमुख तीर्थ के रूप में महिमामंडित करता है जहाँ दिव्य महाप्रसाद इसे ग्रहण करने वाले सभी को मुक्त करता है। वार्षिक रथ यात्रा भक्ति का एक शानदार प्रदर्शन है, जो ब्रह्मांड के भगवान को उनके रथ पर देखने के लिए लाखों लोगों को आकर्षित करती है।",
-      siteBadrinathTitle: "बदरिकाश्रम (बद्रीनाथ)",
-      siteBadrinathText:
-        "वर्तमान कलियुग के लिए सर्वोच्च तीर्थ माना जाता है। यहाँ, ऊँचे हिमालय में, जुड़वां ऋषि नर और नारायण दुनिया के कल्याण के लिए शाश्वत तपस्या करते हैं। बर्फीली अलकनंदा नदी में एक डुबकी लगाने से जीवन भर के पाप धुल जाते हैं।",
-      siteDwarkaTitle: "द्वारका",
-      siteDwarkaText:
-        "भगवान कृष्ण की शानदार राजधानी, पश्चिमी तट पर स्थापित। मुख्य द्वारकाधीश मंदिर उनके दिव्य शासन का एक प्रमाण है। शास्त्र कहते हैं कि यहाँ की तीर्थयात्रा बेट द्वारका, उनके व्यक्तिगत निवास माने जाने वाले द्वीप, का दौरा किए बिना अधूरी है।",
-      siteTirupatiTitle: "वेंकटाचल (तिरुपति)",
-      siteTirupatiText:
-        "पवित्र पहाड़ियाँ जहाँ भगवान वेंकटेश्वर, विष्णु का एक रूप, कलियुग में भक्तों को आशीर्वाद देने के लिए निवास करते हैं। पुराण स्वामी पुष्करिणी टैंक में शुद्ध स्नान के बाद भगवान के *दर्शन* से प्राप्त होने वाले अपार पुण्य का वर्णन करता है।",
-      sitePushkarTitle: "पुष्कर",
-      sitePushkarText:
-        "सृष्टिकर्ता भगवान ब्रह्मा को समर्पित प्राथमिक तीर्थ। कहा जाता है कि उनके हाथ (*कर*) से एक कमल का फूल (*पुष्प*) यहाँ गिरा, जिससे पवित्र पुष्कर झील का निर्माण हुआ। इसके जल में एक अनुष्ठानिक स्नान, विशेष रूप से कार्तिक पूर्णिमा पर, अद्वितीय पुण्य का कार्य माना जाता है।",
-      siteKashiTitle: "काशी (वाराणसी)",
-      siteKashiText:
-        "मुक्ति का शहर, भगवान शिव के त्रिशूल पर स्थित। स्कंद पुराण का काशी खंड कहता है कि जो कोई भी इसकी पवित्र सीमाओं के भीतर मरता है, उसे निश्चित *मोक्ष* प्रदान किया जाता है। यह शाश्वत शहर है, जिसे शिव ने ब्रह्मांडीय विघटन के दौरान भी कभी नहीं छोड़ा।",
-      siteUjjainTitle: "अवंती (उज्जैन)",
-      siteUjjainText:
-        "शक्तिशाली महाकालेश्वर ज्योतिर्लिंग का घर, जहाँ भगवान शिव समय के स्वामी के रूप में निवास करते हैं। शिप्रा नदी की पवित्रता की बहुत प्रशंसा की जाती है, और इसके जल में स्नान के बाद महाकाल का *दर्शन* यहाँ की तीर्थयात्रा का केंद्र है।",
-      siteSomnathTitle: "प्रभास क्षेत्र (सोमनाथ)",
-      siteSomnathText:
-        "बारह ज्योतिर्लिंगों में से पहले, सोमनाथ, चंद्रमा के भगवान, का स्थल। पुराण इसके गौरवशाली इतिहास, इसके बार-बार विनाश, और इसके दिव्य पुनर्निर्माण का वर्णन करता है, जो धर्म की शाश्वत और अजेय प्रकृति का प्रतीक है।",
-      siteVrindavanTitle: "वृंदावन और ब्रज भूमि",
-      siteVrindavanText:
-        "जबकि पुराण नींव रखते हैं, भक्तमाल इस भूमि को दिव्य प्रेम से भर देता है। यह राधा और कृष्ण का शाश्वत खेल का मैदान है, जो सूरदास और मीराबाई जैसे अनगिनत संतों के पदचिन्हों से पवित्र है, जहाँ धूल का हर कण पवित्र माना जाता है।",
+      exploreTitle: "पवित्र भारतवर्ष का अन्वेषण करें",
+      exploreIntro:
+        "भारत के सबसे पवित्र तीर्थों की कालातीत कहानियों और आध्यात्मिक स्पंदनों की खोज करें। अपनी यात्रा शुरू करने के लिए एक क्षेत्र चुनें।",
+      regions: "क्षेत्र",
+      regionNorth: "उत्तर भारत",
+      stateUP: "उत्तर प्रदेश",
+      stateUK: "उत्तराखंड",
+      stateJK: "जम्मू और कश्मीर",
+      regionWest: "पश्चिम भारत",
+      stateGUJ: "गुजरात",
+      stateMAH: "महाराष्ट्र",
+      stateRAJ: "राजस्थान",
+      regionSouth: "दक्षिण भारत",
+      stateTN: "तमिलनाडु",
+      stateAP: "आंध्र प्रदेश",
+      stateKER: "केरल",
+      regionEast: "पूर्वी भारत",
+      stateODI: "ओडिशा",
+      stateWB: "पश्चिम बंगाल",
+      stateASSAM: "असम",
+      clearFilters: "सभी साफ़ करें",
+      discoverMore: "और यात्राएं खोजें",
+      showLess: "कम दिखाएं",
       contactTitle: "पूछताछ करें और अपनी यात्रा शुरू करें",
       contactIntro:
         "एक सच्चे परिवर्तनकारी आध्यात्मिक अनुभव की दिशा में पहला कदम उठाएं। हमारी क्यूरेटेड यात्राओं के बारे में और जानने के लिए और हम आपकी पवित्र यात्रा को कैसे सुगम बना सकते हैं, इसके लिए हमसे संपर्क करें।",

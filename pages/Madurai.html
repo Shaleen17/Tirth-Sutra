@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Madurai: The City of Nectar - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+          >The Puranic Path</a
+        >
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/madurai_hero.jpg"
+          alt="Gopurams of Meenakshi Temple"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">Tamil Nadu</p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Madurai: The City of Nectar
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Welcome to Madurai, the ancient city whose very name is derived
+              from *madhu* (nectar), a land sanctified by the divine play of
+              Lord Shiva and Goddess Parvati. As one of the oldest continuously
+              inhabited cities in the world, Madurai is a vibrant center of
+              Tamil culture and Saivite tradition. A pilgrimage here is an
+              immersion into the heart of the divine feminine, celebrating the
+              fish-eyed Goddess Meenakshi as the supreme ruler.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Puranic Origin: The Divine Drops
+            </h2>
+            <p data-lang-key="historyText1">
+              Legend holds that when Lord Shiva appeared here to bless the land,
+              drops of divine nectar fell from his matted locks, giving the city
+              its sweet name, Madurai. The city's spiritual life revolves around
+              the divine marriage (*Thirukalyanam*) of the Goddess Meenakshi, an
+              incarnation of Parvati born to the Pandya king, and Lord
+              Sundareswarar, a handsome form of Lord Shiva who came to marry
+              her. This sacred union is the central theme of the temple and the
+              city itself.
+            </p>
+
+            <img
+              src="images/meenakshi_temple.jpg"
+              alt="Intricate carvings at the Meenakshi Amman Temple"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>Meenakshi Amman Temple Darshan:</strong> The soul of
+              Madurai is the magnificent Meenakshi Sundareswarar Temple, an
+              architectural marvel with its towering gopurams covered in
+              thousands of vibrant sculptures. Devotees traditionally worship
+              Goddess Meenakshi first, acknowledging her as the principal deity,
+              before proceeding to the shrine of Lord Sundareswarar.
+            </p>
+            <p data-lang-key="expText2">
+              <strong
+                >Hall of a Thousand Pillars (Aayiram Kaal Mandapam):</strong
+              >
+              Within the temple complex is a vast hall containing 985
+              exquisitely carved pillars. Each pillar is a masterpiece of
+              Dravidian sculpture. A fascinating feature is the set of musical
+              pillars which produce different musical notes when struck.
+            </p>
+            <p data-lang-key="expText3">
+              <strong
+                >The Divine Wedding Festival (Chithirai Thiruvizha):</strong
+              >
+              Held annually in April/May, this grand festival celebrates the
+              celestial wedding of Meenakshi and Sundareswarar. Millions of
+              devotees throng the city to witness the divine processions and
+              rituals, making it one of the most spectacular temple festivals in
+              India.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong> Tamil Nadu
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity">Primary Deities:</strong>
+                    Goddess Meenakshi (Parvati) & Sundareswarar (Shiva)
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="madurai-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="rameswaram.html" class="block group">
+                    <img
+                      src="images/card_rameswaram.jpg"
+                      alt="Rameswaram"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyRameswaram"
+                    >
+                      Rameswaram: Rama's Bridge
+                    </p>
+                  </a>
+                  <a href="srisailam.html" class="block group">
+                    <img
+                      src="images/card_srisailam.jpg"
+                      alt="Srisailam"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoySrisailam"
+                    >
+                      Srisailam: Mallikarjuna's Peak
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Tamil Nadu",
+            pageTitle: "Madurai: The City of Nectar",
+            introText:
+              "Welcome to Madurai, the ancient city whose very name is derived from *madhu* (nectar), a land sanctified by the divine play of Lord Shiva and Goddess Parvati. As one of the oldest continuously inhabited cities in the world, Madurai is a vibrant center of Tamil culture and Saivite tradition. A pilgrimage here is an immersion into the heart of the divine feminine, celebrating the fish-eyed Goddess Meenakshi as the supreme ruler.",
+            historyTitle: "The Puranic Origin: The Divine Drops",
+            historyText1:
+              "Legend holds that when Lord Shiva appeared here to bless the land, drops of divine nectar fell from his matted locks, giving the city its sweet name, Madurai. The city's spiritual life revolves around the divine marriage (*Thirukalyanam*) of the Goddess Meenakshi, an incarnation of Parvati born to the Pandya king, and Lord Sundareswarar, a handsome form of Lord Shiva who came to marry her. This sacred union is the central theme of the temple and the city itself.",
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              "<strong>Meenakshi Amman Temple Darshan:</strong> The soul of Madurai is the magnificent Meenakshi Sundareswarar Temple, an architectural marvel with its towering gopurams covered in thousands of vibrant sculptures. Devotees traditionally worship Goddess Meenakshi first, acknowledging her as the principal deity, before proceeding to the shrine of Lord Sundareswarar.",
+            expText2:
+              "<strong>Hall of a Thousand Pillars (Aayiram Kaal Mandapam):</strong> Within the temple complex is a vast hall containing 985 exquisitely carved pillars. Each pillar is a masterpiece of Dravidian sculpture. A fascinating feature is the set of musical pillars which produce different musical notes when struck.",
+            expText3:
+              "<strong>The Divine Wedding Festival (Chithirai Thiruvizha):</strong> Held annually in April/May, this grand festival celebrates the celestial wedding of Meenakshi and Sundareswarar. Millions of devotees throng the city to witness the divine processions and rituals, making it one of the most spectacular temple festivals in India.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Deities:",
+            mapTitle: "Location Map",
+            maduraiMarker: "Meenakshi Amman Temple",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyRameswaram: "Rameswaram: Rama's Bridge",
+            enjoySrisailam: "Srisailam: Mallikarjuna's Peak",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "तमिलनाडु",
+            pageTitle: "मदुरै: अमृत की नगरी",
+            introText:
+              "मदुरै में आपका स्वागत है, वह प्राचीन शहर जिसका नाम *मधु* (अमृत) से लिया गया है, जो भगवान शिव और देवी पार्वती की दिव्य लीला से पवित्र भूमि है। दुनिया के सबसे पुराने लगातार बसे हुए शहरों में से एक के रूप में, मदुरै तमिल संस्कृति और शैव परंपरा का एक जीवंत केंद्र है। यहाँ की तीर्थयात्रा दिव्य स्त्रीत्व के हृदय में एक विसर्जन है, जो मछली-आंखों वाली देवी मीनाक्षी को सर्वोच्च शासक के रूप में मनाती है।",
+            historyTitle: "पौराणिक उत्पत्ति: दिव्य बूंदें",
+            historyText1:
+              "किंवदंती है कि जब भगवान शिव भूमि को आशीर्वाद देने के लिए यहां प्रकट हुए, तो उनकी जटाओं से दिव्य अमृत की बूंदें गिरीं, जिससे शहर को इसका मीठा नाम, मदुरै मिला। शहर का आध्यात्मिक जीवन देवी मीनाक्षी, पांड्य राजा के यहाँ जन्मी पार्वती का अवतार, और भगवान सुंदरेश्वर, भगवान शिव का एक सुंदर रूप जो उनसे विवाह करने आए थे, के दिव्य विवाह (*थिरुकल्याणम*) के इर्द-गिर्द घूमता है। यह पवित्र मिलन मंदिर और स्वयं शहर का केंद्रीय विषय है।",
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>मीनाक्षी अम्मन मंदिर दर्शन:</strong> मदुरै की आत्मा शानदार मीनाक्षी सुंदरेश्वर मंदिर है, जो हजारों जीवंत मूर्तियों से ढके अपने ऊंचे गोपुरमों के साथ एक वास्तुशिल्प चमत्कार है। भक्त पारंपरिक रूप से पहले देवी मीनाक्षी की पूजा करते हैं, उन्हें प्रमुख देवता के रूप में स्वीकार करते हुए, फिर भगवान सुंदरेश्वर के मंदिर की ओर बढ़ते हैं।",
+            expText2:
+              "<strong>हजार स्तंभों का हॉल (आयिरम काल मंडपम):</strong> मंदिर परिसर के भीतर एक विशाल हॉल है जिसमें 985 उत्कृष्ट नक्काशीदार स्तंभ हैं। प्रत्येक स्तंभ द्रविड़ मूर्तिकला का एक उत्कृष्ट नमूना है। एक आकर्षक विशेषता संगीत स्तंभों का सेट है जो टकराने पर विभिन्न संगीत स्वर उत्पन्न करते हैं।",
+            expText3:
+              "<strong>दिव्य विवाह उत्सव (चिथिराई थिरुविझा):</strong> प्रतिवर्ष अप्रैल/मई में आयोजित होने वाला यह भव्य उत्सव मीनाक्षी और सुंदरेश्वर के दिव्य विवाह का जश्न मनाता है। लाखों भक्त दिव्य जुलूसों और अनुष्ठानों को देखने के लिए शहर में आते हैं, जिससे यह भारत के सबसे शानदार मंदिर उत्सवों में से एक बन जाता है।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "प्रमुख देवता:",
+            mapTitle: "स्थान का नक्शा",
+            maduraiMarker: "मीनाक्षी अम्मन मंदिर",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyRameswaram: "रामेश्वरम: राम का सेतु",
+            enjoySrisailam: "श्रीशैलम: मल्लिकार्जुन का शिखर",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let maduraiMap;
+
+        function initMaduraiMap(lang) {
+          const content = languageContent[lang];
+          const maduraiCoords = [9.9195, 78.1193];
+
+          if (!maduraiMap) {
+            maduraiMap = L.map("madurai-map", {
+              scrollWheelZoom: false,
+            }).setView(maduraiCoords, 15);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(maduraiMap);
+          } else {
+            maduraiMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker) {
+                maduraiMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const marker = L.marker(maduraiCoords, { icon: mandirIcon }).addTo(
+            maduraiMap
+          );
+          marker.bindPopup(`<b>${content.maduraiMarker}</b>`).openPopup();
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initMaduraiMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

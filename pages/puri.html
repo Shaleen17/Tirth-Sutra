@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Puri: Abode of Jagannath - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <h1
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+        >
+          The Puranic Path
+        </h1>
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/puri_hero.jpg"
+          alt="Rath Yatra festival in Puri"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">Odisha</p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Puri: Abode of Jagannath
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Welcome to Purushottama Kshetra, the sacred abode of Lord
+              Jagannath, the Lord of the Universe. As one of the original four
+              Char Dhams, Puri is a Tirtha of immense spiritual potency, where
+              the Lord resides with his brother Balabhadra and sister Subhadra.
+              A pilgrimage to Puri is an opportunity to witness the living,
+              breathing traditions of devotion that have captivated saints and
+              sages for millennia.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Puranic Origin: The Unfinished Deities
+            </h2>
+            <p data-lang-key="historyText1">
+              The Skanda Purana narrates the enchanting story of King
+              Indradyumna, a great devotee who was divinely instructed to find a
+              sacred wooden log (*dāru brahma*) and carve the deities. The
+              celestial architect Vishwakarma agreed to do the work in a locked
+              room, on the condition that he not be disturbed for 21 days. The
+              impatient king, hearing no sound, opened the door early.
+              Vishwakarma vanished instantly, leaving the deities in their
+              unique, unfinished form—with large, round eyes and no distinct
+              hands or feet. This form is a profound reminder that the divine is
+              beyond human conception and form.
+            </p>
+
+            <img
+              src="images/jagannath_deities.jpg"
+              alt="The deities of Jagannath, Balabhadra, and Subhadra"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>Jagannath Temple Darshan:</strong> The darshan of the
+              divine trinity is the primary goal of the yatra. The atmosphere
+              inside the temple is charged with devotion. A unique feature is
+              the temple flag (*patita pāvana bāna*), which miraculously flows
+              against the wind.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>Rath Yatra: The Festival of Chariots.</strong> This is the
+              most famous festival of Puri, where the deities leave the main
+              temple to travel to the Gundicha Temple. Millions of devotees pull
+              the massive, ornate chariots, believing that even a touch of the
+              ropes grants immense spiritual merit. It is a spectacle of
+              unparalleled devotion.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>Mahaprasad: The Great Offering.</strong> The food cooked
+              in the temple's giant kitchen is first offered to Lord Jagannath
+              and is then considered *Mahaprasad*. This sacred food is available
+              to all, regardless of caste or creed, and is believed to be
+              non-different from the Lord himself. Partaking in the Mahaprasad
+              is a vital part of the pilgrimage.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong> Odisha
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity">Primary Deity:</strong>
+                    Lord Jagannath (Vishnu)
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="puri-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="kashi.html" class="block group">
+                    <img
+                      src="images/card_kashi.jpg"
+                      alt="Kashi"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyKashi"
+                    >
+                      Kashi: The Eternal City
+                    </p>
+                  </a>
+                  <a href="dwarka.html" class="block group">
+                    <img
+                      src="images/card_dwarka.jpg"
+                      alt="Dwarka"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyDwarka"
+                    >
+                      Dwarka: Kingdom of Krishna
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Odisha",
+            pageTitle: "Puri: Abode of Jagannath",
+            introText:
+              "Welcome to Purushottama Kshetra, the sacred abode of Lord Jagannath, the Lord of the Universe. As one of the original four Char Dhams, Puri is a Tirtha of immense spiritual potency, where the Lord resides with his brother Balabhadra and sister Subhadra. A pilgrimage to Puri is an opportunity to witness the living, breathing traditions of devotion that have captivated saints and sages for millennia.",
+            historyTitle: "The Puranic Origin: The Unfinished Deities",
+            historyText1:
+              "The Skanda Purana narrates the enchanting story of King Indradyumna, a great devotee who was divinely instructed to find a sacred wooden log (*dāru brahma*) and carve the deities. The celestial architect Vishwakarma agreed to do the work in a locked room, on the condition that he not be disturbed for 21 days. The impatient king, hearing no sound, opened the door early. Vishwakarma vanished instantly, leaving the deities in their unique, unfinished form—with large, round eyes and no distinct hands or feet. This form is a profound reminder that the divine is beyond human conception and form.",
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              "<strong>Jagannath Temple Darshan:</strong> The darshan of the divine trinity is the primary goal of the yatra. The atmosphere inside the temple is charged with devotion. A unique feature is the temple flag (*patita pāvana bāna*), which miraculously flows against the wind.",
+            expText2:
+              "<strong>Rath Yatra: The Festival of Chariots.</strong> This is the most famous festival of Puri, where the deities leave the main temple to travel to the Gundicha Temple. Millions of devotees pull the massive, ornate chariots, believing that even a touch of the ropes grants immense spiritual merit. It is a spectacle of unparalleled devotion.",
+            expText3:
+              "<strong>Mahaprasad: The Great Offering.</strong> The food cooked in the temple's giant kitchen is first offered to Lord Jagannath and is then considered *Mahaprasad*. This sacred food is available to all, regardless of caste or creed, and is believed to be non-different from the Lord himself. Partaking in the Mahaprasad is a vital part of the pilgrimage.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Deity:",
+            mapTitle: "Location Map",
+            puriMarker: "Jagannath Temple",
+            gundichaMarker: "Gundicha Temple (Rath Yatra Destination)",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyKashi: "Kashi: The Eternal City",
+            enjoyDwarka: "Dwarka: Kingdom of Krishna",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "ओडिशा",
+            pageTitle: "पुरी: जगन्नाथ का धाम",
+            introText:
+              "पुरुषोत्तम क्षेत्र में आपका स्वागत है, जो ब्रह्मांड के स्वामी भगवान जगन्नाथ का पवित्र निवास है। मूल चार धामों में से एक के रूप में, पुरी अपार आध्यात्मिक शक्ति का एक तीर्थ है, जहाँ भगवान अपने भाई बलभद्र और बहन सुभद्रा के साथ निवास करते हैं। पुरी की तीर्थयात्रा उन जीवंत, सांस लेने वाली भक्ति परंपराओं का साक्षी बनने का एक अवसर है जिन्होंने सहस्राब्दियों से संतों और ऋषियों को मोहित किया है।",
+            historyTitle: "पौराणिक उत्पत्ति: अधूरी मूर्तियाँ",
+            historyText1:
+              "स्कंद पुराण में राजा इंद्रद्युम्न की आकर्षक कहानी का वर्णन है, जो एक महान भक्त थे जिन्हें दिव्य रूप से एक पवित्र लकड़ी का लट्ठा (*दारु ब्रह्म*) खोजने और देवताओं को तराशने का निर्देश दिया गया था। दिव्य वास्तुकार विश्वकर्मा ने एक बंद कमरे में काम करने के लिए सहमति व्यक्त की, इस शर्त पर कि उन्हें 21 दिनों तक परेशान न किया जाए। अधीर राजा ने कोई आवाज न सुनकर दरवाजा जल्दी खोल दिया। विश्वकर्मा तुरंत गायब हो गए, जिससे देवता अपने अद्वितीय, अधूरे रूप में रह गए - बड़ी, गोल आँखों और बिना किसी अलग हाथ या पैर के। यह रूप एक गहरा अनुस्मारक है कि दिव्य मानव कल्पना और रूप से परे है।",
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>जगन्नाथ मंदिर दर्शन:</strong> दिव्य त्रिमूर्ति का दर्शन यात्रा का प्राथमिक लक्ष्य है। मंदिर के अंदर का वातावरण भक्ति से भरा हुआ है। एक अनूठी विशेषता मंदिर का ध्वज (*पतित पावन बाना*) है, जो चमत्कारिक रूप से हवा के विपरीत बहता है।",
+            expText2:
+              "<strong>रथ यात्रा: रथों का त्योहार।</strong> यह पुरी का सबसे प्रसिद्ध त्योहार है, जहाँ देवता मुख्य मंदिर छोड़कर गुंडिचा मंदिर की यात्रा करते हैं। लाखों भक्त विशाल, अलंकृत रथों को खींचते हैं, यह मानते हुए कि रस्सियों का एक स्पर्श भी अपार आध्यात्मिक पुण्य प्रदान करता है। यह अद्वितीय भक्ति का एक शानदार प्रदर्शन है।",
+            expText3:
+              "<strong>महाप्रसाद: महान भोग।</strong> मंदिर की विशाल रसोई में पकाया गया भोजन पहले भगवान जगन्नाथ को अर्पित किया जाता है और फिर इसे *महाप्रसाद* माना जाता है। यह पवित्र भोजन जाति या पंथ की परवाह किए बिना सभी के लिए उपलब्ध है, और माना जाता है कि यह स्वयं भगवान से अलग नहीं है। महाप्रसाद ग्रहण करना तीर्थयात्रा का एक महत्वपूर्ण हिस्सा है।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "प्रमुख देवता:",
+            mapTitle: "स्थान का नक्शा",
+            puriMarker: "जगन्नाथ मंदिर",
+            gundichaMarker: "गुंडिचा मंदिर (रथ यात्रा गंतव्य)",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyKashi: "काशी: शाश्वत नगरी",
+            enjoyDwarka: "द्वारका: कृष्ण का राज्य",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let puriMap;
+
+        function initPuriMap(lang) {
+          const content = languageContent[lang];
+          const puriCoords = [19.8049, 85.8182];
+          const gundichaCoords = [19.8152, 85.8304];
+
+          if (!puriMap) {
+            puriMap = L.map("puri-map", { scrollWheelZoom: false }).setView(
+              puriCoords,
+              14
+            );
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(puriMap);
+          } else {
+            puriMap.eachLayer(function (layer) {
+              if (layer instanceof L.Marker || layer instanceof L.Polyline) {
+                puriMap.removeLayer(layer);
+              }
+            });
+          }
+
+          const mandirIcon = L.divIcon({
+            html: '<div class="mandir-icon">🛕</div>',
+            className: "",
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+
+          const marker1 = L.marker(puriCoords, { icon: mandirIcon }).addTo(
+            puriMap
+          );
+          marker1.bindPopup(`<b>${content.puriMarker}</b>`).openPopup();
+
+          const marker2 = L.marker(gundichaCoords, { icon: mandirIcon }).addTo(
+            puriMap
+          );
+          marker2.bindPopup(`<b>${content.gundichaMarker}</b>`);
+
+          const latLngs = [puriCoords, gundichaCoords];
+          L.polyline(latLngs, {
+            color: "#8C3B2A",
+            weight: 3,
+            dashArray: "5, 5",
+          }).addTo(puriMap);
+
+          const bounds = L.latLngBounds(latLngs);
+          puriMap.fitBounds(bounds.pad(0.2));
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initPuriMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>
