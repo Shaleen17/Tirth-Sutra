@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
       description_hi:
         "शानदार रथ यात्रा के साक्षी बनें और ब्रह्मांड के स्वामी की दिव्य उपस्थिति को महसूस करें।",
       image: "pages/images/puri_hero.jpg",
-      link: "pages/Puri.html",
+      link: "pages/puri.html",
     },
     {
       title_en: "Braj Bhumi: Land of Divine Love",
