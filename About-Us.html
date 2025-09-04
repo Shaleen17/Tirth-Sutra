@@ -4,31 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="BrandLogo.jpg" />
 
-    <!-- === DOMAIN LOCK SCRIPT - ADD THIS HERE === -->
+    <!-- === FINAL, CLEAN DOMAIN LOCK SCRIPT === -->
     <script>
-      const authorizedDomain = "shaleen17.github.io";
-      const currentDomain = window.location.hostname;
-      if (currentDomain && currentDomain !== authorizedDomain) {
-        document.documentElement.innerHTML = `
-                <head>
-                    <title>Access Denied</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; color: #4A2E2A; background-color: #FDFBF8; }
-                        a { color: #8C3B2A; text-decoration: none; font-weight: bold; }
-                    </style>
-                </head>
-                <body>
-                    <h1>Access Denied</h1>
-                    <p>This content is protected and can only be viewed on the official website.</p>
-                    <p>यह सामग्री सुरक्षित है और इसे केवल आधिकारिक वेबसाइट पर ही देखा जा सकता है।</p>
-                    <a href="https://shaleen17.github.io/Tirth-Sutra/">Visit the Official Website</a>
-                </body>
-            `;
-      }
+      (function () {
+        const authorizedDomains = [
+          "shaleen17.github.io",
+          "127.0.0.1",
+          "localhost",
+        ];
+        const currentDomain = window.location.hostname;
+
+        if (currentDomain && !authorizedDomains.includes(currentDomain)) {
+          document.addEventListener("DOMContentLoaded", function () {
+            if (document.body) {
+              document.body.style.display = "none";
+            }
+
+            const accessDeniedHTML = `
+                    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #FDFBF8; display: flex; align-items: center; justify-content: center; z-index: 9999;">
+                        <div style="font-family: Arial, sans-serif; text-align: center; padding: 50px; color: #4A2E2A;">
+                            <h1>Access Denied</h1>
+                            <p>This content is protected and can only be viewed on the official website.</p>
+                            <p>यह सामग्री सुरक्षित है और इसे केवल आधिकारिक वेबसाइट पर ही देखा जा सकता है।</p>
+                            <a href="https://shaleen17.github.io/Tirth-Sutra/" style="color: #8C3B2A; text-decoration: none; font-weight: bold;">
+                                Visit the Official Website
+                            </a>
+                        </div>
+                    </div>
+                `;
+            document.documentElement.insertAdjacentHTML(
+              "beforeend",
+              accessDeniedHTML
+            );
+          });
+        }
+      })();
     </script>
     <!-- === END OF SCRIPT === -->
-    <link rel="icon" type="image/png" href="BrandLogo.jpg" />
+
     <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />

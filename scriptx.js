@@ -279,6 +279,17 @@ document.addEventListener("DOMContentLoaded", function () {
       link: "pages/Haridwar.html",
     },
     {
+      title_en: "Ayodhya: Birthplace of shri Ram",
+      title_hi: "अयोध्या: श्री राम की जन्मभूमि",
+      region: "uttar pradesh",
+      description_en:
+        "Step into the sacred city of Lord Rama's birth and witness the heart of Sanatana Dharma.",
+      description_hi:
+        "भगवान राम के पवित्र जन्मस्थान में कदम रखें और सनातन धर्म के हृदय के साक्षी बनें।",
+      image: "pages/images/card_ayodhya.jpg",
+      link: "pages/Ayodhya.html",
+    },
+    {
       title_en: "Prayag: The King of Tirthas",
       title_hi: "प्रयाग: तीर्थों का राजा",
       region: "uttar pradesh",

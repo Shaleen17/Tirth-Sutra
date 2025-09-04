@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ayodhya: Birthplace of Shri Ram - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="images/BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet.js CSS for Maps -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .prose-custom h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #fbeedb;
+      }
+      .prose-custom p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .map-container {
+        height: 250px;
+        width: 100%;
+        border-radius: 0.5rem;
+        z-index: 0;
+      }
+      .mandir-icon {
+        font-size: 24px;
+        text-shadow: 0 0 3px #000;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <h1
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+        >
+          The Puranic Path
+        </h1>
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[60vh] bg-black">
+        <img
+          src="images/card_ayodhya.jpg"
+          alt="The Ram Janmabhoomi Mandir in Ayodhya"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div class="absolute inset-0 flex items-end p-8 md:p-12">
+          <div style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)">
+            <p class="text-white text-lg" data-lang-key="region">
+              Uttar Pradesh
+            </p>
+            <h1
+              class="text-white text-5xl md:text-7xl font-bold"
+              data-lang-key="pageTitle"
+            >
+              Ayodhya: Birthplace of Shri Ram
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Section -->
+      <div class="container mx-auto px-6 py-12">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+          <!-- Left Content Column -->
+          <div class="lg:col-span-2 prose-custom text-lg">
+            <p class="lead text-xl" data-lang-key="introText">
+              Welcome to Ayodhya, the eternal city and the sacred birthplace
+              (*Janmabhoomi*) of Maryada Purushottam Shri Ram. As one of the
+              seven most ancient and holy cities (*Sapta Puri*) of India,
+              Ayodhya is not just a place on a map but the very heart of
+              Sanatana Dharma's ideals. A pilgrimage here is a journey into the
+              living epic of the Ramayana, a land where every particle of dust
+              is sanctified by the Lord's divine footsteps.
+            </p>
+
+            <h2 data-lang-key="historyTitle">
+              The Puranic Origin: The City of Manu
+            </h2>
+            <p data-lang-key="historyText1">
+              The scriptures, including the Ramayana, describe Ayodhya as the
+              magnificent and invincible capital of the great Ikshvaku dynasty,
+              founded by Vaivasvata Manu himself. For countless ages, it has
+              been the center of righteousness, the seat of kings who ruled by
+              Dharma. The entire city is revered as a *Tirtha*, a place that
+              grants liberation (*mokṣa*) and is as dear to Lord Vishnu as
+              Vaikuntha itself.
+            </p>
+
+            <img
+              src="images/sarayu_river.jpg"
+              alt="Devotees at the Sarayu River in Ayodhya"
+              class="rounded-lg shadow-lg my-8 w-full"
+            />
+
+            <h2 data-lang-key="experiencesTitle">Key Spiritual Experiences</h2>
+            <p data-lang-key="expText1">
+              <strong>Darshan at Ram Janmabhoomi:</strong> The most sacred act
+              in Ayodhya is the *darśana* at the Ram Janmabhoomi, the precise
+              spot where Lord Rama took his divine incarnation. Visiting the
+              magnificent new temple is the culmination of a pilgrim's journey,
+              an experience of profound devotion and spiritual fulfillment.
+            </p>
+            <p data-lang-key="expText2">
+              <strong>Holy Dip in the Sarayu River:</strong> The sacred Sarayu
+              River is the lifeblood of Ayodhya. A holy dip in its purifying
+              waters is a vital ritual that is believed to wash away sins and
+              prepare the devotee for the Lord's darshan. The serene ghats are
+              perfect for quiet contemplation and prayer.
+            </p>
+            <p data-lang-key="expText3">
+              <strong>Hanuman Garhi Temple:</strong> Before visiting the main
+              temple, it is a timeless tradition to first seek the blessings of
+              Lord Hanuman at Hanuman Garhi. This fortress-like temple is built
+              on a high mound, and it is believed that Hanuman resides here,
+              eternally guarding the city of his beloved Lord Rama.
+            </p>
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside class="lg:col-span-1 mt-12 lg:mt-0">
+            <div class="sticky top-28">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="infoTitle">
+                  More Information
+                </h3>
+                <div class="border-t pt-4">
+                  <p>
+                    <strong data-lang-key="infoState">State:</strong> Uttar
+                    Pradesh
+                  </p>
+                  <p>
+                    <strong data-lang-key="infoDeity">Primary Deity:</strong>
+                    Lord Rama
+                  </p>
+                </div>
+              </div>
+
+              <!-- MAP SECTION -->
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="mapTitle">
+                  Location Map
+                </h3>
+                <div
+                  id="ayodhya-map"
+                  class="map-container border rounded-lg"
+                ></div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="enjoyTitle">
+                  You May Also Enjoy
+                </h3>
+                <div class="border-t pt-4 space-y-4">
+                  <a href="kashi.html" class="block group">
+                    <img
+                      src="images/kashi_ghat_life.jpg"
+                      alt="Kashi"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyKashi"
+                    >
+                      Kashi: The Eternal City
+                    </p>
+                  </a>
+                  <a href="braj.html" class="block group">
+                    <img
+                      src="images/card_braj.jpg"
+                      alt="Braj Bhumi"
+                      class="rounded-lg w-full h-32 object-cover mb-2"
+                    />
+                    <p
+                      class="font-bold group-hover:text-[#FF6700]"
+                      data-lang-key="enjoyBraj"
+                    >
+                      Braj Bhumi: Land of Divine Love
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Leaflet.js Script for Maps -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            region: "Uttar Pradesh",
+            pageTitle: "Ayodhya: Birthplace of Shri Ram",
+            introText:
+              "Welcome to Ayodhya, the eternal city and the sacred birthplace (*Janmabhoomi*) of Maryada Purushottam Shri Ram. As one of the seven most ancient and holy cities (*Sapta Puri*) of India, Ayodhya is not just a place on a map but the very heart of Sanatana Dharma's ideals. A pilgrimage here is a journey into the living epic of the Ramayana, a land where every particle of dust is sanctified by the Lord's divine footsteps.",
+            historyTitle: "The Puranic Origin: The City of Manu",
+            historyText1:
+              "The scriptures, including the Ramayana, describe Ayodhya as the magnificent and invincible capital of the great Ikshvaku dynasty, founded by Vaivasvata Manu himself. For countless ages, it has been the center of righteousness, the seat of kings who ruled by Dharma. The entire city is revered as a *Tirtha*, a place that grants liberation (*mokṣa*) and is as dear to Lord Vishnu as Vaikuntha itself.",
+            experiencesTitle: "Key Spiritual Experiences",
+            expText1:
+              "<strong>Darshan at Ram Janmabhoomi:</strong> The most sacred act in Ayodhya is the *darśana* at the Ram Janmabhoomi, the precise spot where Lord Rama took his divine incarnation. Visiting the magnificent new temple is the culmination of a pilgrim's journey, an experience of profound devotion and spiritual fulfillment.",
+            expText2:
+              "<strong>Holy Dip in the Sarayu River:</strong> The sacred Sarayu River is the lifeblood of Ayodhya. A holy dip in its purifying waters is a vital ritual that is believed to wash away sins and prepare the devotee for the Lord's darshan. The serene ghats are perfect for quiet contemplation and prayer.",
+            expText3:
+              "<strong>Hanuman Garhi Temple:</strong> Before visiting the main temple, it is a timeless tradition to first seek the blessings of Lord Hanuman at Hanuman Garhi. This fortress-like temple is built on a high mound, and it is believed that Hanuman resides here, eternally guarding the city of his beloved Lord Rama.",
+            infoTitle: "More Information",
+            infoState: "State:",
+            infoDeity: "Primary Deity:",
+            mapTitle: "Location Map",
+            ayodhyaMarker: "Ram Janmabhoomi",
+            enjoyTitle: "You May Also Enjoy",
+            enjoyKashi: "Kashi: The Eternal City",
+            enjoyBraj: "Braj Bhumi: Land of Divine Love",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            region: "उत्तर प्रदेश",
+            pageTitle: "अयोध्या: श्री राम की जन्मभूमि",
+            introText:
+              "अयोध्या में आपका स्वागत है, जो मर्यादा पुरुषोत्तम श्री राम का शाश्वत नगर और पवित्र जन्मस्थान (*जन्मभूमि*) है। भारत के सात सबसे प्राचीन और पवित्र शहरों (*सप्त पुरी*) में से एक के रूप में, अयोध्या केवल एक नक्शे पर एक स्थान नहीं है, बल्कि सनातन धर्म के आदर्शों का हृदय है। यहाँ की तीर्थयात्रा रामायण के जीवंत महाकाव्य में एक यात्रा है, एक ऐसी भूमि जहाँ धूल का हर कण भगवान के दिव्य पदचिन्हों से पवित्र है।",
+            historyTitle: "पौराणिक उत्पत्ति: मनु का नगर",
+            historyText1:
+              "रामायण सहित शास्त्र, अयोध्या को महान इक्ष्वाकु वंश की शानदार और अजेय राजधानी के रूप में वर्णित करते हैं, जिसकी स्थापना स्वयं वैवस्वत मनु ने की थी। अनगिनत युगों से, यह धर्म का केंद्र रहा है, धर्म द्वारा शासन करने वाले राजाओं की गद्दी। पूरे शहर को एक *तीर्थ* के रूप में पूजा जाता है, एक ऐसा स्थान जो मुक्ति (*मोक्ष*) प्रदान करता है और भगवान विष्णु को वैकुंठ के समान ही प्रिय है।",
+            experiencesTitle: "मुख्य आध्यात्मिक अनुभव",
+            expText1:
+              "<strong>राम जन्मभूमि पर दर्शन:</strong> अयोध्या में सबसे पवित्र कार्य राम जन्मभूमि पर *दर्शन* है, वह सटीक स्थान जहाँ भगवान राम ने अपना दिव्य अवतार लिया था। शानदार नए मंदिर का दौरा एक तीर्थयात्री की यात्रा का समापन है, जो गहन भक्ति और आध्यात्मिक पूर्ति का एक अनुभव है।",
+            expText2:
+              "<strong>सरयू नदी में पवित्र डुबकी:</strong> पवित्र सरयू नदी अयोध्या की जीवनदायिनी है। इसके शुद्ध करने वाले जल में एक पवित्र डुबकी एक महत्वपूर्ण अनुष्ठान है जिसके बारे में माना जाता है कि यह पापों को धोता है और भक्त को भगवान के दर्शन के लिए तैयार करता है। शांत घाट शांत चिंतन और प्रार्थना के लिए एकदम सही हैं।",
+            expText3:
+              "<strong>हनुमान गढ़ी मंदिर:</strong> मुख्य मंदिर जाने से पहले, हनुमान गढ़ी पर सबसे पहले भगवान हनुमान का आशीर्वाद लेना एक कालातीत परंपरा है। यह किले जैसा मंदिर एक ऊंचे टीले पर बना है, और माना जाता है कि हनुमान यहाँ निवास करते हैं, अपने प्रिय भगवान राम के शहर की शाश्वत रूप से रक्षा करते हैं।",
+            infoTitle: "और जानकारी",
+            infoState: "राज्य:",
+            infoDeity: "प्रमुख देवता:",
+            mapTitle: "स्थान का नक्शा",
+            ayodhyaMarker: "राम जन्मभूमि",
+            enjoyTitle: "आपको यह भी पसंद आ सकता है",
+            enjoyKashi: "काशी: शाश्वत नगरी",
+            enjoyBraj: "ब्रज भूमि: दिव्य प्रेम की भूमि",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let ayodhyaMap;
+
+        function initAyodhyaMap(lang) {
+          const content = languageContent[lang];
+          const ayodhyaCoords = [26.7957, 82.1943];
+
+          if (ayodhyaMap) {
+            ayodhyaMap.remove();
+            ayodhyaMap = null;
+          }
+
+          setTimeout(function () {
+            ayodhyaMap = L.map("ayodhya-map", {
+              scrollWheelZoom: false,
+            }).setView(ayodhyaCoords, 15);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(ayodhyaMap);
+
+            const mandirIcon = L.divIcon({
+              html: '<div class="mandir-icon">🛕</div>',
+              className: "",
+              iconSize: [24, 24],
+              iconAnchor: [12, 24],
+              popupAnchor: [0, -24],
+            });
+
+            const marker = L.marker(ayodhyaCoords, { icon: mandirIcon }).addTo(
+              ayodhyaMap
+            );
+            marker.bindPopup(`<b>${content.ayodhyaMarker}</b>`).openPopup();
+          }, 100);
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+
+          initAyodhyaMap(lang);
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>
