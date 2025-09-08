@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yatra Payment - The Puranic Path</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+      xintegrity="sha512-Gsr6MA2D/sCVcFyS4dKOCzStssCIEJb4GNvezTeKCJpS50SxHpeX5SopocT+l78N0zDFlX7rAkyi..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f3f4f6;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .payment-option.active {
+        background-color: #fbeedb;
+        border-left-color: #8c3b2a;
+      }
+      .receipt-container {
+        border: 1px solid #d9a05b;
+        background-color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .receipt-watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        font-size: 5rem;
+        color: #8c3b2a;
+        opacity: 0.05;
+        font-weight: bold;
+        pointer-events: none;
+      }
+      .paid-stamp {
+        border: 5px solid #228b22;
+        color: #228b22;
+        font-size: 2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        transform: rotate(-15deg);
+        opacity: 0.7;
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        position: absolute;
+        bottom: 6rem;
+        right: 2rem;
+      }
+      button:disabled {
+        background-color: #9ca3af;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <h1
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+        >
+          The Puranic Path
+        </h1>
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+      <!-- Main Payment Section -->
+      <section id="payment-section">
+        <div class="max-w-6xl mx-auto lg:grid lg:grid-cols-3 lg:gap-8">
+          <!-- Left Side: Payment Options -->
+          <div class="lg:col-span-2 bg-[#FDFBF8] p-8 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold mb-6" data-lang-key="choosePayment">
+              Choose Payment Mode
+            </h2>
+            <div class="flex">
+              <!-- Options Sidebar -->
+              <div class="w-1/3 border-r border-gray-200">
+                <button
+                  class="payment-option w-full text-left p-4 border-l-4 border-transparent active"
+                  data-target="upi-content"
+                >
+                  <span class="font-bold" data-lang-key="optionUpi"
+                    >UPI (Pay via any App)</span
+                  >
+                </button>
+                <button
+                  class="payment-option w-full text-left p-4 border-l-4 border-transparent"
+                  data-target="netbanking-content"
+                >
+                  <span class="font-bold" data-lang-key="optionNetbanking"
+                    >Net Banking</span
+                  >
+                </button>
+                <!-- You can add more options like Credit/Debit card here -->
+              </div>
+
+              <!-- Content Area -->
+              <div class="w-2/3 pl-8">
+                <div id="upi-content" class="payment-content">
+                  <h3 class="text-xl font-bold mb-4" data-lang-key="scanTitle">
+                    Scan to Pay
+                  </h3>
+                  <div class="flex justify-center">
+                    <img
+                      src="qr_code.jpg"
+                      alt="UPI QR Code"
+                      class="w-48 h-48 border p-2 rounded-lg"
+                      onerror="this.onerror=null;this.src='https://placehold.co/192x192/FBEEDB/4A2E2A?text=Your+QR';"
+                    />
+                  </div>
+                  <p class="my-4 text-center font-semibold" data-lang-key="or">
+                    OR
+                  </p>
+                  <h3 class="text-xl font-bold mt-4" data-lang-key="upiTitle">
+                    Pay to UPI ID
+                  </h3>
+                  <div
+                    class="mt-2 bg-gray-100 p-3 rounded-lg font-mono tracking-wider relative"
+                  >
+                    <span>shaleensingh238@okicici</span>
+                    <button
+                      onclick="copyToClipboard('shaleensingh238@okicici')"
+                      class="absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 hover:text-black"
+                      title="Copy UPI ID"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div id="netbanking-content" class="payment-content hidden">
+                  <h3
+                    class="text-xl font-bold mb-4"
+                    data-lang-key="bankDetails"
+                  >
+                    Bank Account Details
+                  </h3>
+                  <p data-lang-key="bankInstruction">
+                    Please transfer the amount to the account below and use your
+                    phone number as the reference.
+                  </p>
+                  <div class="mt-4 space-y-2 text-sm bg-gray-50 p-4 rounded">
+                    <p><strong>Account Name:</strong> The Puranic Path</p>
+                    <p><strong>Account Number:</strong> ----------</p>
+                    <p><strong>Bank:</strong> UCO Bank, Varanasi</p>
+                    <p><strong>IFSC Code:</strong> ---------</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Side: Price Details & Confirmation -->
+          <div class="lg:col-span-1 mt-8 lg:mt-0">
+            <div class="bg-[#FDFBF8] p-8 rounded-lg shadow-lg sticky top-28">
+              <h3
+                class="text-xl font-bold mb-4 border-b pb-2"
+                data-lang-key="priceDetails"
+              >
+                YATRA DETAILS
+              </h3>
+              <div id="yatra-details-container" class="space-y-2 text-gray-700">
+                <!-- Yatra items from cart will be injected here -->
+              </div>
+              <div
+                class="border-t mt-4 pt-4 flex justify-between font-bold text-lg"
+              >
+                <span data-lang-key="totalAmount">Total Amount</span>
+                <span>₹<span id="price-total">0</span></span>
+              </div>
+              <div class="mt-6">
+                <h3 class="text-xl font-bold mb-4" data-lang-key="confirmTitle">
+                  Confirm Your Payment
+                </h3>
+                <form id="payment-confirmation-form" class="space-y-3">
+                  <div>
+                    <label
+                      for="pilgrim-name"
+                      class="block font-semibold text-sm"
+                      data-lang-key="formName"
+                      >Your Full Name</label
+                    >
+                    <input
+                      type="text"
+                      id="pilgrim-name"
+                      required
+                      class="form-input w-full mt-1 p-2 border border-gray-300 rounded-lg text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="transaction-id"
+                      class="block font-semibold text-sm"
+                      data-lang-key="formTxnId"
+                      >UPI / Bank Transaction ID</label
+                    >
+                    <input
+                      type="text"
+                      id="transaction-id"
+                      required
+                      class="form-input w-full mt-1 p-2 border border-gray-300 rounded-lg text-sm"
+                    />
+                  </div>
+                  <div class="flex items-center space-x-3 pt-2">
+                    <input
+                      type="checkbox"
+                      id="payment-confirm-checkbox"
+                      class="form-input h-4 w-4 text-[#8C3B2A] border-gray-300 rounded focus:ring-[#FF6700]"
+                    />
+                    <label
+                      for="payment-confirm-checkbox"
+                      class="text-xs"
+                      data-lang-key="formConfirm"
+                      >I confirm I have completed the payment of ₹<span
+                        id="confirm-amount"
+                        >0</span
+                      >.</label
+                    >
+                  </div>
+                  <button
+                    type="submit"
+                    id="generate-receipt-btn"
+                    class="w-full bg-[#8C3B2A] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#FF6700] transition-colors duration-300"
+                    data-lang-key="confirmBtn"
+                    disabled
+                  >
+                    Generate Receipt
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Receipt Section (Initially Hidden) -->
+      <section id="receipt-section" class="hidden">
+        <div class="text-center mb-8">
+          <h2
+            class="text-4xl font-bold text-[#8C3B2A]"
+            data-lang-key="receiptSuccessTitle"
+          >
+            Payment Confirmed!
+          </h2>
+          <p
+            class="mt-4 text-lg max-w-3xl mx-auto"
+            data-lang-key="receiptSuccessIntro"
+          >
+            Thank you. Your official receipt is generated below. Please download
+            it for your records.
+          </p>
+        </div>
+        <div
+          id="receipt-to-print"
+          class="max-w-2xl mx-auto p-8 rounded-lg receipt-container"
+        >
+          <div class="receipt-watermark" data-lang-key="mainTitle">
+            The Puranic Path
+          </div>
+          <div
+            class="flex justify-between items-center border-b-2 border-[#8C3B2A] pb-4"
+          >
+            <div>
+              <img
+                src="nilachakra_logo.jpg"
+                alt="Logo"
+                class="h-16 mb-2"
+                onerror="this.style.display='none'"
+              />
+              <h2
+                class="text-3xl font-bold text-[#8C3B2A]"
+                data-lang-key="mainTitle"
+              >
+                The Puranic Path
+              </h2>
+              <p class="text-sm" data-lang-key="receiptTagline">
+                An Authentic Pilgrimage Experience
+              </p>
+            </div>
+            <div class="text-right">
+              <h3 class="text-2xl font-bold" data-lang-key="receiptTitle">
+                RECEIPT
+              </h3>
+              <p>
+                <strong data-lang-key="receiptNumberLabel">Receipt No:</strong>
+                <span id="receipt-number"></span>
+              </p>
+              <p>
+                <strong data-lang-key="receiptDateLabel">Date:</strong>
+                <span id="receipt-date"></span>
+              </p>
+            </div>
+          </div>
+          <div class="my-6">
+            <p class="mb-2">
+              <strong data-lang-key="receiptFromLabel">Received From:</strong>
+              <span id="receipt-name"></span>
+            </p>
+            <p>
+              <strong data-lang-key="receiptTxnIdLabel">Transaction ID:</strong>
+              <span id="receipt-txn-id" class="font-mono"></span>
+            </p>
+          </div>
+          <!-- Itemized Table for Receipt -->
+          <table class="w-full text-left">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="p-2 font-semibold" data-lang-key="itemHeader">
+                  Yatra Details
+                </th>
+                <th
+                  class="p-2 font-semibold text-right"
+                  data-lang-key="priceHeader"
+                >
+                  Price
+                </th>
+              </tr>
+            </thead>
+            <tbody id="receipt-items-table">
+              <!-- Receipt items will be injected here -->
+            </tbody>
+            <tfoot class="font-semibold">
+              <tr class="border-t-2">
+                <td class="p-2 text-right" data-lang-key="subtotal">
+                  Subtotal
+                </td>
+                <td class="p-2 text-right">
+                  ₹<span id="receipt-subtotal"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="p-2 text-right" data-lang-key="gst">GST (5%)</td>
+                <td class="p-2 text-right">₹<span id="receipt-gst"></span></td>
+              </tr>
+              <tr>
+                <td class="p-2 text-right" data-lang-key="sevaFee">
+                  Seva & Platform Fee
+                </td>
+                <td class="p-2 text-right">
+                  ₹<span id="receipt-seva-fee"></span>
+                </td>
+              </tr>
+              <tr class="bg-gray-100 text-lg border-t-2">
+                <td
+                  class="p-2 text-right font-bold"
+                  data-lang-key="totalAmount"
+                >
+                  Grand Total
+                </td>
+                <td class="p-2 text-right font-bold">
+                  ₹<span id="receipt-total"></span>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+          <div class="relative h-24">
+            <div class="paid-stamp" data-lang-key="paidStamp">PAID</div>
+          </div>
+          <div
+            class="border-t-2 border-[#8C3B2A] pt-4 mt-4 text-center text-sm"
+          >
+            <p data-lang-key="receiptThanks">
+              Thank you for your contribution to Sanatana Dharma. Your journey
+              begins now.
+            </p>
+          </div>
+        </div>
+        <div class="text-center mt-8">
+          <button
+            id="download-receipt-btn"
+            class="bg-[#228B22] text-white text-lg font-bold py-3 px-8 rounded-lg hover:bg-green-700 transition-colors duration-300"
+            data-lang-key="downloadBtn"
+          >
+            Download PDF
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- 1. ALL DATA AND CONSTANTS ---
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            choosePayment: "Choose Payment Mode",
+            optionUpi: "UPI (Pay via any App)",
+            optionNetbanking: "Net Banking",
+            scanTitle: "Scan to Pay",
+            or: "OR",
+            upiTitle: "Pay to UPI ID",
+            bankDetails: "Bank Account Details",
+            bankInstruction:
+              "Please transfer the amount to the account below and use your phone number as the reference.",
+            priceDetails: "YATRA DETAILS",
+            itemHeader: "Yatra Details",
+            priceHeader: "Price",
+            subtotal: "Subtotal",
+            gst: "GST (5%)",
+            sevaFee: "Seva & Platform Fee",
+            totalAmount: "Grand Total",
+            confirmTitle: "Confirm Your Payment",
+            formName: "Your Full Name",
+            formTxnId: "UPI / Bank Transaction ID",
+            formConfirm: "I confirm I have completed the payment of ₹",
+            confirmBtn: "Generate Receipt",
+            noYatraSelected:
+              "No yatra selected. Please go back and choose a yatra.",
+            receiptSuccessTitle: "Payment Confirmed!",
+            receiptSuccessIntro:
+              "Thank you. Your official receipt is generated below. Please download it for your records.",
+            receiptTagline: "An Authentic Pilgrimage Experience",
+            receiptTitle: "RECEIPT",
+            receiptNumberLabel: "Receipt No:",
+            receiptDateLabel: "Date:",
+            receiptFromLabel: "Received From:",
+            receiptAmountLabel: "Amount Paid:",
+            receiptTxnIdLabel: "Transaction ID:",
+            paidStamp: "PAID",
+            receiptThanks:
+              "Thank you for your contribution to Sanatana Dharma. Your journey begins now.",
+            downloadBtn: "Download PDF",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            choosePayment: "भुगतान का तरीका चुनें",
+            optionUpi: "UPI (किसी भी ऐप से भुगतान करें)",
+            optionNetbanking: "नेट बैंकिंग",
+            scanTitle: "स्कैन करके भुगतान करें",
+            or: "या",
+            upiTitle: "UPI ID पर भुगतान करें",
+            bankDetails: "बैंक खाते का विवरण",
+            bankInstruction:
+              "कृपया नीचे दिए गए खाते में राशि ट्रांसफर करें और संदर्भ के रूप में अपने फोन नंबर का उपयोग करें।",
+            priceDetails: "यात्रा विवरण",
+            itemHeader: "यात्रा विवरण",
+            priceHeader: "मूल्य",
+            subtotal: "उप-योग",
+            gst: "जीएसटी (5%)",
+            sevaFee: "सेवा और प्लेटफार्म शुल्क",
+            totalAmount: "कुल योग",
+            confirmTitle: "अपने भुगतान की पुष्टि करें",
+            formName: "आपका पूरा नाम",
+            formTxnId: "UPI / बैंक लेनदेन आईडी",
+            formConfirm:
+              "मैं पुष्टि करता/करती हूँ कि मैंने ₹ का भुगतान पूरा कर दिया है।",
+            confirmBtn: "रसीद बनाएं",
+            noYatraSelected:
+              "कोई यात्रा नहीं चुनी गई। कृपया वापस जाकर यात्रा चुनें।",
+            receiptSuccessTitle: "भुगतान की पुष्टि हो गई!",
+            receiptSuccessIntro:
+              " धन्यवाद। आपकी आधिकारिक रसीद नीचे दी गई है। कृपया इसे अपने रिकॉर्ड के लिए डाउनलोड करें।",
+            receiptTagline: "एक प्रामाणिक तीर्थयात्रा अनुभव",
+            receiptTitle: "रसीद",
+            receiptNumberLabel: "रसीद संख्या:",
+            receiptDateLabel: "दिनांक:",
+            receiptFromLabel: "से प्राप्त:",
+            receiptAmountLabel: "भुगतान की गई राशि:",
+            receiptTxnIdLabel: "लेनदेन आईडी:",
+            paidStamp: "भुगतान किया गया",
+            receiptThanks:
+              "सनातन धर्म में आपके योगदान के लिए धन्यवाद। आपकी यात्रा अब शुरू होती है।",
+            downloadBtn: "पीडीएफ डाउनलोड करें",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        // --- 2. ALL ELEMENT SELECTORS ---
+        const yatraDetailsContainer = document.getElementById(
+          "yatra-details-container"
+        );
+        const priceTotalEl = document
+          .querySelector("#yatra-details-container + .border-t")
+          .querySelector("span:last-child");
+        const confirmAmountEl = document.getElementById("confirm-amount");
+        const formConfirmLabel = document.querySelector(
+          'label[for="payment-confirm-checkbox"]'
+        );
+        const form = document.getElementById("payment-confirmation-form");
+        const formInputs = form.querySelectorAll(".form-input");
+        const confirmCheckbox = document.getElementById(
+          "payment-confirm-checkbox"
+        );
+        const generateBtn = document.getElementById("generate-receipt-btn");
+        const paymentSection = document.getElementById("payment-section");
+        const receiptSection = document.getElementById("receipt-section");
+        const downloadBtn = document.getElementById("download-receipt-btn");
+        const paymentOptions = document.querySelectorAll(".payment-option");
+        const paymentContents = document.querySelectorAll(".payment-content");
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        let totalAmount = 0;
+
+        // --- 3. ALL FUNCTION DEFINITIONS ---
+        function populatePaymentDetails() {
+          const cartData =
+            JSON.parse(localStorage.getItem("puranicPathCart")) || [];
+          const lang = document.documentElement.lang || "en";
+          yatraDetailsContainer.innerHTML = "";
+          let subtotal = 0;
+
+          if (cartData.length === 0) {
+            yatraDetailsContainer.innerHTML = `<p data-lang-key="noYatraSelected">${languageContent[lang].noYatraSelected}</p>`;
+            generateBtn.disabled = true;
+            if (priceTotalEl) priceTotalEl.textContent = "₹0.00";
+            if (confirmAmountEl) confirmAmountEl.textContent = "0.00";
+            return;
+          }
+
+          cartData.forEach((yatra) => {
+            const name = lang === "hi" ? yatra.name_hi : yatra.name_en;
+            subtotal += yatra.price;
+            const itemEl = document.createElement("div");
+            itemEl.className = "flex justify-between";
+            itemEl.innerHTML = `<span>${name}</span><span>₹${yatra.price.toLocaleString(
+              "en-IN"
+            )}</span>`;
+            yatraDetailsContainer.appendChild(itemEl);
+          });
+
+          const sevaFee = 200;
+          const gstRate = 0.05; // 5% GST
+          const gstAmount = subtotal * gstRate;
+          totalAmount = subtotal + gstAmount + sevaFee;
+
+          const subtotalEl = document.createElement("div");
+          subtotalEl.className = "flex justify-between border-t mt-2 pt-2";
+          subtotalEl.innerHTML = `<span data-lang-key="subtotal">${
+            languageContent[lang].subtotal
+          }</span><span>₹${subtotal.toLocaleString("en-IN")}</span>`;
+          yatraDetailsContainer.appendChild(subtotalEl);
+
+          const gstEl = document.createElement("div");
+          gstEl.className = "flex justify-between";
+          gstEl.innerHTML = `<span data-lang-key="gst">${
+            languageContent[lang].gst
+          }</span><span>₹${gstAmount.toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+          })}</span>`;
+          yatraDetailsContainer.appendChild(gstEl);
+
+          const feeEl = document.createElement("div");
+          feeEl.className = "flex justify-between";
+          feeEl.innerHTML = `<span data-lang-key="sevaFee">${
+            languageContent[lang].sevaFee
+          }</span><span>₹${sevaFee.toLocaleString("en-IN")}</span>`;
+          yatraDetailsContainer.appendChild(feeEl);
+
+          if (priceTotalEl)
+            priceTotalEl.innerHTML = `₹<span id="price-total">${totalAmount.toLocaleString(
+              "en-IN",
+              { minimumFractionDigits: 2 }
+            )}</span>`;
+
+          if (confirmAmountEl && formConfirmLabel) {
+            confirmAmountEl.textContent = totalAmount.toLocaleString("en-IN", {
+              minimumFractionDigits: 2,
+            });
+            formConfirmLabel.innerHTML = `${
+              languageContent[lang].formConfirm
+            }${totalAmount.toLocaleString("en-IN", {
+              minimumFractionDigits: 2,
+            })}.`;
+          }
+          validateForm();
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              if (key === "formConfirm") {
+                element.innerHTML = `${
+                  content[key]
+                }${totalAmount.toLocaleString("en-IN", {
+                  minimumFractionDigits: 2,
+                })}.`;
+              } else {
+                element.innerHTML = content[key];
+              }
+            }
+          });
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+          populatePaymentDetails();
+        }
+
+        function validateForm() {
+          let allFilled = true;
+          formInputs.forEach((input) => {
+            if (input.value.trim() === "") allFilled = false;
+          });
+          generateBtn.disabled = !(allFilled && confirmCheckbox.checked);
+        }
+
+        // --- 4. ALL EVENT LISTENERS ---
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        paymentOptions.forEach((option) => {
+          option.addEventListener("click", () => {
+            paymentOptions.forEach((opt) => opt.classList.remove("active"));
+            option.classList.add("active");
+            paymentContents.forEach((content) =>
+              content.classList.add("hidden")
+            );
+            document
+              .getElementById(option.dataset.target)
+              .classList.remove("hidden");
+          });
+        });
+
+        formInputs.forEach((input) =>
+          input.addEventListener("input", validateForm)
+        );
+        confirmCheckbox.addEventListener("change", validateForm);
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          const pilgrimName = document.getElementById("pilgrim-name").value;
+          const transactionId = document.getElementById("transaction-id").value;
+          const lang = document.documentElement.lang || "en";
+          const cartData =
+            JSON.parse(localStorage.getItem("puranicPathCart")) || [];
+
+          document.getElementById("receipt-name").textContent = pilgrimName;
+          document.getElementById("receipt-txn-id").textContent = transactionId;
+          document.getElementById(
+            "receipt-number"
+          ).textContent = `TPP-${Date.now().toString().slice(-6)}`;
+          document.getElementById("receipt-date").textContent =
+            new Date().toLocaleDateString("en-GB");
+
+          const receiptTableBody = document.getElementById(
+            "receipt-items-table"
+          );
+          receiptTableBody.innerHTML = "";
+          let subtotal = 0;
+          cartData.forEach((yatra) => {
+            const name = lang === "hi" ? yatra.name_hi : yatra.name_en;
+            subtotal += yatra.price;
+            const row = document.createElement("tr");
+            row.innerHTML = `<td class="p-2">${name}</td><td class="p-2 text-right">₹${yatra.price.toLocaleString(
+              "en-IN"
+            )}</td>`;
+            receiptTableBody.appendChild(row);
+          });
+
+          const gstAmount = subtotal * 0.05;
+          const sevaFee = 200;
+          document.getElementById("receipt-subtotal").textContent =
+            subtotal.toLocaleString("en-IN", { minimumFractionDigits: 2 });
+          document.getElementById("receipt-gst").textContent =
+            gstAmount.toLocaleString("en-IN", { minimumFractionDigits: 2 });
+          document.getElementById("receipt-seva-fee").textContent =
+            sevaFee.toLocaleString("en-IN", { minimumFractionDigits: 2 });
+          document.getElementById("receipt-total").textContent =
+            totalAmount.toLocaleString("en-IN", { minimumFractionDigits: 2 });
+
+          paymentSection.classList.add("hidden");
+          receiptSection.classList.remove("hidden");
+        });
+
+        downloadBtn.addEventListener("click", function () {
+          const receiptElement = document.getElementById("receipt-to-print");
+          const receiptNumber =
+            document.getElementById("receipt-number").textContent;
+          const options = {
+            margin: 0.5,
+            filename: `Puranic_Path_Receipt_${receiptNumber}.pdf`,
+            image: { type: "jpeg", quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+          };
+          html2pdf().set(options).from(receiptElement).save();
+        });
+
+        window.copyToClipboard = function (text) {
+          navigator.clipboard.writeText(text).then(
+            () => alert("UPI ID copied!"),
+            () => alert("Failed to copy.")
+          );
+        };
+
+        // --- 5. INITIAL PAGE LOAD ---
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

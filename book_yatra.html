@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Your Yatra - The Puranic Path</title>
+    <link rel="icon" type="image/png" href="BrandLogo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f3f4f6;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .add-btn:disabled,
+      #proceed-to-payment-btn:disabled {
+        background-color: #9ca3af;
+        cursor: not-allowed;
+      }
+      .add-btn:disabled:hover,
+      #proceed-to-payment-btn:disabled:hover {
+        background-color: #9ca3af;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <h1
+          href="index.html"
+          class="text-2xl font-bold text-[#8C3B2A]"
+          data-lang-key="mainTitle"
+        >
+          The Puranic Path
+        </h1>
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-[#8C3B2A]" data-lang-key="pageTitle">
+          Select Your Sacred Yatra
+        </h2>
+        <p class="mt-4 text-lg max-w-3xl mx-auto" data-lang-key="pageIntro">
+          Choose the pilgrimage that calls to your soul. Add your desired yatra
+          to begin the booking process.
+        </p>
+      </div>
+
+      <div class="max-w-7xl mx-auto lg:grid lg:grid-cols-3 lg:gap-8">
+        <!-- Left Side: Yatra List -->
+        <div class="lg:col-span-2 bg-[#FDFBF8] p-8 rounded-lg shadow-lg">
+          <h3 class="text-2xl font-bold mb-6" data-lang-key="yatraListTitle">
+            Yatra Offerings
+          </h3>
+          <div id="yatra-list-container" class="space-y-4">
+            <!-- Yatra items will be dynamically inserted here -->
+          </div>
+        </div>
+
+        <!-- Right Side: Booking Summary (Cart) -->
+        <div class="lg:col-span-1 mt-8 lg:mt-0">
+          <div class="bg-[#FDFBF8] p-8 rounded-lg shadow-lg sticky top-28">
+            <h3
+              class="text-2xl font-bold mb-4 border-b pb-2"
+              data-lang-key="summaryTitle"
+            >
+              Booking Summary
+            </h3>
+            <div id="cart-items-container" class="space-y-4 mb-4">
+              <p
+                id="empty-cart-message"
+                class="text-gray-500"
+                data-lang-key="emptyCart"
+              >
+                Your yatra booking is empty.
+              </p>
+            </div>
+            <div id="summary-details" class="border-t pt-4 space-y-2 hidden">
+              <div class="flex justify-between">
+                <span data-lang-key="subtotal">Subtotal</span>
+                <span>₹<span id="subtotal-price">0</span></span>
+              </div>
+              <div class="flex justify-between">
+                <span data-lang-key="sevaFee">Seva & Platform Fee</span>
+                <span>₹<span id="seva-fee">200</span></span>
+              </div>
+              <div
+                class="border-t mt-2 pt-2 flex justify-between font-bold text-lg"
+              >
+                <span data-lang-key="totalAmount">Total Amount</span>
+                <span>₹<span id="total-price">200</span></span>
+              </div>
+            </div>
+            <button
+              id="proceed-to-payment-btn"
+              class="mt-6 w-full text-center text-white text-lg font-bold py-3 px-6 rounded-lg transition-colors duration-300"
+              disabled
+            >
+              <span data-lang-key="proceedBtn">Proceed to Payment</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8 mt-12">
+      <div class="container mx-auto px-6 text-center">
+        <p data-lang-key="footerRights">
+          &copy; 2025 The Puranic Path. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            pageTitle: "Select Your Sacred Yatra",
+            pageIntro:
+              "Choose the pilgrimage that calls to your soul. Add your desired yatra to begin the booking process.",
+            yatraListTitle: "Yatra Offerings",
+            summaryTitle: "Booking Summary",
+            emptyCart: "Your yatra booking is empty.",
+            subtotal: "Subtotal",
+            sevaFee: "Seva & Platform Fee",
+            totalAmount: "Total Amount",
+            proceedBtn: "Proceed to Payment",
+            addBtn: "Add to Yatra",
+            removeBtn: "Remove",
+            addedMsg: "Added",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            pageTitle: "अपनी पवित्र यात्रा चुनें",
+            pageIntro:
+              "उस तीर्थयात्रा को चुनें जो आपकी आत्मा को बुलाती है। बुकिंग प्रक्रिया शुरू करने के लिए अपनी इच्छित यात्रा जोड़ें।",
+            yatraListTitle: "यात्रा प्रस्ताव",
+            summaryTitle: "बुकिंग सारांश",
+            emptyCart: "आपकी यात्रा बुकिंग खाली है।",
+            subtotal: "उप-योग",
+            sevaFee: "सेवा और प्लेटफार्म शुल्क",
+            totalAmount: "कुल राशि",
+            proceedBtn: "भुगतान के लिए आगे बढ़ें",
+            addBtn: "यात्रा में जोड़ें",
+            removeBtn: "हटाएं",
+            addedMsg: "जोड़ा गया",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+        const yatraData = [
+          {
+            id: 1,
+            name_en: "Kashi Divya Darshan",
+            name_hi: "काशी दिव्य दर्शन",
+            duration_en: "7 Days / 6 Nights",
+            duration_hi: "७ दिन / ६ रातें",
+            desc_en: "An immersive journey into Lord Shiva's eternal city.",
+            desc_hi: "भगवान शिव के शाश्वत शहर में एक गहन यात्रा।",
+            price: 25001,
+          },
+          {
+            id: 2,
+            name_en: "Himalayan Char Dham Yatra",
+            name_hi: "हिमालयी चार धाम यात्रा",
+            duration_en: "12 Days / 11 Nights",
+            duration_hi: "१२ दिन / ११ रातें",
+            desc_en: "A sacred journey to the four abodes in the Himalayas.",
+            desc_hi: "हिमालय में चार धामों की एक पवित्र यात्रा।",
+            price: 35001,
+          },
+          {
+            id: 3,
+            name_en: "Dwadash Jyotirlinga Anubhuti",
+            name_hi: "द्वादश ज्योतिर्लिंग अनुभूति",
+            duration_en: "21 Days / 20 Nights",
+            duration_hi: "२१ दिन / २० रातें",
+            desc_en: "A comprehensive pilgrimage to the twelve Jyotirlingas.",
+            desc_hi: "बारह ज्योतिर्लिंगों की एक व्यापक तीर्थयात्रा।",
+            price: 75001,
+          },
+          {
+            id: 4,
+            name_en: "Braj Mandal Parikrama",
+            name_hi: "ब्रज मंडल परिक्रमा",
+            duration_en: "10 Days / 9 Nights",
+            duration_hi: "१० दिन / ९ रातें",
+            desc_en:
+              "Immerse yourself in the divine love of Radha and Krishna.",
+            desc_hi: "राधा और कृष्ण के दिव्य प्रेम में डूब जाएं।",
+            price: 30001,
+          },
+          {
+            id: 5,
+            name_en: "Shakti Pitha Darshan (East)",
+            name_hi: "शक्ति पीठ दर्शन (पूर्वी)",
+            duration_en: "8 Days / 7 Nights",
+            duration_hi: "८ दिन / ७ रातें",
+            desc_en: "Invoke the blessings of the Divine Mother in the East.",
+            desc_hi: "पूर्व में देवी माँ का आशीर्वाद प्राप्त करें।",
+            price: 28001,
+          },
+          {
+            id: 6,
+            name_en: "Ramayan Yatra (Exile Path)",
+            name_hi: "रामायण यात्रा (वनवास पथ)",
+            duration_en: "14 Days / 13 Nights",
+            duration_hi: "१४ दिन / १३ रातें",
+            desc_en: "Follow in the sacred footsteps of Lord Rama.",
+            desc_hi: "भगवान राम के पवित्र पदचिन्हों पर चलें।",
+            price: 51001,
+          },
+          {
+            id: 7,
+            name_en: "Dakshin Tirtha Yatra",
+            name_hi: "दक्षिण तीर्थ यात्रा",
+            duration_en: "11 Days / 10 Nights",
+            duration_hi: "११ दिन / १० रातें",
+            desc_en: "Explore the magnificent temples of South India.",
+            desc_hi: "दक्षिण भारत के शानदार मंदिरों का अन्वेषण करें।",
+            price: 32001,
+          },
+          {
+            id: 8,
+            name_en: "Ganga Darshan Yatra",
+            name_hi: "गंगा दर्शन यात्रा",
+            duration_en: "15 Days / 14 Nights",
+            duration_hi: "१५ दिन / १४ रातें",
+            desc_en: "Journey along the sacred path of Mother Ganga.",
+            desc_hi: "माँ गंगा के पवित्र पथ के साथ यात्रा करें।",
+            price: 45001,
+          },
+          {
+            id: 9,
+            name_en: "Narmada Parikrama (Sectional)",
+            name_hi: "नर्मदा परिक्रमा (खंडीय)",
+            duration_en: "Custom Duration",
+            duration_hi: "कस्टम अवधि",
+            desc_en:
+              "Experience the profound culture of the Narmada riverbank.",
+            desc_hi: "नर्मदा नदी के किनारे की गहन संस्कृति का अनुभव करें।",
+            price: 25001,
+          },
+        ];
+
+        const yatraListContainer = document.getElementById(
+          "yatra-list-container"
+        );
+        const cartItemsContainer = document.getElementById(
+          "cart-items-container"
+        );
+        const emptyCartMessage = document.getElementById("empty-cart-message");
+        const summaryDetails = document.getElementById("summary-details");
+        const subtotalPriceEl = document.getElementById("subtotal-price");
+        const sevaFeeEl = document.getElementById("seva-fee");
+        const totalPriceEl = document.getElementById("total-price");
+        const proceedBtn = document.getElementById("proceed-to-payment-btn");
+        let cart = [];
+
+        function renderYatraList() {
+          yatraListContainer.innerHTML = "";
+          const lang = document.documentElement.lang || "en";
+          yatraData.forEach((yatra) => {
+            const isInCart = cart.some((item) => item.id === yatra.id);
+            const yatraEl = document.createElement("div");
+            yatraEl.className =
+              "flex justify-between items-center bg-white p-4 rounded-lg shadow";
+            const name = lang === "hi" ? yatra.name_hi : yatra.name_en;
+            const duration =
+              lang === "hi" ? yatra.duration_hi : yatra.duration_en;
+            const desc = lang === "hi" ? yatra.desc_hi : yatra.desc_en;
+            yatraEl.innerHTML = `
+                        <div>
+                            <h4 class="text-xl font-bold">${name}</h4>
+                            <p class="text-sm text-gray-600">${duration} - ${desc}</p>
+                            <p class="font-bold text-lg mt-1">₹${yatra.price.toLocaleString(
+                              "en-IN"
+                            )}</p>
+                        </div>
+                        <button class="add-btn bg-[#8C3B2A] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#FF6700] transition-colors duration-300" data-id="${
+                          yatra.id
+                        }" ${isInCart ? "disabled" : ""}>
+                            ${
+                              isInCart
+                                ? languageContent[lang].addedMsg
+                                : languageContent[lang].addBtn
+                            }
+                        </button>
+                    `;
+            yatraListContainer.appendChild(yatraEl);
+          });
+        }
+
+        function renderCart() {
+          cartItemsContainer.innerHTML = "";
+          if (cart.length === 0) {
+            emptyCartMessage.style.display = "block";
+            summaryDetails.classList.add("hidden");
+            proceedBtn.disabled = true;
+            proceedBtn.classList.remove("bg-green-600", "hover:bg-green-700");
+            return;
+          }
+
+          emptyCartMessage.style.display = "none";
+          summaryDetails.classList.remove("hidden");
+          proceedBtn.disabled = false;
+          proceedBtn.classList.add("bg-green-600", "hover:bg-green-700");
+
+          let subtotal = 0;
+          const lang = document.documentElement.lang || "en";
+
+          cart.forEach((yatra) => {
+            subtotal += yatra.price;
+            const name = lang === "hi" ? yatra.name_hi : yatra.name_en;
+            const cartItemEl = document.createElement("div");
+            cartItemEl.className = "flex justify-between items-center";
+            cartItemEl.innerHTML = `
+                        <div>
+                            <p class="font-semibold">${name}</p>
+                            <p class="text-sm">₹${yatra.price.toLocaleString(
+                              "en-IN"
+                            )}</p>
+                        </div>
+                        <button class="remove-btn text-red-600 hover:text-red-800 text-sm" data-id="${
+                          yatra.id
+                        }">${languageContent[lang].removeBtn}</button>
+                    `;
+            cartItemsContainer.appendChild(cartItemEl);
+          });
+
+          const sevaFee = parseFloat(sevaFeeEl.textContent);
+          const totalPrice = subtotal + sevaFee;
+          subtotalPriceEl.textContent = subtotal.toLocaleString("en-IN");
+          totalPriceEl.textContent = totalPrice.toLocaleString("en-IN");
+        }
+
+        yatraListContainer.addEventListener("click", function (e) {
+          if (e.target.classList.contains("add-btn") && !e.target.disabled) {
+            const yatraId = parseInt(e.target.dataset.id);
+            const yatraToAdd = yatraData.find((y) => y.id === yatraId);
+            if (yatraToAdd) {
+              cart.push(yatraToAdd);
+              updateAll();
+            }
+          }
+        });
+
+        cartItemsContainer.addEventListener("click", function (e) {
+          if (e.target.classList.contains("remove-btn")) {
+            const yatraId = parseInt(e.target.dataset.id);
+            cart = cart.filter((item) => item.id !== yatraId);
+            updateAll();
+          }
+        });
+
+        proceedBtn.addEventListener("click", function (e) {
+          if (cart.length > 0) {
+            localStorage.setItem("puranicPathCart", JSON.stringify(cart));
+            window.location.href = "yatra_payment.html";
+          }
+        });
+
+        function updateAll() {
+          renderYatraList();
+          renderCart();
+        }
+
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+          }
+          updateAll();
+        }
+
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>
