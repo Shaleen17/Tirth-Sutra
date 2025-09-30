@@ -42,3 +42,21 @@ html[lang="en"] h6 {
   background-color: #8c3b2a; /* Maroon Accent */
   color: #fdfbf8;
 }
+
+/* --- New Footer Styles --- */
+.footer-bg {
+  background-color: #4a2e2a; /* Your deep brown color */
+  background-image: url("images/footer_background.png");
+  background-blend-mode: multiply;
+  background-size: 400px;
+  color: #fdfbf8;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+}
+.footer-link {
+  color: #e5e7eb; /* A light gray for links */
+  transition: color 0.3s;
+}
+.footer-link:hover {
+  color: #ff6700; /* Your saffron accent color */
+}
