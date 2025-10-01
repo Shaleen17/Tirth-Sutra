@@ -16,7 +16,7 @@
     <style>
       body {
         font-family: "Inter", sans-serif;
-        background-color: #fdfbf8;
+        background-color: #f5d8b5;
         color: #4a2e2a;
       }
       h1,
@@ -40,8 +40,25 @@
         font-family: "Lora", serif;
       }
       .filter-btn.active {
-        background-color: #8c3b2a;
+        background-color: #4a2e2a;
         color: #fdfbf8;
+      }
+      /* --- New Footer Styles --- */
+      .footer-bg {
+        background-color: #4a2e2a; /* Your deep brown color */
+        background-image: url("images/footer_background.png");
+        background-blend-mode: multiply;
+        background-size: 400px;
+        color: #fdfbf8;
+        padding-top: 4rem;
+        padding-bottom: 2rem;
+      }
+      .footer-link {
+        color: #e5e7eb; /* A light gray for links */
+        transition: color 0.3s;
+      }
+      .footer-link:hover {
+        color: #ff6700; /* Your saffron accent color */
       }
     </style>
   </head>
@@ -54,7 +71,7 @@
       >
         <div>
           <h1
-            class="text-2xl font-bold text-[#8C3B2A]"
+            class="text-2xl font-bold text-[#4a2e2a]"
             data-lang-key="mainTitle"
           >
             The Puranic Path
@@ -64,7 +81,7 @@
         <div class="flex items-center border rounded-full p-1 bg-gray-200">
           <button
             id="lang-en"
-            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+            class="px-3 py-1 text-sm rounded-full bg-[#4a2e2a] text-white"
           >
             EN
           </button>
@@ -78,7 +95,7 @@
     <main class="container mx-auto px-6 py-12">
       <div class="text-center mb-12">
         <h2
-          class="text-4xl font-bold text-[#8C3B2A]"
+          class="text-4xl font-bold text-[#4a2e2a]"
           data-lang-key="kathasHeader"
         >
           Sacred Stories of the Tirthas
@@ -95,7 +112,7 @@
       >
         <div class="md:col-span-1 border-r border-gray-200 pr-4">
           <h3
-            class="text-2xl font-bold text-[#8C3B2A] mb-4"
+            class="text-2xl font-bold text-[#4a2e2a] mb-4"
             data-lang-key="filterTitle"
           >
             Filter by Category
@@ -117,7 +134,7 @@
             />
             <h3
               id="katha-title"
-              class="text-3xl font-bold text-[#8C3B2A] mb-4"
+              class="text-3xl font-bold text-[#4a2e2a] mb-4"
             ></h3>
             <div id="katha-story" class="text-lg leading-relaxed space-y-4">
               <!-- Story will be displayed here -->
@@ -127,72 +144,216 @@
       </div>
     </main>
 
-    <footer class="bg-[#4A2E2A] text-[#FDFBF8] py-8">
-      <div class="container mx-auto px-6 text-center">
-        <div class="flex justify-center items-center space-x-6 mb-6">
-          <!-- Social Media Logos -->
-          <a
-            href="mailto:tirthsutra@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Email"
-          >
-            <img
-              src="images/email-logo.png"
-              alt="Email Logo"
-              class="w-8 h-8 hover:opacity-80 transition-opacity"
-            />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/shaleen-singh-552413313/"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="LinkedIn"
-          >
-            <img
-              src="images/linkedin-logo.png"
-              alt="LinkedIn Logo"
-              class="w-8 h-8 hover:opacity-80 transition-opacity"
-            />
-          </a>
-          <a
-            href="https://wa.me/918707757628"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="WhatsApp"
-          >
-            <img
-              src="images/whatsapp-logo.png"
-              alt="WhatsApp Logo"
-              class="w-8 h-8 hover:opacity-80 transition-opacity"
-            />
-          </a>
+    <footer class="footer-bg">
+      <div class="container mx-auto px-6">
+        <!-- Main Footer Grid -->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-left mb-8"
+        >
+          <!-- About Section -->
+          <div>
+            <h3 class="font-bold text-lg mb-4" data-lang-key="footerAbout">
+              About
+            </h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="About-Us.html"
+                  target="_blank"
+                  class="footer-link"
+                  data-lang-key="navAboutUs"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#vision"
+                  class="footer-link"
+                  data-lang-key="navVision"
+                  >Our Vision</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pilgrimages Section -->
+          <div>
+            <h3 class="font-bold text-lg mb-4" data-lang-key="footerYatras">
+              Pilgrimages
+            </h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="Our-Yatras.html"
+                  target="_blank"
+                  class="footer-link"
+                  data-lang-key="navOurYatras"
+                  >Our Yatras</a
+                >
+              </li>
+              <li>
+                <a
+                  href="tirth_kathas.html"
+                  target="_blank"
+                  class="footer-link"
+                  data-lang-key="navTirthaKathas"
+                  >Tirtha Kathas</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Useful Links Section -->
+          <div>
+            <h3 class="font-bold text-lg mb-4" data-lang-key="footerUseful">
+              Useful Links
+            </h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="pilgrims_handbook.html"
+                  target="_blank"
+                  class="footer-link"
+                  data-lang-key="navHandbook"
+                  >Pilgrim's Handbook</a
+                >
+              </li>
+              <li>
+                <a
+                  href="terms_and_conditions.html"
+                  target="_blank"
+                  class="footer-link"
+                  data-lang-key="footerTerms"
+                  >Terms & Conditions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="privacy_policy.html"
+                  target="_blank"
+                  class="footer-link"
+                  data-lang-key="footerPrivacy"
+                  >Privacy Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Us Section -->
+          <div>
+            <h3 class="font-bold text-lg mb-4" data-lang-key="footerContact">
+              Contact Us
+            </h3>
+            <ul class="space-y-4 text-gray-300">
+              <li>
+                <a
+                  href="mailto:tirthsutra@gmail.com"
+                  class="flex items-start space-x-3 footer-link"
+                >
+                  <svg
+                    class="w-6 h-6 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                    ></path>
+                    <path
+                      d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                    ></path>
+                  </svg>
+                  <span>tirthsutra@gmail.com</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/918707757628"
+                  target="_blank"
+                  class="flex items-start space-x-3 footer-link"
+                >
+                  <svg
+                    class="w-6 h-6 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M10.001 2.004a7.974 7.974 0 00-6.425 3.111 8.043 8.043 0 00-1.575 7.485l-1.002 3.651 3.738-1.026a7.993 7.993 0 007.264 1.48A7.971 7.971 0 0018 10.003a8 8 0 00-8-7.999zm4.202 9.479c-.117.188-.43.304-.71.428-.28.12-.66.188-1.076.105-.416-.083-.99-.373-1.85-1.125-.86-.752-1.42-1.68-1.633-1.977-.213-.296-.008-.465.16-.623.15-.14.316-.374.453-.51.137-.137.18-.234.27-.39.09-.157.043-.296-.05-.412s-.66-.156-.906-.213c-.246-.057-.527-.06-.71.106-.18.167-.677.66-.86.837-.184.177-.37.373-.37.75 0 .378.324.877.86 1.418.536.54 1.402 1.344 2.688 2.016a5.556 5.556 0 001.077.378c.316.094.6.14.837.094.28-.057.876-.365 1.002-.71.125-.345.125-.644.088-.71-.037-.066-.14-.105-.257-.213z"
+                    ></path>
+                  </svg>
+                  <span>+91 8707757628</span>
+                </a>
+                <a
+                  href="https://wa.me/919372540885"
+                  target="_blank"
+                  class="flex items-start space-x-3 footer-link"
+                >
+                  <svg
+                    class="w-6 h-6 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M10.001 2.004a7.974 7.974 0 00-6.425 3.111 8.043 8.043 0 00-1.575 7.485l-1.002 3.651 3.738-1.026a7.993 7.993 0 007.264 1.48A7.971 7.971 0 0018 10.003a8 8 0 00-8-7.999zm4.202 9.479c-.117.188-.43.304-.71.428-.28.12-.66.188-1.076.105-.416-.083-.99-.373-1.85-1.125-.86-.752-1.42-1.68-1.633-1.977-.213-.296-.008-.465.16-.623.15-.14.316-.374.453-.51.137-.137.18-.234.27-.39.09-.157.043-.296-.05-.412s-.66-.156-.906-.213c-.246-.057-.527-.06-.71.106-.18.167-.677.66-.86.837-.184.177-.37.373-.37.75 0 .378.324.877.86 1.418.536.54 1.402 1.344 2.688 2.016a5.556 5.556 0 001.077.378c.316.094.6.14.837.094.28-.057.876-.365 1.002-.71.125-.345.125-.644.088-.71-.037-.066-.14-.105-.257-.213z"
+                    ></path>
+                  </svg>
+                  <span>+91 9372540885</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Copyright and Legal Links -->
-        <div class="text-sm text-gray-300">
-          <p data-lang-key="footerRights" class="mb-2">
+        <!-- Bottom Bar: Social Icons & Copyright -->
+        <div
+          class="border-t border-gray-700 pt-6 mt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <!-- Social Media Links with Images -->
+          <div class="flex space-x-6 mb-4 md:mb-0">
+            <!-- LinkedIn Icon -->
+            <a
+              href="https://linkedin.com/in/shaleen-singh-552413313"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="LinkedIn"
+            >
+              <img
+                src="images/linkedin-logo.png"
+                alt="LinkedIn Logo"
+                class="w-7 h-7 hover:opacity-80 transition-opacity"
+              />
+            </a>
+
+            <!-- Email Icon -->
+            <a
+              href="mailto:tirthsutra@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Email"
+            >
+              <img
+                src="images/email-logo.png"
+                alt="Email Logo"
+                class="w-8 h-8 hover:opacity-80 transition-opacity"
+              />
+            </a>
+
+            <!-- WhatsApp Icon -->
+            <a
+              href="https://wa.me/918707757628"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="WhatsApp"
+            >
+              <img
+                src="images/whatsapp-logo.png"
+                alt="WhatsApp Logo"
+                class="w-8 h-8 hover:opacity-80 transition-opacity"
+              />
+            </a>
+          </div>
+          <p class="text-sm text-gray-400" data-lang-key="footerRights">
             &copy; 2025 The Puranic Path. All Rights Reserved.
           </p>
-          <div
-            class="flex flex-col sm:flex-row justify-center items-center sm:space-x-4"
-          >
-            <a
-              href="terms_and_conditions.html"
-              target="_blank"
-              class="hover:text-white"
-              data-lang-key="footerTerms"
-              >Terms & Condition</a
-            >
-            <span class="hidden sm:inline">|</span>
-            <a
-              href="privacy_policy.html"
-              target="_blank"
-              class="hover:text-white"
-              data-lang-key="footerPrivacy"
-              >Privacy Policy</a
-            >
-          </div>
         </div>
       </div>
     </footer>
@@ -986,17 +1147,17 @@
           if (lang === "hi") {
             document
               .getElementById("lang-hi")
-              .classList.add("bg-[#8C3B2A]", "text-white");
+              .classList.add("bg-[#4a2e2a]", "text-white");
             document
               .getElementById("lang-en")
-              .classList.remove("bg-[#8C3B2A]", "text-white");
+              .classList.remove("bg-[#4a2e2a]", "text-white");
           } else {
             document
               .getElementById("lang-en")
-              .classList.add("bg-[#8C3B2A]", "text-white");
+              .classList.add("bg-[#4a2e2a]", "text-white");
             document
               .getElementById("lang-hi")
-              .classList.remove("bg-[#8C3B2A]", "text-white");
+              .classList.remove("bg-[#4a2e2a]", "text-white");
           }
           populateFilterButtons();
           populateKathaList();
@@ -1016,10 +1177,10 @@
 
           document.querySelectorAll("#katha-list button").forEach((btn) => {
             if (btn.dataset.index == index) {
-              btn.classList.add("bg-[#8C3B2A]", "text-white");
+              btn.classList.add("bg-[#4a2e2a]", "text-white");
               btn.classList.remove("hover:bg-gray-100");
             } else {
-              btn.classList.remove("bg-[#8C3B2A]", "text-white");
+              btn.classList.remove("bg-[#4a2e2a]", "text-white");
               btn.classList.add("hover:bg-gray-100");
             }
           });
@@ -1080,7 +1241,7 @@
           categories.forEach((category) => {
             const button = document.createElement("button");
             button.className =
-              "filter-btn px-3 py-1 text-sm rounded-full border border-[#8C3B2A]";
+              "filter-btn px-3 py-1 text-sm rounded-full border border-[#4a2e2a]";
             button.textContent = categoryNames[currentLang][category];
             if (category === currentFilter) {
               button.classList.add("active");

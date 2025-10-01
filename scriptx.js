@@ -477,11 +477,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if (lang === "hi") {
-      langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
-      langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+      langHiBtn.classList.add("bg-[#4a2e2a]", "text-white");
+      langEnBtn.classList.remove("bg-[#4a2e2a]", "text-white");
     } else {
-      langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
-      langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+      langEnBtn.classList.add("bg-[#4a2e2a]", "text-white");
+      langHiBtn.classList.remove("bg-[#4a2e2a]", "text-white");
     }
     renderYatraCards();
   }

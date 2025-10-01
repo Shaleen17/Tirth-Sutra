@@ -39,7 +39,7 @@ html[lang="en"] h6 {
   transition: background-color 0.3s, color 0.3s;
 }
 .tab-button.active {
-  background-color: #8c3b2a; /* Maroon Accent */
+  background-color: #4a2e2a; /* Maroon Accent */
   color: #fdfbf8;
 }
 
