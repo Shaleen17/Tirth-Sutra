@@ -60,3 +60,44 @@ html[lang="en"] h6 {
 .footer-link:hover {
   color: #ff6700; /* Your saffron accent color */
 }
+
+/* --- New, Thinner Flowing Banner Styles --- */
+.flowing-banner-continuous {
+  background-color: #4a2e2a; /* Your deep brown color */
+  color: #fdfbf8;
+  padding: 0.75rem 0; /* Reduced padding to make the strip thinner */
+  white-space: nowrap;
+  overflow: hidden;
+  border-top: 1px solid #8c3b2a;
+  border-bottom: 1px solid #8c3b2a;
+}
+
+.flowing-text-continuous {
+  display: inline-block;
+  animation: flow-left 60s linear infinite;
+}
+
+.text-item {
+  display: inline-block;
+  font-family: "Lora", serif;
+  font-size: 1rem; /* Reduced font size for a more subtle look */
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 1.5rem; /* Adjusted margin */
+  letter-spacing: 1.5px;
+}
+
+.text-item::after {
+  content: "•";
+  margin-left: 1.5rem;
+  color: #ff6700; /* Saffron accent color */
+}
+
+@keyframes flow-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

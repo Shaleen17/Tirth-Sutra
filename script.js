@@ -102,6 +102,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "Stay connected to the source. Sign up for our monthly newsletter to receive new stories, scriptural insights, and updates on our sacred yatras directly in your inbox.",
       newsletterPlaceholder: "Enter your email address",
       newsletterButton: "Sign Up",
+      taglineFlow:
+        "Rooted in Sanatan Dharma, qualified by our spiritual leaders",
       footerTerms: "Terms & Condition",
       footerPrivacy: "Privacy Policy",
       footerRights: "© 2025 The Puranic Path. All Rights Reserved.",
@@ -211,6 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "स्रोत से जुड़े रहें। नई कहानियाँ, शास्त्रीय अंतर्दृष्टि और हमारी पवित्र यात्राओं पर अपडेट सीधे अपने इनबॉक्स में प्राप्त करने के लिए हमारे मासिक न्यूज़लेटर के लिए साइन अप करें।",
       newsletterPlaceholder: "अपना ईमेल पता दर्ज करें",
       newsletterButton: "साइन अप करें",
+      taglineFlow: "सनातन धर्म पर आधारित, संत-महात्माओं से अनुमोदित।",
       footerTerms: "नियम एवं शर्तें",
       footerPrivacy: "गोपनीयता नीति",
       footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
