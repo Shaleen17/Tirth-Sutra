@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Spiritual Network - The Puranic Path</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Hindi:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f5d8b5;
+        color: #4a2e2a;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lora", serif;
+      }
+      html[lang="hi"] body,
+      html[lang="hi"] [data-lang-key] {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      /* --- New Footer Styles --- */
+      .footer-bg {
+        background-color: #4a2e2a; /* Your deep brown color */
+        background-image: url("images/footer_background.png");
+        background-blend-mode: multiply;
+        background-size: 400px;
+        color: #fdfbf8;
+        padding-top: 4rem;
+        padding-bottom: 2rem;
+      }
+      .footer-link {
+        color: #e5e7eb; /* A light gray for links */
+        transition: color 0.3s;
+      }
+      .footer-link:hover {
+        color: #ff6700; /* Your saffron accent color */
+      }
+
+      /* --- New, Thinner Flowing Banner Styles --- */
+      .flowing-banner-continuous {
+        background-color: #4a2e2a; /* Your deep brown color */
+        color: #fdfbf8;
+        padding: 0.75rem 0; /* Reduced padding to make the strip thinner */
+        white-space: nowrap;
+        overflow: hidden;
+        border-top: 1px solid #8c3b2a;
+        border-bottom: 1px solid #8c3b2a;
+      }
+
+      .flowing-text-continuous {
+        display: inline-block;
+        animation: flow-left 60s linear infinite;
+      }
+
+      .text-item {
+        display: inline-block;
+        font-family: "Lora", serif;
+        font-size: 1rem; /* Reduced font size for a more subtle look */
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 0 1.5rem; /* Adjusted margin */
+        letter-spacing: 1.5px;
+      }
+
+      .text-item::after {
+        content: "•";
+        margin-left: 1.5rem;
+        color: #ff6700; /* Saffron accent color */
+      }
+
+      @keyframes flow-left {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header
+      class="bg-[#FDFBF8]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <h1
+          href="index.html"
+          class="text-2xl font-bold text-[#4a2e2a]"
+          data-lang-key="mainTitle"
+        >
+          The Puranic Path
+        </h1>
+        <div class="flex items-center border rounded-full p-1 bg-gray-200">
+          <button
+            id="lang-en"
+            class="px-3 py-1 text-sm rounded-full bg-[#4a2e2a] text-white"
+          >
+            EN
+          </button>
+          <button id="lang-hi" class="px-3 py-1 text-sm rounded-full">
+            HI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-[#4a2e2a]" data-lang-key="pageTitle">
+          Our Spiritual Network
+        </h2>
+        <p class="mt-4 text-lg max-w-3xl mx-auto" data-lang-key="pageIntro">
+          Our mission is supported by a network of authentic Ashrams, Maths, and
+          Dharmshalas across Bharatavarsha. These sacred institutions are the
+          foundation of our pilgrimages, providing a pure and simple environment
+          for the sincere yatri.
+        </p>
+      </div>
+
+      <!-- Filter and List Section -->
+      <div class="mt-12">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center mb-6"
+        >
+          <h3
+            class="text-3xl font-bold text-[#4a2e2a]"
+            data-lang-key="listTitle"
+          >
+            Connected Centers
+          </h3>
+          <div class="mt-4 md:mt-0">
+            <label
+              for="state-filter"
+              class="font-semibold mr-2"
+              data-lang-key="filterLabel"
+              >Filter by State:</label
+            >
+            <select
+              id="state-filter"
+              class="p-2 border border-gray-300 rounded-lg bg-white"
+            >
+              <!-- Options will be dynamically inserted here -->
+            </select>
+          </div>
+        </div>
+        <div id="center-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Center Card 1 -->
+          <div
+            class="bg-white rounded-lg shadow-lg transform hover:-translate-y-1 transition-transform overflow-hidden"
+            data-state="Uttar Pradesh"
+          >
+            <img
+              src="images/dharmshala1.jpg"
+              alt="Gita Press Dharmshala"
+              class="w-full h-48 object-cover"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x400/FBEEDB/4A2E2A?text=Ashram';"
+            />
+            <div class="p-6">
+              <h4
+                class="text-xl font-bold text-[#8C3B2A]"
+                data-lang-key="centerName1"
+              >
+                Gita Press Dharmshala
+              </h4>
+              <p class="text-sm font-semibold" data-lang-key="centerAddress1">
+                Near Vishwanath Temple, Varanasi
+              </p>
+              <p class="mt-2 text-gray-700" data-lang-key="centerDesc1">
+                A serene stay providing a spiritual atmosphere.
+              </p>
+            </div>
+          </div>
+          <!-- Center Card 2 -->
+          <div
+            class="bg-white rounded-lg shadow-lg transform hover:-translate-y-1 transition-transform overflow-hidden"
+            data-state="Uttarakhand"
+          >
+            <img
+              src="images/dharmshala2.jpg"
+              alt="Parmarth Niketan Ashram"
+              class="w-full h-48 object-cover"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x400/FBEEDB/4A2E2A?text=Ashram';"
+            />
+            <div class="p-6">
+              <h4
+                class="text-xl font-bold text-[#8C3B2A]"
+                data-lang-key="centerName2"
+              >
+                Parmarth Niketan Ashram
+              </h4>
+              <p class="text-sm font-semibold" data-lang-key="centerAddress2">
+                Rishikesh, Uttarakhand
+              </p>
+              <p class="mt-2 text-gray-700" data-lang-key="centerDesc2">
+                Renowned for its Ganga Aarti and spiritual courses.
+              </p>
+            </div>
+          </div>
+          <!-- Center Card 3 -->
+          <div
+            class="bg-white rounded-lg shadow-lg transform hover:-translate-y-1 transition-transform overflow-hidden"
+            data-state="Odisha"
+          >
+            <img
+              src="images/dharmshala3.jpg"
+              alt="Govardhan Math"
+              class="w-full h-48 object-cover"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x400/FBEEDB/4A2E2A?text=Ashram';"
+            />
+            <div class="p-6">
+              <h4
+                class="text-xl font-bold text-[#8C3B2A]"
+                data-lang-key="centerName3"
+              >
+                Govardhan Math
+              </h4>
+              <p class="text-sm font-semibold" data-lang-key="centerAddress3">
+                Puri, Odisha
+              </p>
+              <p class="mt-2 text-gray-700" data-lang-key="centerDesc3">
+                One of the four cardinal maths established by Adi
+                Shankaracharya.
+              </p>
+            </div>
+          </div>
+          <!-- Center Card 4 -->
+          <div
+            class="bg-white rounded-lg shadow-lg transform hover:-translate-y-1 transition-transform overflow-hidden"
+            data-state="Gujarat"
+          >
+            <img
+              src="images/dharmshala4.jpg"
+              alt="Bangur Dharmshala"
+              class="w-full h-48 object-cover"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x400/FBEEDB/4A2E2A?text=Ashram';"
+            />
+            <div class="p-6">
+              <h4
+                class="text-xl font-bold text-[#8C3B2A]"
+                data-lang-key="centerName4"
+              >
+                Bangur Dharmshala
+              </h4>
+              <p class="text-sm font-semibold" data-lang-key="centerAddress4">
+                Near Dwarkadhish Temple, Dwarka
+              </p>
+              <p class="mt-2 text-gray-700" data-lang-key="centerDesc4">
+                Providing comfortable lodging for pilgrims visiting Dwarka.
+              </p>
+            </div>
+          </div>
+          <!-- Center Card 5 -->
+          <div
+            class="bg-white rounded-lg shadow-lg transform hover:-translate-y-1 transition-transform overflow-hidden"
+            data-state="Karnataka"
+          >
+            <img
+              src="images/dharmshala5.jpg"
+              alt="Sringeri Sharada Peetham"
+              class="w-full h-48 object-cover"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x400/FBEEDB/4A2E2A?text=Ashram';"
+            />
+            <div class="p-6">
+              <h4
+                class="text-xl font-bold text-[#8C3B2A]"
+                data-lang-key="centerName5"
+              >
+                Sringeri Sharada Peetham
+              </h4>
+              <p class="text-sm font-semibold" data-lang-key="centerAddress5">
+                Sringeri, Karnataka
+              </p>
+              <p class="mt-2 text-gray-700" data-lang-key="centerDesc5">
+                The southern math established by Adi Shankaracharya.
+              </p>
+            </div>
+          </div>
+          <!-- Center Card 6 -->
+          <div
+            class="bg-white rounded-lg shadow-lg transform hover:-translate-y-1 transition-transform overflow-hidden"
+            data-state="Uttarakhand"
+          >
+            <img
+              src="images/dharmshala6.jpg"
+              alt="Kali Kamli Dharmshala"
+              class="w-full h-48 object-cover"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x400/FBEEDB/4A2E2A?text=Ashram';"
+            />
+            <div class="p-6">
+              <h4
+                class="text-xl font-bold text-[#8C3B2A]"
+                data-lang-key="centerName6"
+              >
+                Kali Kamli Dharmshala
+              </h4>
+              <p class="text-sm font-semibold" data-lang-key="centerAddress6">
+                Haridwar, Uttarakhand
+              </p>
+              <p class="mt-2 text-gray-700" data-lang-key="centerDesc6">
+                A historic institution providing shelter on the banks of Ganga.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guiding Saints Section -->
+      <section class="mt-16">
+        <div class="text-center mb-12">
+          <h2
+            class="text-4xl font-bold text-[#4a2e2a]"
+            data-lang-key="santsTitle"
+          >
+            Our Guiding Saints
+          </h2>
+          <p class="mt-4 text-lg max-w-3xl mx-auto" data-lang-key="santsIntro">
+            The spiritual lineage and teachings that inspire our path.
+          </p>
+        </div>
+        <div id="sant-list" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Sant Card 1: Adi Shankaracharya -->
+          <div
+            class="bg-white/60 rounded-lg shadow-lg text-center p-6 transform hover:-translate-y-1 transition-transform"
+          >
+            <img
+              src="images/sant_shankara.jpg"
+              alt="Adi Shankaracharya"
+              class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-white shadow-md"
+              onerror="this.onerror=null;this.src='https://placehold.co/300x300/FBEEDB/4A2E2A?text=Sant';"
+            />
+            <div class="mt-4">
+              <h4
+                class="text-lg font-bold text-[#8C3B2A]"
+                data-lang-key="santName1"
+              >
+                Adi Shankaracharya
+              </h4>
+              <p class="mt-1 text-sm text-gray-700" data-lang-key="santDesc1">
+                Founder of the Advaita Vedanta school of philosophy.
+              </p>
+            </div>
+          </div>
+          <!-- Sant Card 2: Ramakrishna Paramahamsa -->
+          <div
+            class="bg-white/60 rounded-lg shadow-lg text-center p-6 transform hover:-translate-y-1 transition-transform"
+          >
+            <img
+              src="images/sant_ramakrishna.jpg"
+              alt="Ramakrishna Paramahamsa"
+              class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-white shadow-md"
+              onerror="this.onerror=null;this.src='https://placehold.co/300x300/FBEEDB/4A2E2A?text=Sant';"
+            />
+            <div class="mt-4">
+              <h4
+                class="text-lg font-bold text-[#8C3B2A]"
+                data-lang-key="santName2"
+              >
+                Ramakrishna Paramahamsa
+              </h4>
+              <p class="mt-1 text-sm text-gray-700" data-lang-key="santDesc2">
+                A 19th-century mystic and spiritual master.
+              </p>
+            </div>
+          </div>
+          <!-- Sant Card 3: Swami Vivekananda -->
+          <div
+            class="bg-white/60 rounded-lg shadow-lg text-center p-6 transform hover:-translate-y-1 transition-transform"
+          >
+            <img
+              src="images/sant_vivekananda.jpg"
+              alt="Swami Vivekananda"
+              class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-white shadow-md"
+              onerror="this.onerror=null;this.src='https://placehold.co/300x300/FBEEDB/4A2E2A?text=Sant';"
+            />
+            <div class="mt-4">
+              <h4
+                class="text-lg font-bold text-[#8C3B2A]"
+                data-lang-key="santName3"
+              >
+                Swami Vivekananda
+              </h4>
+              <p class="mt-1 text-sm text-gray-700" data-lang-key="santDesc3">
+                A key figure in the introduction of Vedanta to the Western
+                world.
+              </p>
+            </div>
+          </div>
+          <!-- Sant Card 4: Ramana Maharshi -->
+          <div
+            class="bg-white/60 rounded-lg shadow-lg text-center p-6 transform hover:-translate-y-1 transition-transform"
+          >
+            <img
+              src="images/sant_ramana.jpg"
+              alt="Ramana Maharshi"
+              class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-white shadow-md"
+              onerror="this.onerror=null;this.src='https://placehold.co/300x300/FBEEDB/4A2E2A?text=Sant';"
+            />
+            <div class="mt-4">
+              <h4
+                class="text-lg font-bold text-[#8C3B2A]"
+                data-lang-key="santName4"
+              >
+                Ramana Maharshi
+              </h4>
+              <p class="mt-1 text-sm text-gray-700" data-lang-key="santDesc4">
+                A sage who taught the path of self-enquiry.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-bg">
+      <div class="container mx-auto px-6">
+        <!-- Main Footer Grid -->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-left mb-8"
+        >
+          <!-- About Section -->
+          <div>
+            <h3 class="font-bold text-lg mb-4" data-lang-key="footerAbout">
+              About
+            </h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="About-Us.html"
+                  target="_blank"
+                  class="footer-link"
+                  data-lang-key="navAboutUs"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#vision"
+                  class="footer-link"
+                  data-lang-key="navVision"
+                  >Our Vision</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#vision"
+                  class="footer-link"
+                  data-lang-key="navVerifiedBy"
+                  >Verified By</a
+                >
+              </li>
+              <li>
+                <a
+                  href="network.html"
+                  class="footer-link"
+                  data-lang-key="navConnectedCenter"
+                  >Connected Center</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pilgrimages Section -->
+          <div>
+            <h3 class="font-bold text-lg mb-4" data-lang-key="footerYatras">
+              Pilgrimages
+            </h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="Our-Yatras.html"
+                  target="_blank"
+                  class="footer-link"
+                  data-lang-key="navOurYatras"
+                  >Our Yatras</a
+                >
+              </li>
+              <li>
+                <a
+                  href="tirth_kathas.html"
+                  target="_blank"
+                  class="footer-link"
+                  data-lang-key="navTirthaKathas"
+                  >Tirtha Kathas</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Useful Links Section -->
+          <div>
+            <h3 class="font-bold text-lg mb-4" data-lang-key="footerUseful">
+              Useful Links
+            </h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="pilgrims_handbook.html"
+                  target="_blank"
+                  class="footer-link"
+                  data-lang-key="navHandbook"
+                  >Pilgrim's Handbook</a
+                >
+              </li>
+              <li>
+                <a
+                  href="terms_and_conditions.html"
+                  target="_blank"
+                  class="footer-link"
+                  data-lang-key="footerTerms"
+                  >Terms & Conditions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="privacy_policy.html"
+                  target="_blank"
+                  class="footer-link"
+                  data-lang-key="footerPrivacy"
+                  >Privacy Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Us Section -->
+          <div>
+            <h3 class="font-bold text-lg mb-4" data-lang-key="footerContact">
+              Contact Us
+            </h3>
+            <ul class="space-y-4 text-gray-300">
+              <li>
+                <a
+                  href="mailto:tirthsutra@gmail.com"
+                  class="flex items-start space-x-3 footer-link"
+                >
+                  <svg
+                    class="w-6 h-6 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                    ></path>
+                    <path
+                      d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                    ></path>
+                  </svg>
+                  <span>tirthsutra@gmail.com</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/918707757628"
+                  target="_blank"
+                  class="flex items-start space-x-3 footer-link"
+                >
+                  <svg
+                    class="w-6 h-6 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M10.001 2.004a7.974 7.974 0 00-6.425 3.111 8.043 8.043 0 00-1.575 7.485l-1.002 3.651 3.738-1.026a7.993 7.993 0 007.264 1.48A7.971 7.971 0 0018 10.003a8 8 0 00-8-7.999zm4.202 9.479c-.117.188-.43.304-.71.428-.28.12-.66.188-1.076.105-.416-.083-.99-.373-1.85-1.125-.86-.752-1.42-1.68-1.633-1.977-.213-.296-.008-.465.16-.623.15-.14.316-.374.453-.51.137-.137.18-.234.27-.39.09-.157.043-.296-.05-.412s-.66-.156-.906-.213c-.246-.057-.527-.06-.71.106-.18.167-.677.66-.86.837-.184.177-.37.373-.37.75 0 .378.324.877.86 1.418.536.54 1.402 1.344 2.688 2.016a5.556 5.556 0 001.077.378c.316.094.6.14.837.094.28-.057.876-.365 1.002-.71.125-.345.125-.644.088-.71-.037-.066-.14-.105-.257-.213z"
+                    ></path>
+                  </svg>
+                  <span>+91 8707757628</span>
+                </a>
+                <a
+                  href="https://wa.me/919372540885"
+                  target="_blank"
+                  class="flex items-start space-x-3 footer-link"
+                >
+                  <svg
+                    class="w-6 h-6 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M10.001 2.004a7.974 7.974 0 00-6.425 3.111 8.043 8.043 0 00-1.575 7.485l-1.002 3.651 3.738-1.026a7.993 7.993 0 007.264 1.48A7.971 7.971 0 0018 10.003a8 8 0 00-8-7.999zm4.202 9.479c-.117.188-.43.304-.71.428-.28.12-.66.188-1.076.105-.416-.083-.99-.373-1.85-1.125-.86-.752-1.42-1.68-1.633-1.977-.213-.296-.008-.465.16-.623.15-.14.316-.374.453-.51.137-.137.18-.234.27-.39.09-.157.043-.296-.05-.412s-.66-.156-.906-.213c-.246-.057-.527-.06-.71.106-.18.167-.677.66-.86.837-.184.177-.37.373-.37.75 0 .378.324.877.86 1.418.536.54 1.402 1.344 2.688 2.016a5.556 5.556 0 001.077.378c.316.094.6.14.837.094.28-.057.876-.365 1.002-.71.125-.345.125-.644.088-.71-.037-.066-.14-.105-.257-.213z"
+                    ></path>
+                  </svg>
+                  <span>+91 9372540885</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom Bar: Social Icons & Copyright -->
+        <div
+          class="border-t border-gray-700 pt-6 mt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <!-- Social Media Links with Images -->
+          <div class="flex space-x-6 mb-4 md:mb-0">
+            <!-- LinkedIn Icon -->
+            <a
+              href="https://linkedin.com/in/shaleen-singh-552413313"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="LinkedIn"
+            >
+              <img
+                src="images/linkedin-logo.png"
+                alt="LinkedIn Logo"
+                class="w-7 h-7 hover:opacity-80 transition-opacity"
+              />
+            </a>
+
+            <!-- Email Icon -->
+            <a
+              href="mailto:tirthsutra@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Email"
+            >
+              <img
+                src="images/email-logo.png"
+                alt="Email Logo"
+                class="w-8 h-8 hover:opacity-80 transition-opacity"
+              />
+            </a>
+
+            <!-- WhatsApp Icon -->
+            <a
+              href="https://wa.me/918707757628"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="WhatsApp"
+            >
+              <img
+                src="images/whatsapp-logo.png"
+                alt="WhatsApp Logo"
+                class="w-8 h-8 hover:opacity-80 transition-opacity"
+              />
+            </a>
+          </div>
+          <p class="text-sm text-gray-400" data-lang-key="footerRights">
+            &copy; 2025 The Puranic Path. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- 1. ALL DATA ---
+        const languageContent = {
+          en: {
+            mainTitle: "The Puranic Path",
+            pageTitle: "Our Spiritual Network",
+            pageIntro:
+              "Our mission is supported by a network of authentic Ashrams, Maths, and Dharmshalas across Bharatavarsha. These sacred institutions are the foundation of our pilgrimages, providing a pure and simple environment for the sincere yatri.",
+            listTitle: "Connected Centers",
+            filterLabel: "Filter by State:",
+            allStates: "All States",
+            centerName1: "Gita Press Dharmshala",
+            centerAddress1: "Near Vishwanath Temple, Varanasi",
+            centerDesc1: "A serene stay providing a spiritual atmosphere.",
+            centerName2: "Parmarth Niketan Ashram",
+            centerAddress2: "Rishikesh, Uttarakhand",
+            centerDesc2: "Renowned for its Ganga Aarti and spiritual courses.",
+            centerName3: "Govardhan Math",
+            centerAddress3: "Puri, Odisha",
+            centerDesc3:
+              "One of the four cardinal maths established by Adi Shankaracharya.",
+            centerName4: "Bangur Dharmshala",
+            centerAddress4: "Near Dwarkadhish Temple, Dwarka",
+            centerDesc4:
+              "Providing comfortable lodging for pilgrims visiting Dwarka.",
+            centerName5: "Sringeri Sharada Peetham",
+            centerAddress5: "Sringeri, Karnataka",
+            centerDesc5: "The southern math established by Adi Shankaracharya.",
+            centerName6: "Kali Kamli Dharmshala",
+            centerAddress6: "Haridwar, Uttarakhand",
+            centerDesc6:
+              "A historic institution providing shelter on the banks of Ganga.",
+            santsTitle: "Our Guiding Saints",
+            santsIntro:
+              "The spiritual lineage and teachings that inspire our path.",
+            santName1: "Adi Shankaracharya",
+            santDesc1: "Founder of the Advaita Vedanta school of philosophy.",
+            santName2: "Ramakrishna Paramahamsa",
+            santDesc2: "A 19th-century mystic and spiritual master.",
+            santName3: "Swami Vivekananda",
+            santDesc3:
+              "A key figure in the introduction of Vedanta to the Western world.",
+            santName4: "Ramana Maharshi",
+            santDesc4: "A sage who taught the path of self-enquiry.",
+            footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+          },
+          hi: {
+            mainTitle: "पौराणिक पथ",
+            pageTitle: "हमारा आध्यात्मिक नेटवर्क",
+            pageIntro:
+              "हमारा मिशन भारतवर्ष भर में प्रामाणिक आश्रमों, मठों और धर्मशालाओं के एक नेटवर्क द्वारा समर्थित है। ये पवित्र संस्थान हमारी तीर्थयात्राओं की नींव हैं, जो सच्चे यात्री के लिए एक शुद्ध और सरल वातावरण प्रदान करते हैं।",
+            listTitle: "संबद्ध केंद्र",
+            filterLabel: "राज्य के अनुसार फ़िल्टर करें:",
+            allStates: "सभी राज्य",
+            centerName1: "गीता प्रेस धर्मशाला",
+            centerAddress1: "विश्वनाथ मंदिर के पास, वाराणसी",
+            centerDesc1: "एक शांत प्रवास जो आध्यात्मिक वातावरण प्रदान करता है।",
+            centerName2: "परमार्थ निकेतन आश्रम",
+            centerAddress2: "ऋषिकेश, उत्तराखंड",
+            centerDesc2:
+              "अपनी गंगा आरती और आध्यात्मिक पाठ्यक्रमों के लिए प्रसिद्ध।",
+            centerName3: "गोवर्धन मठ",
+            centerAddress3: "पुरी, ओडिशा",
+            centerDesc3:
+              "आदि शंकराचार्य द्वारा स्थापित चार प्रमुख मठों में से एक।",
+            centerName4: "बांगड़ धर्मशाला",
+            centerAddress4: "द्वारकाधीश मंदिर के पास, द्वारका",
+            centerDesc4:
+              "द्वारका आने वाले तीर्थयात्रियों के लिए आरामदायक आवास प्रदान करना।",
+            centerName5: "श्रृंगेरी शारदा पीठम",
+            centerAddress5: "श्रृंगेरी, कर्नाटक",
+            centerDesc5: "आदि शंकराचार्य द्वारा स्थापित दक्षिणी मठ।",
+            centerName6: "काली कमली धर्मशाला",
+            centerAddress6: "हरिद्वार, उत्तराखंड",
+            centerDesc6:
+              "गंगा के तट पर आश्रय प्रदान करने वाली एक ऐतिहासिक संस्था।",
+            santsTitle: "हमारे मार्गदर्शक संत",
+            santsIntro:
+              "आध्यात्मिक वंश और शिक्षाएँ जो हमारे पथ को प्रेरित करती हैं।",
+            santName1: "आदि शंकराचार्य",
+            santDesc1: "अद्वैत वेदान्त दर्शन के संस्थापक।",
+            santName2: "रामकृष्ण परमहंस",
+            santDesc2: "19वीं सदी के रहस्यवादी और आध्यात्मिक गुरु।",
+            santName3: "स्वामी विवेकानन्द",
+            santDesc3:
+              "पश्चिमी दुनिया में वेदान्त के परिचय में एक प्रमुख व्यक्ति।",
+            santName4: "रमण महर्षि",
+            santDesc4: "एक ऋषि जिन्होंने आत्म-अन्वेषण का मार्ग सिखाया।",
+            footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+          },
+        };
+
+        const statesData = [
+          { en: "Uttar Pradesh", hi: "उत्तर प्रदेश" },
+          { en: "Uttarakhand", hi: "उत्तराखंड" },
+          { en: "Odisha", hi: "ओडिशा" },
+          { en: "Gujarat", hi: "गुजरात" },
+          { en: "Karnataka", hi: "कर्नाटक" },
+        ];
+
+        // --- 2. ELEMENTS ---
+        const langEnBtn = document.getElementById("lang-en");
+        const langHiBtn = document.getElementById("lang-hi");
+        const stateFilter = document.getElementById("state-filter");
+
+        // --- 3. FUNCTIONS ---
+        function filterCenters(selectedState) {
+          const centerCards = document.querySelectorAll("#center-list > div");
+          centerCards.forEach((card) => {
+            if (
+              selectedState === "All" ||
+              card.getAttribute("data-state") === selectedState
+            ) {
+              card.style.display = "block";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        }
+
+        function populateFilter() {
+          const lang = document.documentElement.lang || "en";
+          // Create a unique list of states based on the `en` name to avoid duplicates
+          const uniqueStates = [
+            ...new Map(statesData.map((item) => [item["en"], item])).values(),
+          ];
+
+          stateFilter.innerHTML = `<option value="All">${languageContent[lang].allStates}</option>`;
+          uniqueStates.forEach((state) => {
+            const stateName = lang === "hi" ? state.hi : state.en;
+            stateFilter.innerHTML += `<option value="${state.en}">${stateName}</option>`;
+          });
+        }
+
+        function updateLanguage(lang) {
+          document.documentElement.lang = lang;
+          const content = languageContent[lang];
+          document.querySelectorAll("[data-lang-key]").forEach((element) => {
+            const key = element.getAttribute("data-lang-key");
+            if (content[key]) {
+              element.innerHTML = content[key];
+            }
+          });
+
+          if (lang === "hi") {
+            langHiBtn.classList.add("bg-[#4a2e2a]", "text-white");
+            langEnBtn.classList.remove("bg-[#4a2e2a]", "text-white");
+          } else {
+            langEnBtn.classList.add("bg-[#4a2e2a]", "text-white");
+            langHiBtn.classList.remove("bg-[#4a2e2a]", "text-white");
+          }
+
+          populateFilter();
+          filterCenters(stateFilter.value);
+        }
+
+        // --- 4. EVENT LISTENERS ---
+        langEnBtn.addEventListener("click", () => updateLanguage("en"));
+        langHiBtn.addEventListener("click", () => updateLanguage("hi"));
+        stateFilter.addEventListener("change", (e) =>
+          filterCenters(e.target.value)
+        );
+
+        // --- 5. INITIALIZATION ---
+        updateLanguage("en");
+      });
+    </script>
+  </body>
+</html>

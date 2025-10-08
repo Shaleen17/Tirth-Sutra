@@ -39,7 +39,7 @@
       }
       .payment-option.active {
         background-color: #fbeedb;
-        border-left-color: #8c3b2a;
+        border-left-color: #4a2e2a;
       }
       .receipt-container {
         border: 1px solid #d9a05b;
@@ -53,7 +53,7 @@
         left: 50%;
         transform: translate(-50%, -50%) rotate(-45deg);
         font-size: 5rem;
-        color: #8c3b2a;
+        color: #4a2e2a;
         opacity: 0.05;
         font-weight: bold;
         pointer-events: none;
@@ -87,7 +87,7 @@
       >
         <h1
           href="index.html"
-          class="text-2xl font-bold text-[#8C3B2A]"
+          class="text-2xl font-bold text-[#4a2e2a]"
           data-lang-key="mainTitle"
         >
           The Puranic Path
@@ -95,7 +95,7 @@
         <div class="flex items-center border rounded-full p-1 bg-gray-200">
           <button
             id="lang-en"
-            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+            class="px-3 py-1 text-sm rounded-full bg-[#4a2e2a] text-white"
           >
             EN
           </button>
@@ -260,7 +260,7 @@
                     <input
                       type="checkbox"
                       id="payment-confirm-checkbox"
-                      class="form-input h-4 w-4 text-[#8C3B2A] border-gray-300 rounded focus:ring-[#FF6700]"
+                      class="form-input h-4 w-4 text-[#4a2e2a] border-gray-300 rounded focus:ring-[#FF6700]"
                     />
                     <label
                       for="payment-confirm-checkbox"
@@ -275,7 +275,7 @@
                   <button
                     type="submit"
                     id="generate-receipt-btn"
-                    class="w-full bg-[#8C3B2A] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#FF6700] transition-colors duration-300"
+                    class="w-full bg-[#4a2e2a] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#FF6700] transition-colors duration-300"
                     data-lang-key="confirmBtn"
                     disabled
                   >
@@ -292,7 +292,7 @@
       <section id="receipt-section" class="hidden">
         <div class="text-center mb-8">
           <h2
-            class="text-4xl font-bold text-[#8C3B2A]"
+            class="text-4xl font-bold text-[#4a2e2a]"
             data-lang-key="receiptSuccessTitle"
           >
             Payment Confirmed!
@@ -313,7 +313,7 @@
             The Puranic Path
           </div>
           <div
-            class="flex justify-between items-center border-b-2 border-[#8C3B2A] pb-4"
+            class="flex justify-between items-center border-b-2 border-[#4a2e2a] pb-4"
           >
             <div>
               <img
@@ -323,7 +323,7 @@
                 onerror="this.style.display='none'"
               />
               <h2
-                class="text-3xl font-bold text-[#8C3B2A]"
+                class="text-3xl font-bold text-[#4a2e2a]"
                 data-lang-key="mainTitle"
               >
                 The Puranic Path
@@ -412,7 +412,7 @@
             <div class="paid-stamp" data-lang-key="paidStamp">PAID</div>
           </div>
           <div
-            class="border-t-2 border-[#8C3B2A] pt-4 mt-4 text-center text-sm"
+            class="border-t-2 border-[#4a2e2a] pt-4 mt-4 text-center text-sm"
           >
             <p data-lang-key="receiptThanks">
               Thank you for your contribution to Sanatana Dharma. Your journey
@@ -648,10 +648,10 @@
           });
           if (lang === "hi") {
             langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
-            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.remove("bg-[#4a2e2#4a2e2aa]", "text-white");
           } else {
-            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
-            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.add("bg-[#4a2e2a]", "text-white");
+            langHiBtn.classList.remove("bg-[#4a2e2a]", "text-white");
           }
           populatePaymentDetails();
         }
