@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const languageContent = {
     en: {
-      mainTitle: "The Puranic Path",
+      mainTitle: "Tirth Sutra",
       mainSubtitle: "A Blueprint for an Authentic Dham Yatra Agency",
       navAbout: "About Us",
       navYatras: "Our Yatras",
@@ -35,12 +35,12 @@ document.addEventListener("DOMContentLoaded", function () {
       ctaIntro:
         "The sacred call of the Tirthas is timeless. A journey of a thousand miles begins with a single step. We are meticulously preparing the way for you to begin your authentic, scripture-guided pilgrimage. Soon, you will be able to place your yatra request and lift your spiritual journey.",
       ctaButton: "Book Your Yatra",
-      footerRights: "&copy; 2025 The Puranic Path. All Rights Reserved.",
+      footerRights: "&copy; 2025 Tirth Sutra. All Rights Reserved.",
       footerTerms: "Terms & Condition",
       footerPrivacy: "Privacy Policy",
     },
     hi: {
-      mainTitle: "पौराणिक पथ",
+      mainTitle: "तीर्थ सूत्र",
       mainSubtitle: "एक प्रामाणिक धाम यात्रा एजेंसी के लिए एक खाका",
       navAbout: "हमारे बारे में",
       navYatras: "हमारी यात्राएं",
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ctaIntro:
         "तीर्थों का पवित्र आह्वान कालातीत है। हजारों मील की यात्रा एक ही कदम से शुरू होती है। हम आपके लिए अपनी प्रामाणिक, शास्त्र-निर्देशित तीर्थयात्रा शुरू करने का मार्ग सावधानीपूर्वक तैयार कर रहे हैं। शीघ्र ही, आप अपनी यात्रा का अनुरोध कर सकेंगे और अपनी आध्यात्मिक यात्रा को उन्नत कर सकेंगे।",
       ctaButton: "अपनी यात्रा बुक करें",
-      footerRights: "&copy; 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+      footerRights: "&copy; 2025 तीर्थ सूत्र। सर्वाधिकार सुरक्षित।",
       footerTerms: "नियम एवं शर्तें",
       footerPrivacy: "गोपनीयता नीति",
     },

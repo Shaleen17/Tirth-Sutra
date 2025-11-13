@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const languageContent = {
     en: {
-      mainTitle: "The Puranic Path",
+      mainTitle: "Tirth Sutra",
       subTitle: "An Authentic Pilgrimage Experience",
       navVision: "Vision",
       navPhilosophy: "Philosophy",
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
       navKathaPustika: "Katha Pustika",
       navAboutUs: "About Us",
       navContact: "Contact",
-      visionText: `"The Puranic Path" is a specialized religious tourism agency created to restore the traditional, scripturally-mandated form of Hindu pilgrimage (*tīrthayātrā*). Our purpose is not merely to offer a tour, but to facilitate a holistic, immersive, and transformative spiritual experience aligned with the deepest tenets of Sanatana Dharma, centered on authenticity and simplicity over modern comforts.`,
+      visionText: `"Tirth Sutra" is a specialized religious tourism agency created to restore the traditional, scripturally-mandated form of Hindu pilgrimage (*tīrthayātrā*). Our purpose is not merely to offer a tour, but to facilitate a holistic, immersive, and transformative spiritual experience aligned with the deepest tenets of Sanatana Dharma, centered on authenticity and simplicity over modern comforts.`,
       philosophyTitle: "The Philosophical Foundation of Our Journey",
       philosophyIntro:
         "Every decision we make is inspired by the scriptures. We view pilgrimage not as tourism, but as a spiritual discipline (*tapas*). This section explains the core principles that shape every experience we offer, transforming a simple journey into a profound *yātrā*.",
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "The Puranas emphasize that the benefits of a pilgrimage depend on the pilgrim's inner state and conduct. We actively promote this prescribed code of conduct.",
       yatriQuote: `"A successful pilgrim is one whose hands, feet and mind are well controlled, who is free from vanity, and content with what little he gets."`,
       yatriText2: `The journey is meant to involve a degree of hardship (*tapas*). This is not a flaw but a central feature, intensifying one's faith (*śraddhā*) and focus. This principle informs our choice of simple accommodations and unhurried pacing.`,
-      differenceTitle: "The Puranic Path Difference",
+      differenceTitle: "Tirth Sutra Difference",
       differenceIntro:
         "Our approach is a complete rejection of the modern tourism model. We have built our service on four pillars of authenticity, ensuring an experience that is unavailable anywhere else.",
       pillar1Title: "1. Sacred Itineraries",
@@ -106,11 +106,11 @@ document.addEventListener("DOMContentLoaded", function () {
         "Rooted in Sanatan Dharma, qualified by our spiritual leaders",
       footerTerms: "Terms & Condition",
       footerPrivacy: "Privacy Policy",
-      footerRights: "© 2025 The Puranic Path. All Rights Reserved.",
+      footerRights: "© 2025 Tirth Sutra. All Rights Reserved.",
       footerDisclaimer: "This is a conceptual presentation.",
     },
     hi: {
-      mainTitle: "पौराणिक पथ",
+      mainTitle: "तीर्थ सूत्र",
       subTitle: "एक प्रामाणिक तीर्थयात्रा अनुभव",
       navVision: "परिकल्पना",
       navPhilosophy: "दर्शन",
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
       navKathaPustika: "कथा पुस्तिका",
       navAboutUs: "हमारे बारे में",
       navContact: "संपर्क",
-      visionText: `"पौराणिक पथ" एक विशेष धार्मिक पर्यटन एजेंसी है जिसे हिंदू तीर्थयात्रा (*तीर्थयात्रा*) के पारंपरिक, शास्त्र-सम्मत स्वरूप को पुनर्स्थापित करने के लिए बनाया गया है। हमारा उद्देश्य केवल एक यात्रा प्रदान करना नहीं है, बल्कि सनातन धर्म के गहरे सिद्धांतों के अनुरूप एक समग्र, गहन और परिवर्तनकारी आध्यात्मिक अनुभव प्रदान करना है, जो आधुनिक सुविधाओं के बजाय प्रामाणिकता और सादगी पर केंद्रित है।`,
+      visionText: `"तीर्थ सूत्र" एक विशेष धार्मिक पर्यटन एजेंसी है जिसे हिंदू तीर्थयात्रा (*तीर्थयात्रा*) के पारंपरिक, शास्त्र-सम्मत स्वरूप को पुनर्स्थापित करने के लिए बनाया गया है। हमारा उद्देश्य केवल एक यात्रा प्रदान करना नहीं है, बल्कि सनातन धर्म के गहरे सिद्धांतों के अनुरूप एक समग्र, गहन और परिवर्तनकारी आध्यात्मिक अनुभव प्रदान करना है, जो आधुनिक सुविधाओं के बजाय प्रामाणिकता और सादगी पर केंद्रित है।`,
       philosophyTitle: "हमारी यात्रा का दार्शनिक आधार",
       philosophyIntro:
         "हमारा हर निर्णय शास्त्रों से प्रेरित है। हम तीर्थयात्रा को पर्यटन नहीं, बल्कि एक आध्यात्मिक साधना (*तप*) मानते हैं। यह खंड उन मूल सिद्धांतों की व्याख्या करता है जो हमारे द्वारा प्रदान किए जाने वाले हर अनुभव को आकार देते हैं, और एक साधारण यात्रा को एक गहन *यात्रा* में बदल देते हैं।",
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "पुराण इस बात पर जोर देते हैं कि तीर्थयात्रा का लाभ तीर्थयात्री की आंतरिक स्थिति और आचरण पर निर्भर करता है। हम इस निर्धारित आचार संहिता को सक्रिय रूप से बढ़ावा देते हैं।",
       yatriQuote: `"एक सफल तीर्थयात्री वह है जिसके हाथ, पैर और मन अच्छी तरह से नियंत्रित हों, जो घमंड से मुक्त हो, और जो कुछ भी उसे मिलता है उससे संतुष्ट हो।"`,
       yatriText2: `यात्रा का उद्देश्य कुछ हद तक कठिनाई (*तप*) को शामिल करना है। यह कोई दोष नहीं बल्कि एक केंद्रीय विशेषता है, जो व्यक्ति की आस्था (*श्रद्धा*) और ध्यान को तीव्र करती है। यह सिद्धांत साधारण आवास और धीमी गति की हमारी पसंद को सूचित करता है।`,
-      differenceTitle: "पौराणिक पथ की विशेषता",
+      differenceTitle: "तीर्थ सूत्र की विशेषता",
       differenceIntro:
         "हमारा दृष्टिकोण आधुनिक पर्यटन मॉडल का पूर्ण अस्वीकरण है। हमने अपनी सेवा को प्रामाणिकता के चार स्तंभों पर बनाया है, जो एक ऐसा अनुभव सुनिश्चित करता है जो कहीं और उपलब्ध नहीं है।",
       pillar1Title: "1. पवित्र यात्रा कार्यक्रम",
@@ -216,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
       taglineFlow: "सनातन धर्म पर आधारित, संत-महात्माओं से अनुमोदित।",
       footerTerms: "नियम एवं शर्तें",
       footerPrivacy: "गोपनीयता नीति",
-      footerRights: "© 2025 पौराणिक पथ। सर्वाधिकार सुरक्षित।",
+      footerRights: "© 2025 तीर्थ सूत्र। सर्वाधिकार सुरक्षित।",
       footerDisclaimer: "यह एक वैचारिक प्रस्तुति है।",
     },
   };
