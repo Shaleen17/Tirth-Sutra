@@ -86,7 +86,7 @@
       >
         <h1
           href="index.html"
-          class="text-2xl font-bold text-[#8C3B2A]"
+          class="text-2xl font-bold text-[#4a2e2a]"
           data-lang-key="mainTitle"
         >
           Tirth Sutra
@@ -94,7 +94,7 @@
         <div class="flex items-center border rounded-full p-1 bg-gray-200">
           <button
             id="lang-en"
-            class="px-3 py-1 text-sm rounded-full bg-[#8C3B2A] text-white"
+            class="px-3 py-1 text-sm rounded-full bg-[#4a2e2a] text-white"
           >
             EN
           </button>
@@ -386,7 +386,7 @@
             latLngs.push(coords);
           });
 
-          L.polyline(latLngs, { color: "#8C3B2A", weight: 3 }).addTo(brajMap);
+          L.polyline(latLngs, { color: "#4a2e2a", weight: 3 }).addTo(brajMap);
 
           const bounds = L.latLngBounds(latLngs);
           brajMap.fitBounds(bounds.pad(0.2));
@@ -403,11 +403,11 @@
           });
 
           if (lang === "hi") {
-            langHiBtn.classList.add("bg-[#8C3B2A]", "text-white");
-            langEnBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+            langHiBtn.classList.add("bg-[#4a2e2a]", "text-white");
+            langEnBtn.classList.remove("bg-[#4a2e2a]", "text-white");
           } else {
-            langEnBtn.classList.add("bg-[#8C3B2A]", "text-white");
-            langHiBtn.classList.remove("bg-[#8C3B2A]", "text-white");
+            langEnBtn.classList.add("bg-[#4a2e2a]", "text-white");
+            langHiBtn.classList.remove("bg-[#4a2e2a]", "text-white");
           }
 
           initBrajMap(lang);
