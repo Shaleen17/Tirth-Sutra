@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gau-Sutra | Tirth Sutra Presents</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-bg: #fffcf7;
+        --deep-brown: #4a2c2a;
+        --text-main: #2d1e1c;
+        --label-color: #5d4037;
+      }
+
+      body {
+        font-family: "Lora", serif;
+        background-color: var(--primary-bg);
+        color: var(--text-main);
+        /* Refined Medium body font for professional readability */
+        font-size: 1.05rem;
+        line-height: 1.8;
+      }
+
+      .heading-font {
+        font-family: "Playfair Display", serif;
+      }
+      .ui-font {
+        font-family: "Crimson Pro", serif;
+      }
+
+      /* Typography */
+      .big-heading {
+        font-size: clamp(2.5rem, 6vw, 4.8rem);
+        line-height: 1.1;
+        font-weight: 700;
+      }
+
+      /* Branding Header matching image_9bd191.png */
+      .presents-text {
+        font-family: "Crimson Pro", serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        color: #8d736b;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      /* Nav Support Button matching image_757285.png */
+      .btn-support-nav {
+        background-color: var(--deep-brown);
+        color: white !important;
+        padding: 10px 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.85rem;
+        border-radius: 4px;
+        font-family: "Crimson Pro", serif;
+        transition: opacity 0.3s;
+      }
+
+      /* Hero Join Button matching image_757224.png */
+      .btn-join-hero {
+        border: 2px solid white;
+        color: white;
+        padding: 12px 36px;
+        font-size: 1.5rem;
+        font-family: "Crimson Pro", serif;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+      .btn-join-hero:hover {
+        background: white;
+        color: var(--deep-brown);
+      }
+
+      /* Inquiry Card matching image_6a7733.png */
+      .inquiry-card {
+        background: white;
+        padding: clamp(2rem, 5vw, 4rem);
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+        border: 1px solid #f0f0f0;
+      }
+      .form-label {
+        display: block;
+        font-size: 1.35rem;
+        color: var(--label-color);
+        margin-bottom: 0.5rem;
+        font-family: "Crimson Pro", serif;
+      }
+      .form-input {
+        width: 100%;
+        padding: 0.9rem 1.1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 1.05rem;
+        background-color: #fff;
+        margin-bottom: 1.8rem;
+      }
+      .form-input:focus {
+        outline: none;
+        border-color: var(--deep-brown);
+      }
+
+      .btn-send-inquiry {
+        background-color: var(--deep-brown);
+        color: white;
+        padding: 1.1rem 4rem;
+        border-radius: 8px;
+        font-size: 1.7rem;
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        display: block;
+        margin: 1.5rem auto 0;
+        cursor: pointer;
+      }
+
+      /* Difference Grid matching image_6b6790.png */
+      .diff-card {
+        background: white;
+        border: 1px solid #f7f7f7;
+        padding: 3.5rem 2rem;
+        text-align: center;
+        transition: 0.4s;
+        height: 100%;
+      }
+      .diff-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+      }
+      .diff-card.active {
+        border-bottom: 5px solid var(--deep-brown);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+      }
+
+      /* Reality Stats matching image_7566e4.png */
+      .stat-header {
+        font-size: 4.5rem;
+        color: #5d4037;
+        font-weight: 700;
+        line-height: 1;
+      }
+      .stat-subtitle {
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 3px;
+      }
+      .quote-container {
+        border: 1px solid #ffeeba;
+        padding: 3rem;
+        border-radius: 12px;
+        max-width: 1000px;
+        margin: 5rem auto 0;
+        font-style: italic;
+        font-size: 1.5rem;
+        color: #4a2c2a;
+        background: white;
+        text-align: center;
+      }
+
+      /* Footer matching image_6b5b94.png */
+      footer {
+        background-color: var(--deep-brown);
+        color: #ead9d7;
+      }
+
+      @media (max-width: 768px) {
+        .big-heading {
+          font-size: 2.8rem;
+        }
+        .section-padding {
+          padding-top: 4rem;
+          padding-bottom: 4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Navigation -->
+    <header
+      class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-orange-50 shadow-sm"
+    >
+      <div
+        class="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center"
+      >
+        <div class="flex flex-col">
+          <span class="presents-text">Tirth Sutra presents</span>
+          <span
+            class="heading-font text-2xl md:text-3xl font-bold tracking-tight text-amber-950"
+            >GAU-SUTRA</span
+          >
+        </div>
+
+        <div class="flex items-center gap-10">
+          <nav
+            class="hidden lg:flex space-x-12 text-sm font-bold tracking-[0.2em] uppercase text-amber-950 items-center"
+          >
+            <a href="#mission" class="hover:text-amber-700 transition"
+              >Mission</a
+            >
+            <a href="#reality" class="hover:text-amber-700 transition"
+              >Reality</a
+            >
+            <a href="#support" class="btn-support-nav">Support</a>
+          </nav>
+        <!-- Persistent Support Button for Mobile Only -->
+<a href="#support" 
+   class="lg:hidden bg-[#4a2c2a] text-white px-5 py-2 rounded-sm text-[11px] font-bold uppercase tracking-widest hover:bg-amber-800 transition-all shadow-sm inline-block">
+    Support
+</a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+      class="relative min-h-screen flex items-center justify-center text-center px-6 overflow-hidden"
+    >
+      <div class="absolute inset-0 z-0 bg-[#1a1110]">
+        <!-- Hero background uses local hero.jpg -->
+        <div
+          class="w-full h-full opacity-50"
+          style="background: url(&quot;hero.jpg&quot;) center/cover no-repeat"
+        ></div>
+      </div>
+      <div class="relative z-10 max-w-5xl pt-20">
+        <h1 class="big-heading heading-font text-white mb-8">
+          Restoring the Vedic <br />
+          Soul of Bharat
+        </h1>
+        <p
+          class="text-xl md:text-3xl italic text-white/95 mb-14 max-w-3xl mx-auto font-light leading-relaxed"
+        >
+          A professional nationwide network dedicated to restoring pure Vedic
+          breeds and ensuring dignity for every Gau-Mata.
+        </p>
+
+        <div class="flex justify-center">
+          <a href="#contact" class="btn-join-hero">Join Community</a>
+        </div>
+        <!-- Updated Hero Action Buttons -->
+        <div class="flex flex-col items-center gap-6 mt-12">
+          <!-- New Join WhatsApp Group Button -->
+          <a
+            href="https://chat.whatsapp.com/Jjiv9hVqXJB1nCy3aqdSik?mode=gi_t"
+            target="_blank"
+            class="flex items-center justify-center gap-3 border-2 border-white text-white px-10 py-4 text-xl font-bold rounded-lg hover:bg-white hover:text-[#25D366] transition-all duration-300 group ui-font min-w-[320px]"
+          >
+            <!-- Professional WhatsApp SVG Icon -->
+            <svg
+              class="w-7 h-7 fill-current transition-transform group-hover:scale-110"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+              />
+            </svg>
+            Join WhatsApp Group
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Mission Content -->
+    <section id="mission" class="py-32 px-8 max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-24 items-start">
+        <div>
+          <span
+            class="text-amber-800 uppercase tracking-[0.4em] text-[11px] font-bold mb-6 block"
+            >Our Spiritual Foundation</span
+          >
+          <h2 class="text-4xl md:text-5xl heading-font mb-10 text-amber-950">
+            A Mission Driven by Selfless Seva
+          </h2>
+
+          <div class="space-y-6 text-gray-700 leading-relaxed">
+            <p>
+              Gau-Sutra is a mission born from a deep "Inner Calling," much like
+              the legacy of <strong>Gita Press Gorakhpur</strong>. Just as they
+              preserved our scriptures for the masses without profit, we aim to
+              protect the living embodiment of Vedic wisdom—the Cow.
+            </p>
+            <p>
+              Our mission is to build India's largest professional network of
+              cow farms and dairies. We focus on
+              <strong>Vedic Research</strong> to restore pure breeds like Gir,
+              Sahiwal, and Tharparkar to their original genetic glory, mapping
+              every pure lineage across 28 states.
+            </p>
+            <p>
+              In every major city, we are establishing
+              <strong>Urban Shield Centers</strong>. We believe cows should not
+              be roaming city roads, eating plastic, or risking traffic
+              accidents. Our centers provide a dignified, safe, and
+              nutrient-rich sanctuary for every stray cow in the urban
+              landscape.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid gap-8">
+          <div class="p-10 bg-amber-50/40 border border-amber-100 rounded-sm">
+            <h4
+              class="text-2xl font-bold mb-4 heading-font text-amber-900 leading-tight"
+            >
+              Vedic Breed Mapping
+            </h4>
+            <p class="text-gray-600 text-sm">
+              We are connecting every dairy owner who handles pure Desi breeds
+              into a unified digital grid to share research and prevent the
+              dilution of Bharat's heritage.
+            </p>
+          </div>
+          <div class="p-10 bg-amber-50/40 border border-amber-100 rounded-sm">
+            <h4
+              class="text-2xl font-bold mb-4 heading-font text-amber-900 leading-tight"
+            >
+              The City Rescue Grid
+            </h4>
+            <p class="text-gray-600 text-sm">
+              By partnering with local volunteers, we establish safe havens that
+              remove cows from urban dangers, ensuring they receive organic
+              fodder and Vedic medical care.
+            </p>
+          </div>
+          <div class="p-10 bg-amber-50/40 border border-amber-100 rounded-sm">
+            <h4
+              class="text-2xl font-bold mb-4 heading-font text-amber-900 leading-tight"
+            >
+              Economic Sustainability
+            </h4>
+            <p class="text-gray-700 text-sm font-medium italic">
+              "We make cow protection professional and sustainable, creating a
+              community that doesn't rely on political promises."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vedic Wisdom & Modern Reality Section -->
+    <section
+      id="research-heritage"
+      class="py-24 bg-[#fffcf7] px-6 md:px-12 lg:px-20 border-t border-amber-100"
+    >
+      <div class="max-w-7xl mx-auto">
+        <!-- Part 1: Vedic Scriptures (Attractive Hero Quote Style) -->
+        <div class="text-center mb-20">
+          <span
+            class="font-['Crimson_Pro'] text-[10px] uppercase tracking-[0.5em] text-amber-900 font-bold opacity-60 block mb-4"
+            >Vedic Heritage | वैदिक विरासत</span
+          >
+          <div class="relative inline-block">
+            <h2
+              class="font-['Playfair_Display'] text-4xl md:text-6xl text-[#4a2c2a] leading-tight mb-6"
+            >
+              ग़ावो विश्वस्य मातर:
+            </h2>
+            <div class="w-24 h-1 bg-[#4a2c2a] mx-auto opacity-20"></div>
+          </div>
+          <p
+            class="font-['Lora'] text-2xl italic text-[#5d4037] mt-8 max-w-3xl mx-auto leading-relaxed"
+          >
+            "The Cow is indeed the Mother of the Universe."
+            <br />
+            <span class="text-lg block mt-2 opacity-80"
+              >"गाय वास्तव में ब्रह्मांड की माता है।"</span
+            >
+          </p>
+          <p
+            class="font-['Crimson_Pro'] text-sm uppercase tracking-widest mt-4 text-amber-900 font-bold"
+          >
+            — Rig Veda (ऋग्वेद)
+          </p>
+        </div>
+
+        <!-- Part 2: Bilingual Deep Research & Condition -->
+        <div class="grid lg:grid-cols-2 gap-16 items-start">
+          <!-- English Research Column -->
+          <div class="space-y-10">
+            <h3
+              class="font-['Playfair_Display'] text-3xl text-[#4a2c2a] border-b border-amber-200 pb-4"
+            >
+              The Crisis of Bharat's Heritage
+            </h3>
+
+            <div class="group">
+              <h4
+                class="font-['Crimson_Pro'] font-bold text-xl uppercase tracking-wider text-amber-900 mb-3"
+              >
+                The Economic Abandonment
+              </h4>
+              <p class="text-[#4b5563] leading-relaxed">
+                Modern dairy systems treat Gau-Mata as a machine. Once a cow
+                passes her peak lactation period, she is often seen as a
+                'liability' rather than a mother. This transactional mindset
+                leads to millions of Desi cows being pushed onto the streets to
+                fend for themselves.
+              </p>
+            </div>
+
+            <div class="group">
+              <h4
+                class="font-['Crimson_Pro'] font-bold text-xl uppercase tracking-wider text-amber-900 mb-3"
+              >
+                Plastic: The Silent Killer
+              </h4>
+              <p class="text-[#4b5563] leading-relaxed">
+                Research shows that a typical stray cow in an Indian city
+                carries between
+                <span class="font-bold text-[#4a2c2a]"
+                  >25kg to 40kg of plastic</span
+                >
+                in her stomach. Forced to eat from garbage bins due to lack of
+                grazing lands, they suffer a slow, agonizing death that goes
+                unheard by authorities.
+              </p>
+            </div>
+
+            <div
+              class="p-8 bg-white border border-amber-100 shadow-sm rounded-lg italic"
+            >
+              "When the cow survives, the culture survives. When the cow is
+              neglected, the foundation of the nation weakens."
+            </div>
+          </div>
+
+          <!-- Hindi Research Column -->
+          <div class="space-y-10 border-l border-amber-100 pl-8 md:pl-16">
+            <h3
+              class="font-['Playfair_Display'] text-3xl text-[#4a2c2a] border-b border-amber-200 pb-4"
+            >
+              भारत की विरासत का संकट
+            </h3>
+
+            <div class="group">
+              <h4
+                class="font-['Crimson_Pro'] font-bold text-xl uppercase tracking-wider text-amber-900 mb-3"
+              >
+                आर्थिक परित्याग
+              </h4>
+              <p class="text-[#4b5563] leading-relaxed">
+                आधुनिक डेयरी प्रणालियां गौ-माता को मशीन की तरह मानती हैं। एक बार
+                जब गाय का दूध कम हो जाता है, तो उसे 'माँ' के बजाय 'बोझ' मान लिया
+                जाता है। इस लेनदेन की मानसिकता के कारण लाखों देसी गायों को
+                सड़कों पर बेसहारा छोड़ दिया जाता है।
+              </p>
+            </div>
+
+            <div class="group">
+              <h4
+                class="font-['Crimson_Pro'] font-bold text-xl uppercase tracking-wider text-amber-900 mb-3"
+              >
+                प्लास्टिक: एक मौन हत्यारा
+              </h4>
+              <p class="text-[#4b5563] leading-relaxed">
+                शोध से पता चलता है कि भारतीय शहरों में घूमने वाली एक गाय के पेट
+                में
+                <span class="font-bold text-[#4a2c2a]"
+                  >25 किलो से 40 किलो तक प्लास्टिक</span
+                >
+                होता है। चरागाहों की कमी के कारण वे कचरे के डिब्बे से खाने को
+                मजबूर हैं, जिससे उनकी तड़प-तड़प कर मौत हो जाती है।
+              </p>
+            </div>
+
+            <div
+              class="p-8 bg-white border border-amber-100 shadow-sm rounded-lg italic"
+            >
+              "जब गाय सुरक्षित रहती है, तो संस्कृति जीवित रहती है। जब गाय की
+              उपेक्षा की जाती है, तो राष्ट्र की नींव कमजोर हो जाती है।"
+            </div>
+          </div>
+        </div>
+
+        <!-- Scripture Highlight Box (Atharva Veda) -->
+        <div
+          class="mt-24 p-12 bg-[#4a2c2a] text-[#ead9d7] rounded-sm shadow-2xl relative overflow-hidden"
+        >
+          <div class="absolute top-0 right-0 opacity-10 pointer-events-none">
+            <!-- Decorative SVG element -->
+            <svg
+              width="300"
+              height="300"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
+              />
+            </svg>
+          </div>
+          <div class="relative z-10 text-center">
+            <h4 class="font-['Playfair_Display'] text-3xl mb-6">
+              माता रुद्राणां दुहिता वसूनां स्वसादित्यानां अमृतस्य नाभि:।
+            </h4>
+            <p
+              class="max-w-4xl mx-auto font-['Lora'] text-lg opacity-90 leading-relaxed"
+            >
+              "The cow is the mother of the Rudras, the daughter of the Vasus,
+              the sister of the Adityas, and the fountainhead of nectar."
+              <br />
+              <span
+                class="block mt-4 text-sm uppercase tracking-[0.3em] font-bold"
+                >— ATHARVA VEDA (अथर्ववेद) 9.7</span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Different Grid matching image_6b6790.png -->
+    <section class="py-32 px-8 bg-white border-y border-amber-50">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-4xl text-center heading-font mb-24">
+          Why Gau-Sutra is Different
+        </h2>
+
+        <div class="grid md:grid-cols-4 gap-4">
+          <div class="diff-card">
+            <div class="mb-10 flex justify-center text-amber-900">
+              <svg
+                class="w-14 h-14"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                ></path>
+              </svg>
+            </div>
+            <h4 class="font-bold text-2xl mb-4 heading-font">Non-Political</h4>
+            <p class="text-gray-500 text-sm">
+              We act as a community-funded organization dedicated only to Seva,
+              independent of political cycles.
+            </p>
+          </div>
+
+          <div class="diff-card active shadow-xl">
+            <div class="mb-10 flex justify-center text-amber-900">
+              <svg
+                class="w-14 h-14"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.2"
+                  d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071a9.05 9.05 0 0112.728 0M6.343 17.657l1.414-1.414m12.728 0l-1.414 1.414M9.172 9.172L5.636 5.636m12.728 0l-3.536 3.536"
+                ></path>
+              </svg>
+            </div>
+            <h4 class="font-bold text-2xl mb-4 heading-font">Digital Grid</h4>
+            <p class="text-gray-500 text-sm">
+              Connecting thousands of owners into one unified nationwide network
+              for help and breeding.
+            </p>
+          </div>
+
+          <div class="diff-card">
+            <div class="mb-10 flex justify-center text-amber-900">
+              <svg
+                class="w-14 h-14"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.2"
+                  d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.628.283a2 2 0 01-1.186.127l-3.031-.606a2 2 0 01-1.369-1.32l-1.069-3.207a2 2 0 011.102-2.407l5-2a2 2 0 011.897.103l3 2"
+                ></path>
+              </svg>
+            </div>
+            <h4 class="font-bold text-2xl mb-4 heading-font">Breed Purity</h4>
+            <p class="text-gray-500 text-sm">
+              Scientific research combined with Vedic wisdom to restore the
+              health of Bharat's original breeds.
+            </p>
+          </div>
+
+          <div class="diff-card">
+            <div class="mb-10 flex justify-center text-amber-900">
+              <svg
+                class="w-14 h-14"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.2"
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                ></path>
+              </svg>
+            </div>
+            <h4 class="font-bold text-2xl mb-4 heading-font">City Focus</h4>
+            <p class="text-gray-500 text-sm">
+              Establishing city centers to ensure roads are clear and cows are
+              protected from urban toxins.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Harsh Reality Stats matching image_7566e4.png -->
+    <section id="reality" class="py-32 px-8 bg-[#fffcf7]">
+      <div class="max-w-7xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl heading-font mb-24">
+          The Harsh Reality
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-16 mb-20">
+          <div class="reality-stat">
+            <div class="stat-header">5M+</div>
+            <p class="stat-subtitle">Stray Cattle</p>
+            <p class="text-gray-500 text-sm mt-6 leading-relaxed px-4">
+              Over 5 million cows roam the streets of India, neglected by
+              systems and surviving on toxic urban garbage.
+            </p>
+          </div>
+          <div class="reality-stat">
+            <div class="stat-header">30KG</div>
+            <p class="stat-subtitle">Plastic Ingestion</p>
+            <p class="text-gray-500 text-sm mt-6 leading-relaxed px-4">
+              An average stray cow in an Indian city carries up to 30kg of
+              plastic in its stomach, leading to a slow, agonizing death.
+            </p>
+          </div>
+          <div class="reality-stat">
+            <div class="stat-header">90%</div>
+            <p class="stat-subtitle">Genetic Loss</p>
+            <p class="text-gray-500 text-sm mt-6 leading-relaxed px-4">
+              Commercial cross-breeding has nearly wiped out our pure Vedic
+              breeds. We are losing Bharat's A2 genetic heritage.
+            </p>
+          </div>
+        </div>
+
+        <div class="quote-container">
+          "Governments treat the cow as a vote bank. We treat her as a Mother.
+          That is the Gau-Sutra difference."
+        </div>
+      </div>
+    </section>
+
+    <!-- Inquiry Section matching image_6a7733.png and image_6afe16.png -->
+    <section
+      id="contact"
+      class="py-32 bg-[#fffcf7] border-t border-orange-50 px-8"
+    >
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl heading-font mb-4">
+            Inquiry for Mission Information
+          </h2>
+          <p class="text-gray-500 italic">
+            Contribute to building the largest community for Gau-Mata
+            restoration.
+          </p>
+        </div>
+
+        <div class="inquiry-card">
+          <!-- Connect with your email via FormSubmit -->
+          <form
+            action="https://formsubmit.co/tirthsutra@gmail.com"
+            method="POST"
+          >
+            <input
+              type="hidden"
+              name="_subject"
+              value="New Gau-Sutra Mission Inquiry"
+            />
+
+            <div class="grid md:grid-cols-2 gap-10">
+              <div>
+                <label class="form-label">Full Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  class="form-input"
+                  placeholder="e.g. Rahul Sharma"
+                  required
+                />
+              </div>
+              <div>
+                <label class="form-label">Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="rahul@example.com"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label class="form-label">Select Your Support Area</label>
+              <select name="interest" class="form-input">
+                <option>Joining the Cow Farm Network (Dairy/Farm Owner)</option>
+                <option>Opening an Urban Shield Center in my City</option>
+                <option>Vedic Breed Restoration & Genetic Research</option>
+                <option>Community Advocacy & Outreach Volunteering</option>
+              </select>
+            </div>
+
+            <div class="mt-4">
+              <label class="form-label">Your Message</label>
+              <textarea
+                name="message"
+                class="form-input"
+                rows="8"
+                placeholder="Tell us how you would like to support the mission..."
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn-send-inquiry">Send Inquiry</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support Section with QR -->
+    <section id="support" class="py-32 text-center bg-white px-8">
+      <h2 class="text-4xl heading-font mb-10">Support the Movement</h2>
+      <p class="max-w-2xl mx-auto text-gray-600 mb-14 text-lg">
+        Every rupee builds a sanctuary for Gau-Mata. Your contribution funds
+        city centers and pure breed research across the nation.
+      </p>
+
+      <div
+        class="border-2 border-amber-900 p-2 inline-block bg-white shadow-2xl mb-10"
+      >
+        <!-- Donation QR (looks for local qr.jpg) -->
+        <img
+          src="qr.jpg"
+          alt="Donation QR"
+          class="w-64 h-64"
+          onerror="
+            this.src =
+              'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=TirthSutraGauMission'
+          "
+        />
+      </div>
+
+      <p class="text-amber-950 font-bold uppercase tracking-[0.4em] text-sm">
+        Scan to Support Gau-Mata
+      </p>
+    </section>
+
+    <!-- 
+    MODIFIED FOOTER SECTION
+    Note: Ensure 'logo.png' is in your folder for the image to display.
+    Includes: Large round logo above title, professional typography, and deep brown theme.
+-->
+
+    <footer
+      class="bg-[#4a2c2a] text-[#ead9d7] pt-24 pb-12 px-6 md:px-10 lg:px-20 border-t border-white/5"
+    >
+      <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16 lg:gap-24">
+        <!-- Branding Column: Matches image_9cd11a.png & image_a6c63d.png -->
+        <div class="flex flex-col items-start text-left">
+          <!-- Large Round Logo: Replace 'logo.png' with your file -->
+          <img
+            src="logo.png"
+            alt="Gau-Sutra Logo"
+            class="w-28 h-28 rounded-full object-cover border-2 border-white/20 mb-8 bg-white shadow-2xl transition-transform hover:scale-105"
+            onerror="
+              this.src =
+                'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=GauSutraLogo'
+            "
+          />
+          <h4
+            class="font-['Playfair_Display',serif] text-4xl font-bold text-white mb-6 tracking-tighter uppercase leading-none"
+          >
+            GAU-SUTRA
+          </h4>
+          <p
+            class="text-sm italic leading-relaxed opacity-80 max-w-sm font-['Lora',serif]"
+          >
+            Inspired by the selfless service of institutions like Gita Press, we
+            aim to protect the Vedic heritage of Bharat for generations to come.
+          </p>
+        </div>
+
+        <!-- Quick Links Column -->
+        <div class="text-left pt-2 md:pt-10 lg:pt-14">
+          <h4
+            class="font-['Crimson_Pro',serif] font-bold uppercase tracking-[0.3em] text-[11px] mb-8 text-white"
+          >
+            Quick Links
+          </h4>
+          <ul class="text-sm space-y-4 font-['Lora',serif] opacity-90">
+            <li>
+              <a
+                href="#"
+                class="hover:text-white hover:underline transition-all underline-offset-4"
+                >Our Breeding Centers</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="hover:text-white hover:underline transition-all underline-offset-4"
+                >City Shelter Network</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="hover:text-white hover:underline transition-all underline-offset-4"
+                >Volunteer Program</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="hover:text-white hover:underline transition-all underline-offset-4"
+                >Report a Stray Cow</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Column: Matches image_6b5b94.png -->
+        <div class="text-left pt-2 md:pt-10 lg:pt-14">
+          <h4
+            class="font-['Crimson_Pro',serif] font-bold uppercase tracking-[0.3em] text-[11px] mb-8 text-white"
+          >
+            Mission Hub
+          </h4>
+          <div class="space-y-8 font-['Lora',serif] opacity-90">
+            <div>
+              <p
+                class="opacity-50 text-[12px] uppercase tracking-widest mb-2 font-bold"
+              >
+                Central Mission Office:
+              </p>
+              <p class="font-bold text-xl text-white leading-tight">
+                Mumbai / Varanasi, Uttar Pradesh
+              </p>
+            </div>
+            <div>
+              <p
+                class="opacity-50 text-[12px] uppercase tracking-widest mb-2 font-bold"
+              >
+                Support Email:
+              </p>
+              <p class="font-bold text-xl text-white uppercase tracking-tight">
+                tirthsutra@gmail.com
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Copyright -->
+      <div class="mt-28 pt-10 border-t border-white/10 text-center">
+        <p
+          class="text-[10px] md:text-[11px] uppercase tracking-[0.5em] opacity-40 font-['Crimson_Pro',serif] font-bold"
+        >
+          &copy; 2026 GAU-SUTRA FOUNDATION. PROTECT. RESTORE. SERVE.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
