@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Volunteer Program | Gau-Sutra Mission</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-bg: #fffcf7;
+        --deep-brown: #4a2c2a;
+        --text-main: #2d1e1c;
+        --label-color: #5d4037;
+        --accent-gold: #c5a059;
+      }
+
+      body {
+        font-family: "Lora", serif;
+        background-color: var(--primary-bg);
+        color: var(--text-main);
+        font-size: 1.05rem;
+        line-height: 1.8;
+      }
+
+      .heading-font {
+        font-family: "Playfair Display", serif;
+      }
+      .ui-font {
+        font-family: "Crimson Pro", serif;
+      }
+
+      /* Branding UI */
+      .presents-tag {
+        font-family: "Crimson Pro", serif;
+        font-size: 0.75rem;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        color: #8d736b;
+        font-weight: 700;
+        margin-bottom: 2px;
+        display: block;
+      }
+
+      /* Hero Section */
+      .hero-section {
+        background:
+          linear-gradient(rgba(74, 44, 42, 0.9), rgba(74, 44, 42, 0.9)),
+          url("hero.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 100px 20px;
+        text-align: center;
+      }
+
+      /* Role Cards */
+      .role-card {
+        background: white;
+        border: 1px solid #f0f0f0;
+        padding: 2.5rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        height: 100%;
+      }
+      .role-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border-color: var(--deep-brown);
+      }
+
+      /* Form Styling */
+      .form-container {
+        background: white;
+        padding: clamp(2rem, 5vw, 4rem);
+        border-radius: 12px;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.04);
+        border: 1px solid #f0f0f0;
+      }
+
+      .form-label {
+        display: block;
+        font-size: 1.2rem;
+        color: var(--label-color);
+        margin-bottom: 0.5rem;
+        font-family: "Crimson Pro", serif;
+        font-weight: 600;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 0.9rem 1.1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 1rem;
+        background-color: #fff;
+        margin-bottom: 1.5rem;
+      }
+      .form-input:focus {
+        outline: none;
+        border-color: var(--deep-brown);
+        ring: 1px solid var(--deep-brown);
+      }
+
+      .btn-submit {
+        background-color: var(--deep-brown);
+        color: white;
+        padding: 1.2rem 4rem;
+        border-radius: 8px;
+        font-size: 1.8rem;
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        display: block;
+        width: 100%;
+        margin-top: 2rem;
+        cursor: pointer;
+      }
+
+      /* Footer Large Logo styling */
+      .footer-logo-large {
+        width: 112px;
+        height: 112px;
+        border-radius: 9999px;
+        object-fit: cover;
+        border: 3px solid rgba(255, 255, 255, 0.2);
+        background: white;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      footer {
+        background-color: var(--deep-brown);
+        color: #ead9d7;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Navigation (No Logo) -->
+    <header
+      class="bg-white border-b border-orange-50 shadow-sm sticky top-0 z-50"
+    >
+      <div
+        class="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center"
+      >
+        <div class="flex flex-col">
+          <span class="presents-tag">Tirth Sutra presents</span>
+          <span
+            class="heading-font text-2xl font-bold tracking-tight text-amber-950 uppercase"
+            >GAU-SUTRA</span
+          >
+        </div>
+        <nav
+          class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-amber-900"
+        >
+          <a href="Gau_Sutra.html" class="hover:opacity-70 transition">Home</a>
+          <a href="#roles" class="hover:opacity-70 transition">Roles</a>
+          <a href="#apply" class="hover:opacity-70 transition">Apply Now</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="heading-font text-5xl md:text-7xl mb-6">
+          Become a Sutradhar
+        </h1>
+        <p
+          class="text-xl md:text-2xl font-light italic opacity-90 max-w-2xl mx-auto mb-10"
+        >
+          Transforming Gau-Seva into a professional mission. Join the community
+          built on the selfless legacy of Gita Press.
+        </p>
+        <a
+          href="#apply"
+          class="inline-block border-2 border-white px-10 py-4 text-xl font-bold hover:bg-white hover:text-[#4a2c2a] transition-all"
+          >Start Your Seva</a
+        >
+      </div>
+    </section>
+
+    <!-- Scripture & Context -->
+    <section class="py-24 px-6 max-w-5xl mx-auto text-center">
+      <h2 class="heading-font text-3xl md:text-5xl text-amber-950 mb-8">
+        ग़ावो विश्वस्य मातर:
+      </h2>
+      <p
+        class="font-['Lora'] text-2xl italic text-[#5d4037] leading-relaxed mb-12"
+      >
+        "The Cow is indeed the Mother of the Universe."
+        <span
+          class="block text-sm uppercase tracking-widest mt-4 text-amber-900 font-bold"
+          >— RIG VEDA</span
+        >
+      </p>
+      <div class="w-24 h-1 bg-amber-900/20 mx-auto mb-12"></div>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        In the tradition of <strong>Gita Press Gorakhpur</strong>, our
+        volunteers are not just workers—they are carriers of Vedic wisdom. We
+        are building a professional grid where every skill, from legal advocacy
+        to digital storytelling, is used to protect Gau-Mata.
+      </p>
+      <p class="text-gray-700 leading-relaxed">
+        Whether you are a student, a professional, or a retiree, the Gau-Sutra
+        mission has a place for your unique talents. Join us in building the
+        <strong>Urban Shield</strong> for Bharat.
+      </p>
+    </section>
+
+    <!-- Volunteer Roles -->
+    <section
+      id="roles"
+      class="py-24 bg-amber-50/30 border-y border-amber-100 px-6"
+    >
+      <div class="max-w-7xl mx-auto">
+        <h2
+          class="heading-font text-4xl text-center text-amber-950 mb-16 uppercase"
+        >
+          Professional Roles
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Role 1 -->
+          <div class="role-card">
+            <div
+              class="w-12 h-12 bg-amber-900 text-white flex items-center justify-center rounded-sm mb-6"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M2 6a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zm9 4a1 1 0 100-2 1 1 0 000 2zm-2-1a1 1 0 112 0 1 1 0 01-2 0zm5 4a1 1 0 100-2 1 1 0 000 2z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="heading-font text-2xl mb-4 uppercase">
+              Digital Warrior
+            </h3>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Manage social media, create awareness content, and help us grow
+              Bharat's largest digital network for cow protection.
+            </p>
+          </div>
+          <!-- Role 2 -->
+          <div class="role-card">
+            <div
+              class="w-12 h-12 bg-amber-900 text-white flex items-center justify-center rounded-sm mb-6"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                <path
+                  fill-rule="evenodd"
+                  d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="heading-font text-2xl mb-4 uppercase">
+              On-Ground Scout
+            </h3>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Participate in rescue missions, visit city centers, and monitor
+              the health and data of cows in your local urban grid.
+            </p>
+          </div>
+          <!-- Role 3 -->
+          <div class="role-card">
+            <div
+              class="w-12 h-12 bg-amber-900 text-white flex items-center justify-center rounded-sm mb-6"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12V13a1 1 0 00.528.87l4.5 2.5a1 1 0 00.944 0l4.5-2.5a1 1 0 00.528-.87V10.12l1.69-.724a1 1 0 011.028 1.714l-7 3a1 1 0 01-.788 0l-7-3a1 1 0 011.027-1.714z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="heading-font text-2xl mb-4 uppercase">Expert Advisor</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Provide professional help in Veterinary science, Legal frameworks,
+              or Civil planning for our Urban Shield Centers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Application Form -->
+    <section id="apply" class="py-32 px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <h2
+            class="heading-font text-4xl md:text-5xl text-amber-950 uppercase tracking-tight"
+          >
+            Volunteer Application
+          </h2>
+          <p class="text-gray-500 italic mt-4">
+            Begin your journey of selfless service.
+          </p>
+        </div>
+
+        <div class="form-container">
+          <form
+            action="https://formsubmit.co/tirthsutra@gmail.com"
+            method="POST"
+          >
+            <input
+              type="hidden"
+              name="_subject"
+              value="New Volunteer Application: Gau-Sutra"
+            />
+            <input type="hidden" name="_captcha" value="false" />
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <label class="form-label">Full Name / पूरा नाम</label>
+                <input
+                  type="text"
+                  name="Name"
+                  class="form-input"
+                  placeholder="e.g. Aryan Singh"
+                  required
+                />
+              </div>
+              <div>
+                <label class="form-label">Email Address / ईमेल</label>
+                <input
+                  type="email"
+                  name="Email"
+                  class="form-input"
+                  placeholder="aryan@example.com"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mt-4">
+              <div>
+                <label class="form-label">Phone / मोबाइल</label>
+                <input
+                  type="tel"
+                  name="Phone"
+                  class="form-input"
+                  placeholder="+91 00000 00000"
+                  required
+                />
+              </div>
+              <div>
+                <label class="form-label">City & State / शहर और राज्य</label>
+                <input
+                  type="text"
+                  name="Location"
+                  class="form-input"
+                  placeholder="e.g. Varanasi, UP"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label class="form-label"
+                >Select Your Primary Role / भूमिका चुनें</label
+              >
+              <select name="Preferred_Role" class="form-input">
+                <option>Digital & Social Media Seva</option>
+                <option>On-Ground Rescue & Support</option>
+                <option>Legal & Documentation Support</option>
+                <option>Veterinary / Medical Expert</option>
+                <option>Event & Community Management</option>
+              </select>
+            </div>
+
+            <div class="mt-4">
+              <label class="form-label"
+                >Why do you want to join the Mission? / आप क्यों जुड़ना चाहते
+                हैं?</label
+              >
+              <textarea
+                name="Motivation"
+                class="form-input"
+                rows="6"
+                placeholder="Tell us about your inner calling..."
+                required
+              ></textarea>
+            </div>
+
+            <div class="mt-4">
+              <label class="form-label"
+                >Weekly Commitment (Hours) / साप्ताहिक समय</label
+              >
+              <input
+                type="number"
+                name="Availability_Hours"
+                class="form-input"
+                placeholder="e.g. 5 hours"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn-submit">Submit Application</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-24 pb-12 px-10">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-20 pb-20">
+        <div class="flex flex-col items-start text-left">
+          <!-- Large Round Logo in Footer: logo.png -->
+          <img
+            src="logo.png"
+            alt="Logo"
+            class="footer-logo-large"
+            onerror="this.style.display = 'none'"
+          />
+          <h4
+            class="heading-font text-4xl mb-6 font-bold text-white tracking-tighter uppercase leading-none"
+          >
+            GAU-SUTRA
+          </h4>
+          <p class="text-sm italic leading-relaxed opacity-70 max-w-sm">
+            Inspired by the selfless service of institutions like Gita Press, we
+            aim to protect the Vedic heritage of Bharat for generations to come.
+          </p>
+        </div>
+
+        <div class="text-left md:pt-32">
+          <h4
+            class="font-bold uppercase tracking-[0.3em] text-[10px] mb-8 text-white"
+          >
+            Quick Links
+          </h4>
+          <ul class="text-sm space-y-4 opacity-80">
+            <li>
+              <a href="Gau_Sutra.html" class="hover:underline">Back to Home</a>
+            </li>
+            <li>
+              <a href="report_cow.html" class="hover:underline"
+                >Report a Stray Cow</a
+              >
+            </li>
+            <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+            <li><a href="#" class="hover:underline">Mission Guidelines</a></li>
+          </ul>
+        </div>
+
+        <div class="text-left md:pt-32">
+          <h4
+            class="font-bold uppercase tracking-[0.3em] text-[10px] mb-8 text-white"
+          >
+            Contact Info
+          </h4>
+          <div class="text-sm space-y-8 opacity-90">
+            <div>
+              <p
+                class="opacity-50 mb-1 uppercase tracking-widest text-[10px] font-bold"
+              >
+                Location:
+              </p>
+              <p class="font-bold text-xl text-white">
+                Vrindavan / Varanasi /Mumbai
+              </p>
+            </div>
+            <div>
+              <p
+                class="opacity-50 mb-1 uppercase tracking-widest text-[10px] font-bold"
+              >
+                Email:
+              </p>
+              <p class="font-bold text-xl text-white">tirthsutra@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="py-10 border-t border-white/5 text-center">
+        <p class="text-[10px] uppercase tracking-[0.6em] opacity-40 font-bold">
+          &copy; 2026 GAU-SUTRA MISSION. PROTECT. RESTORE. SERVE.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

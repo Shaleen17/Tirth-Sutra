@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yatra Payment - Tirth Sutra</title>
+    <link rel="icon" type="image/png" href="BrandLogo.jpg" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -162,7 +163,11 @@
                       src="qr_code.jpg"
                       alt="UPI QR Code"
                       class="w-48 h-48 border p-2 rounded-lg"
-                      onerror="this.onerror=null;this.src='https://placehold.co/192x192/FBEEDB/4A2E2A?text=Your+QR';"
+                      onerror="
+                        this.onerror = null;
+                        this.src =
+                          'https://placehold.co/192x192/FBEEDB/4A2E2A?text=Your+QR';
+                      "
                     />
                   </div>
                   <p class="my-4 text-center font-semibold" data-lang-key="or">
@@ -334,7 +339,7 @@
                 src="nilachakra_logo.jpg"
                 alt="Logo"
                 class="h-16 mb-2"
-                onerror="this.style.display='none'"
+                onerror="this.style.display = 'none'"
               />
               <h2
                 class="text-3xl font-bold text-[#4a2e2a]"
@@ -545,19 +550,19 @@
 
         // --- 2. ALL ELEMENT SELECTORS ---
         const yatraDetailsContainer = document.getElementById(
-          "yatra-details-container"
+          "yatra-details-container",
         );
         const priceTotalEl = document
           .querySelector("#yatra-details-container + .border-t")
           .querySelector("span:last-child");
         const confirmAmountEl = document.getElementById("confirm-amount");
         const formConfirmLabel = document.querySelector(
-          'label[for="payment-confirm-checkbox"]'
+          'label[for="payment-confirm-checkbox"]',
         );
         const form = document.getElementById("payment-confirmation-form");
         const formInputs = form.querySelectorAll(".form-input");
         const confirmCheckbox = document.getElementById(
-          "payment-confirm-checkbox"
+          "payment-confirm-checkbox",
         );
         const generateBtn = document.getElementById("generate-receipt-btn");
         const paymentSection = document.getElementById("payment-section");
@@ -591,7 +596,7 @@
             const itemEl = document.createElement("div");
             itemEl.className = "flex justify-between";
             itemEl.innerHTML = `<span>${name}</span><span>₹${yatra.price.toLocaleString(
-              "en-IN"
+              "en-IN",
             )}</span>`;
             yatraDetailsContainer.appendChild(itemEl);
           });
@@ -627,7 +632,7 @@
           if (priceTotalEl)
             priceTotalEl.innerHTML = `₹<span id="price-total">${totalAmount.toLocaleString(
               "en-IN",
-              { minimumFractionDigits: 2 }
+              { minimumFractionDigits: 2 },
             )}</span>`;
 
           if (confirmAmountEl && formConfirmLabel) {
@@ -662,7 +667,7 @@
           });
           if (lang === "hi") {
             langHiBtn.classList.add("bg-[#4a2e2a]", "text-white");
-            langEnBtn.classList.remove("bg-[#4a2e2#4a2e2aa]", "text-white");
+            langEnBtn.classList.remove("bg-[#4a2e2a]", "text-white");
           } else {
             langEnBtn.classList.add("bg-[#4a2e2a]", "text-white");
             langHiBtn.classList.remove("bg-[#4a2e2a]", "text-white");
@@ -687,7 +692,7 @@
             paymentOptions.forEach((opt) => opt.classList.remove("active"));
             option.classList.add("active");
             paymentContents.forEach((content) =>
-              content.classList.add("hidden")
+              content.classList.add("hidden"),
             );
             document
               .getElementById(option.dataset.target)
@@ -696,7 +701,7 @@
         });
 
         formInputs.forEach((input) =>
-          input.addEventListener("input", validateForm)
+          input.addEventListener("input", validateForm),
         );
         confirmCheckbox.addEventListener("change", validateForm);
 
@@ -710,14 +715,13 @@
 
           document.getElementById("receipt-name").textContent = pilgrimName;
           document.getElementById("receipt-txn-id").textContent = transactionId;
-          document.getElementById(
-            "receipt-number"
-          ).textContent = `TPP-${Date.now().toString().slice(-6)}`;
+          document.getElementById("receipt-number").textContent =
+            `TPP-${Date.now().toString().slice(-6)}`;
           document.getElementById("receipt-date").textContent =
             new Date().toLocaleDateString("en-GB");
 
           const receiptTableBody = document.getElementById(
-            "receipt-items-table"
+            "receipt-items-table",
           );
           receiptTableBody.innerHTML = "";
           let subtotal = 0;
@@ -726,7 +730,7 @@
             subtotal += yatra.price;
             const row = document.createElement("tr");
             row.innerHTML = `<td class="p-2">${name}</td><td class="p-2 text-right">₹${yatra.price.toLocaleString(
-              "en-IN"
+              "en-IN",
             )}</td>`;
             receiptTableBody.appendChild(row);
           });
@@ -763,7 +767,7 @@
         window.copyToClipboard = function (text) {
           navigator.clipboard.writeText(text).then(
             () => alert("UPI ID copied!"),
-            () => alert("Failed to copy.")
+            () => alert("Failed to copy."),
           );
         };
 
