@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report a Stray Cow | Gau-Sutra Mission</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-bg: #fffcf7;
+        --deep-brown: #4a2c2a;
+        --text-main: #2d1e1c;
+        --label-color: #5d4037;
+        --accent-gold: #c5a059;
+      }
+
+      body {
+        font-family: "Lora", serif;
+        background-color: var(--primary-bg);
+        color: var(--text-main);
+        font-size: 1.05rem;
+        line-height: 1.8;
+      }
+
+      .heading-font {
+        font-family: "Playfair Display", serif;
+      }
+      .ui-font {
+        font-family: "Crimson Pro", serif;
+      }
+
+      /* Branding UI */
+      .presents-tag {
+        font-family: "Crimson Pro", serif;
+        font-size: 0.75rem;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        color: #8d736b;
+        font-weight: 700;
+        margin-bottom: 2px;
+        display: block;
+      }
+
+      /* Form Card */
+      .report-card {
+        background: white;
+        padding: clamp(1.5rem, 5vw, 4rem);
+        border-radius: 12px;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.04);
+        border: 1px solid #f0f0f0;
+      }
+
+      .form-label {
+        display: block;
+        font-size: 1.25rem;
+        color: var(--label-color);
+        margin-bottom: 0.5rem;
+        font-family: "Crimson Pro", serif;
+        font-weight: 600;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 0.9rem 1.1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 1rem;
+        background-color: #fff;
+        margin-bottom: 1.8rem;
+        transition: border-color 0.2s;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: var(--deep-brown);
+        border: 1px solid var(--deep-brown);
+      }
+
+      /* Status Pills */
+      .status-pill {
+        padding: 0.5rem 1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: 0.3s;
+        display: inline-block;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .status-pill.active {
+        background: var(--deep-brown);
+        color: white;
+        border-color: var(--deep-brown);
+      }
+
+      .btn-report {
+        background-color: var(--deep-brown);
+        color: white;
+        padding: 1.2rem 4rem;
+        border-radius: 8px;
+        font-size: 1.8rem;
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        display: block;
+        width: 100%;
+        margin-top: 2rem;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      .btn-report:hover {
+        transform: scale(1.01);
+        opacity: 0.95;
+      }
+
+      /* Notification Toast */
+      #notification {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: #4a2c2a;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        display: none;
+        z-index: 100;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      footer {
+        background-color: var(--deep-brown);
+        color: #ead9d7;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header
+      class="bg-white border-b border-orange-50 shadow-sm sticky top-0 z-50"
+    >
+      <div
+        class="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center"
+      >
+        <div class="flex flex-col">
+          <span class="presents-tag">Tirth Sutra presents</span>
+          <span
+            class="heading-font text-2xl font-bold tracking-tight text-amber-950 uppercase"
+            >GAU-SUTRA</span
+          >
+        </div>
+        <a
+          href="Gau_Sutra.html"
+          class="ui-font text-sm font-bold uppercase tracking-widest text-amber-900 hover:underline"
+          >Back to Home</a
+        >
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="py-16 px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h1 class="heading-font text-4xl md:text-5xl text-amber-950 mb-4">
+            Report a Stray Cow
+          </h1>
+          <p class="text-gray-500 italic max-w-2xl mx-auto">
+            Help us build the Urban Shield. Report the location and condition of
+            abandoned cows to ensure they receive immediate care and a dignified
+            home.
+          </p>
+        </div>
+
+        <div class="report-card">
+          <form
+            id="reportForm"
+            action="https://formsubmit.co/tirthsutra@gmail.com"
+            method="POST"
+          >
+            <!-- Hidden FormSubmit Fields -->
+            <input
+              type="hidden"
+              name="_subject"
+              value="URGENT: Stray Cow Reported"
+            />
+            <input type="hidden" name="_captcha" value="false" />
+            <input
+              type="hidden"
+              id="geoCoords"
+              name="Location_Coordinates"
+              value="Not Provided"
+            />
+
+            <div
+              class="mb-10 p-6 bg-amber-50 rounded-lg border border-amber-100"
+            >
+              <h3 class="font-bold text-amber-900 mb-2 ui-font">
+                1. AUTOMATIC LOCATION PINNING
+              </h3>
+              <p class="text-sm text-gray-600 mb-4">
+                We use GPS to pinpoint the exact location for our rescue teams.
+              </p>
+              <button
+                type="button"
+                onclick="getLocation()"
+                id="locationBtn"
+                class="bg-white border-2 border-amber-900 text-amber-900 px-6 py-2 rounded font-bold text-sm hover:bg-amber-900 hover:text-white transition-all flex items-center gap-2"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Get Current Location (GPS)
+              </button>
+              <p
+                id="locationStatus"
+                class="text-[11px] mt-2 italic text-gray-500"
+              >
+                Click to fetch coordinates.
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10">
+              <!-- Reporter Details -->
+              <div>
+                <label class="form-label">Reporter Name / आपका नाम</label>
+                <input
+                  type="text"
+                  name="Reporter_Name"
+                  class="form-input"
+                  placeholder="Your name"
+                  required
+                />
+              </div>
+              <div>
+                <label class="form-label">Phone Number / मोबाइल नंबर</label>
+                <input
+                  type="tel"
+                  name="Reporter_Phone"
+                  class="form-input"
+                  placeholder="For verification"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <label class="form-label"
+                >Nearest Landmark / निकटतम लैंडमार्क</label
+              >
+              <input
+                type="text"
+                name="Landmark"
+                class="form-input"
+                placeholder="E.g. Near Shiv Temple, Sector 4"
+                required
+              />
+            </div>
+
+            <div class="mb-10">
+              <label class="form-label">Condition of Cow / गाय की स्थिति</label>
+              <div id="conditionPills">
+                <div class="status-pill" onclick="selectCondition(this)">
+                  Healthy / स्वस्थ
+                </div>
+                <div class="status-pill" onclick="selectCondition(this)">
+                  Injured / घायल
+                </div>
+                <div class="status-pill" onclick="selectCondition(this)">
+                  Sickness / बीमारी
+                </div>
+                <div class="status-pill" onclick="selectCondition(this)">
+                  Plastic Bloat / प्लास्टिक की समस्या
+                </div>
+                <div class="status-pill" onclick="selectCondition(this)">
+                  Pregnant / गर्भवती
+                </div>
+              </div>
+              <input
+                type="hidden"
+                name="Cow_Condition"
+                id="conditionInput"
+                value="Not Specified"
+              />
+            </div>
+
+            <div class="mb-10">
+              <label class="form-label">Number of Cows / गायों की संख्या</label>
+              <select name="Cow_Count" class="form-input">
+                <option value="1">1 Cow</option>
+                <option value="2-4">Small Group (2-4)</option>
+                <option value="5+">Large Herd (5+)</option>
+              </select>
+            </div>
+
+            <div class="mb-8">
+              <label class="form-label"
+                >Additional Details / अतिरिक्त विवरण</label
+              >
+              <textarea
+                name="Additional_Info"
+                class="form-input"
+                rows="5"
+                placeholder="Any specific markings, urgency level, or behavior details?"
+              ></textarea>
+            </div>
+
+            <div
+              class="flex items-center gap-3 p-4 bg-red-50 text-red-800 text-xs font-bold rounded border border-red-100"
+            >
+              <svg
+                class="w-5 h-5 shrink-0"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <span
+                >PLEASE NOTE: Falsely reporting or prank reports will lead to
+                permanent IP banning. This is a sacred mission.</span
+              >
+            </div>
+
+            <button type="submit" class="btn-report">Submit Report</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- Success Notification -->
+    <div id="notification">
+      Report Submitted Successfully! Our team is on the way.
+    </div>
+
+    <!-- Footer -->
+    <footer class="pt-24 pb-12 px-10">
+      <div
+        class="max-w-7xl mx-auto grid md:grid-cols-3 gap-20 pb-20 border-b border-white/5"
+      >
+        <div class="flex flex-col items-start">
+          <img
+            src="logo.png"
+            alt="Logo"
+            class="w-24 h-24 rounded-full mb-6 bg-white"
+            onerror="this.style.display = 'none'"
+          />
+          <h4 class="heading-font text-3xl font-bold text-white uppercase mb-4">
+            GAU-SUTRA
+          </h4>
+          <p class="text-sm italic opacity-70">
+            Inspired by the selfless legacy of Gita Press Gorakhpur.
+          </p>
+        </div>
+        <div>
+          <h4
+            class="ui-font font-bold uppercase tracking-widest text-xs mb-8 text-white"
+          >
+            Emergency
+          </h4>
+          <p class="text-sm opacity-80 leading-relaxed mb-4">
+            For critical injuries or immediate accident cases, please call our
+            24/7 helpline.
+          </p>
+          <p class="font-bold text-xl">+91 8707757628</p>
+        </div>
+        <div>
+          <h4
+            class="ui-font font-bold uppercase tracking-widest text-xs mb-8 text-white"
+          >
+            Office
+          </h4>
+          <p class="text-sm opacity-80">Gorakhpur / Varanasi / Delhi NCR</p>
+          <p class="text-sm opacity-80 mt-2">tirthsutra@gmail.com</p>
+        </div>
+      </div>
+      <p
+        class="text-center text-[10px] uppercase tracking-[0.5em] mt-10 opacity-30"
+      >
+        &copy; 2026 GAU-SUTRA MISSION. PROTECT. RESTORE. SERVE.
+      </p>
+    </footer>
+
+    <script>
+      // GPS Functionality
+      function getLocation() {
+        const status = document.getElementById("locationStatus");
+        const coordsInput = document.getElementById("geoCoords");
+        const btn = document.getElementById("locationBtn");
+
+        if (!navigator.geolocation) {
+          status.textContent = "Geolocation is not supported by your browser";
+        } else {
+          status.textContent = "Locating...";
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const lat = position.coords.latitude;
+              const long = position.coords.longitude;
+              coordsInput.value = `Lat: ${lat}, Long: ${long}`;
+              status.textContent = `Coordinates Locked: ${lat.toFixed(4)}, ${long.toFixed(4)}`;
+              status.classList.add("text-green-600", "font-bold");
+              btn.classList.add(
+                "bg-green-50",
+                "border-green-600",
+                "text-green-600",
+              );
+            },
+            () => {
+              status.textContent =
+                "Unable to retrieve location. Please type manually in details.";
+              status.classList.add("text-red-500");
+            },
+          );
+        }
+      }
+
+      // Condition Pill Selection
+      function selectCondition(element) {
+        // Remove active class from all
+        document
+          .querySelectorAll(".status-pill")
+          .forEach((pill) => pill.classList.remove("active"));
+        // Add to selected
+        element.classList.add("active");
+        // Update hidden input
+        document.getElementById("conditionInput").value = element.textContent;
+      }
+
+      // Form Submit handling (optional visual feedback)
+      document.getElementById("reportForm").onsubmit = function () {
+        const notify = document.getElementById("notification");
+        notify.style.display = "block";
+        setTimeout(() => {
+          notify.style.display = "none";
+        }, 5000);
+        return true;
+      };
+    </script>
+  </body>
+</html>
