@@ -234,28 +234,28 @@ const SEED_STORIES = [
     id: "s1",
     uid: "u1",
     emo: "🕉",
-    cap: "Morning aarti at Har Ki Pauri 🙏",
+    cap: " Ham Ram Ji Ke Ram Ji Hamare Hai",
     t: "2h",
-    type: "emoji",
-    src: null,
+    type: "video",
+    src: "https://video-ae5o.vercel.app/Post6.mp4",
   },
   {
     id: "s2",
     uid: "u2",
     emo: "",
-    cap: "Kedarnath base camp!",
+    cap: "Logo revel",
     t: "5h",
-    type: "emoji",
-    src: null,
+    type: "video",
+    src: "https://video-68c8.vercel.app/Brand1.mp4",
   },
   {
     id: "s3",
     uid: "u3",
     emo: "",
-    cap: "Shloka of the Day",
+    cap: "Sant Vani",
     t: "8h",
-    type: "emoji",
-    src: null,
+    type: "video",
+    src: "https://video-ae5o.vercel.app/Post7.mp4",
   },
 ];
 const SEED_NOTIFS = [
@@ -379,6 +379,36 @@ const SEED_VIDEOS = [
     ts: Date.now() - 259200000,
     live: false,
   },
+  {
+    id: "v3",
+    uid: "u4",
+    title: "Sant Darshan",
+    desc: "Varanasi",
+    cat: "Bhajan",
+    src: "https://video-68c8.vercel.app/Post4.mp4",
+    thumb: null,
+    likes: ["u1", "u2", "u3"],
+    cmts: [{ uid: "u1", txt: "Har Har Mahadev! 🌊", t: "3h ago" }],
+    views: 567000,
+    dur: "0:15",
+    ts: Date.now() - 259200000,
+    live: false,
+  },
+  {
+    id: "v2",
+    uid: "u4",
+    title: "हम श्री कृष्ण चेतन्य महाप्रभु को granted ना लें",
+    desc: "Mayapur",
+    cat: "Katha",
+    src: "https://video-68c8.vercel.app/Post5.mp4",
+    thumb: null,
+    likes: ["u1", "u2", "u3"],
+    cmts: [{ uid: "u1", txt: "Har Har Gange! 🌊", t: "5h ago" }],
+    views: 100000,
+    dur: "0:57",
+    ts: Date.now() - 259200000,
+    live: false,
+  },
 ];
 
 const SEED_LIVE = [
@@ -403,20 +433,20 @@ const SEED_VID_STORIES = [
   {
     id: "vs1",
     uid: "u2",
-    cap: "Kedarnath trek day 1 ",
+    cap: "tirth Sutra Logo Revel",
     t: "1h",
-    type: "emoji",
+    type: "video",
     emo: "",
-    src: null,
+    src: "https://video-68c8.vercel.app/Brand1.mp4",
   },
   {
     id: "vs2",
     uid: "u4",
-    cap: "Ganga Aarti sunrise ",
+    cap: "Radharaman Darshan ",
     t: "3h",
-    type: "emoji",
+    type: "video",
     emo: "",
-    src: null,
+    src: "https://video-68c8.vercel.app/Reel1.mp4",
   },
 ];
 const TRENDING = [
@@ -615,9 +645,10 @@ function seedData() {
     Store.s("convs", SEED_CONVS);
     Store.s("seeded", true);
   }
+  Store.s("stories", SEED_STORIES); // ← added this line
   Store.s("videos", SEED_VIDEOS);
   Store.s("liveStreams", SEED_LIVE);
-  if (!Store.g("vidStories")) Store.s("vidStories", SEED_VID_STORIES);
+  Store.s("vidStories", SEED_VID_STORIES);
 }
 
 /* ── AUTH ── */
@@ -986,7 +1017,7 @@ function showSV(stories, i) {
   svTimer = setTimeout(() => {
     if (i < stories.length - 1) showSV(stories, i + 1);
     else closeSV();
-  }, 5000);
+  }, 29000);
 }
 function closeSV() {
   clearTimeout(svTimer);
