@@ -189,7 +189,7 @@ const SEED_POSTS = [
   {
     id: "p2",
     uid: "u2",
-    txt: "Just returned from Kedarnath. Words cannot describe the energy at 3583m altitude. 🏔\n\n#Kedarnath #ShivBhakt",
+    txt: "Just returned from Kedarnath. Words cannot describe the energy at 3583m altitude. \n\n#Kedarnath #ShivBhakt",
     img: null,
     likes: ["u1", "u3"],
     cmts: [{ id: "c3", uid: "u1", txt: "Har Har Mahadev! 🔱", t: "3h ago" }],
@@ -202,7 +202,7 @@ const SEED_POSTS = [
   {
     id: "p3",
     uid: "u3",
-    txt: "📖 Shloka of the Day\n\nयत्र योगेश्वरः कृष्णो यत्र पार्थो धनुर्धरः।\nतत्र श्रीर्विजयो भूतिर्ध्रुवा नीतिर्मतिर्मम॥\n\n— Bhagavad Gita 18.78\n\n#BhagavadGita",
+    txt: " Shloka of the Day\n\nयत्र योगेश्वरः कृष्णो यत्र पार्थो धनुर्धरः।\nतत्र श्रीर्विजयो भूतिर्ध्रुवा नीतिर्मतिर्मम॥\n\n— Bhagavad Gita 18.78\n\n#BhagavadGita",
     img: null,
     likes: ["u1", "u2", "u4"],
     cmts: [{ id: "c4", uid: "u4", txt: "Jai Shri Krishna! 🙏", t: "6h ago" }],
@@ -215,7 +215,7 @@ const SEED_POSTS = [
   {
     id: "p4",
     uid: "u4",
-    txt: "🏔 Amarnath Yatra opens in 3 weeks! Are you going this year?",
+    txt: " Amarnath Yatra opens in 3 weeks! Are you going this year?",
     img: null,
     likes: ["u1", "u2"],
     cmts: [],
@@ -242,7 +242,7 @@ const SEED_STORIES = [
   {
     id: "s2",
     uid: "u2",
-    emo: "🏔",
+    emo: "",
     cap: "Kedarnath base camp!",
     t: "5h",
     type: "emoji",
@@ -251,7 +251,7 @@ const SEED_STORIES = [
   {
     id: "s3",
     uid: "u3",
-    emo: "📖",
+    emo: "",
     cap: "Shloka of the Day",
     t: "8h",
     type: "emoji",
@@ -2574,7 +2574,7 @@ async function init() {
   if (!Store.g("welcomed5")) {
     setTimeout(() => {
       MC.info(
-        "🛕 Welcome to Mandir Community! Check the new Mandir tab for temples, events & satsang.",
+        " Welcome to Mandir Community! Check the new Mandir tab for temples, events & satsang.",
       );
       Store.s("welcomed5", true);
     }, 2000);

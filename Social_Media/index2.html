@@ -686,12 +686,12 @@
             <label class="fl">Category</label
             ><select class="fi" id="vidCat">
               <option value="Spiritual">🕉 Spiritual</option>
-              <option value="Pilgrimage">🏔 Pilgrimage</option>
-              <option value="Discourse">📖 Discourse</option>
-              <option value="Bhajan">🎵 Bhajan & Music</option>
-              <option value="Aarti">🪔 Aarti</option>
-              <option value="Meditation">🧘 Meditation</option>
-              <option value="Other">📹 Other</option>
+              <option value="Pilgrimage">Pilgrimage</option>
+              <option value="Discourse">Discourse</option>
+              <option value="Bhajan">Bhajan & Music</option>
+              <option value="Aarti">Aarti</option>
+              <option value="Meditation">Meditation</option>
+              <option value="Other">Other</option>
             </select>
           </div>
           <div class="fg">
@@ -1395,7 +1395,7 @@
           <div class="page hide" id="pgMandir">
             <div class="fhdr">
               <div class="fhdr-row">
-                <span class="fhdr-title">🛕 Mandir Community</span>
+                <span class="fhdr-title"> Mandir Community</span>
                 <button
                   class="btn btn-p btn-sm"
                   onclick="auth(() => openOvl('compOvl'))"
@@ -1407,7 +1407,7 @@
 
             <!-- Hero -->
             <div class="mandir-hero">
-              <div class="mandir-hero-icon">🛕</div>
+              <div class="mandir-hero-icon"></div>
               <h1>Welcome to Mandir Community</h1>
               <p>
                 Connect with devotees, discover sacred temples, join spiritual
@@ -1469,7 +1469,7 @@
                  ============================================================ -->
             <div class="mandir-section">
               <div class="mandir-section-title">
-                <h3>⭐ Featured Temples</h3>
+                <h3>Featured Temples</h3>
                 <button class="btn btn-sm btn-o" onclick="gp('video')">
                   Live Darshan →
                 </button>
@@ -1526,9 +1526,7 @@
                 <div
                   class="temple-img-card"
                   onclick="
-                    MC.info(
-                      'Tirupati Balaji — The Wealthiest Temple on Earth 🛕',
-                    )
+                    MC.info('Tirupati Balaji — The Wealthiest Temple on Earth ')
                   "
                 >
                   <div class="temple-img-wrap">
@@ -1540,9 +1538,10 @@
                         this.nextElementSibling.style.display = 'flex';
                       "
                     />
-                    <div class="temple-img-placeholder" style="display: none">
-                      🛕
-                    </div>
+                    <div
+                      class="temple-img-placeholder"
+                      style="display: none"
+                    ></div>
                     <span class="temple-img-badge">Vaishnava</span>
                   </div>
                   <div class="temple-img-body">
@@ -1755,7 +1754,7 @@
             <!-- Verified Sants -->
             <div class="mandir-section">
               <div class="mandir-section-title">
-                <h3>🔱 Verified Sants</h3>
+                <h3>Verified Sants</h3>
                 <button class="btn btn-sm btn-o" onclick="gp('search')">
                   See All →
                 </button>
@@ -1869,7 +1868,7 @@
                  ============================================================ -->
             <div class="bhajan-section">
               <div class="bhajan-section-title">
-                🎵 Bhajans &amp; Devotional Music
+                Bhajans &amp; Devotional Music
               </div>
               <div class="bhajan-scroll" id="bhajanScroll">
                 <!-- ★ BHAJAN 1 — Hanuman Chalisa - Krishna Das Live! Songs
@@ -1907,7 +1906,7 @@
                 <div class="bhajan-card">
                   <div class="yt-container">
                     <iframe
-                      src="https://www.youtube.com/embed/BzSXb2StxPs?si=mwTeaphVVTg0DT39"
+                      src="https://www.youtube.com/embed/BzSXb2StxPs?si=sLs7sLJV4grCJZhU&amp;controls=0"
                       title="संतन कू देखूं आवतो || पूज्य श्री कबीरदास जी का पद || श्री राजेंद्र दास जी महाराज भजन"
                       allowfullscreen
                       loading="lazy"
@@ -1923,7 +1922,7 @@
                     </iframe>
                   </div>
                   <div class="bhajan-info">
-                    <div class="bhajan-title">संतन कू देखूं आवतो 🔱</div>
+                    <div class="bhajan-title">संतन कू देखूं आवतो</div>
                     <div class="bhajan-sub">
                       पूज्य श्री कबीरदास जी का पद || श्री राजेंद्र दास जी महाराज
                       भजन
@@ -1991,19 +1990,19 @@
                 🕉 Spiritual
               </button>
               <button class="cat-chip" onclick="setVidCat('Pilgrimage', this)">
-                🏔 Pilgrimage
+                Pilgrimage
               </button>
               <button class="cat-chip" onclick="setVidCat('Discourse', this)">
-                📖 Discourse
+                Discourse
               </button>
               <button class="cat-chip" onclick="setVidCat('Bhajan', this)">
-                🎵 Bhajan
+                Bhajan
               </button>
               <button class="cat-chip" onclick="setVidCat('Aarti', this)">
-                🪔 Aarti
+                Aarti
               </button>
               <button class="cat-chip" onclick="setVidCat('Meditation', this)">
-                🧘 Meditation
+                Meditation
               </button>
             </div>
             <div class="live-section" id="liveSectionWrap">
@@ -2277,7 +2276,7 @@
             />
           </div>
           <div class="widget">
-            <h3>🛕 Mandir Community</h3>
+            <h3>Mandir Community</h3>
             <p style="font-size: 13px; color: var(--t2); margin-bottom: 10px">
               Join 2.4 lakh devotees in the sacred digital sangha.
             </p>
