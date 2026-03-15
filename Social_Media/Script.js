@@ -340,12 +340,12 @@ const SEED_VIDEOS = [
     title: "One Spiritual Lesson That Can Change Your Life Forever",
     desc: "keli kunj vrindavan",
     cat: "Spiritual",
-    src: "https://video-8d71.vercel.app/Post1.mp4",
+    src: "https://video-8d71.vercel.app/Post1.mp4?v=1",
     thumb: null,
     likes: ["u2", "u3"],
     cmts: [{ uid: "u2", txt: "Jai Mahadev! 🔱", t: "1h ago" }],
     views: 1240,
-    dur: "12:34",
+    dur: "01:23",
     ts: Date.now() - 86400000,
     live: false,
   },
@@ -355,12 +355,12 @@ const SEED_VIDEOS = [
     title: "सूरज ढला और एक दिन कम हो गया #iskcon",
     desc: "हाँ रघुनंदन, प्राण प्रीति तुम बिन जिए, तो बहुत दिन बीते।",
     cat: "Discourse",
-    src: "https://video-8d71.vercel.app/Post2.mp4",
+    src: "https://video-8d71.vercel.app/Post2.mp4?v=2",
     thumb: null,
     likes: ["u1", "u4"],
     cmts: [],
     views: 3820,
-    dur: "45:12",
+    dur: "01:00",
     ts: Date.now() - 172800000,
     live: false,
   },
@@ -370,22 +370,23 @@ const SEED_VIDEOS = [
     title: "Soul-Touching Kirtan That Brings Instant Peace 🕉️",
     desc: "Varanasi",
     cat: "Aarti",
-    src: "https://video-8d71.vercel.app/Post3.mp4",
+    src: "https://video-8d71.vercel.app/Post3.mp4?v=3",
     thumb: null,
     likes: ["u1", "u2", "u3"],
     cmts: [{ uid: "u1", txt: "Har Har Gange! 🌊", t: "2h ago" }],
     views: 5670,
-    dur: "8:22",
+    dur: "2:27",
     ts: Date.now() - 259200000,
     live: false,
   },
 ];
+
 const SEED_LIVE = [
   {
     id: "l1",
     uid: "u1",
     title: "The Essence of the Tirth Sutra",
-    src: "https://video-xi-flame.vercel.app/Tirth%20Sutra%20Video.mp4",
+    src: "https://video-xi-flame.vercel.app/Tirth%20Sutra%20Video.mp4?v=1",
     viewers: 12470,
     started: "10 min ago",
   },
@@ -393,7 +394,7 @@ const SEED_LIVE = [
     id: "l2",
     uid: "u3",
     title: "Naam Sankirtan – The Most Powerful Meditation in Kali Yuga",
-    src: "https://video-8d71.vercel.app/live.mp4",
+    src: "https://video-8d71.vercel.app/live.mp4?v=1",
     viewers: 38910,
     started: "1 hour ago",
   },
@@ -614,8 +615,8 @@ function seedData() {
     Store.s("convs", SEED_CONVS);
     Store.s("seeded", true);
   }
-  if (!Store.g("videos")) Store.s("videos", SEED_VIDEOS);
-  if (!Store.g("liveStreams")) Store.s("liveStreams", SEED_LIVE);
+  Store.s("videos", SEED_VIDEOS);
+  Store.s("liveStreams", SEED_LIVE);
   if (!Store.g("vidStories")) Store.s("vidStories", SEED_VID_STORIES);
 }
 
