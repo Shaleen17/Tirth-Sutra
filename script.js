@@ -105,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
       taglineFlow:
         "Rooted in Sanatan Dharma, qualified by our spiritual leaders",
       FooterSocial: "Our Sociial Media (Testing)",
+      FooterTsutra: "Our E-Commerce Page",
       footerTerms: "Terms & Condition",
       footerPrivacy: "Privacy Policy",
       footerRights: "© 2025 Tirth Sutra. All Rights Reserved.",
@@ -216,6 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
       newsletterButton: "साइन अप करें",
       taglineFlow: "सनातन धर्म पर आधारित, संत-महात्माओं से अनुमोदित।",
       FooterSocial: "सोशल मीडिया (परीक्षण)",
+      FooterTsutra: "हमारा ई-कॉमर्स पेज",
       footerTerms: "नियम एवं शर्तें",
       footerPrivacy: "गोपनीयता नीति",
       footerRights: "© 2025 तीर्थ सूत्र। सर्वाधिकार सुरक्षित।",

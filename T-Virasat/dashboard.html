@@ -1,0 +1,2928 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,maximum-scale=1.0"
+    />
+    <title>Dashboard — Tirth Sutra-Virasat</title>
+    <link rel="icon" type="image/png" href="Tirth Sutra-Virasat-logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ══ THEME ══ */
+      :root {
+        --brown: #4a2e2a;
+        --cream: #fbeedb;
+        --gold: #c9973b;
+        --dark: #2d1a17;
+        --muted: #8a6a5e;
+        --bg: #f4f0eb;
+        --text: #2d1a17;
+        --card: #fff;
+        --border: #f0e8de;
+        --nav: #2d1a17;
+        --green: #2d6a4f;
+        --red: #c0392b;
+        --blue: #1a4a7a;
+      }
+      [data-theme="dark"] {
+        --bg: #0f0a08;
+        --text: #f0e0cc;
+        --card: #1c0f0a;
+        --border: #3a2018;
+        --muted: #b08878;
+        --cream: #1c0f0a;
+        --nav: #0a0503;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        transition:
+          background 0.3s,
+          color 0.3s;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Playfair Display", serif;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      /* ══ TOP BAR ══ */
+      #topbar {
+        background: var(--nav);
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+        transition: background 0.3s;
+      }
+      .tb-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 58px;
+        gap: 12px;
+      }
+
+      /* ── LOGO ──
+   ╔═══════════════════════════════════════════════════╗
+   ║  REPLACE src="YOUR_LOGO_FILENAME.jpg"             ║
+   ║  with your actual logo file, e.g.:               ║
+   ║    src="Tirth Sutra-Virasat-logo.jpg"                       ║
+   ║    src="assets/logo.png"                          ║
+   ║  Place file in same folder as dashboard.html     ║
+   ╚═══════════════════════════════════════════════════╝ */
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+      .logo-circle {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border: 2px solid rgba(201, 151, 59, 0.45);
+      }
+      .logo-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .logo-fb {
+        font-family: "Playfair Display", serif;
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 700;
+        display: none;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+      .logo-name {
+        font-family: "Playfair Display", serif;
+        color: #fbeedb;
+        font-size: 1.05rem;
+        font-weight: 700;
+        line-height: 1.1;
+      }
+      .logo-sub {
+        color: rgba(251, 238, 219, 0.42);
+        font-size: 0.48rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        margin-top: 1px;
+      }
+
+      .tb-nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .tb-link {
+        color: rgba(251, 238, 219, 0.78);
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 500;
+        transition: color 0.2s;
+        white-space: nowrap;
+      }
+      .tb-link:hover,
+      .tb-link.active {
+        color: var(--gold);
+      }
+      .tb-actions {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        flex-shrink: 0;
+      }
+      .icon-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        color: #fbeedb;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.22s;
+        flex-shrink: 0;
+      }
+      .icon-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .user-badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #fbeedb;
+        font-size: 0.82rem;
+      }
+      .u-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Playfair Display", serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .hamburger {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        color: #fbeedb;
+        width: 34px;
+        height: 34px;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .logout-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: rgba(251, 238, 219, 0.8);
+        padding: 6px 14px;
+        border-radius: 4px;
+        font-size: 0.74rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: "Inter", sans-serif;
+        white-space: nowrap;
+      }
+      .logout-btn:hover {
+        background: rgba(192, 57, 43, 0.3);
+        color: #fbeedb;
+      }
+
+      /* ══ MOBILE DRAWER ══ */
+      #mob-drawer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: min(280px, 85vw);
+        height: 100dvh;
+        background: #1c0a07;
+        z-index: 300;
+        transform: translateX(-100%);
+        transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      #mob-drawer.open {
+        transform: translateX(0);
+      }
+      #mob-ov {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.52);
+        z-index: 299;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
+      #mob-ov.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .drawer-head {
+        padding: 14px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        flex-shrink: 0;
+      }
+      .drawer-link {
+        color: rgba(251, 238, 219, 0.82);
+        font-size: 0.95rem;
+        padding: 13px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.2s;
+        font-weight: 500;
+      }
+      .drawer-link:hover {
+        background: rgba(201, 151, 59, 0.1);
+        color: var(--gold);
+      }
+
+      /* ══ DASHBOARD LAYOUT ══ */
+      .dash-layout {
+        display: grid;
+        grid-template-columns: 230px 1fr;
+        min-height: calc(100dvh - 58px);
+      }
+
+      /* ══ SIDEBAR ══ */
+      .dash-sidebar {
+        background: var(--card);
+        border-right: 1px solid var(--border);
+        overflow-y: auto;
+        position: sticky;
+        top: 58px;
+        height: calc(100dvh - 58px);
+      }
+      .ds-user {
+        padding: 20px 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .ds-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--brown), var(--dark));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Playfair Display", serif;
+        color: #fbeedb;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .ds-name {
+        font-family: "Playfair Display", serif;
+        color: var(--brown);
+        font-size: 1rem;
+        margin-bottom: 2px;
+      }
+      [data-theme="dark"] .ds-name {
+        color: #f0e0cc;
+      }
+      .ds-role {
+        font-size: 0.7rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      /* Role tabs */
+      .role-tabs {
+        display: flex;
+        gap: 0;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .rtab {
+        flex: 1;
+        padding: 7px 4px;
+        border-radius: 6px;
+        border: none;
+        background: transparent;
+        font-family: "Inter", sans-serif;
+        font-size: 0.72rem;
+        cursor: pointer;
+        transition: all 0.22s;
+        color: var(--muted);
+        text-align: center;
+      }
+      .rtab.on {
+        background: var(--brown);
+        color: #fbeedb;
+        font-weight: 600;
+      }
+
+      /* Nav groups */
+      .nav-group {
+        padding: 8px 0;
+      }
+      .nav-group-title {
+        font-size: 0.6rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+        padding: 10px 18px 6px;
+      }
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 9px 18px;
+        font-size: 0.83rem;
+        color: var(--muted);
+        cursor: pointer;
+        transition: all 0.2s;
+        border-left: 3px solid transparent;
+        border: none;
+        background: transparent;
+        width: 100%;
+        font-family: "Inter", sans-serif;
+        text-align: left;
+      }
+      .nav-item:hover {
+        background: var(--bg);
+        color: var(--brown);
+      }
+      [data-theme="dark"] .nav-item:hover {
+        background: rgba(255, 255, 255, 0.04);
+        color: #f0e0cc;
+      }
+      .nav-item.on {
+        background: linear-gradient(90deg, var(--cream), var(--bg));
+        color: var(--brown);
+        border-left: 3px solid var(--gold);
+        font-weight: 600;
+      }
+      [data-theme="dark"] .nav-item.on {
+        background: rgba(201, 151, 59, 0.08);
+        color: var(--gold);
+      }
+      .nav-item .ni-icon {
+        width: 18px;
+        text-align: center;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+      }
+      .nav-badge {
+        margin-left: auto;
+        background: var(--gold);
+        color: #fff;
+        font-size: 0.58rem;
+        padding: 1px 7px;
+        border-radius: 100px;
+        font-weight: 700;
+      }
+
+      /* ══ MAIN AREA ══ */
+      .dash-main {
+        padding: 20px;
+        overflow-y: auto;
+        min-width: 0;
+      }
+      .dash-section {
+        display: none;
+      }
+      .dash-section.active {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .page-hd {
+        margin-bottom: 20px;
+      }
+      .page-title {
+        font-size: 1.6rem;
+        color: var(--brown);
+        margin-bottom: 3px;
+      }
+      [data-theme="dark"] .page-title {
+        color: #f0e0cc;
+      }
+      .page-sub {
+        font-size: 0.83rem;
+        color: var(--muted);
+      }
+
+      /* ══ STAT CARDS ══ */
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 14px;
+        margin-bottom: 22px;
+      }
+      .stat-card {
+        background: var(--card);
+        border-radius: 10px;
+        padding: 18px;
+        box-shadow: 0 2px 12px rgba(74, 46, 42, 0.07);
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        transition: transform 0.2s;
+      }
+      [data-theme="dark"] .stat-card {
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+      }
+      .stat-card:hover {
+        transform: translateY(-2px);
+      }
+      .stat-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--gold);
+      }
+      .stat-card.green::after {
+        background: var(--green);
+      }
+      .stat-card.red::after {
+        background: var(--red);
+      }
+      .stat-card.blue::after {
+        background: var(--blue);
+      }
+      .stat-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+      }
+      .stat-val {
+        font-family: "Playfair Display", serif;
+        font-size: 1.7rem;
+        color: var(--brown);
+        font-weight: 700;
+        line-height: 1;
+      }
+      [data-theme="dark"] .stat-val {
+        color: #f0e0cc;
+      }
+      .stat-lbl {
+        font-size: 0.68rem;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+        margin-top: 3px;
+      }
+      .stat-chg {
+        font-size: 0.7rem;
+        margin-top: 5px;
+        font-weight: 500;
+      }
+      .stat-chg.up {
+        color: var(--green);
+      }
+      .stat-chg.dn {
+        color: var(--red);
+      }
+
+      /* ══ CARD ══ */
+      .dcard {
+        background: var(--card);
+        border-radius: 10px;
+        box-shadow: 0 2px 12px rgba(74, 46, 42, 0.07);
+        overflow: hidden;
+        margin-bottom: 18px;
+        border: 1px solid var(--border);
+      }
+      [data-theme="dark"] .dcard {
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+      }
+      .dcard-head {
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .dcard-title {
+        font-family: "Playfair Display", serif;
+        font-size: 0.98rem;
+        color: var(--brown);
+      }
+      [data-theme="dark"] .dcard-title {
+        color: #f0e0cc;
+      }
+      .dcard-body {
+        padding: 18px 20px;
+      }
+
+      /* ══ TABLE ══ */
+      .dtable-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .dtable {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 500px;
+      }
+      .dtable th {
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+        padding: 9px 12px;
+        border-bottom: 2px solid var(--border);
+        text-align: left;
+        white-space: nowrap;
+      }
+      .dtable td {
+        padding: 11px 12px;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.82rem;
+        vertical-align: middle;
+      }
+      .dtable tr:last-child td {
+        border-bottom: none;
+      }
+      .dtable tr:hover td {
+        background: var(--bg);
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 3px 9px;
+        border-radius: 100px;
+        font-size: 0.66rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+      }
+      .pill-green {
+        background: #e8f5e9;
+        color: var(--green);
+      }
+      .pill-gold {
+        background: #fef9e7;
+        color: #b8860b;
+      }
+      .pill-red {
+        background: #fdecea;
+        color: var(--red);
+      }
+      .pill-blue {
+        background: #e8f0fe;
+        color: var(--blue);
+      }
+      .pill-gray {
+        background: #f5f5f5;
+        color: #666;
+      }
+
+      /* ══ FORMS ══ */
+      .form-group {
+        margin-bottom: 14px;
+      }
+      .form-label {
+        font-size: 0.72rem;
+        color: var(--muted);
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        display: block;
+      }
+      .form-input {
+        width: 100%;
+        padding: 10px 13px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-family: "Inter", sans-serif;
+        font-size: 0.86rem;
+        outline: none;
+        transition: border-color 0.2s;
+        background: var(--card);
+        color: var(--text);
+      }
+      .form-input:focus {
+        border-color: var(--brown);
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+      .btn {
+        padding: 9px 20px;
+        border-radius: 6px;
+        font-family: "Inter", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: none;
+        letter-spacing: 0.04em;
+      }
+      .btn-gold {
+        background: var(--gold);
+        color: #fff;
+      }
+      .btn-gold:hover {
+        background: #b5852e;
+      }
+      .btn-brown {
+        background: var(--brown);
+        color: #fbeedb;
+      }
+      .btn-brown:hover {
+        background: var(--dark);
+      }
+      .btn-outline {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text);
+      }
+      .btn-outline:hover {
+        background: var(--bg);
+      }
+      .btn-red {
+        background: var(--red);
+        color: #fff;
+      }
+      .btn-red:hover {
+        background: #a93226;
+      }
+      .btn-sm {
+        padding: 6px 13px;
+        font-size: 0.74rem;
+      }
+
+      /* Upload zone */
+      .upload-zone {
+        border: 2px dashed var(--border);
+        border-radius: 10px;
+        padding: 32px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.22s;
+        background: var(--bg);
+      }
+      .upload-zone:hover {
+        border-color: var(--gold);
+        background: var(--cream);
+      }
+      [data-theme="dark"] .upload-zone:hover {
+        background: rgba(201, 151, 59, 0.06);
+      }
+      .upload-zone .uz-icon {
+        font-size: 2.2rem;
+        margin-bottom: 8px;
+      }
+
+      /* Progress bar */
+      .prog-wrap {
+        margin-bottom: 12px;
+      }
+      .prog-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.78rem;
+        margin-bottom: 5px;
+      }
+      .prog-bar {
+        height: 6px;
+        background: var(--border);
+        border-radius: 100px;
+        overflow: hidden;
+      }
+      .prog-fill {
+        height: 100%;
+        border-radius: 100px;
+        transition: width 1s;
+      }
+
+      /* Bar chart (CSS only) */
+      .bar-chart {
+        display: flex;
+        align-items: flex-end;
+        gap: 6px;
+        height: 100px;
+        padding: 0 2px;
+      }
+      .bc-bar {
+        flex: 1;
+        border-radius: 4px 4px 0 0;
+        cursor: pointer;
+        position: relative;
+        transition: opacity 0.2s;
+      }
+      .bc-bar:hover {
+        opacity: 0.85;
+      }
+      .bc-bar::after {
+        content: attr(data-v);
+        position: absolute;
+        top: -18px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.58rem;
+        color: var(--brown);
+        white-space: nowrap;
+        font-weight: 600;
+      }
+      [data-theme="dark"] .bc-bar::after {
+        color: var(--gold);
+      }
+      .bc-label {
+        font-size: 0.6rem;
+        color: var(--muted);
+        text-align: center;
+        margin-top: 5px;
+      }
+
+      /* Order steps */
+      .order-steps {
+        display: flex;
+        position: relative;
+        margin: 18px 0;
+        overflow-x: auto;
+      }
+      .order-steps::before {
+        content: "";
+        position: absolute;
+        top: 14px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--border);
+        z-index: 0;
+      }
+      .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        position: relative;
+        z-index: 1;
+        flex: 1;
+        min-width: 70px;
+      }
+      .step-dot {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.72rem;
+        font-weight: 700;
+        border: 2px solid var(--border);
+        background: var(--card);
+        transition: all 0.3s;
+      }
+      .step-dot.done {
+        background: var(--green);
+        color: #fff;
+        border-color: var(--green);
+      }
+      .step-dot.active {
+        background: var(--gold);
+        color: #fff;
+        border-color: var(--gold);
+        box-shadow: 0 0 0 4px rgba(201, 151, 59, 0.2);
+      }
+      .step-lbl {
+        font-size: 0.6rem;
+        color: var(--muted);
+        text-align: center;
+        letter-spacing: 0.03em;
+      }
+
+      /* Notification */
+      .notif {
+        display: flex;
+        gap: 10px;
+        padding: 13px;
+        border-radius: 8px;
+        margin-bottom: 9px;
+        border-left: 3px solid;
+      }
+      .notif-warn {
+        background: #fef9e7;
+        border-color: #b8860b;
+      }
+      .notif-info {
+        background: #e8f0fe;
+        border-color: var(--blue);
+      }
+      .notif-success {
+        background: #e8f5e9;
+        border-color: var(--green);
+      }
+      [data-theme="dark"] .notif-warn {
+        background: rgba(201, 151, 59, 0.08);
+      }
+      [data-theme="dark"] .notif-info {
+        background: rgba(26, 74, 122, 0.15);
+      }
+      [data-theme="dark"] .notif-success {
+        background: rgba(45, 106, 79, 0.15);
+      }
+
+      /* Toggle switch */
+      .toggle-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px;
+        background: var(--bg);
+        border-radius: 8px;
+        margin-bottom: 8px;
+      }
+      .toggle-switch {
+        width: 42px;
+        height: 24px;
+        border-radius: 100px;
+        cursor: pointer;
+        position: relative;
+        transition: background 0.3s;
+        flex-shrink: 0;
+      }
+      .toggle-switch.on {
+        background: var(--green);
+      }
+      .toggle-switch.off {
+        background: #e0e0e0;
+      }
+      .toggle-knob {
+        width: 18px;
+        height: 18px;
+        background: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 3px;
+        transition: left 0.25s;
+      }
+      .toggle-switch.on .toggle-knob {
+        left: 21px;
+      }
+      .toggle-switch.off .toggle-knob {
+        left: 3px;
+      }
+
+      /* Wishlist item */
+      .wish-item {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .wish-item:last-child {
+        border-bottom: none;
+      }
+      .wish-emoji {
+        width: 50px;
+        height: 50px;
+        background: var(--bg);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+      }
+
+      /* Donut chart */
+      .donut-wrap {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .donut-legend {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      .leg-item {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 0.76rem;
+        color: var(--muted);
+      }
+      .leg-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      /* ══ TOAST ══ */
+      #toast {
+        position: fixed;
+        bottom: 20px;
+        right: 16px;
+        z-index: 999;
+        background: var(--brown);
+        color: #fbeedb;
+        padding: 11px 18px;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        font-weight: 500;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+        transform: translateY(80px);
+        opacity: 0;
+        transition: all 0.35s;
+        border-left: 3px solid var(--gold);
+        max-width: calc(100vw - 32px);
+      }
+      #toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* ══ NOT LOGGED IN SCREEN ══ */
+      #not-logged-in {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 60dvh;
+        padding: 40px 20px;
+        text-align: center;
+      }
+      #not-logged-in.show {
+        display: flex;
+      }
+
+      /* ══ RESPONSIVE ══ */
+      @media (max-width: 1023px) {
+        .dash-layout {
+          grid-template-columns: 200px 1fr;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 767px) {
+        .tb-nav,
+        .btn-wrap-desk {
+          display: none !important;
+        }
+        .hamburger {
+          display: flex !important;
+        }
+        .logo-sub {
+          display: none;
+        }
+        .dash-layout {
+          grid-template-columns: 1fr;
+        }
+        .dash-sidebar {
+          display: none;
+        }
+        .dash-main {
+          padding: 14px;
+        }
+        .stat-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .mob-dash-tabs {
+          display: flex !important;
+        }
+      }
+      @media (max-width: 380px) {
+        .stat-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Mobile dashboard tabs (replaces sidebar) */
+      .mob-dash-tabs {
+        display: none;
+        overflow-x: auto;
+        gap: 6px;
+        padding: 10px 14px;
+        background: var(--card);
+        border-bottom: 1px solid var(--border);
+        scrollbar-width: none;
+      }
+      .mob-dash-tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .mdt-btn {
+        padding: 7px 14px;
+        border-radius: 100px;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--muted);
+        font-size: 0.72rem;
+        cursor: pointer;
+        white-space: nowrap;
+        font-family: "Inter", sans-serif;
+        transition: all 0.2s;
+        flex-shrink: 0;
+      }
+      .mdt-btn.on {
+        background: var(--brown);
+        color: #fbeedb;
+        border-color: var(--brown);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══ TOPBAR ══ -->
+    <nav id="topbar">
+      <div class="tb-inner">
+        <!-- LOGO -->
+        <a href="sutra.html" class="nav-logo">
+          <div class="logo-circle">
+            <!-- ★ REPLACE src BELOW WITH YOUR LOGO FILE ★
+             e.g.  src="Tirth Sutra-Virasat-logo.jpg"
+                   src="assets/logo.png"              -->
+            <img
+              src="Tirth Sutra-Virasat-logo.jpg"
+              alt="Tirth Sutra-Virasat Logo"
+              onerror="
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'flex';
+              "
+            />
+            <span class="logo-fb" id="logo-fb">ह</span>
+          </div>
+          <div>
+            <div class="logo-name">Tirth Sutra-Virasat</div>
+            <div class="logo-sub">Threads of Tradition, Stories of India.</div>
+          </div>
+        </a>
+
+        <nav class="tb-nav">
+          <a href="sutra.html" class="tb-link">Home</a>
+          <a href="marketplace.html" class="tb-link">Marketplace</a>
+          <a href="artisan.html" class="tb-link">Artisans</a>
+          <a href="dashboard.html" class="tb-link active">Dashboard</a>
+        </nav>
+
+        <div class="tb-actions">
+          <button class="icon-btn" onclick="toggleDark()" id="dark-btn">
+            🌙
+          </button>
+          <div class="user-badge btn-wrap-desk" id="user-badge-wrap">
+            <div class="u-avatar" id="tb-init">?</div>
+            <span
+              id="tb-name"
+              style="
+                max-width: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              "
+              >Guest</span
+            >
+          </div>
+          <button
+            class="logout-btn btn-wrap-desk"
+            onclick="logoutUser()"
+            id="logout-btn"
+            style="display: none"
+          >
+            Sign Out
+          </button>
+          <button class="hamburger" id="hamburger" onclick="openDrawer()">
+            ☰
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div id="mob-ov" onclick="closeDrawer()"></div>
+    <div id="mob-drawer">
+      <div class="drawer-head">
+        <span
+          style="
+            font-family: &quot;Playfair Display&quot;, serif;
+            color: #fbeedb;
+            font-size: 1rem;
+            font-weight: 700;
+          "
+          >Tirth Sutra-Virasat</span
+        >
+        <button
+          onclick="closeDrawer()"
+          style="
+            background: transparent;
+            border: none;
+            color: rgba(251, 238, 219, 0.7);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px;
+          "
+        >
+          ✕
+        </button>
+      </div>
+      <a href="sutra.html" class="drawer-link">🏠 Home</a>
+      <a href="marketplace.html" class="drawer-link">🛍️ Marketplace</a>
+      <a href="artisan.html" class="drawer-link">🎨 Artisans</a>
+      <a href="dashboard.html" class="drawer-link" style="color: var(--gold)"
+        >📊 Dashboard</a
+      >
+      <div style="padding: 16px 18px; margin-top: auto">
+        <button
+          onclick="
+            logoutUser();
+            closeDrawer();
+          "
+          style="
+            width: 100%;
+            padding: 12px;
+            font-size: 0.85rem;
+            background: rgba(192, 57, 43, 0.3);
+            color: #fbeedb;
+            border: 1px solid rgba(192, 57, 43, 0.4);
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: &quot;Inter&quot;, sans-serif;
+          "
+        >
+          🚪 Sign Out
+        </button>
+      </div>
+    </div>
+
+    <!-- NOT LOGGED IN -->
+    <div id="not-logged-in">
+      <div style="font-size: 4rem; margin-bottom: 16px">🔐</div>
+      <h2 style="font-size: 1.6rem; color: var(--brown); margin-bottom: 8px">
+        Sign In Required
+      </h2>
+      <p
+        style="
+          color: var(--muted);
+          max-width: 380px;
+          line-height: 1.7;
+          margin-bottom: 24px;
+          font-size: 0.9rem;
+        "
+      >
+        Please sign in to access your dashboard. Your orders, wishlist, and
+        artisan tools are waiting.
+      </p>
+      <a
+        href="sutra.html"
+        style="
+          background: var(--gold);
+          color: #fff;
+          padding: 12px 28px;
+          border-radius: 6px;
+          font-weight: 600;
+          font-size: 0.9rem;
+          display: inline-block;
+          transition: background 0.2s;
+        "
+        onmouseover="this.style.background = '#b5852e'"
+        onmouseout="this.style.background = 'var(--gold)'"
+        >Go to Sign In →</a
+      >
+    </div>
+
+    <!-- DASHBOARD CONTENT (shown only when logged in) -->
+    <div id="dash-content" style="display: none">
+      <!-- Mobile role tabs -->
+      <div class="mob-dash-tabs" id="mob-dash-tabs"></div>
+
+      <div class="dash-layout">
+        <!-- SIDEBAR -->
+        <aside class="dash-sidebar">
+          <div class="ds-user">
+            <div class="ds-avatar" id="ds-avatar">G</div>
+            <div class="ds-name" id="ds-name">Guest User</div>
+            <div class="ds-role" id="ds-role">Buyer</div>
+          </div>
+
+          <!-- Role switcher -->
+          <div class="role-tabs" id="role-tabs">
+            <button
+              class="rtab on"
+              data-role="buyer"
+              onclick="switchRole('buyer')"
+            >
+              Buyer
+            </button>
+            <button
+              class="rtab"
+              data-role="artisan"
+              onclick="switchRole('artisan')"
+            >
+              Artisan
+            </button>
+            <button
+              class="rtab"
+              data-role="admin"
+              onclick="switchRole('admin')"
+            >
+              Admin
+            </button>
+          </div>
+
+          <!-- NAV (populated by JS) -->
+          <div id="dash-nav"></div>
+        </aside>
+
+        <!-- MAIN -->
+        <div class="dash-main">
+          <!-- ═══ BUYER OVERVIEW ═══ -->
+          <div class="dash-section active" id="sec-buyer-overview">
+            <div class="page-hd">
+              <h2 class="page-title">
+                Welcome back,
+                <span style="color: var(--gold)" id="welcome-name">Patron</span>
+                🙏
+              </h2>
+              <p class="page-sub">
+                Your journey through India's living crafts continues.
+              </p>
+            </div>
+            <div class="stat-grid">
+              <div class="stat-card">
+                <div class="stat-icon" style="background: #fef9e7">📦</div>
+                <div class="stat-val" id="b-s1">3</div>
+                <div class="stat-lbl">Total Orders</div>
+                <div class="stat-chg up">↑ 2 this month</div>
+              </div>
+              <div class="stat-card green">
+                <div class="stat-icon" style="background: #e8f5e9">❤️</div>
+                <div class="stat-val" id="b-s2">0</div>
+                <div class="stat-lbl">Wishlist Items</div>
+              </div>
+              <div class="stat-card blue">
+                <div class="stat-icon" style="background: #e8f0fe">👥</div>
+                <div class="stat-val" id="b-s3">0</div>
+                <div class="stat-lbl">Artists Followed</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon" style="background: var(--cream)">⭐</div>
+                <div class="stat-val">2</div>
+                <div class="stat-lbl">Reviews Given</div>
+              </div>
+            </div>
+            <!-- Recent orders -->
+            <div class="dcard">
+              <div class="dcard-head">
+                <div class="dcard-title">Recent Orders</div>
+                <button
+                  class="btn btn-outline btn-sm"
+                  onclick="showSection('sec-buyer-orders')"
+                >
+                  View All
+                </button>
+              </div>
+              <div class="dcard-body" style="padding: 0">
+                <div class="dtable-wrap">
+                  <table class="dtable">
+                    <thead>
+                      <tr>
+                        <th>Item</th>
+                        <th>Artisan</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                      </tr>
+                    </thead>
+                    <tbody id="b-orders-tbody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- Recommended -->
+            <div class="dcard">
+              <div class="dcard-head">
+                <div class="dcard-title">Recommended For You</div>
+              </div>
+              <div class="dcard-body">
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: repeat(
+                      auto-fill,
+                      minmax(150px, 1fr)
+                    );
+                    gap: 12px;
+                  "
+                  id="recommended-grid"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ BUYER ORDERS ═══ -->
+          <div class="dash-section" id="sec-buyer-orders">
+            <div class="page-hd">
+              <h2 class="page-title">My Orders</h2>
+              <p class="page-sub">Track your heritage craft purchases.</p>
+            </div>
+            <div id="orders-list"></div>
+          </div>
+
+          <!-- ═══ BUYER WISHLIST ═══ -->
+          <div class="dash-section" id="sec-buyer-wishlist">
+            <div class="page-hd">
+              <h2 class="page-title">My Wishlist</h2>
+              <p class="page-sub">Crafts you've saved.</p>
+            </div>
+            <div class="dcard">
+              <div class="dcard-body" id="wishlist-body"></div>
+            </div>
+          </div>
+
+          <!-- ═══ BUYER PROFILE ═══ -->
+          <div class="dash-section" id="sec-buyer-profile">
+            <div class="page-hd"><h2 class="page-title">My Profile</h2></div>
+            <div
+              style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px"
+            >
+              <div class="dcard">
+                <div class="dcard-head">
+                  <div class="dcard-title">Personal Info</div>
+                </div>
+                <div class="dcard-body">
+                  <div class="form-group">
+                    <label class="form-label">Full Name</label
+                    ><input
+                      class="form-input"
+                      id="prof-name"
+                      type="text"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Email</label
+                    ><input
+                      class="form-input"
+                      id="prof-email"
+                      type="email"
+                      placeholder="Email"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Phone</label
+                    ><input
+                      class="form-input"
+                      id="prof-phone"
+                      type="tel"
+                      placeholder="+91 XXXXX XXXXX"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">City</label
+                    ><input
+                      class="form-input"
+                      id="prof-city"
+                      type="text"
+                      placeholder="Your city"
+                    />
+                  </div>
+                  <button class="btn btn-brown" onclick="saveProfile()">
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+              <div class="dcard">
+                <div class="dcard-head">
+                  <div class="dcard-title">Delivery Address</div>
+                </div>
+                <div class="dcard-body">
+                  <div class="form-group">
+                    <label class="form-label">Address Line 1</label
+                    ><input
+                      class="form-input"
+                      id="addr1"
+                      placeholder="House / Flat number"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Address Line 2</label
+                    ><input
+                      class="form-input"
+                      id="addr2"
+                      placeholder="Street, Area"
+                    />
+                  </div>
+                  <div class="form-row">
+                    <div>
+                      <label class="form-label">City</label
+                      ><input
+                        class="form-input"
+                        id="addr-city"
+                        placeholder="City"
+                      />
+                    </div>
+                    <div>
+                      <label class="form-label">PIN Code</label
+                      ><input
+                        class="form-input"
+                        id="addr-pin"
+                        placeholder="PIN"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">State</label>
+                    <select class="form-input" id="addr-state">
+                      <option>Select State</option>
+                      <option>Maharashtra</option>
+                      <option>Delhi</option>
+                      <option>Karnataka</option>
+                      <option>Tamil Nadu</option>
+                      <option>Uttar Pradesh</option>
+                      <option>West Bengal</option>
+                      <option>Gujarat</option>
+                      <option>Rajasthan</option>
+                    </select>
+                  </div>
+                  <button class="btn btn-gold" onclick="saveAddress()">
+                    Save Address
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ ARTISAN OVERVIEW ═══ -->
+          <div class="dash-section" id="sec-art-overview">
+            <div class="page-hd">
+              <h2 class="page-title">Artisan Dashboard</h2>
+              <p class="page-sub">Your craft. Your story. Your livelihood.</p>
+            </div>
+            <div class="stat-grid">
+              <div class="stat-card">
+                <div class="stat-icon" style="background: var(--cream)">💰</div>
+                <div class="stat-val">₹1.24L</div>
+                <div class="stat-lbl">Total Earnings</div>
+                <div class="stat-chg up">↑ 18% this month</div>
+              </div>
+              <div class="stat-card green">
+                <div class="stat-icon" style="background: #e8f5e9">📦</div>
+                <div class="stat-val">47</div>
+                <div class="stat-lbl">Orders Received</div>
+                <div class="stat-chg up">↑ 8 this week</div>
+              </div>
+              <div class="stat-card blue">
+                <div class="stat-icon" style="background: #e8f0fe">👁️</div>
+                <div class="stat-val">2.8k</div>
+                <div class="stat-lbl">Profile Views</div>
+                <div class="stat-chg up">↑ 340 today</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon" style="background: #fef9e7">🖼️</div>
+                <div class="stat-val">12</div>
+                <div class="stat-lbl">Live Products</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon" style="background: #fdecea">⭐</div>
+                <div class="stat-val">4.9</div>
+                <div class="stat-lbl">Avg Rating</div>
+              </div>
+              <div class="stat-card green">
+                <div class="stat-icon" style="background: #e8f5e9">👥</div>
+                <div class="stat-val">1.2k</div>
+                <div class="stat-lbl">Followers</div>
+                <div class="stat-chg up">↑ 45 this week</div>
+              </div>
+            </div>
+            <div
+              style="display: grid; grid-template-columns: 2fr 1fr; gap: 18px"
+            >
+              <div class="dcard">
+                <div class="dcard-head">
+                  <div class="dcard-title">Monthly Revenue (₹)</div>
+                </div>
+                <div class="dcard-body">
+                  <div class="bar-chart" id="rev-chart"></div>
+                  <div style="display: flex; gap: 0" id="rev-labels"></div>
+                </div>
+              </div>
+              <div class="dcard">
+                <div class="dcard-head">
+                  <div class="dcard-title">Sales by Category</div>
+                </div>
+                <div class="dcard-body">
+                  <div class="donut-wrap">
+                    <svg width="90" height="90" viewBox="0 0 36 36">
+                      <circle
+                        cx="18"
+                        cy="18"
+                        r="15.9"
+                        fill="none"
+                        stroke="#f0e8de"
+                        stroke-width="3"
+                      />
+                      <circle
+                        cx="18"
+                        cy="18"
+                        r="15.9"
+                        fill="none"
+                        stroke="var(--gold)"
+                        stroke-width="3"
+                        stroke-dasharray="45 55"
+                        stroke-dashoffset="25"
+                      />
+                      <circle
+                        cx="18"
+                        cy="18"
+                        r="15.9"
+                        fill="none"
+                        stroke="var(--brown)"
+                        stroke-width="3"
+                        stroke-dasharray="30 70"
+                        stroke-dashoffset="-20"
+                      />
+                      <circle
+                        cx="18"
+                        cy="18"
+                        r="15.9"
+                        fill="none"
+                        stroke="#6b3d35"
+                        stroke-width="3"
+                        stroke-dasharray="15 85"
+                        stroke-dashoffset="-50"
+                      />
+                      <circle
+                        cx="18"
+                        cy="18"
+                        r="15.9"
+                        fill="none"
+                        stroke="var(--green)"
+                        stroke-width="3"
+                        stroke-dasharray="10 90"
+                        stroke-dashoffset="-65"
+                      />
+                    </svg>
+                    <div class="donut-legend">
+                      <div class="leg-item">
+                        <div
+                          class="leg-dot"
+                          style="background: var(--gold)"
+                        ></div>
+                        Scrolls 45%
+                      </div>
+                      <div class="leg-item">
+                        <div
+                          class="leg-dot"
+                          style="background: var(--brown)"
+                        ></div>
+                        Panels 30%
+                      </div>
+                      <div class="leg-item">
+                        <div class="leg-dot" style="background: #6b3d35"></div>
+                        Custom 15%
+                      </div>
+                      <div class="leg-item">
+                        <div
+                          class="leg-dot"
+                          style="background: var(--green)"
+                        ></div>
+                        Other 10%
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ ARTISAN UPLOAD ═══ -->
+          <div class="dash-section" id="sec-art-upload">
+            <div class="page-hd">
+              <h2 class="page-title">Upload New Product</h2>
+              <p class="page-sub">
+                List your handcrafted work for the world to discover.
+              </p>
+            </div>
+            <div
+              style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px"
+            >
+              <div class="dcard">
+                <div class="dcard-head">
+                  <div class="dcard-title">Product Details</div>
+                </div>
+                <div class="dcard-body">
+                  <div class="form-group">
+                    <label class="form-label">Product Name</label
+                    ><input
+                      class="form-input"
+                      id="up-name"
+                      placeholder="e.g. Pattachitra Jagannath Scroll"
+                    />
+                  </div>
+                  <div class="form-row">
+                    <div>
+                      <label class="form-label">Category</label>
+                      <select class="form-input" id="up-cat">
+                        <option>Painting</option>
+                        <option>Textile</option>
+                        <option>Sculpture</option>
+                        <option>Pottery</option>
+                        <option>Jewellery</option>
+                        <option>Wood Craft</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="form-label">Price (₹)</label
+                      ><input
+                        class="form-input"
+                        id="up-price"
+                        type="number"
+                        placeholder="4500"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div>
+                      <label class="form-label">Stock Qty</label
+                      ><input
+                        class="form-input"
+                        id="up-stock"
+                        type="number"
+                        placeholder="5"
+                      />
+                    </div>
+                    <div>
+                      <label class="form-label">Time to Make</label
+                      ><input
+                        class="form-input"
+                        id="up-time"
+                        placeholder="e.g. 2 weeks"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Description</label
+                    ><textarea
+                      class="form-input"
+                      id="up-desc"
+                      rows="4"
+                      placeholder="Describe the craft, materials, cultural significance…"
+                      style="resize: vertical"
+                    ></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Heritage Tag</label>
+                    <select class="form-input" id="up-tag">
+                      <option>GI Tagged</option>
+                      <option>UNESCO Heritage</option>
+                      <option>National Award</option>
+                      <option>Tribal Art</option>
+                      <option>Temple Art</option>
+                      <option>Authentic Craft</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="dcard">
+                <div class="dcard-head">
+                  <div class="dcard-title">Media & Story</div>
+                </div>
+                <div class="dcard-body">
+                  <div
+                    class="upload-zone"
+                    onclick="showToast('Photo upload: select image files…')"
+                  >
+                    <div class="uz-icon">📸</div>
+                    <div
+                      style="
+                        font-weight: 600;
+                        color: var(--brown);
+                        margin-bottom: 3px;
+                      "
+                    >
+                      Upload Product Photos
+                    </div>
+                    <div style="font-size: 0.76rem; color: var(--muted)">
+                      Drag & drop or click. JPG, PNG up to 10MB
+                    </div>
+                  </div>
+                  <div style="margin: 14px 0"></div>
+                  <div
+                    class="upload-zone"
+                    onclick="
+                      showToast('Video upload: select your craft story video…')
+                    "
+                    style="border-color: rgba(201, 151, 59, 0.4)"
+                  >
+                    <div class="uz-icon">🎬</div>
+                    <div
+                      style="
+                        font-weight: 600;
+                        color: var(--brown);
+                        margin-bottom: 3px;
+                      "
+                    >
+                      Upload Craft Story Video
+                    </div>
+                    <div style="font-size: 0.76rem; color: var(--muted)">
+                      MP4, MOV up to 500MB
+                    </div>
+                  </div>
+                  <div class="form-group" style="margin-top: 14px">
+                    <label class="form-label">Materials Used</label
+                    ><input
+                      class="form-input"
+                      id="up-mats"
+                      placeholder="e.g. Natural stone pigments, cotton canvas"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Region / Village</label
+                    ><input
+                      class="form-input"
+                      id="up-region"
+                      placeholder="e.g. Raghurajpur, Odisha"
+                    />
+                  </div>
+                  <button
+                    onclick="submitProduct()"
+                    class="btn btn-gold"
+                    style="width: 100%; padding: 12px; margin-top: 6px"
+                  >
+                    Submit Product for Review
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ ARTISAN ORDERS ═══ -->
+          <div class="dash-section" id="sec-art-orders">
+            <div class="page-hd">
+              <h2 class="page-title">Incoming Orders</h2>
+            </div>
+            <div class="dcard">
+              <div class="dcard-body" style="padding: 0">
+                <div class="dtable-wrap">
+                  <table class="dtable">
+                    <thead>
+                      <tr>
+                        <th>Order ID</th>
+                        <th>Product</th>
+                        <th>Buyer</th>
+                        <th>Qty</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="art-orders-body"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ ARTISAN EARNINGS ═══ -->
+          <div class="dash-section" id="sec-art-earnings">
+            <div class="page-hd">
+              <h2 class="page-title">Earnings & Payouts</h2>
+            </div>
+            <div class="stat-grid">
+              <div class="stat-card">
+                <div class="stat-icon" style="background: var(--cream)">💰</div>
+                <div class="stat-val">₹1.24L</div>
+                <div class="stat-lbl">Total Earned</div>
+              </div>
+              <div class="stat-card green">
+                <div class="stat-icon" style="background: #e8f5e9">🏦</div>
+                <div class="stat-val">₹18,500</div>
+                <div class="stat-lbl">This Month</div>
+              </div>
+              <div class="stat-card blue">
+                <div class="stat-icon" style="background: #e8f0fe">⏳</div>
+                <div class="stat-val">₹6,200</div>
+                <div class="stat-lbl">Pending Payout</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon" style="background: #fdecea">📊</div>
+                <div class="stat-val">9.5%</div>
+                <div class="stat-lbl">Commission</div>
+              </div>
+            </div>
+            <div class="dcard">
+              <div class="dcard-head">
+                <div class="dcard-title">Payout History</div>
+                <button
+                  class="btn btn-gold btn-sm"
+                  onclick="showToast('Requesting payout…')"
+                >
+                  Request Payout
+                </button>
+              </div>
+              <div class="dcard-body" style="padding: 0">
+                <div class="dtable-wrap">
+                  <table class="dtable">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Orders</th>
+                        <th>Gross</th>
+                        <th>Commission</th>
+                        <th>Net Paid</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>15 Mar 2025</td>
+                        <td>8</td>
+                        <td>₹28,400</td>
+                        <td>₹2,698</td>
+                        <td>₹25,702</td>
+                        <td><span class="pill pill-green">✓ Paid</span></td>
+                      </tr>
+                      <tr>
+                        <td>15 Feb 2025</td>
+                        <td>6</td>
+                        <td>₹21,200</td>
+                        <td>₹2,014</td>
+                        <td>₹19,186</td>
+                        <td><span class="pill pill-green">✓ Paid</span></td>
+                      </tr>
+                      <tr>
+                        <td>15 Jan 2025</td>
+                        <td>9</td>
+                        <td>₹34,800</td>
+                        <td>₹3,306</td>
+                        <td>₹31,494</td>
+                        <td><span class="pill pill-green">✓ Paid</span></td>
+                      </tr>
+                      <tr>
+                        <td>31 Mar 2025</td>
+                        <td>3</td>
+                        <td>₹6,200</td>
+                        <td>₹589</td>
+                        <td>₹5,611</td>
+                        <td><span class="pill pill-gold">⏳ Pending</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ ADMIN OVERVIEW ═══ -->
+          <div class="dash-section" id="sec-adm-overview">
+            <div class="page-hd">
+              <h2 class="page-title">Platform Overview</h2>
+              <p class="page-sub">Tirth Sutra-Virasat admin control centre.</p>
+            </div>
+            <div class="stat-grid">
+              <div class="stat-card">
+                <div class="stat-icon" style="background: var(--cream)">🎨</div>
+                <div class="stat-val">1,247</div>
+                <div class="stat-lbl">Total Artisans</div>
+                <div class="stat-chg up">↑ 42 this month</div>
+              </div>
+              <div class="stat-card green">
+                <div class="stat-icon" style="background: #e8f5e9">👥</div>
+                <div class="stat-val">24.8k</div>
+                <div class="stat-lbl">Registered Buyers</div>
+                <div class="stat-chg up">↑ 1.2k this month</div>
+              </div>
+              <div class="stat-card blue">
+                <div class="stat-icon" style="background: #e8f0fe">🛍️</div>
+                <div class="stat-val">3,840</div>
+                <div class="stat-lbl">Total Products</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon" style="background: #fef9e7">📦</div>
+                <div class="stat-val">18,642</div>
+                <div class="stat-lbl">Total Orders</div>
+                <div class="stat-chg up">↑ 347 this week</div>
+              </div>
+              <div class="stat-card green">
+                <div class="stat-icon" style="background: #e8f5e9">💰</div>
+                <div class="stat-val">₹4.8Cr</div>
+                <div class="stat-lbl">Platform GMV</div>
+                <div class="stat-chg up">↑ 28% YoY</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon" style="background: var(--cream)">⭐</div>
+                <div class="stat-val">4.82</div>
+                <div class="stat-lbl">Avg Rating</div>
+              </div>
+            </div>
+            <div class="dcard">
+              <div class="dcard-head">
+                <div class="dcard-title">Admin Alerts</div>
+                <span class="pill pill-red">4 urgent</span>
+              </div>
+              <div class="dcard-body">
+                <div class="notif notif-warn">
+                  ⚠️
+                  <div>
+                    <strong style="font-size: 0.83rem"
+                      >4 artisan applications</strong
+                    >
+                    awaiting approval review.
+                  </div>
+                </div>
+                <div class="notif notif-info">
+                  ℹ️
+                  <div>
+                    <strong style="font-size: 0.83rem"
+                      >New GI Tag craft submitted:</strong
+                    >
+                    Aranmula Mirror, Kerala.
+                  </div>
+                </div>
+                <div class="notif notif-success">
+                  ✅
+                  <div>
+                    <strong style="font-size: 0.83rem"
+                      >Monthly payout batch</strong
+                    >
+                    of ₹14.2L processed successfully.
+                  </div>
+                </div>
+                <div class="notif notif-warn">
+                  ⚠️
+                  <div>
+                    <strong style="font-size: 0.83rem"
+                      >2 counterfeit reports</strong
+                    >
+                    flagged by buyers — pending review.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ ADMIN ARTISANS ═══ -->
+          <div class="dash-section" id="sec-adm-artisans">
+            <div class="page-hd">
+              <h2 class="page-title">Manage Artisans</h2>
+            </div>
+            <div class="dcard" style="margin-bottom: 16px">
+              <div class="dcard-head">
+                <div class="dcard-title">⏳ Pending Approval (4)</div>
+              </div>
+              <div class="dcard-body" style="padding: 0">
+                <div class="dtable-wrap">
+                  <table class="dtable">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Craft</th>
+                        <th>Region</th>
+                        <th>Applied</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="pending-tbody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="dcard">
+              <div class="dcard-head">
+                <div class="dcard-title">All Artisans (1,247)</div>
+                <input
+                  type="text"
+                  placeholder="Search…"
+                  style="
+                    padding: 6px 12px;
+                    border: 1px solid var(--border);
+                    border-radius: 4px;
+                    font-size: 0.78rem;
+                    outline: none;
+                    background: var(--card);
+                    color: var(--text);
+                  "
+                  oninput="filterAdmArtisans(this.value)"
+                />
+              </div>
+              <div class="dcard-body" style="padding: 0">
+                <div class="dtable-wrap">
+                  <table class="dtable">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Craft</th>
+                        <th>Region</th>
+                        <th>Products</th>
+                        <th>Revenue</th>
+                        <th>Rating</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adm-artisans-tbody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ ADMIN ORDERS ═══ -->
+          <div class="dash-section" id="sec-adm-orders">
+            <div class="page-hd">
+              <h2 class="page-title">All Platform Orders</h2>
+            </div>
+            <div class="dcard">
+              <div class="dcard-body" style="padding: 0">
+                <div class="dtable-wrap">
+                  <table class="dtable">
+                    <thead>
+                      <tr>
+                        <th>Order ID</th>
+                        <th>Product</th>
+                        <th>Buyer</th>
+                        <th>Artisan</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adm-orders-tbody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ ADMIN SETTINGS ═══ -->
+          <div class="dash-section" id="sec-adm-settings">
+            <div class="page-hd">
+              <h2 class="page-title">Platform Settings</h2>
+            </div>
+            <div
+              style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px"
+            >
+              <div class="dcard">
+                <div class="dcard-head">
+                  <div class="dcard-title">Commission Settings</div>
+                </div>
+                <div class="dcard-body">
+                  <div class="form-group">
+                    <label class="form-label">Standard Commission (%)</label
+                    ><input class="form-input" type="number" value="9.5" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label"
+                      >Premium Artisan Commission (%)</label
+                    ><input class="form-input" type="number" value="7.5" />
+                  </div>
+                  <button
+                    class="btn btn-brown"
+                    onclick="showToast('Commission settings saved ✓')"
+                  >
+                    Save Settings
+                  </button>
+                </div>
+              </div>
+              <div class="dcard">
+                <div class="dcard-head">
+                  <div class="dcard-title">Platform Controls</div>
+                </div>
+                <div class="dcard-body">
+                  <div class="toggle-row">
+                    <div>
+                      <div
+                        style="
+                          font-size: 0.85rem;
+                          font-weight: 600;
+                          color: var(--brown);
+                        "
+                      >
+                        New Artisan Registrations
+                      </div>
+                      <div style="font-size: 0.73rem; color: var(--muted)">
+                        Allow new artisans to sign up
+                      </div>
+                    </div>
+                    <div
+                      class="toggle-switch on"
+                      onclick="
+                        this.classList.toggle('on');
+                        this.classList.toggle('off');
+                        showToast('Toggle updated');
+                      "
+                    >
+                      <div class="toggle-knob"></div>
+                    </div>
+                  </div>
+                  <div class="toggle-row">
+                    <div>
+                      <div
+                        style="
+                          font-size: 0.85rem;
+                          font-weight: 600;
+                          color: var(--brown);
+                        "
+                      >
+                        Maintenance Mode
+                      </div>
+                      <div style="font-size: 0.73rem; color: var(--muted)">
+                        Take platform offline temporarily
+                      </div>
+                    </div>
+                    <div
+                      class="toggle-switch off"
+                      onclick="
+                        this.classList.toggle('on');
+                        this.classList.toggle('off');
+                        showToast('Toggle updated');
+                      "
+                    >
+                      <div class="toggle-knob"></div>
+                    </div>
+                  </div>
+                  <div class="toggle-row">
+                    <div>
+                      <div
+                        style="
+                          font-size: 0.85rem;
+                          font-weight: 600;
+                          color: var(--brown);
+                        "
+                      >
+                        Auto-approve GI Products
+                      </div>
+                      <div style="font-size: 0.73rem; color: var(--muted)">
+                        Skip manual review for GI tagged items
+                      </div>
+                    </div>
+                    <div
+                      class="toggle-switch on"
+                      onclick="
+                        this.classList.toggle('on');
+                        this.classList.toggle('off');
+                        showToast('Toggle updated');
+                      "
+                    >
+                      <div class="toggle-knob"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /dash-main -->
+      </div>
+      <!-- /dash-layout -->
+    </div>
+    <!-- /dash-content -->
+
+    <div id="toast"></div>
+
+    <script>
+      /* ══ DATA ══ */
+      const ARTISAN_DB = [
+        {
+          id: 1,
+          name: "Raghunath Mohapatra",
+          craft: "Pattachitra",
+          region: "Odisha",
+          gen: 8,
+          products: 12,
+          revenue: "₹1.24L",
+          rating: 4.9,
+          emoji: "🎨",
+        },
+        {
+          id: 2,
+          name: "Sita Devi",
+          craft: "Madhubani",
+          region: "Bihar",
+          gen: 6,
+          products: 8,
+          revenue: "₹82,400",
+          rating: 4.8,
+          emoji: "🖌️",
+        },
+        {
+          id: 3,
+          name: "Aziz Ahmed",
+          craft: "Banarasi Brocade",
+          region: "Uttar Pradesh",
+          gen: 5,
+          products: 15,
+          revenue: "₹2.18L",
+          rating: 4.9,
+          emoji: "🧵",
+        },
+        {
+          id: 4,
+          name: "Nakul Shilpakar",
+          craft: "Dhokra Casting",
+          region: "Chhattisgarh",
+          gen: 7,
+          products: 9,
+          revenue: "₹96,200",
+          rating: 4.8,
+          emoji: "🔥",
+        },
+        {
+          id: 5,
+          name: "Sunita Salve",
+          craft: "Paithani Weaving",
+          region: "Maharashtra",
+          gen: 5,
+          products: 11,
+          revenue: "₹1.54L",
+          rating: 4.7,
+          emoji: "🪡",
+        },
+        {
+          id: 6,
+          name: "Gopal Kumhar",
+          craft: "Blue Pottery",
+          region: "Rajasthan",
+          gen: 4,
+          products: 22,
+          revenue: "₹68,500",
+          rating: 4.6,
+          emoji: "🏺",
+        },
+      ];
+      const PENDING_ARTISANS = [
+        {
+          name: "Ravi Chitrakar",
+          craft: "Kalamkari",
+          region: "Andhra Pradesh",
+          applied: "12 Mar 2025",
+        },
+        {
+          name: "Fatima Shaikh",
+          craft: "Kutch Embroidery",
+          region: "Gujarat",
+          applied: "10 Mar 2025",
+        },
+        {
+          name: "Baldev Lal",
+          craft: "Channapatna Toys",
+          region: "Karnataka",
+          applied: "8 Mar 2025",
+        },
+        {
+          name: "Priya Nair",
+          craft: "Aranmula Mirror",
+          region: "Kerala",
+          applied: "6 Mar 2025",
+        },
+      ];
+      const ORDERS_DB = [
+        {
+          id: "HK-2025-0847",
+          product: "Pattachitra Sacred Scroll",
+          buyer: "Priya Nair",
+          artisan: "Raghunath Mohapatra",
+          amount: "₹4,500",
+          date: "14 Mar 2025",
+          status: "delivered",
+          emoji: "🎨",
+        },
+        {
+          id: "HK-2025-0831",
+          product: "Banarasi Brocade Dupatta",
+          buyer: "Divya Sharma",
+          artisan: "Aziz Ahmed",
+          amount: "₹8,200",
+          date: "11 Mar 2025",
+          status: "shipped",
+          emoji: "🧣",
+        },
+        {
+          id: "HK-2025-0812",
+          product: "Madhubani Fish Pair",
+          buyer: "James Whitfield",
+          artisan: "Sita Devi",
+          amount: "₹2,800",
+          date: "8 Mar 2025",
+          status: "processing",
+          emoji: "🐟",
+        },
+        {
+          id: "HK-2025-0798",
+          product: "Blue Pottery Vase",
+          buyer: "Emma Williams",
+          artisan: "Gopal Kumhar",
+          amount: "₹1,650",
+          date: "5 Mar 2025",
+          status: "delivered",
+          emoji: "🏺",
+        },
+      ];
+      const BUYER_ORDERS = [
+        {
+          id: "HK-2025-0847",
+          product: "Pattachitra Sacred Scroll",
+          artisan: "Raghunath Mohapatra",
+          amount: 4500,
+          date: "14 Mar 2025",
+          status: "delivered",
+          emoji: "🎨",
+          step: 4,
+        },
+        {
+          id: "HK-2025-0831",
+          product: "Madhubani Fish Pair",
+          artisan: "Sita Devi",
+          amount: 2800,
+          date: "8 Mar 2025",
+          status: "shipped",
+          emoji: "🐟",
+          step: 3,
+        },
+        {
+          id: "HK-2025-0812",
+          product: "Blue Pottery Vase",
+          artisan: "Gopal Kumhar",
+          amount: 1650,
+          date: "2 Mar 2025",
+          status: "processing",
+          emoji: "🏺",
+          step: 2,
+        },
+      ];
+      const PRODS = [
+        {
+          id: 1,
+          name: "Pattachitra Sacred Scroll",
+          price: 4500,
+          emoji: "🎨",
+          region: "Odisha",
+        },
+        {
+          id: 2,
+          name: "Madhubani Fish Pair",
+          price: 2800,
+          emoji: "🐟",
+          region: "Bihar",
+        },
+        {
+          id: 3,
+          name: "Blue Pottery Vase",
+          price: 1650,
+          emoji: "🏺",
+          region: "Rajasthan",
+        },
+        {
+          id: 4,
+          name: "Dhokra Elephant",
+          price: 3200,
+          emoji: "🐘",
+          region: "Chhattisgarh",
+        },
+      ];
+
+      /* ══ NAV CONFIG ══ */
+      const NAV_CONFIG = {
+        buyer: [
+          { id: "buyer-overview", label: "Overview", icon: "🏠" },
+          { id: "buyer-orders", label: "My Orders", icon: "📦", badge: "3" },
+          { id: "buyer-wishlist", label: "Wishlist", icon: "❤️" },
+          { id: "buyer-profile", label: "My Profile", icon: "👤" },
+        ],
+        artisan: [
+          { id: "art-overview", label: "Dashboard", icon: "📊" },
+          { id: "art-upload", label: "Upload Product", icon: "➕" },
+          { id: "art-orders", label: "Incoming Orders", icon: "📦" },
+          { id: "art-earnings", label: "Earnings", icon: "💰" },
+        ],
+        admin: [
+          { id: "adm-overview", label: "Platform Overview", icon: "📊" },
+          {
+            id: "adm-artisans",
+            label: "Manage Artisans",
+            icon: "🎨",
+            badge: "4",
+          },
+          { id: "adm-orders", label: "All Orders", icon: "📦" },
+          { id: "adm-settings", label: "Settings", icon: "⚙️" },
+        ],
+      };
+
+      /* ══ AUTH ══ */
+      function getCurrentUser() {
+        try {
+          return JSON.parse(localStorage.getItem("hk_current_user") || "null");
+        } catch {
+          return null;
+        }
+      }
+      function logoutUser() {
+        localStorage.removeItem("hk_current_user");
+        showToast("Signed out. Redirecting…");
+        setTimeout(() => (window.location.href = "sutra.html"), 1500);
+      }
+
+      /* ══ ROLE ══ */
+      let curRole = "buyer";
+      let curSection = "buyer-overview";
+
+      function switchRole(r) {
+        curRole = r;
+        document
+          .querySelectorAll(".rtab")
+          .forEach((b) => b.classList.toggle("on", b.dataset.role === r));
+        renderNav(r);
+        // Auto-show first section
+        const first = NAV_CONFIG[r][0].id;
+        showSection(first);
+        renderMobTabs(r);
+      }
+
+      function renderNav(r) {
+        const nav = document.getElementById("dash-nav");
+        nav.innerHTML = `<div class="nav-group"><div class="nav-group-title">${r.charAt(0).toUpperCase() + r.slice(1)} Menu</div>
+    ${NAV_CONFIG[r]
+      .map(
+        (item) => `
+      <button class="nav-item ${item.id === curSection ? "on" : ""}" onclick="showSection('${item.id}')">
+        <span class="ni-icon">${item.icon}</span>${item.label}
+        ${item.badge ? `<span class="nav-badge">${item.badge}</span>` : ""}
+      </button>`,
+      )
+      .join("")}
+  </div>`;
+      }
+
+      function renderMobTabs(r) {
+        const wrap = document.getElementById("mob-dash-tabs");
+        wrap.innerHTML = NAV_CONFIG[r]
+          .map(
+            (item) => `
+    <button class="mdt-btn ${item.id === curSection ? "on" : ""}" onclick="showSection('${item.id}');document.querySelectorAll('.mdt-btn').forEach(b=>b.classList.remove('on'));this.classList.add('on')">
+      ${item.icon} ${item.label}
+    </button>`,
+          )
+          .join("");
+      }
+
+      function showSection(id) {
+        curSection = id;
+        document
+          .querySelectorAll(".dash-section")
+          .forEach((s) => s.classList.remove("active"));
+        const el = document.getElementById("sec-" + id);
+        if (el) el.classList.add("active");
+        // Update nav active state
+        document.querySelectorAll(".nav-item").forEach((b) => {
+          const onclick = b.getAttribute("onclick") || "";
+          b.classList.toggle("on", onclick.includes(id));
+        });
+        // Load data for section
+        loadSectionData(id);
+      }
+
+      function loadSectionData(id) {
+        switch (id) {
+          case "buyer-overview":
+            renderBuyerOverview();
+            break;
+          case "buyer-orders":
+            renderBuyerOrders();
+            break;
+          case "buyer-wishlist":
+            renderWishlist();
+            break;
+          case "buyer-profile":
+            loadProfile();
+            break;
+          case "adm-overview":
+            renderAdmRevChart();
+            break;
+          case "adm-artisans":
+            renderAdmArtisans();
+            break;
+          case "adm-orders":
+            renderAdmOrders();
+            break;
+          case "art-overview":
+            renderArtRevChart();
+            break;
+          case "art-orders":
+            renderArtOrders();
+            break;
+        }
+      }
+
+      /* ══ BUYER ══ */
+      function renderBuyerOverview() {
+        const wl = JSON.parse(localStorage.getItem("hk_wishlist") || "[]");
+        const fl = JSON.parse(localStorage.getItem("hk_following") || "[]");
+        document.getElementById("b-s2").textContent = wl.length;
+        document.getElementById("b-s3").textContent = fl.length;
+        document.getElementById("b-orders-tbody").innerHTML = BUYER_ORDERS.map(
+          (o) => `
+    <tr><td><span style="margin-right:5px;">${o.emoji}</span>${o.product}</td>
+    <td style="color:var(--muted);font-size:.78rem;">${o.artisan}</td>
+    <td style="font-family:'Playfair Display',serif;color:var(--brown);font-weight:700;">₹${o.amount.toLocaleString("en-IN")}</td>
+    <td>${statusPill(o.status)}</td>
+    <td style="color:var(--muted);font-size:.78rem;">${o.date}</td></tr>`,
+        ).join("");
+        document.getElementById("recommended-grid").innerHTML = PRODS.map(
+          (p) => `
+    <div style="background:var(--bg);border-radius:8px;overflow:hidden;cursor:pointer;border:1px solid var(--border);transition:transform .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+      <div style="aspect-ratio:1;background:linear-gradient(135deg,var(--cream),#f0dcc4);display:flex;align-items:center;justify-content:center;font-size:2.2rem;">${p.emoji}</div>
+      <div style="padding:8px;"><div style="font-family:'Playfair Display',serif;font-size:.8rem;color:var(--brown);margin-bottom:2px;">${p.name}</div>
+      <div style="font-family:'Playfair Display',serif;color:var(--brown);font-size:.88rem;font-weight:700;">₹${p.price.toLocaleString("en-IN")}</div></div>
+    </div>`,
+        ).join("");
+      }
+      function renderBuyerOrders() {
+        const steps = [
+          "Order Placed",
+          "Artisan Crafting",
+          "Shipped",
+          "Delivered",
+        ];
+        document.getElementById("orders-list").innerHTML = BUYER_ORDERS.map(
+          (o) => `
+    <div class="dcard">
+      <div style="padding:16px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--border);">
+        <div style="width:50px;height:50px;background:var(--bg);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0;">${o.emoji}</div>
+        <div style="flex:1;min-width:0;"><div style="font-family:'Playfair Display',serif;color:var(--brown);font-size:.98rem;">${o.product}</div><div style="font-size:.76rem;color:var(--muted);">By ${o.artisan} · ${o.date}</div></div>
+        <div style="text-align:right;"><div style="font-family:'Playfair Display',serif;color:var(--brown);font-size:1.1rem;font-weight:700;">₹${o.amount.toLocaleString("en-IN")}</div>${statusPill(o.status)}</div>
+      </div>
+      <div style="padding:16px 20px;">
+        <div style="font-size:.68rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">Order Progress</div>
+        <div class="order-steps">${steps.map((s, i) => `<div class="step"><div class="step-dot ${i < o.step ? "done" : i === o.step - 1 ? "active" : ""}">${i < o.step ? "✓" : i + 1}</div><div class="step-lbl">${s}</div></div>`).join("")}</div>
+        <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
+          <button class="btn btn-outline btn-sm" onclick="showToast('Opening order details…')">View Details</button>
+          <button class="btn btn-outline btn-sm" onclick="showToast('Opening artisan contact…')">Contact Artisan</button>
+          ${o.status === "delivered" ? `<button class="btn btn-gold btn-sm" onclick="showToast('Opening review form…')">Write Review</button>` : ""}
+        </div>
+      </div>
+    </div>`,
+        ).join("");
+      }
+      function renderWishlist() {
+        const wl = JSON.parse(localStorage.getItem("hk_wishlist") || "[]");
+        const items = PRODS.filter((p) => wl.includes(p.id));
+        if (!items.length) {
+          document.getElementById("wishlist-body").innerHTML =
+            '<div style="text-align:center;padding:40px;color:var(--muted);"><div style="font-size:3rem;margin-bottom:12px;">❤️</div><p>Your wishlist is empty</p><a href="marketplace.html" style="color:var(--gold);font-weight:600;">Browse Crafts →</a></div>';
+          return;
+        }
+        document.getElementById("wishlist-body").innerHTML = items
+          .map(
+            (p) => `
+    <div class="wish-item">
+      <div class="wish-emoji">${p.emoji}</div>
+      <div style="flex:1;"><div style="font-family:'Playfair Display',serif;color:var(--brown);font-size:.95rem;margin-bottom:2px;">${p.name}</div><div style="font-size:.76rem;color:var(--muted);">${p.region}</div></div>
+      <div style="font-family:'Playfair Display',serif;color:var(--brown);font-size:1.05rem;font-weight:700;margin-right:14px;">₹${p.price.toLocaleString("en-IN")}</div>
+      <div style="display:flex;gap:7px;">
+        <button class="btn btn-brown btn-sm" onclick="showToast('Added to cart ✓')">Add to Cart</button>
+        <button class="btn btn-outline btn-sm" onclick="removeWishlist(${p.id},this)">Remove</button>
+      </div>
+    </div>`,
+          )
+          .join("");
+      }
+      function removeWishlist(id, btn) {
+        let wl = JSON.parse(localStorage.getItem("hk_wishlist") || "[]");
+        wl = wl.filter((x) => x !== id);
+        localStorage.setItem("hk_wishlist", JSON.stringify(wl));
+        btn.closest(".wish-item").remove();
+        showToast("Removed from wishlist");
+      }
+      function loadProfile() {
+        const u = getCurrentUser();
+        if (!u) return;
+        document.getElementById("prof-name").value = u.name || "";
+        document.getElementById("prof-email").value = u.email || "";
+        const addr = JSON.parse(localStorage.getItem("hk_address") || "null");
+        if (addr) {
+          if (addr.line1) document.getElementById("addr1").value = addr.line1;
+          if (addr.line2) document.getElementById("addr2").value = addr.line2;
+        }
+      }
+      function saveProfile() {
+        const u = getCurrentUser();
+        if (!u) return;
+        u.name = document.getElementById("prof-name").value || u.name;
+        localStorage.setItem("hk_current_user", JSON.stringify(u));
+        updateUserUI(u);
+        showToast("Profile saved ✓");
+      }
+      function saveAddress() {
+        const addr = {
+          line1: document.getElementById("addr1").value,
+          line2: document.getElementById("addr2").value,
+          city: document.getElementById("addr-city").value,
+          pin: document.getElementById("addr-pin").value,
+          state: document.getElementById("addr-state").value,
+        };
+        localStorage.setItem("hk_address", JSON.stringify(addr));
+        showToast("Address saved ✓");
+      }
+
+      /* ══ ARTISAN ══ */
+      function renderArtRevChart() {
+        const months = ["Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar"];
+        const vals = [8200, 12400, 9800, 14600, 11200, 18400, 16200, 18500];
+        const mx = Math.max(...vals);
+        document.getElementById("rev-chart").innerHTML = vals
+          .map(
+            (v) =>
+              `<div class="bc-bar" style="height:${(v / mx) * 100}%;background:var(--gold);" data-v="₹${(v / 1000).toFixed(1)}k"></div>`,
+          )
+          .join("");
+        document.getElementById("rev-labels").innerHTML = months
+          .map((m) => `<div class="bc-label" style="flex:1;">${m}</div>`)
+          .join("");
+      }
+      function renderArtOrders() {
+        document.getElementById("art-orders-body").innerHTML = ORDERS_DB.map(
+          (o) => `
+    <tr><td style="font-size:.74rem;color:var(--muted);font-weight:600;">${o.id}</td>
+    <td><span style="margin-right:5px;">${o.emoji}</span><span style="font-size:.82rem;">${o.product}</span></td>
+    <td style="font-size:.8rem;">${o.buyer}</td>
+    <td style="text-align:center;">1</td>
+    <td style="font-family:'Playfair Display',serif;color:var(--brown);font-weight:700;">${o.amount}</td>
+    <td style="font-size:.76rem;color:var(--muted);">${o.date}</td>
+    <td>${statusPill(o.status)}</td>
+    <td><button class="btn btn-gold btn-sm" onclick="showToast('Updating order…')">Update</button></td></tr>`,
+        ).join("");
+      }
+      function submitProduct() {
+        const name = document.getElementById("up-name").value.trim();
+        const price = document.getElementById("up-price").value;
+        if (!name || !price) {
+          showToast("Please fill Product Name and Price");
+          return;
+        }
+        const prods = JSON.parse(localStorage.getItem("hk_products") || "[]");
+        prods.push({
+          id: Date.now(),
+          name,
+          price: parseInt(price),
+          status: "pending",
+          created: new Date().toISOString(),
+        });
+        localStorage.setItem("hk_products", JSON.stringify(prods));
+        ["up-name", "up-price", "up-desc", "up-region", "up-mats"].forEach(
+          (id) => {
+            const el = document.getElementById(id);
+            if (el) el.value = "";
+          },
+        );
+        showToast(`"${name}" submitted for review ✓`);
+        showSection("art-overview");
+      }
+
+      /* ══ ADMIN ══ */
+      function renderAdmRevChart() {
+        const months = ["Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar"];
+        const vals = [38, 52, 45, 68, 58, 82, 76, 88];
+        const mx = Math.max(...vals);
+        // Only render if section is visible
+        const chart = document.getElementById("rev-chart");
+        if (!chart) return;
+        chart.innerHTML = vals
+          .map(
+            (v) =>
+              `<div class="bc-bar" style="height:${(v / mx) * 100}%;background:var(--brown);" data-v="₹${v}L"></div>`,
+          )
+          .join("");
+        const labels = document.getElementById("rev-labels");
+        if (labels)
+          labels.innerHTML = months
+            .map((m) => `<div class="bc-label" style="flex:1;">${m}</div>`)
+            .join("");
+      }
+      function renderAdmArtisans() {
+        document.getElementById("pending-tbody").innerHTML =
+          PENDING_ARTISANS.map(
+            (a) => `
+    <tr><td style="font-weight:500;font-size:.84rem;">${a.name}</td>
+    <td style="font-size:.82rem;">${a.craft}</td>
+    <td style="font-size:.78rem;color:var(--muted);">${a.region}</td>
+    <td style="font-size:.76rem;color:var(--muted);">${a.applied}</td>
+    <td><div style="display:flex;gap:6px;">
+      <button class="btn btn-sm" style="background:#e8f5e9;color:var(--green);font-family:'Inter',sans-serif;cursor:pointer;" onclick="approveArtisan(this,'${a.name}')">✓ Approve</button>
+      <button class="btn btn-sm" style="background:#fdecea;color:var(--red);font-family:'Inter',sans-serif;cursor:pointer;" onclick="this.closest('tr').remove();showToast('${a.name} — rejected')">✗ Reject</button>
+    </div></td></tr>`,
+          ).join("");
+        document.getElementById("adm-artisans-tbody").innerHTML =
+          ARTISAN_DB.map(
+            (a) => `
+    <tr><td><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:1.2rem;">${a.emoji}</span><strong style="font-size:.84rem;">${a.name}</strong></div></td>
+    <td style="font-size:.82rem;">${a.craft}</td>
+    <td style="font-size:.76rem;color:var(--muted);">${a.region}</td>
+    <td style="font-size:.82rem;">${a.products}</td>
+    <td style="font-family:'Playfair Display',serif;color:var(--brown);font-size:.88rem;font-weight:700;">${a.revenue}</td>
+    <td style="color:var(--gold);font-size:.82rem;">★ ${a.rating}</td>
+    <td><span class="pill pill-green">● Active</span></td>
+    <td><button class="btn btn-outline btn-sm" onclick="showToast('Viewing ${a.name}…')">View</button></td></tr>`,
+          ).join("");
+      }
+      function approveArtisan(btn, name) {
+        btn.closest("tr").remove();
+        showToast(`✓ ${name} approved and notified!`);
+      }
+      function filterAdmArtisans(q) {
+        const rows = document.querySelectorAll("#adm-artisans-tbody tr");
+        rows.forEach((r) => {
+          r.style.display = r.textContent
+            .toLowerCase()
+            .includes(q.toLowerCase())
+            ? ""
+            : "none";
+        });
+      }
+      function renderAdmOrders() {
+        document.getElementById("adm-orders-tbody").innerHTML = ORDERS_DB.map(
+          (o) => `
+    <tr><td style="font-size:.72rem;font-weight:600;color:var(--blue);">${o.id}</td>
+    <td><span style="margin-right:4px;">${o.emoji}</span><span style="font-size:.82rem;">${o.product}</span></td>
+    <td style="font-size:.8rem;">${o.buyer}</td>
+    <td style="font-size:.78rem;color:var(--muted);">${o.artisan}</td>
+    <td style="font-family:'Playfair Display',serif;color:var(--brown);font-weight:700;">${o.amount}</td>
+    <td style="font-size:.76rem;color:var(--muted);">${o.date}</td>
+    <td>${statusPill(o.status)}</td></tr>`,
+        ).join("");
+      }
+
+      /* ══ HELPERS ══ */
+      function statusPill(s) {
+        const m = {
+          delivered: "pill-green",
+          shipped: "pill-blue",
+          processing: "pill-gold",
+          pending: "pill-gold",
+          active: "pill-green",
+        };
+        const l = {
+          delivered: "✓ Delivered",
+          shipped: "🚚 Shipped",
+          processing: "⚙️ Processing",
+          pending: "⏳ Pending",
+          active: "● Active",
+        };
+        return `<span class="pill ${m[s] || "pill-gray"}">${l[s] || s}</span>`;
+      }
+
+      function toggleDark() {
+        const h = document.documentElement,
+          d = h.getAttribute("data-theme") === "dark";
+        h.setAttribute("data-theme", d ? "light" : "dark");
+        document.getElementById("dark-btn").textContent = d ? "🌙" : "☀️";
+        localStorage.setItem("hk_theme", d ? "light" : "dark");
+      }
+      function openDrawer() {
+        document.getElementById("mob-drawer").classList.add("open");
+        document.getElementById("mob-ov").classList.add("open");
+      }
+      function closeDrawer() {
+        document.getElementById("mob-drawer").classList.remove("open");
+        document.getElementById("mob-ov").classList.remove("open");
+      }
+      function showToast(m) {
+        const t = document.getElementById("toast");
+        t.textContent = m;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 3000);
+      }
+
+      function updateUserUI(u) {
+        document.getElementById("tb-init").textContent =
+          u.name[0].toUpperCase();
+        document.getElementById("tb-name").textContent = u.name.split(" ")[0];
+        document.getElementById("ds-avatar").textContent =
+          u.name[0].toUpperCase();
+        document.getElementById("ds-name").textContent = u.name;
+        document.getElementById("ds-role").textContent =
+          u.role === "artisan"
+            ? "Artisan Seller"
+            : u.role === "admin"
+              ? "Platform Admin"
+              : "Heritage Patron";
+        document.getElementById("welcome-name").textContent =
+          u.name.split(" ")[0];
+      }
+
+      /* ══ INIT ══ */
+      (function () {
+        const t = localStorage.getItem("hk_theme") || "light";
+        document.documentElement.setAttribute("data-theme", t);
+        document.getElementById("dark-btn").textContent =
+          t === "dark" ? "☀️" : "🌙";
+
+        const u = getCurrentUser();
+        if (!u) {
+          document.getElementById("not-logged-in").classList.add("show");
+          return;
+        }
+
+        // Show dashboard
+        document.getElementById("dash-content").style.display = "block";
+        document.getElementById("logout-btn").style.display = "block";
+        updateUserUI(u);
+
+        // Set default role based on user role
+        const defaultRole =
+          u.role === "admin"
+            ? "admin"
+            : u.role === "artisan"
+              ? "artisan"
+              : "buyer";
+        curRole = defaultRole;
+        document
+          .querySelectorAll(".rtab")
+          .forEach((b) =>
+            b.classList.toggle("on", b.dataset.role === defaultRole),
+          );
+        renderNav(defaultRole);
+        renderMobTabs(defaultRole);
+        showSection(NAV_CONFIG[defaultRole][0].id);
+
+        // Check URL param
+        const params = new URLSearchParams(window.location.search);
+        const sec = params.get("section");
+        if (sec) showSection(sec);
+      })();
+    </script>
+  </body>
+</html>

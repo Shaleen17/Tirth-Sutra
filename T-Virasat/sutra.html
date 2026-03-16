@@ -1,0 +1,2585 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,maximum-scale=1.0"
+    />
+    <title>Tirth Sutra-Virasat — Threads of Tradition, Stories of India.</title>
+    <link rel="icon" type="image/png" href="Tirth Sutra-Virasat-logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="style1.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <!-- ══ NAVBAR ══ -->
+    <nav id="navbar">
+      <div class="nwrap">
+        <!-- LOGO — REPLACE src WITH YOUR FILE -->
+        <a class="logo-wrap" href="sutra.html">
+          <div class="logo-circle">
+            <img
+              src="Tirth Sutra-Virasat-logo.jpg"
+              alt="Tirth Sutra-Virasat"
+              onerror="
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'flex';
+              "
+            />
+            <span class="logo-fb" id="lfb">ह</span>
+          </div>
+          <div>
+            <div class="logo-name">Tirth Sutra-Virasat</div>
+            <div class="logo-sub">Threads of Tradition, Stories of India.</div>
+          </div>
+        </a>
+
+        <!-- Desktop nav -->
+        <div
+          class="desktop-nav"
+          style="display: flex; align-items: center; gap: 20px"
+        >
+          <a href="marketplace.html" class="nav-link">Marketplace</a>
+          <a href="artisan.html" class="nav-link">Artisans</a>
+          <a href="#crafts" class="nav-link">Crafts</a>
+          <a href="#stories" class="nav-link">Stories</a>
+          <a href="#map-section" class="nav-link">Map</a>
+          <a href="#about" class="nav-link">About</a>
+        </div>
+
+        <!-- Right actions -->
+        <div
+          style="display: flex; align-items: center; gap: 7px; flex-shrink: 0"
+        >
+          <button class="dtog" onclick="toggleDark()" id="dark-btn">🌙</button>
+          <button
+            onclick="openCart()"
+            style="
+              background: transparent;
+              border: none;
+              color: #fbeedb;
+              font-size: 1rem;
+              cursor: pointer;
+              position: relative;
+              width: 34px;
+              height: 34px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            🛒<span
+              id="cart-count"
+              style="
+                position: absolute;
+                top: 0;
+                right: 0;
+                background: var(--gold);
+                color: #fff;
+                font-size: 0.5rem;
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+              "
+              >0</span
+            >
+          </button>
+          <button
+            id="auth-btn"
+            onclick="openAuth()"
+            class="btn-gold desktop-nav"
+            style="padding: 8px 16px; font-size: 0.74rem"
+          >
+            Sign In
+          </button>
+          <!-- Hamburger — mobile only -->
+          <button
+            id="hamburger"
+            onclick="openDrawer()"
+            style="
+              background: rgba(255, 255, 255, 0.1);
+              border: 1px solid rgba(255, 255, 255, 0.18);
+              color: #fbeedb;
+              width: 34px;
+              height: 34px;
+              border-radius: 6px;
+              font-size: 1rem;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-shrink: 0;
+            "
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MOBILE DRAWER -->
+    <div id="drawer-ov" onclick="closeDrawer()"></div>
+    <div id="drawer">
+      <div
+        style="
+          padding: 16px 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        "
+      >
+        <span
+          style="
+            font-family: &quot;Playfair Display&quot;, serif;
+            color: #fbeedb;
+            font-size: 1rem;
+            font-weight: 700;
+          "
+          >Tirth Sutra-Virasat</span
+        >
+        <button
+          onclick="closeDrawer()"
+          style="
+            background: transparent;
+            border: none;
+            color: rgba(251, 238, 219, 0.7);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px;
+          "
+        >
+          ✕
+        </button>
+      </div>
+      <a href="marketplace.html" class="dlink">🛍️ Marketplace</a>
+      <a href="artisan.html" class="dlink">🎨 Artisans</a>
+      <a href="#crafts" class="dlink" onclick="closeDrawer()">🏺 Crafts</a>
+      <a href="#stories" class="dlink" onclick="closeDrawer()">🎬 Stories</a>
+      <a href="#map-section" class="dlink" onclick="closeDrawer()"
+        >🗺️ Craft Map</a
+      >
+      <a href="dashboard.html" class="dlink">📊 Dashboard</a>
+      <div style="padding: 16px 20px; margin-top: auto">
+        <button
+          onclick="
+            openAuth();
+            closeDrawer();
+          "
+          class="btn-gold"
+          style="width: 100%; justify-content: center; padding: 13px"
+        >
+          Sign In / Register
+        </button>
+      </div>
+    </div>
+
+    <!-- ══ HERO ══ -->
+    <section id="hero">
+      <div class="hero-pat"></div>
+      <div class="hero-glow"></div>
+      <div
+        style="
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 28px 16px;
+          width: 100%;
+        "
+      >
+        <div
+          class="hero-grid"
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+          "
+        >
+          <!-- Left -->
+          <div>
+            <div class="hero-badge a1" style="margin-bottom: 18px">
+              ✦ Preserving 200-Year Legacy Crafts
+            </div>
+            <h1
+              class="a2 hero-title"
+              style="
+                font-size: clamp(2.5rem, 6vw, 5rem);
+                line-height: 1.06;
+                color: #fbeedb;
+                margin-bottom: 18px;
+              "
+            >
+              Where Ancient <span style="color: var(--gold)">Hands</span> Meet
+              Modern Hearts
+            </h1>
+            <p
+              class="a3"
+              style="
+                color: rgba(251, 238, 219, 0.68);
+                font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+                line-height: 1.75;
+                margin-bottom: 28px;
+                max-width: 460px;
+              "
+            >
+              A sacred marketplace for India's traditional artisan families.
+              Discover handcrafted treasures and become a patron of living
+              heritage.
+            </p>
+            <div
+              class="a4 hero-btns"
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 22px;
+              "
+            >
+              <a href="marketplace.html" class="btn-gold">Explore Crafts ↗</a>
+              <a href="#stories" class="btn-outline-w">Watch Stories ▶</a>
+            </div>
+            <div
+              class="a4 hero-checks"
+              style="display: flex; flex-wrap: wrap; gap: 14px"
+            >
+              <span
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 5px;
+                  color: rgba(251, 238, 219, 0.6);
+                  font-size: 0.74rem;
+                "
+                ><span style="color: var(--gold)">✓</span>GI Tag Verified</span
+              >
+              <span
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 5px;
+                  color: rgba(251, 238, 219, 0.6);
+                  font-size: 0.74rem;
+                "
+                ><span style="color: var(--gold)">✓</span>Direct from
+                Artisan</span
+              >
+              <span
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 5px;
+                  color: rgba(251, 238, 219, 0.6);
+                  font-size: 0.74rem;
+                "
+                ><span style="color: var(--gold)">✓</span>Legacy
+                Documented</span
+              >
+            </div>
+          </div>
+
+          <!-- Right — hidden mobile -->
+          <div
+            class="hero-right"
+            style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px"
+          >
+            <div
+              style="
+                background: rgba(251, 238, 219, 0.06);
+                border: 1px solid rgba(201, 151, 59, 0.18);
+                border-radius: 10px;
+                overflow: hidden;
+                grid-column: 1/-1;
+              "
+            >
+              <div
+                style="
+                  background: linear-gradient(135deg, #5c3028, #7a4035);
+                  padding: 20px;
+                "
+              >
+                <div
+                  style="
+                    font-size: 0.58rem;
+                    letter-spacing: 0.15em;
+                    color: var(--gold);
+                    text-transform: uppercase;
+                    margin-bottom: 6px;
+                  "
+                >
+                  Featured Heritage Craft
+                </div>
+                <h3
+                  style="color: #fbeedb; font-size: 1.2rem; margin-bottom: 5px"
+                >
+                  Pattachitra of Odisha
+                </h3>
+                <p
+                  style="
+                    color: rgba(251, 238, 219, 0.6);
+                    font-size: 0.78rem;
+                    line-height: 1.6;
+                  "
+                >
+                  Sacred scroll paintings with 800-year lineage from
+                  Raghurajpur.
+                </p>
+              </div>
+              <div
+                style="
+                  padding: 12px 18px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
+                <span
+                  style="
+                    color: var(--gold);
+                    font-family: &quot;Playfair Display&quot;, serif;
+                    font-size: 1.15rem;
+                  "
+                  >₹4,500</span
+                >
+                <button
+                  onclick="addToCart(1)"
+                  class="btn-gold"
+                  style="padding: 7px 14px; font-size: 0.74rem"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <div
+              style="
+                background: rgba(251, 238, 219, 0.05);
+                border: 1px solid rgba(201, 151, 59, 0.14);
+                border-radius: 10px;
+                padding: 16px;
+                cursor: pointer;
+              "
+              onclick="showToast('Exploring Madhubani...')"
+            >
+              <div style="font-size: 1.8rem; margin-bottom: 7px">🎨</div>
+              <div
+                style="color: #fbeedb; font-size: 0.9rem; margin-bottom: 2px"
+              >
+                Madhubani Art
+              </div>
+              <div style="color: rgba(251, 238, 219, 0.44); font-size: 0.7rem">
+                Bihar · 6th Gen
+              </div>
+            </div>
+            <div
+              style="
+                background: rgba(251, 238, 219, 0.05);
+                border: 1px solid rgba(201, 151, 59, 0.14);
+                border-radius: 10px;
+                padding: 16px;
+                cursor: pointer;
+              "
+              onclick="showToast('Exploring Blue Pottery...')"
+            >
+              <div style="font-size: 1.8rem; margin-bottom: 7px">🏺</div>
+              <div
+                style="color: #fbeedb; font-size: 0.9rem; margin-bottom: 2px"
+              >
+                Blue Pottery
+              </div>
+              <div style="color: rgba(251, 238, 219, 0.44); font-size: 0.7rem">
+                Rajasthan · 4th Gen
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ STATS ══ -->
+    <div class="stats-bar">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 16px">
+        <div
+          class="stats-row"
+          style="display: flex; flex-wrap: wrap; justify-content: center"
+        >
+          <div class="stat-item">
+            <div class="stat-num" id="c1">0</div>
+            <div class="stat-lbl">Artisan Families</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num" id="c2">0</div>
+            <div class="stat-lbl">Heritage Crafts</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num" id="c3">0</div>
+            <div class="stat-lbl">States Covered</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num" id="c4">0</div>
+            <div class="stat-lbl">Orders Delivered</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ CRAFTS ══ -->
+    <section
+      id="crafts"
+      class="sect"
+      style="padding: 60px 20px; max-width: 1200px; margin: 0 auto"
+    >
+      <div class="fi text-center" style="margin-bottom: 36px">
+        <div class="slbl" style="justify-content: center; margin-bottom: 10px">
+          Our Collection
+        </div>
+        <h2 style="font-size: clamp(1.7rem, 4vw, 2.5rem); color: var(--brown)">
+          Treasures of India
+        </h2>
+        <p
+          style="
+            color: var(--muted);
+            max-width: 440px;
+            margin: 8px auto 0;
+            line-height: 1.7;
+            font-size: 0.88rem;
+          "
+        >
+          Each piece carries generations of wisdom, crafted with devotion.
+        </p>
+      </div>
+      <div
+        class="crafts-filters"
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          gap: 7px;
+          justify-content: center;
+          margin-bottom: 24px;
+        "
+      >
+        <button class="fchip on" onclick="filterCrafts('all', this)">
+          All
+        </button>
+        <button class="fchip" onclick="filterCrafts('painting', this)">
+          Paintings
+        </button>
+        <button class="fchip" onclick="filterCrafts('textile', this)">
+          Textiles
+        </button>
+        <button class="fchip" onclick="filterCrafts('sculpture', this)">
+          Sculptures
+        </button>
+        <button class="fchip" onclick="filterCrafts('pottery', this)">
+          Pottery
+        </button>
+        <button class="fchip" onclick="filterCrafts('jewelry', this)">
+          Jewellery
+        </button>
+      </div>
+      <div
+        id="product-grid"
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+          gap: 16px;
+        "
+      ></div>
+      <div style="text-align: center; margin-top: 28px">
+        <a href="marketplace.html" class="btn-gold" style="display: inline-flex"
+          >View All 200+ Crafts →</a
+        >
+      </div>
+    </section>
+
+    <!-- ══ ARTISAN SPOTLIGHT ══ -->
+    <section class="sect" style="padding: 60px 20px; background: var(--bg2)">
+      <div style="max-width: 1200px; margin: 0 auto">
+        <div class="fi text-center" style="margin-bottom: 32px">
+          <div
+            class="slbl"
+            style="justify-content: center; margin-bottom: 10px"
+          >
+            Meet the Makers
+          </div>
+          <h2
+            style="font-size: clamp(1.7rem, 4vw, 2.5rem); color: var(--brown)"
+          >
+            Artisan Spotlight
+          </h2>
+        </div>
+        <div
+          id="artisan-grid"
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+            gap: 14px;
+          "
+        ></div>
+      </div>
+    </section>
+
+    <!-- ══ VIDEO STORIES ══ -->
+    <section
+      id="stories"
+      class="sect"
+      style="padding: 60px 20px; max-width: 1200px; margin: 0 auto"
+    >
+      <div
+        class="fi"
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          align-items: flex-end;
+          justify-content: space-between;
+          gap: 14px;
+          margin-bottom: 24px;
+        "
+      >
+        <div>
+          <div class="slbl" style="margin-bottom: 8px">Living Archive</div>
+          <h2
+            style="font-size: clamp(1.7rem, 4vw, 2.5rem); color: var(--brown)"
+          >
+            Stories in Motion
+          </h2>
+          <p
+            style="
+              color: var(--muted);
+              max-width: 380px;
+              margin-top: 6px;
+              line-height: 1.7;
+              font-size: 0.86rem;
+            "
+          >
+            Watch artisans explain their craft — history, technique, soul.
+          </p>
+        </div>
+        <a
+          href="#"
+          style="
+            color: var(--gold);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+          "
+          >View All →</a
+        >
+      </div>
+      <div
+        id="video-grid"
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+          gap: 16px;
+        "
+      ></div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+     INDIA CRAFT MAP
+══════════════════════════════════════════ -->
+    <section id="map-section">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 16px">
+        <div class="fi text-center" style="margin-bottom: 36px">
+          <div
+            class="slbl"
+            style="
+              justify-content: center;
+              margin-bottom: 10px;
+              color: var(--gold);
+            "
+          >
+            Discover by Region
+          </div>
+          <h2 style="font-size: clamp(1.7rem, 4vw, 2.5rem); color: #f0e0cc">
+            Craft Map of India
+          </h2>
+          <p
+            style="
+              color: rgba(240, 224, 204, 0.52);
+              max-width: 420px;
+              margin: 8px auto 0;
+              line-height: 1.7;
+              font-size: 0.86rem;
+            "
+          >
+            Click any glowing dot to discover the living craft heritage of that
+            region.
+          </p>
+        </div>
+
+        <div
+          class="map-2col"
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+            align-items: start;
+          "
+        >
+          <!-- MAP COLUMN -->
+          <div class="map-img-col fi">
+            <div class="map-img-box" id="map-wrap">
+              <!--
+          ╔══════════════════════════════════════════════════╗
+          ║  STEP 1: REPLACE src WITH YOUR MAP IMAGE FILE   ║
+          ║                                                  ║
+          ║  src="india-map.jpg"                            ║
+          ║  src="assets/india-map.png"                     ║
+          ║                                                  ║
+          ║  Place the file in same folder as sutra.html    ║
+          ╚══════════════════════════════════════════════════╝
+
+          The dots below are positioned as % of image size.
+          They match the map image you shared (Image 1 above).
+
+          Map image dimensions in your photo:
+          - India appears centered with ~8% black margin each side
+          - J&K is top-center, Tamil Nadu/Kerala at bottom
+          - Northeast extends to the right around 45% height
+          -->
+              <img
+                id="map-img"
+                src="india-map.jpg"
+                alt="India Craft Map — White outline on black"
+                onerror="
+                  this.style.display = 'none';
+                  document.getElementById('map-placeholder').style.display =
+                    'flex';
+                "
+              />
+
+              <!-- Placeholder shown if map file not found -->
+              <div
+                id="map-placeholder"
+                style="
+                  display: none;
+                  width: 100%;
+                  aspect-ratio: 1;
+                  background: #111;
+                  border-radius: 8px;
+                  align-items: center;
+                  justify-content: center;
+                  flex-direction: column;
+                  gap: 10px;
+                  border: 1px dashed rgba(201, 151, 59, 0.3);
+                "
+              >
+                <div style="font-size: 2.5rem">🗺️</div>
+                <div
+                  style="
+                    color: rgba(201, 151, 59, 0.7);
+                    font-size: 0.8rem;
+                    text-align: center;
+                    line-height: 1.6;
+                    padding: 0 20px;
+                  "
+                >
+                  Place your India map here<br /><code
+                    style="font-size: 0.68rem; opacity: 0.7"
+                    >src="india-map.jpg"</code
+                  >
+                </div>
+              </div>
+
+              <!-- ════════════════════════════════════════════════
+               CRAFT DOTS — Calibrated to your map image
+               
+               Your map (Image 1) is roughly square (1080x1080px).
+               India occupies ~80% of the image centered.
+               Black border ~10% on each side.
+               
+               left = % from left edge of image
+               top  = % from top edge of image
+               
+               Adjust these values if your actual file
+               has different cropping/padding.
+               ════════════════════════════════════════════════ -->
+
+              <!-- J&K — top center, large state -->
+              <div
+                class="map-dot"
+                style="left: 37%; top: 9%"
+                onclick="selState('jk')"
+                data-state="jk"
+              >
+                <div class="dtt">J&K · Pashmina</div>
+              </div>
+
+              <!-- Himachal Pradesh -->
+              <div
+                class="map-dot"
+                style="left: 40%; top: 20%"
+                onclick="selState('hp')"
+                data-state="hp"
+              >
+                <div class="dtt">H.P. · Kullu Shawls</div>
+              </div>
+
+              <!-- Punjab -->
+              <div
+                class="map-dot"
+                style="left: 31%; top: 22%"
+                onclick="selState('pb')"
+                data-state="pb"
+              >
+                <div class="dtt">Punjab · Phulkari</div>
+              </div>
+
+              <!-- Uttarakhand -->
+              <div
+                class="map-dot"
+                style="left: 45%; top: 22%"
+                onclick="selState('uk')"
+                data-state="uk"
+              >
+                <div class="dtt">Uttarakhand · Aipan Art</div>
+              </div>
+
+              <!-- Rajasthan — left-center large area -->
+              <div
+                class="map-dot"
+                style="left: 24%; top: 36%"
+                onclick="selState('rj')"
+                data-state="rj"
+              >
+                <div class="dtt">Rajasthan · Block Print</div>
+              </div>
+
+              <!-- Uttar Pradesh -->
+              <div
+                class="map-dot"
+                style="left: 46%; top: 30%"
+                onclick="selState('up')"
+                data-state="up"
+              >
+                <div class="dtt">U.P. · Banarasi Brocade</div>
+              </div>
+
+              <!-- Gujarat — protruding left peninsula -->
+              <div
+                class="map-dot"
+                style="left: 17%; top: 48%"
+                onclick="selState('gj')"
+                data-state="gj"
+              >
+                <div class="dtt">Gujarat · Bandhani</div>
+              </div>
+
+              <!-- Madhya Pradesh — center -->
+              <div
+                class="map-dot"
+                style="left: 41%; top: 42%"
+                onclick="selState('mp')"
+                data-state="mp"
+              >
+                <div class="dtt">M.P. · Chanderi Silk</div>
+              </div>
+
+              <!-- Bihar -->
+              <div
+                class="map-dot"
+                style="left: 57%; top: 30%"
+                onclick="selState('bh')"
+                data-state="bh"
+              >
+                <div class="dtt">Bihar · Madhubani</div>
+              </div>
+
+              <!-- Jharkhand -->
+              <div
+                class="map-dot"
+                style="left: 58%; top: 38%"
+                onclick="selState('jh')"
+                data-state="jh"
+              >
+                <div class="dtt">Jharkhand · Dokra</div>
+              </div>
+
+              <!-- West Bengal -->
+              <div
+                class="map-dot"
+                style="left: 65%; top: 35%"
+                onclick="selState('wb')"
+                data-state="wb"
+              >
+                <div class="dtt">W. Bengal · Kantha</div>
+              </div>
+
+              <!-- Odisha -->
+              <div
+                class="map-dot"
+                style="left: 61%; top: 48%"
+                onclick="selState('od')"
+                data-state="od"
+              >
+                <div class="dtt">Odisha · Pattachitra</div>
+              </div>
+
+              <!-- Chhattisgarh -->
+              <div
+                class="map-dot"
+                style="left: 51%; top: 48%"
+                onclick="selState('cg')"
+                data-state="cg"
+              >
+                <div class="dtt">C.G. · Dhokra</div>
+              </div>
+
+              <!-- Maharashtra -->
+              <div
+                class="map-dot"
+                style="left: 34%; top: 56%"
+                onclick="selState('mh')"
+                data-state="mh"
+              >
+                <div class="dtt">Maharashtra · Warli</div>
+              </div>
+
+              <!-- Telangana -->
+              <div
+                class="map-dot"
+                style="left: 47%; top: 58%"
+                onclick="selState('tg')"
+                data-state="tg"
+              >
+                <div class="dtt">Telangana · Bidriware</div>
+              </div>
+
+              <!-- Andhra Pradesh -->
+              <div
+                class="map-dot"
+                style="left: 53%; top: 63%"
+                onclick="selState('ap')"
+                data-state="ap"
+              >
+                <div class="dtt">A.P. · Kalamkari</div>
+              </div>
+
+              <!-- Karnataka -->
+              <div
+                class="map-dot"
+                style="left: 38%; top: 68%"
+                onclick="selState('ka')"
+                data-state="ka"
+              >
+                <div class="dtt">Karnataka · Channapatna</div>
+              </div>
+
+              <!-- Tamil Nadu -->
+              <div
+                class="map-dot"
+                style="left: 46%; top: 78%"
+                onclick="selState('tn')"
+                data-state="tn"
+              >
+                <div class="dtt">Tamil Nadu · Thanjavur</div>
+              </div>
+
+              <!-- Kerala — thin strip far left bottom -->
+              <div
+                class="map-dot"
+                style="left: 34%; top: 80%"
+                onclick="selState('kl')"
+                data-state="kl"
+              >
+                <div class="dtt">Kerala · Aranmula</div>
+              </div>
+
+              <!-- Assam + Northeast — far right -->
+              <div
+                class="map-dot"
+                style="left: 74%; top: 38%"
+                onclick="selState('as')"
+                data-state="as"
+              >
+                <div class="dtt">Assam NE · Mekhela Silk</div>
+              </div>
+            </div>
+
+            <!-- Map legend -->
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 18px;
+                margin-top: 12px;
+                flex-wrap: wrap;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 5px;
+                  font-size: 0.68rem;
+                  color: rgba(240, 224, 204, 0.5);
+                "
+              >
+                <div
+                  style="
+                    width: 9px;
+                    height: 9px;
+                    border-radius: 50%;
+                    background: var(--gold);
+                  "
+                ></div>
+                Craft Cluster
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 5px;
+                  font-size: 0.68rem;
+                  color: rgba(240, 224, 204, 0.5);
+                "
+              >
+                👆 Tap a dot to explore
+              </div>
+            </div>
+          </div>
+
+          <!-- INFO PANEL COLUMN -->
+          <div
+            class="map-panel-col fi"
+            style="display: flex; flex-direction: column; gap: 14px"
+          >
+            <div class="mpanel" id="map-panel">
+              <div
+                style="
+                  color: rgba(240, 224, 204, 0.36);
+                  font-size: 0.76rem;
+                  margin-bottom: 12px;
+                  display: flex;
+                  align-items: center;
+                  gap: 7px;
+                "
+              >
+                <span>👆</span>Click a glowing dot on the map
+              </div>
+              <h3
+                style="font-size: 1.4rem; color: #f0e0cc; margin-bottom: 8px"
+                id="map-title"
+              >
+                Explore India's Heritage
+              </h3>
+              <p
+                style="
+                  color: rgba(240, 224, 204, 0.58);
+                  font-size: 0.82rem;
+                  line-height: 1.75;
+                  margin-bottom: 12px;
+                "
+                id="map-desc"
+              >
+                28 states, each with unique craft traditions spanning centuries.
+                Click any dot to begin exploring.
+              </p>
+              <div id="map-crafts"></div>
+              <div
+                id="map-art-wrap"
+                style="
+                  display: none;
+                  margin-top: 12px;
+                  padding-top: 12px;
+                  border-top: 1px solid rgba(201, 151, 59, 0.14);
+                "
+              >
+                <div
+                  style="
+                    font-size: 0.64rem;
+                    color: var(--gold);
+                    letter-spacing: 0.1em;
+                    text-transform: uppercase;
+                    margin-bottom: 7px;
+                  "
+                >
+                  Featured Artisans
+                </div>
+                <div id="map-art-list"></div>
+              </div>
+              <div id="map-cta" style="display: none; margin-top: 14px">
+                <a
+                  href="marketplace.html"
+                  class="btn-gold"
+                  style="
+                    display: inline-flex;
+                    font-size: 0.78rem;
+                    padding: 9px 18px;
+                  "
+                  >Browse Regional Crafts →</a
+                >
+              </div>
+            </div>
+            <div
+              id="map-stats"
+              style="
+                display: none;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+              "
+            >
+              <div class="mstat">
+                <div
+                  style="
+                    font-family: &quot;Playfair Display&quot;, serif;
+                    color: var(--gold);
+                    font-size: 1.3rem;
+                  "
+                  id="ms-c"
+                >
+                  -
+                </div>
+                <div
+                  style="
+                    color: rgba(240, 224, 204, 0.5);
+                    font-size: 0.62rem;
+                    margin-top: 3px;
+                  "
+                >
+                  Craft Types
+                </div>
+              </div>
+              <div class="mstat">
+                <div
+                  style="
+                    font-family: &quot;Playfair Display&quot;, serif;
+                    color: var(--gold);
+                    font-size: 1.3rem;
+                  "
+                  id="ms-a"
+                >
+                  -
+                </div>
+                <div
+                  style="
+                    color: rgba(240, 224, 204, 0.5);
+                    font-size: 0.62rem;
+                    margin-top: 3px;
+                  "
+                >
+                  Artisans
+                </div>
+              </div>
+              <div class="mstat">
+                <div
+                  style="
+                    font-family: &quot;Playfair Display&quot;, serif;
+                    color: var(--gold);
+                    font-size: 1.3rem;
+                  "
+                  id="ms-h"
+                >
+                  -
+                </div>
+                <div
+                  style="
+                    color: rgba(240, 224, 204, 0.5);
+                    font-size: 0.62rem;
+                    margin-top: 3px;
+                  "
+                >
+                  Yrs Heritage
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ HOW IT WORKS ══ -->
+    <section class="sect" style="padding: 60px 20px; background: var(--bg2)">
+      <div style="max-width: 1200px; margin: 0 auto">
+        <div class="fi text-center" style="margin-bottom: 32px">
+          <div
+            class="slbl"
+            style="justify-content: center; margin-bottom: 10px"
+          >
+            Our Promise
+          </div>
+          <h2
+            style="font-size: clamp(1.7rem, 4vw, 2.5rem); color: var(--brown)"
+          >
+            From Village to Your Home
+          </h2>
+        </div>
+        <div
+          class="hw-grid"
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 14px;
+          "
+        >
+          <div class="hw-card fi">
+            <div
+              style="
+                width: 52px;
+                height: 52px;
+                background: var(--brown);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.4rem;
+                margin: 0 auto 12px;
+              "
+            >
+              🎨
+            </div>
+            <h4
+              style="
+                color: var(--brown);
+                margin-bottom: 6px;
+                font-size: 0.95rem;
+              "
+            >
+              Artisan Creates
+            </h4>
+            <p
+              style="color: var(--muted); font-size: 0.78rem; line-height: 1.6"
+            >
+              Hand-crafted using centuries-old techniques.
+            </p>
+          </div>
+          <div class="hw-card fi">
+            <div
+              style="
+                width: 52px;
+                height: 52px;
+                background: var(--brown);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.4rem;
+                margin: 0 auto 12px;
+              "
+            >
+              📜
+            </div>
+            <h4
+              style="
+                color: var(--brown);
+                margin-bottom: 6px;
+                font-size: 0.95rem;
+              "
+            >
+              Heritage Verified
+            </h4>
+            <p
+              style="color: var(--muted); font-size: 0.78rem; line-height: 1.6"
+            >
+              GI Tags ensure 100% authentic provenance.
+            </p>
+          </div>
+          <div class="hw-card fi">
+            <div
+              style="
+                width: 52px;
+                height: 52px;
+                background: var(--brown);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.4rem;
+                margin: 0 auto 12px;
+              "
+            >
+              📦
+            </div>
+            <h4
+              style="
+                color: var(--brown);
+                margin-bottom: 6px;
+                font-size: 0.95rem;
+              "
+            >
+              Carefully Packed
+            </h4>
+            <p
+              style="color: var(--muted); font-size: 0.78rem; line-height: 1.6"
+            >
+              Eco-conscious packaging for fragile pieces.
+            </p>
+          </div>
+          <div class="hw-card fi">
+            <div
+              style="
+                width: 52px;
+                height: 52px;
+                background: var(--brown);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.4rem;
+                margin: 0 auto 12px;
+              "
+            >
+              🏠
+            </div>
+            <h4
+              style="
+                color: var(--brown);
+                margin-bottom: 6px;
+                font-size: 0.95rem;
+              "
+            >
+              Delivered to You
+            </h4>
+            <p
+              style="color: var(--muted); font-size: 0.78rem; line-height: 1.6"
+            >
+              Heritage arrives at your doorstep worldwide.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ TESTIMONIALS ══ -->
+    <section
+      class="sect"
+      style="padding: 60px 20px; max-width: 1200px; margin: 0 auto"
+    >
+      <div class="fi text-center" style="margin-bottom: 32px">
+        <div class="slbl" style="justify-content: center; margin-bottom: 10px">
+          Voices
+        </div>
+        <h2 style="font-size: clamp(1.7rem, 4vw, 2.5rem); color: var(--brown)">
+          Patrons of Heritage
+        </h2>
+      </div>
+      <div
+        class="testi-grid"
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+          gap: 16px;
+        "
+      >
+        <div class="tc fi">
+          <div style="padding-top: 26px; margin-bottom: 10px">
+            <span style="color: var(--gold)">★★★★★</span>
+          </div>
+          <p
+            style="
+              font-size: 0.84rem;
+              line-height: 1.8;
+              color: var(--muted);
+              margin-bottom: 16px;
+            "
+          >
+            "I ordered a Pattachitra panel and received a 12-min personal video
+            explaining every symbol. This is not commerce — it's a sacred
+            exchange."
+          </p>
+          <div style="display: flex; align-items: center; gap: 9px">
+            <div
+              style="
+                width: 36px;
+                height: 36px;
+                background: var(--brown);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fbeedb;
+                font-weight: 700;
+                font-family: &quot;Playfair Display&quot;, serif;
+                flex-shrink: 0;
+                font-size: 0.9rem;
+              "
+            >
+              P
+            </div>
+            <div>
+              <div
+                style="font-weight: 600; color: var(--text); font-size: 0.82rem"
+              >
+                Priya Nair
+              </div>
+              <div style="font-size: 0.7rem; color: var(--muted)">
+                Singapore · Collector
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tc fi">
+          <div style="padding-top: 26px; margin-bottom: 10px">
+            <span style="color: var(--gold)">★★★★★</span>
+          </div>
+          <p
+            style="
+              font-size: 0.84rem;
+              line-height: 1.8;
+              color: var(--muted);
+              margin-bottom: 16px;
+            "
+          >
+            "The Madhubani artist became our daughter's pen pal. She now knows
+            the mythology behind every painting in our home."
+          </p>
+          <div style="display: flex; align-items: center; gap: 9px">
+            <div
+              style="
+                width: 36px;
+                height: 36px;
+                background: var(--gold);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                font-weight: 700;
+                font-family: &quot;Playfair Display&quot;, serif;
+                flex-shrink: 0;
+                font-size: 0.9rem;
+              "
+            >
+              R
+            </div>
+            <div>
+              <div
+                style="font-weight: 600; color: var(--text); font-size: 0.82rem"
+              >
+                Rahul Mehta
+              </div>
+              <div style="font-size: 0.7rem; color: var(--muted)">
+                London · Interior Designer
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tc fi">
+          <div style="padding-top: 26px; margin-bottom: 10px">
+            <span style="color: var(--gold)">★★★★★</span>
+          </div>
+          <p
+            style="
+              font-size: 0.84rem;
+              line-height: 1.8;
+              color: var(--muted);
+              margin-bottom: 16px;
+            "
+          >
+            "As a 5th generation weaver, I finally have a platform that tells
+            the story behind my Paithani sarees. My sales doubled."
+          </p>
+          <div style="display: flex; align-items: center; gap: 9px">
+            <div
+              style="
+                width: 36px;
+                height: 36px;
+                background: #6b3d35;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fbeedb;
+                font-weight: 700;
+                font-family: &quot;Playfair Display&quot;, serif;
+                flex-shrink: 0;
+                font-size: 0.9rem;
+              "
+            >
+              S
+            </div>
+            <div>
+              <div
+                style="font-weight: 600; color: var(--text); font-size: 0.82rem"
+              >
+                Sunita Salve
+              </div>
+              <div style="font-size: 0.7rem; color: var(--muted)">
+                Yeola, Maharashtra · Artisan
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ NEWSLETTER ══ -->
+    <section id="newsletter" class="sect" style="padding: 52px 20px">
+      <div style="max-width: 600px; margin: 0 auto; text-align: center">
+        <div
+          class="slbl"
+          style="
+            justify-content: center;
+            margin-bottom: 10px;
+            color: var(--gold);
+          "
+        >
+          Stay Connected
+        </div>
+        <h2
+          style="
+            color: #fbeedb;
+            font-size: clamp(1.5rem, 4vw, 2.1rem);
+            margin-bottom: 10px;
+          "
+        >
+          Stories of the Living Craft
+        </h2>
+        <p
+          style="
+            color: rgba(251, 238, 219, 0.58);
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 0.86rem;
+          "
+        >
+          New artisan stories and heritage knowledge — delivered monthly.
+        </p>
+        <div class="nl-row">
+          <input
+            class="nl-in"
+            id="nl-email"
+            type="email"
+            placeholder="Your email address"
+          /><button class="nl-btn" onclick="subscribeNewsletter()">
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer id="about" class="sect" style="padding: 48px 20px 28px">
+      <div style="max-width: 1200px; margin: 0 auto">
+        <div
+          class="footer-grid"
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 24px;
+            margin-bottom: 28px;
+          "
+        >
+          <div>
+            <div
+              style="
+                font-family: &quot;Playfair Display&quot;, serif;
+                color: #fbeedb;
+                font-size: 1.05rem;
+                margin-bottom: 8px;
+              "
+            >
+              Tirth Sutra-Virasat
+            </div>
+            <p style="font-size: 0.78rem; line-height: 1.7; max-width: 180px">
+              A digital sanctuary for India's living craft traditions.
+            </p>
+          </div>
+          <div>
+            <div
+              style="
+                color: #fbeedb;
+                font-weight: 600;
+                font-size: 0.72rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                margin-bottom: 10px;
+              "
+            >
+              Explore
+            </div>
+            <a href="marketplace.html" class="fl">Marketplace</a
+            ><a href="artisan.html" class="fl">Artisans</a
+            ><a href="#map-section" class="fl">Craft Map</a
+            ><a href="#index.html" class="fl">Main Site</a>
+          </div>
+          <div>
+            <div
+              style="
+                color: #fbeedb;
+                font-weight: 600;
+                font-size: 0.72rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                margin-bottom: 10px;
+              "
+            >
+              Artisans
+            </div>
+            <a href="#" class="fl">Sell Your Craft</a
+            ><a href="dashboard.html" class="fl">Dashboard</a
+            ><a href="#" class="fl">GI Tag Guide</a>
+          </div>
+          <div>
+            <div
+              style="
+                color: #fbeedb;
+                font-weight: 600;
+                font-size: 0.72rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                margin-bottom: 10px;
+              "
+            >
+              Platform
+            </div>
+            <a href="#" class="fl">About Us</a><a href="#" class="fl">Blog</a
+            ><a href="#" class="fl">Contact</a>
+          </div>
+        </div>
+        <div
+          style="
+            border-top: 1px solid rgba(251, 238, 219, 0.07);
+            padding-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+            font-size: 0.72rem;
+          "
+        >
+          <div>
+            © 2025 Tirth Sutra-Virasat. Preserving India's living cultural
+            heritage.
+          </div>
+          <div>Crafted with ❤️ for India's artisan families</div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- CART SIDEBAR -->
+    <div id="cov" onclick="closeCart()"></div>
+    <div id="csb">
+      <div
+        style="
+          padding: 18px 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid var(--border);
+          flex-shrink: 0;
+        "
+      >
+        <h3
+          style="
+            font-family: &quot;Playfair Display&quot;, serif;
+            color: var(--brown);
+            font-size: 1.15rem;
+          "
+        >
+          Your Cart
+        </h3>
+        <button
+          onclick="closeCart()"
+          style="
+            background: transparent;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            color: var(--muted);
+            padding: 4px;
+          "
+        >
+          ✕
+        </button>
+      </div>
+      <div
+        id="cart-items"
+        style="
+          flex: 1;
+          overflow-y: auto;
+          padding: 14px;
+          -webkit-overflow-scrolling: touch;
+        "
+      ></div>
+      <div
+        style="
+          padding: 14px 20px;
+          border-top: 1px solid var(--border);
+          flex-shrink: 0;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+          "
+        >
+          <span style="font-weight: 600; font-size: 0.9rem">Total</span
+          ><span
+            id="cart-total"
+            style="
+              font-family: &quot;Playfair Display&quot;, serif;
+              font-size: 1.1rem;
+              color: var(--brown);
+            "
+            >₹0</span
+          >
+        </div>
+        <button
+          onclick="checkout()"
+          class="add-btn"
+          style="border-radius: 5px; font-size: 0.8rem; padding: 13px"
+        >
+          Proceed to Checkout →
+        </button>
+      </div>
+    </div>
+
+    <!-- AUTH MODAL -->
+    <div id="amod">
+      <div class="abox">
+        <div
+          style="
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+          "
+        >
+          <button class="atab on" id="tab-l" onclick="switchTab('l')">
+            Sign In
+          </button>
+          <button class="atab" id="tab-r" onclick="switchTab('r')">
+            Register
+          </button>
+        </div>
+        <div id="form-l">
+          <h3
+            style="color: var(--brown); font-size: 1.2rem; margin-bottom: 4px"
+          >
+            Welcome Back
+          </h3>
+          <p
+            style="color: var(--muted); font-size: 0.78rem; margin-bottom: 14px"
+          >
+            Sign in to access your wishlist and orders.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <input
+              class="ainp"
+              id="le"
+              type="email"
+              placeholder="Email address"
+            />
+            <input
+              class="ainp"
+              id="lp"
+              type="password"
+              placeholder="Password"
+            />
+            <button
+              onclick="loginUser()"
+              class="btn-gold"
+              style="justify-content: center; margin-top: 2px"
+            >
+              Sign In
+            </button>
+          </div>
+        </div>
+        <div id="form-r" style="display: none">
+          <h3
+            style="color: var(--brown); font-size: 1.2rem; margin-bottom: 4px"
+          >
+            Join Tirth Sutra-Virasat
+          </h3>
+          <p
+            style="color: var(--muted); font-size: 0.78rem; margin-bottom: 14px"
+          >
+            Become a patron of India's living heritage.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <input class="ainp" id="rn" type="text" placeholder="Full name" />
+            <input
+              class="ainp"
+              id="re"
+              type="email"
+              placeholder="Email address"
+            />
+            <input
+              class="ainp"
+              id="rp"
+              type="password"
+              placeholder="Create password"
+            />
+            <div
+              style="
+                display: flex;
+                gap: 14px;
+                font-size: 0.8rem;
+                color: var(--muted);
+              "
+            >
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 5px;
+                  cursor: pointer;
+                "
+                ><input type="radio" name="role" value="buyer" checked />
+                Buyer</label
+              >
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 5px;
+                  cursor: pointer;
+                "
+                ><input type="radio" name="role" value="artisan" /> Artisan
+                Seller</label
+              >
+            </div>
+            <button
+              onclick="registerUser()"
+              class="btn-gold"
+              style="justify-content: center; margin-top: 2px"
+            >
+              Create Account
+            </button>
+          </div>
+        </div>
+        <button
+          onclick="closeAuth()"
+          style="
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: transparent;
+            border: none;
+            font-size: 0.95rem;
+            cursor: pointer;
+            color: var(--muted);
+            padding: 4px;
+          "
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+    <div id="toast"></div>
+
+    <script>
+      // ══ DATA ══
+      const PRODUCTS = [
+        {
+          id: 1,
+          name: "Pattachitra Sacred Scroll",
+          region: "Odisha",
+          category: "painting",
+          price: 4500,
+          artisan: "Raghunath Mohapatra",
+          gen: "8th Gen",
+          tag: "GI Tagged",
+          emoji: "🎨",
+          desc: "800-year-old sacred scroll art from Raghurajpur.",
+        },
+        {
+          id: 2,
+          name: "Madhubani Fish Pair",
+          region: "Bihar",
+          category: "painting",
+          price: 2800,
+          artisan: "Sita Devi",
+          gen: "6th Gen",
+          tag: "UNESCO",
+          emoji: "🐟",
+          desc: "Natural mineral pigments on handmade paper.",
+        },
+        {
+          id: 3,
+          name: "Banarasi Brocade Dupatta",
+          region: "Uttar Pradesh",
+          category: "textile",
+          price: 8200,
+          artisan: "Aziz Ahmed",
+          gen: "5th Gen",
+          tag: "GI Tagged",
+          emoji: "🧣",
+          desc: "Pure silk with real gold zari. 3 months per piece.",
+        },
+        {
+          id: 4,
+          name: "Blue Pottery Vase",
+          region: "Rajasthan",
+          category: "pottery",
+          price: 1650,
+          artisan: "Gopal Kumhar",
+          gen: "4th Gen",
+          tag: "Heritage",
+          emoji: "🏺",
+          desc: "Turko-Persian ceramics. Each vase is unique.",
+        },
+        {
+          id: 5,
+          name: "Dhokra Tribal Elephant",
+          region: "Chhattisgarh",
+          category: "sculpture",
+          price: 3200,
+          artisan: "Nakul Shilpakar",
+          gen: "7th Gen",
+          tag: "Tribal Art",
+          emoji: "🐘",
+          desc: "Lost-wax casting unchanged for 4000 years.",
+        },
+        {
+          id: 6,
+          name: "Gulabi Meenakari Necklace",
+          region: "Uttar Pradesh",
+          category: "jewelry",
+          price: 12500,
+          artisan: "Ramesh Vishwakarma",
+          gen: "6th Gen",
+          tag: "GI Tagged",
+          emoji: "📿",
+          desc: "Pink enamel on silver. Near-extinct craft.",
+        },
+        {
+          id: 7,
+          name: "Warli Wedding Painting",
+          region: "Maharashtra",
+          category: "painting",
+          price: 3800,
+          artisan: "Jivya Soma Mashe",
+          gen: "5th Gen",
+          tag: "Tribal",
+          emoji: "🎭",
+          desc: "White pigment on ochre. Cycle of life.",
+        },
+        {
+          id: 8,
+          name: "Kanchipuram Silk Saree",
+          region: "Tamil Nadu",
+          category: "textile",
+          price: 22000,
+          artisan: "Meenakshi Sundaram",
+          gen: "9th Gen",
+          tag: "GI Tagged",
+          emoji: "👘",
+          desc: "Temple motifs in pure mulberry silk.",
+        },
+      ];
+      const ARTISANS = [
+        {
+          id: 1,
+          name: "Raghunath Mohapatra",
+          craft: "Pattachitra",
+          region: "Odisha",
+          gen: "8th Gen",
+          emoji: "🎨",
+          col: "#4a2e2a",
+        },
+        {
+          id: 2,
+          name: "Sita Devi",
+          craft: "Madhubani",
+          region: "Bihar",
+          gen: "6th Gen",
+          emoji: "🖌️",
+          col: "#6b3d35",
+        },
+        {
+          id: 3,
+          name: "Aziz Ahmed",
+          craft: "Banarasi Brocade",
+          region: "Varanasi",
+          gen: "5th Gen",
+          emoji: "🧵",
+          col: "#8a5245",
+        },
+        {
+          id: 4,
+          name: "Sunita Salve",
+          craft: "Paithani Weaving",
+          region: "Maharashtra",
+          gen: "5th Gen",
+          emoji: "🪡",
+          col: "#c9973b",
+        },
+      ];
+      const VIDEOS = [
+        {
+          id: 1,
+          title: "The Sacred Art of Pattachitra",
+          artisan: "Raghunath Mohapatra",
+          duration: "12:34",
+          region: "Odisha",
+          emoji: "🎨",
+          bg: "#4a2e2a",
+        },
+        {
+          id: 2,
+          title: "Weaving Gold: Banarasi Brocade",
+          artisan: "Aziz Ahmed",
+          duration: "18:22",
+          region: "Varanasi",
+          emoji: "🧵",
+          bg: "#2d4a35",
+        },
+        {
+          id: 3,
+          title: "Lost Wax: The Dhokra Tradition",
+          artisan: "Nakul Shilpakar",
+          duration: "9:15",
+          region: "Chhattisgarh",
+          emoji: "🔥",
+          bg: "#2a2e4a",
+        },
+      ];
+      const STATE_DATA = {
+        jk: {
+          name: "Jammu & Kashmir",
+          crafts: [
+            "Pashmina Shawls",
+            "Kani Weaving",
+            "Papier Mâché",
+            "Walnut Wood Carving",
+            "Sozni Embroidery",
+          ],
+          artisans: [
+            "Ghulam Nabi — Pashmina, 8th Gen",
+            "Bashir Ahmed — Walnut Carving, 5th Gen",
+          ],
+          c: 6,
+          a: 380,
+          h: 700,
+        },
+        hp: {
+          name: "Himachal Pradesh",
+          crafts: [
+            "Kullu Shawls",
+            "Thangka Paintings",
+            "Chamba Rumal",
+            "Kangra Miniature",
+          ],
+          artisans: ["Devi Ram — Thangka, 4th Gen"],
+          c: 4,
+          a: 145,
+          h: 500,
+        },
+        pb: {
+          name: "Punjab",
+          crafts: [
+            "Phulkari Embroidery",
+            "Punjabi Jutti",
+            "Ralli Quilts",
+            "Copperware",
+          ],
+          artisans: ["Harpreet Kaur — Phulkari, 5th Gen"],
+          c: 4,
+          a: 185,
+          h: 300,
+        },
+        uk: {
+          name: "Uttarakhand",
+          crafts: [
+            "Aipan Art",
+            "Ringal Bamboo Craft",
+            "Wool Weaving",
+            "Wood Carving",
+          ],
+          artisans: ["Basanti Devi — Aipan, 5th Gen"],
+          c: 4,
+          a: 120,
+          h: 300,
+        },
+        rj: {
+          name: "Rajasthan",
+          crafts: [
+            "Block Printing",
+            "Bandhani Textiles",
+            "Blue Pottery",
+            "Pichwai Paintings",
+            "Meenakari Jewellery",
+            "Leheriya Dyeing",
+          ],
+          artisans: [
+            "Gopal Kumhar — Blue Pottery, 4th Gen",
+            "Mohan Khatri — Block Print, 6th Gen",
+          ],
+          c: 8,
+          a: 420,
+          h: 500,
+        },
+        gj: {
+          name: "Gujarat",
+          crafts: [
+            "Bandhani Tie-Dye",
+            "Patola Silk",
+            "Rogan Art",
+            "Kutch Embroidery",
+            "Ajrakh Print",
+            "Beadwork",
+          ],
+          artisans: [
+            "Ismail Khatri — Ajrakh, 8th Gen",
+            "Mir Fatima — Beadwork, 5th Gen",
+          ],
+          c: 8,
+          a: 440,
+          h: 600,
+        },
+        up: {
+          name: "Uttar Pradesh",
+          crafts: [
+            "Banarasi Brocade",
+            "Chikankari",
+            "Gulabi Meenakari",
+            "Sanjhi Art",
+            "Zardozi",
+            "Wooden Toys",
+          ],
+          artisans: [
+            "Aziz Ahmed — Brocade, 5th Gen",
+            "Ramesh Vishwakarma — Meenakari, 6th Gen",
+          ],
+          c: 9,
+          a: 520,
+          h: 700,
+        },
+        mp: {
+          name: "Madhya Pradesh",
+          crafts: [
+            "Chanderi Silk",
+            "Maheshwari Sarees",
+            "Gond Art",
+            "Batik Printing",
+          ],
+          artisans: ["Jangarh Singh — Gond Art, 3rd Gen"],
+          c: 5,
+          a: 275,
+          h: 400,
+        },
+        bh: {
+          name: "Bihar",
+          crafts: [
+            "Madhubani Paintings",
+            "Tikuli Art",
+            "Sujni Embroidery",
+            "Sikki Grass Craft",
+          ],
+          artisans: [
+            "Sita Devi — Madhubani, 6th Gen",
+            "Baua Devi — National Award",
+          ],
+          c: 5,
+          a: 280,
+          h: 400,
+        },
+        jh: {
+          name: "Jharkhand",
+          crafts: [
+            "Dokra Craft",
+            "Tribal Jewelry",
+            "Tussar Silk",
+            "Paitkar Painting",
+          ],
+          artisans: ["Bulaki Mahato — Paitkar, 4th Gen"],
+          c: 4,
+          a: 165,
+          h: 300,
+        },
+        wb: {
+          name: "West Bengal",
+          crafts: [
+            "Nakshi Kantha Embroidery",
+            "Terracotta Craft",
+            "Baluchari Sarees",
+            "Dokra",
+          ],
+          artisans: ["Malati Devi — Kantha, 5th Gen"],
+          c: 5,
+          a: 310,
+          h: 350,
+        },
+        od: {
+          name: "Odisha",
+          crafts: [
+            "Pattachitra Scrolls",
+            "Dhokra Casting",
+            "Ikat Weaving",
+            "Pipli Appliqué",
+            "Konark Stone Carving",
+          ],
+          artisans: ["Raghunath Mohapatra — Pattachitra, 8th Gen"],
+          c: 8,
+          a: 395,
+          h: 800,
+        },
+        cg: {
+          name: "Chhattisgarh",
+          crafts: [
+            "Dhokra Casting",
+            "Bastar Iron Craft",
+            "Tribal Terracotta",
+            "Kosa Silk",
+          ],
+          artisans: ["Nakul Shilpakar — Dhokra, 7th Gen"],
+          c: 4,
+          a: 220,
+          h: 400,
+        },
+        mh: {
+          name: "Maharashtra",
+          crafts: [
+            "Warli Tribal Art",
+            "Paithani Sarees",
+            "Bidriware",
+            "Kolhapuri Chappal",
+          ],
+          artisans: [
+            "Jivya Soma Mashe — Warli, 5th Gen",
+            "Sunita Salve — Paithani, 5th Gen",
+          ],
+          c: 7,
+          a: 360,
+          h: 300,
+        },
+        tg: {
+          name: "Telangana",
+          crafts: [
+            "Bidriware",
+            "Nirmal Paintings",
+            "Pochampally Ikat",
+            "Kalamkari",
+            "Cheriyal Scroll",
+          ],
+          artisans: ["Venkataiah — Nirmal, 4th Gen"],
+          c: 5,
+          a: 195,
+          h: 300,
+        },
+        ap: {
+          name: "Andhra Pradesh",
+          crafts: [
+            "Kalamkari",
+            "Etikoppaka Lacquerware",
+            "Dharmavaram Silk",
+            "Kondapalli Toys",
+          ],
+          artisans: ["Niranjan — Kalamkari, 6th Gen"],
+          c: 5,
+          a: 220,
+          h: 400,
+        },
+        ka: {
+          name: "Karnataka",
+          crafts: [
+            "Channapatna Toys",
+            "Mysore Rosewood Inlay",
+            "Bidriware",
+            "Kasuti Embroidery",
+          ],
+          artisans: ["Venkatesh — Channapatna, 4th Gen"],
+          c: 5,
+          a: 290,
+          h: 400,
+        },
+        kl: {
+          name: "Kerala",
+          crafts: [
+            "Kathakali Costumes",
+            "Coir Weaving",
+            "Aranmula Mirror",
+            "Nettoor Petti",
+          ],
+          artisans: ["Krishnan Nair — Aranmula, 6th Gen"],
+          c: 5,
+          a: 180,
+          h: 500,
+        },
+        tn: {
+          name: "Tamil Nadu",
+          crafts: [
+            "Thanjavur Paintings",
+            "Kanchipuram Silk",
+            "Tanjore Dolls",
+            "Stone Carving",
+            "Bronze Casting",
+          ],
+          artisans: ["Meenakshi Sundaram — Kanchipuram, 9th Gen"],
+          c: 7,
+          a: 445,
+          h: 600,
+        },
+        as: {
+          name: "Assam & Northeast",
+          crafts: [
+            "Mekhela Chador Weaving",
+            "Assam Silk",
+            "Bamboo Craft",
+            "Cane Weaving",
+          ],
+          artisans: ["Padma — Mekhela Chador, 4th Gen"],
+          c: 5,
+          a: 175,
+          h: 400,
+        },
+      };
+
+      // ══ DARK MODE ══
+      function toggleDark() {
+        const h = document.documentElement,
+          dark = h.getAttribute("data-theme") === "dark";
+        h.setAttribute("data-theme", dark ? "light" : "dark");
+        document.getElementById("dark-btn").textContent = dark ? "🌙" : "☀️";
+        localStorage.setItem("hk_theme", dark ? "light" : "dark");
+      }
+      (function () {
+        const t = localStorage.getItem("hk_theme") || "light";
+        document.documentElement.setAttribute("data-theme", t);
+        document.getElementById("dark-btn").textContent =
+          t === "dark" ? "☀️" : "🌙";
+      })();
+
+      // ══ DRAWER ══
+      function openDrawer() {
+        document.getElementById("drawer").classList.add("open");
+        document.getElementById("drawer-ov").classList.add("open");
+      }
+      function closeDrawer() {
+        document.getElementById("drawer").classList.remove("open");
+        document.getElementById("drawer-ov").classList.remove("open");
+      }
+
+      // ══ MAP ══
+      let selSt = null;
+      function selState(code) {
+        if (selSt)
+          document
+            .querySelectorAll('.map-dot[data-state="' + selSt + '"]')
+            .forEach((d) => d.classList.remove("sel"));
+        selSt = code;
+        document
+          .querySelectorAll('.map-dot[data-state="' + code + '"]')
+          .forEach((d) => d.classList.add("sel"));
+        const d = STATE_DATA[code];
+        if (!d) return;
+        document.getElementById("map-title").textContent = d.name;
+        document.getElementById("map-desc").textContent =
+          d.name +
+          " — " +
+          d.c +
+          " craft traditions, " +
+          d.a +
+          "+ artisan families, " +
+          d.h +
+          "+ years of heritage.";
+        document.getElementById("map-crafts").innerHTML = d.crafts
+          .map((c) => '<span class="cpill">' + c + "</span>")
+          .join("");
+        document.getElementById("map-art-list").innerHTML = d.artisans
+          .map(
+            (a) =>
+              '<div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;"><div style="width:26px;height:26px;background:rgba(201,151,59,.14);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;">🧑‍🎨</div><span style="color:rgba(240,224,204,.72);font-size:.76rem;">' +
+              a +
+              "</span></div>",
+          )
+          .join("");
+        document.getElementById("map-art-wrap").style.display = "block";
+        document.getElementById("map-cta").style.display = "block";
+        const ms = document.getElementById("map-stats");
+        ms.style.display = "grid";
+        animN("ms-c", d.c);
+        animN("ms-a", d.a);
+        animN("ms-h", d.h);
+      }
+      function animN(id, t) {
+        const el = document.getElementById(id);
+        let c = 0;
+        const s = t / 30;
+        const i = setInterval(() => {
+          c = Math.min(c + s, t);
+          el.textContent = Math.floor(c) + (t > 10 ? "+" : "");
+          if (c >= t) clearInterval(i);
+        }, 28);
+      }
+
+      // ══ PRODUCTS ══
+      function renderProducts(data) {
+        document.getElementById("product-grid").innerHTML = data
+          .map(
+            (p) => `
+    <div class="pc">
+      <div style="position:relative;">
+        <div class="pthumb">${p.emoji}</div>
+        <div style="position:absolute;top:8px;left:8px;background:var(--brown);color:#fbeedb;font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:2px;font-weight:700;">${p.tag}</div>
+        <button onclick="addWishlist(${p.id})" style="position:absolute;top:8px;right:8px;background:rgba(255,255,255,.88);border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:transform .2s;" onmouseover="this.style.transform='scale(1.12)'" onmouseout="this.style.transform='scale(1)'">🤍</button>
+      </div>
+      <div style="padding:12px;">
+        <div style="font-size:.62rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px;">${p.artisan} · ${p.gen}</div>
+        <h4 style="font-family:'Playfair Display',serif;color:var(--brown);font-size:.9rem;margin-bottom:4px;line-height:1.3;">${p.name}</h4>
+        <div style="font-size:.73rem;color:var(--muted);margin-bottom:9px;line-height:1.5;">${p.desc}</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
+          <span style="font-family:'Playfair Display',serif;color:var(--brown);font-size:1.05rem;font-weight:700;">₹${p.price.toLocaleString("en-IN")}</span>
+          <span style="font-size:.65rem;color:var(--muted);">📍${p.region}</span>
+        </div>
+        <button class="add-btn" onclick="addToCart(${p.id})">Add to Cart</button>
+      </div>
+    </div>`,
+          )
+          .join("");
+      }
+      function filterCrafts(cat, btn) {
+        document
+          .querySelectorAll(".fchip")
+          .forEach((b) => b.classList.remove("on"));
+        btn.classList.add("on");
+        renderProducts(
+          cat === "all" ? PRODUCTS : PRODUCTS.filter((p) => p.category === cat),
+        );
+      }
+
+      // ══ ARTISANS ══
+      function renderArtisans() {
+        document.getElementById("artisan-grid").innerHTML = ARTISANS.map(
+          (a) => `
+    <div class="artc" onclick="window.location='artisan.html'">
+      <div style="width:100%;height:100%;background:linear-gradient(160deg,${a.col},#180806);display:flex;align-items:center;justify-content:center;font-size:3.5rem;">${a.emoji}</div>
+      <div class="arto"><div style="font-size:.62rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;">${a.gen} · ${a.region}</div><h3 style="font-family:'Playfair Display',serif;color:#fbeedb;font-size:.95rem;margin-bottom:2px;">${a.name}</h3><div style="color:rgba(251,238,219,.58);font-size:.72rem;">${a.craft}</div></div>
+    </div>`,
+        ).join("");
+      }
+
+      // ══ VIDEOS ══
+      function renderVideos() {
+        document.getElementById("video-grid").innerHTML = VIDEOS.map(
+          (v) => `
+    <div class="vc" onclick="showToast('Playing: ${v.title}')">
+      <div class="vt" style="background:linear-gradient(135deg,${v.bg},#080304);">${v.emoji}</div>
+      <div class="vplay"><div class="vpc">▶</div></div>
+      <div style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,.72);color:#fff;font-size:.6rem;padding:2px 7px;border-radius:3px;font-weight:600;">${v.duration}</div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0,rgba(0,0,0,.88),transparent);">
+        <div style="font-size:.6rem;color:var(--gold);text-transform:uppercase;margin-bottom:2px;">${v.region}</div>
+        <h4 style="color:#fff;font-size:.88rem;line-height:1.3;">${v.title}</h4>
+        <div style="font-size:.7rem;color:rgba(255,255,255,.56);margin-top:2px;">By ${v.artisan}</div>
+      </div>
+    </div>`,
+        ).join("");
+      }
+
+      // ══ CART ══
+      let cart = JSON.parse(localStorage.getItem("hk_cart") || "[]");
+      function saveCart() {
+        localStorage.setItem("hk_cart", JSON.stringify(cart));
+      }
+      function updateBadge() {
+        document.getElementById("cart-count").textContent = cart.reduce(
+          (s, i) => s + i.qty,
+          0,
+        );
+      }
+      function addToCart(pid) {
+        const p = PRODUCTS.find((x) => x.id === pid);
+        if (!p) return;
+        const ex = cart.find((x) => x.id === pid);
+        if (ex) ex.qty++;
+        else cart.push({ ...p, qty: 1 });
+        saveCart();
+        updateBadge();
+        renderCart();
+        showToast(p.name + " added ✓");
+      }
+      function removeFromCart(pid) {
+        cart = cart.filter((x) => x.id !== pid);
+        saveCart();
+        updateBadge();
+        renderCart();
+      }
+      function renderCart() {
+        const el = document.getElementById("cart-items");
+        if (!cart.length) {
+          el.innerHTML =
+            '<div style="text-align:center;padding:40px 0;color:var(--muted);"><div style="font-size:2.8rem;margin-bottom:10px;">🛒</div><p style="font-size:.88rem;">Your cart is empty</p></div>';
+          document.getElementById("cart-total").textContent = "₹0";
+          return;
+        }
+        let t = 0;
+        el.innerHTML = cart
+          .map((i) => {
+            t += i.price * i.qty;
+            return `<div style="display:flex;gap:11px;align-items:center;padding:11px 0;border-bottom:1px solid var(--border);"><div style="width:44px;height:44px;background:var(--bg2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">${i.emoji}</div><div style="flex:1;min-width:0;"><div style="font-weight:600;font-size:.82rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${i.name}</div><div style="font-size:.7rem;color:var(--muted);">Qty ${i.qty}</div><div style="font-family:'Playfair Display',serif;color:var(--brown);font-weight:700;font-size:.95rem;">₹${(i.price * i.qty).toLocaleString("en-IN")}</div></div><button onclick="removeFromCart(${i.id})" style="background:transparent;border:none;color:var(--muted);cursor:pointer;padding:4px;font-size:.85rem;flex-shrink:0;">✕</button></div>`;
+          })
+          .join("");
+        document.getElementById("cart-total").textContent =
+          "₹" + t.toLocaleString("en-IN");
+      }
+      function openCart() {
+        document.getElementById("csb").classList.add("open");
+        document.getElementById("cov").classList.add("open");
+        renderCart();
+      }
+      function closeCart() {
+        document.getElementById("csb").classList.remove("open");
+        document.getElementById("cov").classList.remove("open");
+      }
+      function checkout() {
+        closeCart();
+        showToast("Order placed! Thank you 🙏");
+        cart = [];
+        saveCart();
+        updateBadge();
+      }
+      function addWishlist(pid) {
+        const wl = JSON.parse(localStorage.getItem("hk_wishlist") || "[]");
+        if (!wl.includes(pid)) {
+          wl.push(pid);
+          localStorage.setItem("hk_wishlist", JSON.stringify(wl));
+        }
+        showToast("Added to Wishlist ♥");
+      }
+
+      // ══ AUTH ══
+      function openAuth() {
+        document.getElementById("amod").classList.add("open");
+      }
+      function closeAuth() {
+        document.getElementById("amod").classList.remove("open");
+      }
+      function switchTab(t) {
+        document.getElementById("form-l").style.display =
+          t === "l" ? "block" : "none";
+        document.getElementById("form-r").style.display =
+          t === "r" ? "block" : "none";
+        document.getElementById("tab-l").classList.toggle("on", t === "l");
+        document.getElementById("tab-r").classList.toggle("on", t === "r");
+      }
+      function loginUser() {
+        const email = document.getElementById("le").value.trim(),
+          pass = document.getElementById("lp").value;
+        if (!email || !pass) {
+          showToast("Please fill all fields");
+          return;
+        }
+        const users = JSON.parse(localStorage.getItem("hk_users") || "[]");
+        const u = users.find((x) => x.email === email && x.password === pass);
+        if (!u) {
+          showToast("Invalid credentials");
+          return;
+        }
+        localStorage.setItem("hk_current_user", JSON.stringify(u));
+        document.getElementById("auth-btn").textContent = u.name.split(" ")[0];
+        closeAuth();
+        showToast("Welcome back, " + u.name.split(" ")[0] + "! 🙏");
+      }
+      function registerUser() {
+        const name = document.getElementById("rn").value.trim(),
+          email = document.getElementById("re").value.trim(),
+          pass = document.getElementById("rp").value;
+        const role = document.querySelector('input[name="role"]:checked').value;
+        if (!name || !email || !pass) {
+          showToast("Please fill all fields");
+          return;
+        }
+        const users = JSON.parse(localStorage.getItem("hk_users") || "[]");
+        if (users.find((x) => x.email === email)) {
+          showToast("Email already registered");
+          return;
+        }
+        const u = { id: Date.now(), name, email, password: pass, role };
+        users.push(u);
+        localStorage.setItem("hk_users", JSON.stringify(users));
+        localStorage.setItem("hk_current_user", JSON.stringify(u));
+        document.getElementById("auth-btn").textContent = name.split(" ")[0];
+        closeAuth();
+        showToast("Welcome, " + name.split(" ")[0] + "! 🎨");
+      }
+      function subscribeNewsletter() {
+        const email = document.getElementById("nl-email").value.trim();
+        if (!email || !email.includes("@")) {
+          showToast("Enter a valid email");
+          return;
+        }
+        const subs = JSON.parse(localStorage.getItem("hk_subs") || "[]");
+        if (subs.includes(email)) {
+          showToast("Already subscribed!");
+          return;
+        }
+        subs.push(email);
+        localStorage.setItem("hk_subs", JSON.stringify(subs));
+        document.getElementById("nl-email").value = "";
+        showToast("Subscribed! 🎨");
+      }
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 3000);
+      }
+
+      // ══ SCROLL NAV ══
+      window.addEventListener(
+        "scroll",
+        () =>
+          document
+            .getElementById("navbar")
+            .classList.toggle("scrolled", window.scrollY > 55),
+        { passive: true },
+      );
+
+      // ══ FADE OBSERVER ══
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("vis");
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      document.querySelectorAll(".fi").forEach((el) => obs.observe(el));
+
+      // ══ COUNTERS ══
+      function animC(id, target, sfx = "") {
+        const el = document.getElementById(id);
+        let c = 0;
+        const s = target / 60;
+        const i = setInterval(() => {
+          c = Math.min(c + s, target);
+          el.textContent = Math.floor(c).toLocaleString("en-IN") + sfx;
+          if (c >= target) clearInterval(i);
+        }, 22);
+      }
+      const cObs = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            animC("c1", 1240, "+");
+            animC("c2", 84);
+            animC("c3", 28);
+            animC("c4", 18600, "+");
+            cObs.disconnect();
+          }
+        },
+        { threshold: 0.1 },
+      );
+      const si = document.querySelector(".stat-item");
+      if (si) cObs.observe(si);
+
+      // ══ INIT ══
+      (function () {
+        renderProducts(PRODUCTS);
+        renderArtisans();
+        renderVideos();
+        updateBadge();
+        const u = JSON.parse(localStorage.getItem("hk_current_user") || "null");
+        if (u)
+          document.getElementById("auth-btn").textContent =
+            u.name.split(" ")[0];
+      })();
+    </script>
+  </body>
+</html>
