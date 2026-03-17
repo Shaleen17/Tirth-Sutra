@@ -1003,8 +1003,16 @@ function showSV(stories, i) {
     (s.t || "") + (s.t ? " ago" : "");
   const cont = document.getElementById("svContent");
   if (s.type === "video" && s.src)
-    cont.innerHTML = `<video src="${s.src}" autoplay muted playsinline controls style="max-width:100%;max-height:100%;border-radius:12px"></video>`;
-  else if (s.type === "image" && s.src)
+    cont.innerHTML = `<video src="${s.src}" autoplay playsinline controls style="max-width:100%;max-height:100%;border-radius:12px"></video>`;
+  const vid = cont.querySelector("video");
+  if (vid) {
+    vid.muted = false;
+    vid.volume = 1.0;
+    vid.play().catch(() => {
+      vid.muted = true;
+      vid.play().catch(() => {});
+    });
+  } else if (s.type === "image" && s.src)
     cont.innerHTML = `<img src="${s.src}" alt="" style="max-width:100%;max-height:100%;border-radius:12px">`;
   else cont.textContent = s.emo || "🕉";
   document.getElementById("svCap").textContent = s.cap || "";
