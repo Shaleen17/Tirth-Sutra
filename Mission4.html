@@ -1,0 +1,2435 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tirth Sutra — Restoring the Sacred</title>
+    <link rel="icon" type="image/png" href="BrandLogo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --deep: #4a2e2a;
+        --cream: #fbeedb;
+        --white: #ffffff;
+        --deep-10: rgba(74, 46, 42, 0.08);
+        --deep-20: rgba(74, 46, 42, 0.15);
+        --deep-40: rgba(74, 46, 42, 0.3);
+        --gold: #c9973a;
+        --gold-light: #e8c07a;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "EB Garamond", Georgia, serif;
+        background: var(--cream);
+        color: var(--deep);
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--cream);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--deep-40);
+        border-radius: 3px;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 1.2rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.4s ease;
+      }
+      nav.scrolled {
+        background: rgba(251, 238, 219, 0.96);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--deep-20);
+        padding: 0.9rem 2rem;
+      }
+      .nav-logo-img {
+        height: 38px;
+        width: auto;
+        max-width: 160px;
+        object-fit: contain;
+        display: none;
+        vertical-align: middle;
+      }
+      .nav-logo-fallback {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--deep);
+        letter-spacing: 0.04em;
+        text-decoration: none;
+      }
+      .nav-logo-fallback .wheel {
+        width: 28px;
+        height: 28px;
+        border: 2px solid var(--deep);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .nav-logo-fallback .wheel::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        background: var(--deep);
+        border-radius: 50%;
+      }
+      .nav-logo {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+      .nav-links a {
+        font-family: "EB Garamond", serif;
+        font-size: 0.95rem;
+        color: var(--deep);
+        text-decoration: none;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        opacity: 0.75;
+        transition: opacity 0.2s;
+      }
+      .nav-links a:hover {
+        opacity: 1;
+      }
+      .nav-cta {
+        font-family: "EB Garamond", serif;
+        font-size: 0.9rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background: var(--deep);
+        color: var(--cream);
+        padding: 0.6rem 1.4rem;
+        text-decoration: none;
+        transition: all 0.3s;
+        border: 1px solid var(--deep);
+      }
+      .nav-cta:hover {
+        background: transparent;
+        color: var(--deep);
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 4px;
+      }
+      .hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--deep);
+        transition: all 0.3s;
+      }
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 99;
+        background: var(--cream);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu a {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2rem;
+        font-weight: 500;
+        color: var(--deep);
+        text-decoration: none;
+        letter-spacing: 0.06em;
+      }
+      .hero {
+        min-height: 100vh;
+        background: var(--deep);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .hero-bg-image {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background-size: cover;
+        background-position: center;
+      }
+      .hero-bg-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+          135deg,
+          rgba(74, 46, 42, 0.92) 0%,
+          rgba(74, 46, 42, 0.75) 100%
+        );
+      }
+      .hero-texture {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background-image:
+          radial-gradient(
+            ellipse 80% 60% at 50% 50%,
+            rgba(201, 151, 58, 0.08) 0%,
+            transparent 70%
+          ),
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 60px,
+            rgba(251, 238, 219, 0.025) 60px,
+            rgba(251, 238, 219, 0.025) 61px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 60px,
+            rgba(251, 238, 219, 0.025) 60px,
+            rgba(251, 238, 219, 0.025) 61px
+          );
+      }
+      .hero-mandala {
+        position: absolute;
+        z-index: 1;
+        width: min(700px, 90vw);
+        height: min(700px, 90vw);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.04;
+        animation: slowSpin 60s linear infinite;
+      }
+      @keyframes slowSpin {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 2rem;
+        max-width: 900px;
+      }
+      .hero-logo-wrap {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+        opacity: 0;
+        animation: fadeUp 1s ease 0.1s forwards;
+      }
+      .hero-logo-img {
+        height: 44px;
+        width: auto;
+        max-width: 180px;
+        object-fit: contain;
+        display: none;
+      }
+      .hero-logo-fallback {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+      .wheel-light {
+        width: 28px;
+        height: 28px;
+        border: 2px solid rgba(251, 238, 219, 0.6);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .wheel-light::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        background: rgba(251, 238, 219, 0.6);
+        border-radius: 50%;
+      }
+      .hero-eyebrow {
+        font-family: "EB Garamond", serif;
+        font-size: 0.8rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold-light);
+        margin-bottom: 1.8rem;
+        opacity: 0;
+        animation: fadeUp 1s ease 0.3s forwards;
+      }
+      .hero-title {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(3.2rem, 8vw, 7rem);
+        font-weight: 300;
+        color: var(--cream);
+        line-height: 0.95;
+        letter-spacing: -0.01em;
+        margin-bottom: 0.4rem;
+        opacity: 0;
+        animation: fadeUp 1s ease 0.5s forwards;
+      }
+      .hero-title em {
+        font-style: italic;
+        color: var(--gold-light);
+        display: block;
+      }
+      .hero-sub {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        color: rgba(251, 238, 219, 0.65);
+        line-height: 1.7;
+        max-width: 600px;
+        margin: 2rem auto 3rem;
+        font-weight: 400;
+        opacity: 0;
+        animation: fadeUp 1s ease 0.8s forwards;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: fadeUp 1s ease 1s forwards;
+      }
+      .btn-primary {
+        font-family: "EB Garamond", serif;
+        font-size: 0.9rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: var(--gold);
+        color: var(--white);
+        padding: 0.85rem 2.2rem;
+        text-decoration: none;
+        border: 1px solid var(--gold);
+        transition: all 0.3s;
+        display: inline-block;
+      }
+      .btn-primary:hover {
+        background: transparent;
+        color: var(--gold-light);
+        border-color: var(--gold-light);
+      }
+      .btn-outline {
+        font-family: "EB Garamond", serif;
+        font-size: 0.9rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: transparent;
+        color: rgba(251, 238, 219, 0.8);
+        padding: 0.85rem 2.2rem;
+        text-decoration: none;
+        border: 1px solid rgba(251, 238, 219, 0.3);
+        transition: all 0.3s;
+        display: inline-block;
+      }
+      .btn-outline:hover {
+        border-color: rgba(251, 238, 219, 0.7);
+        color: var(--cream);
+      }
+      .hero-scroll {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        opacity: 0;
+        animation: fadeUp 1s ease 1.4s forwards;
+        z-index: 2;
+      }
+      .hero-scroll span {
+        font-size: 0.7rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: rgba(251, 238, 219, 0.4);
+      }
+      .scroll-line {
+        width: 1px;
+        height: 40px;
+        background: rgba(251, 238, 219, 0.2);
+        animation: scrollPulse 2s ease infinite;
+      }
+      @keyframes scrollPulse {
+        0%,
+        100% {
+          opacity: 0.2;
+          transform: scaleY(1);
+        }
+        50% {
+          opacity: 0.8;
+          transform: scaleY(0.6);
+        }
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .stats-bar {
+        background: var(--white);
+        border-bottom: 1px solid var(--deep-20);
+        padding: 2.5rem 2rem;
+      }
+      .stats-grid {
+        max-width: 900px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--deep-20);
+      }
+      .stat-item {
+        background: var(--white);
+        padding: 1.8rem 1.5rem;
+        text-align: center;
+      }
+      .stat-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.8rem;
+        font-weight: 300;
+        color: var(--deep);
+        line-height: 1;
+        margin-bottom: 0.4rem;
+      }
+      .stat-label {
+        font-size: 0.8rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--deep);
+        opacity: 0.55;
+        line-height: 1.4;
+      }
+      section {
+        padding: 7rem 2rem;
+      }
+      .section-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .section-tag {
+        display: inline-block;
+        font-size: 0.72rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+        border: 1px solid var(--gold-light);
+        padding: 0.3rem 0.9rem;
+        margin-bottom: 1.5rem;
+        font-family: "EB Garamond", serif;
+      }
+      .section-heading {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2.2rem, 5vw, 3.8rem);
+        font-weight: 400;
+        line-height: 1.1;
+        color: var(--deep);
+        margin-bottom: 1.5rem;
+      }
+      .section-body {
+        font-size: 1.1rem;
+        line-height: 1.85;
+        color: var(--deep);
+        opacity: 0.75;
+        max-width: 680px;
+      }
+      .problem-section {
+        background: var(--deep);
+        color: var(--cream);
+      }
+      .problem-section .section-heading {
+        color: var(--cream);
+      }
+      .problem-section .section-body {
+        color: rgba(251, 238, 219, 0.65);
+      }
+      .problem-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: rgba(251, 238, 219, 0.1);
+        margin-top: 4rem;
+      }
+      .problem-card {
+        background: rgba(251, 238, 219, 0.04);
+        padding: 2.5rem 2rem;
+        transition: background 0.3s;
+      }
+      .problem-card:hover {
+        background: rgba(251, 238, 219, 0.08);
+      }
+      .problem-card-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 3.5rem;
+        font-weight: 300;
+        color: var(--gold);
+        opacity: 0.5;
+        line-height: 1;
+        margin-bottom: 1rem;
+      }
+      .problem-card-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: var(--cream);
+        margin-bottom: 0.8rem;
+      }
+      .problem-card-text {
+        font-size: 0.95rem;
+        line-height: 1.75;
+        color: rgba(251, 238, 219, 0.55);
+      }
+      .temple-image-strip {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        margin-top: 3rem;
+        background: rgba(251, 238, 219, 0.08);
+      }
+      .temple-img-slot {
+        aspect-ratio: 16/9;
+        overflow: hidden;
+        position: relative;
+        background: rgba(251, 238, 219, 0.06);
+      }
+      .temple-img-slot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+        opacity: 0.75;
+      }
+      .temple-img-slot:hover img {
+        transform: scale(1.04);
+      }
+      .img-ph {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        border: 1px dashed rgba(251, 238, 219, 0.2);
+      }
+      .img-ph svg {
+        opacity: 0.25;
+        color: var(--cream);
+      }
+      .img-ph span {
+        font-family: "EB Garamond", serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(251, 238, 219, 0.35);
+        text-align: center;
+        padding: 0 0.8rem;
+        line-height: 1.5;
+      }
+      .temple-img-slot.loaded .img-ph {
+        display: none;
+      }
+      .crisis-callout {
+        margin-top: 4rem;
+        border: 1px solid rgba(201, 151, 58, 0.4);
+        padding: 2.5rem 3rem;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+      .crisis-stat {
+        text-align: center;
+        flex-shrink: 0;
+      }
+      .crisis-stat-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 4.5rem;
+        font-weight: 300;
+        color: var(--gold-light);
+        line-height: 1;
+        display: block;
+      }
+      .crisis-stat-unit {
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(201, 151, 58, 0.7);
+      }
+      .crisis-text {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        font-style: italic;
+        color: rgba(251, 238, 219, 0.8);
+        line-height: 1.6;
+      }
+      .crisis-source {
+        font-family: "EB Garamond", serif;
+        font-size: 0.85rem;
+        margin-top: 0.8rem;
+        color: rgba(251, 238, 219, 0.4);
+        letter-spacing: 0.05em;
+      }
+      .solution-section {
+        background: var(--cream);
+      }
+      .pillars-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px;
+        background: var(--deep-20);
+        margin-top: 4rem;
+      }
+      .pillar-card {
+        background: var(--cream);
+        padding: 3rem 2.5rem;
+        transition: background 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .pillar-card::before {
+        content: attr(data-num);
+        position: absolute;
+        top: -0.5rem;
+        right: 1rem;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 8rem;
+        font-weight: 700;
+        color: var(--deep);
+        opacity: 0.04;
+        line-height: 1;
+        pointer-events: none;
+      }
+      .pillar-card:hover {
+        background: var(--white);
+      }
+      .pillar-icon {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 1.5rem;
+        color: var(--gold);
+      }
+      .pillar-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: var(--deep);
+        margin-bottom: 0.6rem;
+      }
+      .pillar-sub {
+        font-size: 0.78rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1rem;
+      }
+      .pillar-text {
+        font-size: 0.98rem;
+        line-height: 1.8;
+        color: var(--deep);
+        opacity: 0.65;
+      }
+      .supply-strip {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        background: var(--deep-20);
+        margin-top: 4rem;
+      }
+      .supply-img-slot {
+        aspect-ratio: 4/3;
+        overflow: hidden;
+        position: relative;
+        background: var(--deep-10);
+      }
+      .supply-img-slot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+      .supply-img-slot:hover img {
+        transform: scale(1.04);
+      }
+      .supply-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(74, 46, 42, 0.72));
+        padding: 1.5rem 1rem 0.8rem;
+        font-family: "EB Garamond", serif;
+        font-size: 0.78rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--cream);
+      }
+      .supply-ph {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        border: 1px dashed var(--deep-40);
+      }
+      .supply-ph svg {
+        opacity: 0.2;
+        color: var(--deep);
+      }
+      .supply-ph span {
+        font-family: "EB Garamond", serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--deep);
+        opacity: 0.4;
+        text-align: center;
+        padding: 0 0.8rem;
+        line-height: 1.5;
+      }
+      .supply-img-slot.loaded .supply-ph {
+        display: none;
+      }
+      .compare-section {
+        background: var(--white);
+      }
+      .compare-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 3rem;
+        font-size: 0.95rem;
+      }
+      .compare-table th {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        padding: 1.2rem 1.5rem;
+        text-align: left;
+        border-bottom: 2px solid var(--deep);
+      }
+      .compare-table th:first-child {
+        width: 28%;
+      }
+      .compare-table th.col-current {
+        color: var(--deep);
+        opacity: 0.5;
+      }
+      .compare-table th.col-new {
+        background: var(--deep);
+        color: var(--cream);
+      }
+      .compare-table td {
+        padding: 1rem 1.5rem;
+        vertical-align: top;
+        border-bottom: 1px solid var(--deep-20);
+        line-height: 1.6;
+      }
+      .compare-table td.col-label {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 500;
+        font-size: 1rem;
+        color: var(--deep);
+        opacity: 0.6;
+      }
+      .compare-table td.col-current {
+        opacity: 0.55;
+        font-size: 0.9rem;
+      }
+      .compare-table td.col-new {
+        background: rgba(74, 46, 42, 0.04);
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+      .compare-table tr:last-child td {
+        border-bottom: none;
+      }
+      .tech-section {
+        background: var(--deep);
+      }
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+        margin-top: 4rem;
+        align-items: start;
+      }
+      .tech-card {
+        border: 1px solid rgba(251, 238, 219, 0.12);
+        padding: 2.5rem;
+        position: relative;
+      }
+      .tech-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 100%;
+        background: var(--gold);
+      }
+      .tech-card-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.35rem;
+        color: var(--cream);
+        margin-bottom: 1rem;
+      }
+      .tech-card-text {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        color: rgba(251, 238, 219, 0.55);
+      }
+      .chain-visual {
+        display: flex;
+        flex-direction: column;
+        margin-top: 4rem;
+      }
+      .chain-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 2rem;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid rgba(251, 238, 219, 0.08);
+      }
+      .chain-step:last-child {
+        border-bottom: none;
+      }
+      .chain-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.5rem;
+        color: var(--gold);
+        opacity: 0.6;
+        min-width: 2.5rem;
+        font-weight: 300;
+        line-height: 1;
+        padding-top: 0.1rem;
+      }
+      .chain-content-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        color: var(--cream);
+        margin-bottom: 0.3rem;
+      }
+      .chain-content-text {
+        font-size: 0.9rem;
+        color: rgba(251, 238, 219, 0.5);
+        line-height: 1.6;
+      }
+      .video-section {
+        background: var(--white);
+      }
+      .video-container {
+        max-width: 860px;
+        margin: 4rem auto 0;
+      }
+      .video-label {
+        font-size: 0.75rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--deep);
+        opacity: 0.4;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+      .video-wrapper {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: var(--deep);
+        overflow: hidden;
+        box-shadow: 0 30px 80px rgba(74, 46, 42, 0.18);
+      }
+      .video-wrapper video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .video-border {
+        position: absolute;
+        inset: -1px;
+        border: 1px solid var(--deep-20);
+        pointer-events: none;
+      }
+      .vision-section {
+        background: var(--cream);
+      }
+      .zones-map {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px;
+        background: var(--deep-20);
+        margin-top: 4rem;
+      }
+      .zone-card {
+        background: var(--cream);
+        padding: 0 0 2rem;
+        transition: background 0.3s;
+        overflow: hidden;
+      }
+      .zone-card:hover {
+        background: var(--white);
+      }
+      .zone-img-slot {
+        width: 100%;
+        aspect-ratio: 16/7;
+        overflow: hidden;
+        position: relative;
+        background: var(--deep-10);
+        margin-bottom: 1.5rem;
+      }
+      .zone-img-slot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+        opacity: 0.85;
+      }
+      .zone-card:hover .zone-img-slot img {
+        transform: scale(1.03);
+      }
+      .zone-img-ph {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        border: 1px dashed var(--deep-40);
+      }
+      .zone-img-ph svg {
+        opacity: 0.2;
+        color: var(--deep);
+      }
+      .zone-img-ph span {
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--deep);
+        opacity: 0.35;
+        text-align: center;
+        padding: 0 1rem;
+        line-height: 1.5;
+      }
+      .zone-img-slot.loaded .zone-img-ph {
+        display: none;
+      }
+      .zone-body {
+        padding: 0 2rem;
+      }
+      .zone-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: var(--deep);
+        margin-bottom: 0.3rem;
+      }
+      .zone-hq {
+        font-size: 0.8rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1rem;
+      }
+      .zone-items {
+        list-style: none;
+      }
+      .zone-items li {
+        font-size: 0.95rem;
+        color: var(--deep);
+        opacity: 0.65;
+        padding: 0.3rem 0;
+        border-bottom: 1px solid var(--deep-10);
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .zone-items li::before {
+        content: "";
+        width: 4px;
+        height: 4px;
+        background: var(--gold);
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .roadmap-section {
+        background: var(--white);
+      }
+      .roadmap-line {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        background: var(--deep-20);
+        margin-top: 4rem;
+      }
+      .roadmap-phase {
+        background: var(--white);
+        padding: 2.5rem 2rem;
+      }
+      .phase-period {
+        font-size: 0.75rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.5rem;
+      }
+      .phase-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: var(--deep);
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--deep-20);
+      }
+      .phase-items {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .phase-items li {
+        font-size: 0.9rem;
+        color: var(--deep);
+        opacity: 0.65;
+        line-height: 1.5;
+        padding-left: 1rem;
+        position: relative;
+      }
+      .phase-items li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.55em;
+        width: 4px;
+        height: 4px;
+        background: var(--gold);
+        border-radius: 50%;
+      }
+      .impact-section {
+        background: var(--deep);
+      }
+      .impact-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: rgba(251, 238, 219, 0.1);
+        margin-top: 4rem;
+      }
+      .impact-stat {
+        background: rgba(251, 238, 219, 0.04);
+        padding: 2.5rem 1.5rem;
+        text-align: center;
+        transition: background 0.3s;
+      }
+      .impact-stat:hover {
+        background: rgba(251, 238, 219, 0.08);
+      }
+      .impact-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 3rem;
+        font-weight: 300;
+        color: var(--gold-light);
+        line-height: 1;
+        margin-bottom: 0.6rem;
+      }
+      .impact-desc {
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(251, 238, 219, 0.45);
+        line-height: 1.4;
+      }
+      .cta-section {
+        background: var(--cream);
+        text-align: center;
+        padding: 8rem 2rem;
+      }
+      .cta-inner {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .cta-heading {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 300;
+        color: var(--deep);
+        line-height: 1.15;
+        margin-bottom: 1.5rem;
+      }
+      .cta-heading em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .cta-sub {
+        font-size: 1.05rem;
+        line-height: 1.75;
+        color: var(--deep);
+        opacity: 0.65;
+        margin-bottom: 3rem;
+      }
+      .cta-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+      }
+      .btn-dark {
+        font-family: "EB Garamond", serif;
+        font-size: 0.9rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: var(--deep);
+        color: var(--cream);
+        padding: 0.85rem 2.2rem;
+        text-decoration: none;
+        border: 1px solid var(--deep);
+        transition: all 0.3s;
+        display: inline-block;
+      }
+      .btn-dark:hover {
+        background: transparent;
+        color: var(--deep);
+      }
+      .btn-bordered {
+        font-family: "EB Garamond", serif;
+        font-size: 0.9rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: transparent;
+        color: var(--deep);
+        padding: 0.85rem 2.2rem;
+        text-decoration: none;
+        border: 1px solid var(--deep-40);
+        transition: all 0.3s;
+        display: inline-block;
+      }
+      .btn-bordered:hover {
+        border-color: var(--deep);
+      }
+      .cta-options {
+        display: flex;
+        gap: 3rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .cta-option-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--deep);
+        margin-bottom: 0.2rem;
+      }
+      .cta-option-desc {
+        font-size: 0.8rem;
+        color: var(--deep);
+        opacity: 0.5;
+      }
+      footer {
+        background: var(--deep);
+        color: rgba(251, 238, 219, 0.4);
+        padding: 3rem 2rem;
+      }
+      .footer-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .footer-logo-img {
+        height: 32px;
+        width: auto;
+        max-width: 140px;
+        object-fit: contain;
+        display: none;
+      }
+      .footer-logo-text {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: var(--cream);
+      }
+      .footer-motto {
+        font-family: "EB Garamond", serif;
+        font-size: 0.85rem;
+        color: rgba(251, 238, 219, 0.3);
+        font-style: italic;
+        margin-top: 0.2rem;
+      }
+      .footer-copy {
+        font-size: 0.8rem;
+        letter-spacing: 0.05em;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @media (max-width: 768px) {
+        .nav-links,
+        .nav-cta {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        section {
+          padding: 5rem 1.5rem;
+        }
+        .problem-cards,
+        .pillars-grid,
+        .tech-grid,
+        .zones-map,
+        .roadmap-line,
+        .temple-image-strip,
+        .supply-strip {
+          grid-template-columns: 1fr;
+        }
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+        .impact-stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .crisis-callout {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .compare-table {
+          font-size: 0.82rem;
+        }
+        .compare-table th,
+        .compare-table td {
+          padding: 0.8rem 0.7rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .impact-stats {
+          grid-template-columns: 1fr;
+        }
+        .hero-title {
+          font-size: 3rem;
+        }
+      }
+    </style>
+  </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-BE8S0K4L9H"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-BE8S0K4L9H");
+  </script>
+  <body>
+    <nav id="navbar">
+      <a href="#" class="nav-logo" id="navLogoLink">
+        <img
+          id="navLogoImg"
+          class="nav-logo-img"
+          src="BrandLogo.jpg"
+          alt="Tirth Sutra Logo"
+        />
+        <span class="nav-logo-fallback" id="navLogoFallback"
+          ><span class="wheel"></span>Tirth Sutra</span
+        >
+      </a>
+      <div class="nav-links">
+        <a href="#problem">The Crisis</a>
+        <a href="#solution">The Solution</a>
+        <a href="#technology">Technology</a>
+        <a href="#vision">Vision</a>
+      </div>
+      <a href="#join" class="nav-cta">Join the Federation</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#problem" onclick="closeMobile()">The Crisis</a>
+      <a href="#solution" onclick="closeMobile()">The Solution</a>
+      <a href="#technology" onclick="closeMobile()">Technology</a>
+      <a href="#vision" onclick="closeMobile()">Vision</a>
+      <a href="#join" onclick="closeMobile()">Join the Federation</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg-image"></div>
+      <div class="hero-bg-overlay"></div>
+      <div class="hero-texture"></div>
+      <svg
+        class="hero-mandala"
+        viewBox="0 0 400 400"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="200" cy="200" r="190" stroke="#fbeedb" stroke-width="0.5" />
+        <circle cx="200" cy="200" r="160" stroke="#fbeedb" stroke-width="0.5" />
+        <circle cx="200" cy="200" r="130" stroke="#fbeedb" stroke-width="0.5" />
+        <circle cx="200" cy="200" r="100" stroke="#fbeedb" stroke-width="0.5" />
+        <circle cx="200" cy="200" r="70" stroke="#fbeedb" stroke-width="0.5" />
+        <circle cx="200" cy="200" r="40" stroke="#fbeedb" stroke-width="0.5" />
+        <circle cx="200" cy="200" r="10" stroke="#fbeedb" stroke-width="0.5" />
+        <line
+          x1="200"
+          y1="10"
+          x2="200"
+          y2="390"
+          stroke="#fbeedb"
+          stroke-width="0.3"
+        />
+        <line
+          x1="10"
+          y1="200"
+          x2="390"
+          y2="200"
+          stroke="#fbeedb"
+          stroke-width="0.3"
+        />
+        <line
+          x1="64"
+          y1="64"
+          x2="336"
+          y2="336"
+          stroke="#fbeedb"
+          stroke-width="0.3"
+        />
+        <line
+          x1="336"
+          y1="64"
+          x2="64"
+          y2="336"
+          stroke="#fbeedb"
+          stroke-width="0.3"
+        />
+        <line
+          x1="39"
+          y1="130"
+          x2="361"
+          y2="270"
+          stroke="#fbeedb"
+          stroke-width="0.3"
+        />
+        <line
+          x1="130"
+          y1="39"
+          x2="270"
+          y2="361"
+          stroke="#fbeedb"
+          stroke-width="0.3"
+        />
+        <line
+          x1="361"
+          y1="130"
+          x2="39"
+          y2="270"
+          stroke="#fbeedb"
+          stroke-width="0.3"
+        />
+        <line
+          x1="270"
+          y1="39"
+          x2="130"
+          y2="361"
+          stroke="#fbeedb"
+          stroke-width="0.3"
+        />
+        <polygon
+          points="200,30 370,300 30,300"
+          fill="none"
+          stroke="#fbeedb"
+          stroke-width="0.3"
+        />
+        <polygon
+          points="200,370 30,100 370,100"
+          fill="none"
+          stroke="#fbeedb"
+          stroke-width="0.3"
+        />
+      </svg>
+      <div class="hero-content">
+        <div class="hero-logo-wrap">
+          <img
+            id="heroLogoImg"
+            class="hero-logo-img"
+            src=""
+            alt="Tirth Sutra"
+          />
+          <span class="hero-logo-fallback" id="heroLogoFallback"
+            ><span class="wheel-light"></span
+          ></span>
+        </div>
+        <p class="hero-eyebrow">Bharatiya Dharma Sansthan &nbsp;</p>
+        <h1 class="hero-title">Restoring<br /><em>the Sacred.</em></h1>
+        <p class="hero-sub">
+          India's first fully owned, blockchain-verified cooperative supply
+          chain — bringing temples together under one constitutionally protected
+          standard of complete purity.
+        </p>
+        <div class="hero-actions">
+          <a href="#join" class="btn-primary">Join the Federation</a>
+          <a href="#problem" class="btn-outline">The Crisis of Faith</a>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-num">$441B</div>
+          <div class="stat-label">Projected Religious Economy<br />by 2035</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-num">6.8M kg</div>
+          <div class="stat-label">
+            Adulterated Ghee Supplied<br />to Tirupati
+          </div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-num">200M+</div>
+          <div class="stat-label">Sacred Laddus<br />Contaminated</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROBLEM -->
+    <section class="problem-section" id="problem">
+      <div class="section-inner">
+        <div class="reveal">
+          <span
+            class="section-tag"
+            style="
+              border-color: rgba(201, 151, 58, 0.4);
+              color: var(--gold-light);
+            "
+            >The Crisis</span
+          >
+          <h2 class="section-heading">
+            A Threat to the Sanctity<br />of Our Most Sacred Temples
+          </h2>
+          <p class="section-body">
+            The Tirupati Laddu scandal was not a one-time mistake. It was the
+            unavoidable result of forcing sacred, quality-sensitive religious
+            duties through a system designed only to cut costs.
+          </p>
+        </div>
+        <div class="problem-cards">
+          <div class="problem-card reveal">
+            <div class="problem-card-num">01</div>
+            <div class="problem-card-title">The Lowest Bidder Problem</div>
+            <div class="problem-card-text">
+              Government rules require giving contracts to the cheapest bidder.
+              The TTD ghee contract was awarded at Rs. 320 per kg — a price that
+              makes it financially impossible to supply genuine A2 Bilona Ghee,
+              which costs at least Rs. 1,850 per kg to produce.
+            </div>
+          </div>
+          <div class="problem-card reveal">
+            <div class="problem-card-num">02</div>
+            <div class="problem-card-title">
+              Bureaucrats Running Sacred Spaces
+            </div>
+            <div class="problem-card-text">
+              IAS officers with no religious background manage temple affairs
+              and focus on administrative targets instead of religious
+              standards. As a result, Prasadam is treated like a catering order
+              rather than a sacred offering — and the consequences have been
+              devastating.
+            </div>
+          </div>
+          <div class="problem-card reveal">
+            <div class="problem-card-num">03</div>
+            <div class="problem-card-title">Small Temples Left Vulnerable</div>
+            <div class="problem-card-text">
+              Millions of smaller temples do not have the collective bargaining
+              power to demand pure ingredients. They are left permanently
+              exposed to adulteration in disorganised, untransparent local
+              supply chains.
+            </div>
+          </div>
+        </div>
+
+        <div class="temple-image-strip reveal">
+          <div class="temple-img-slot" id="slot-tirupati">
+            <img
+              src="ImagesM/tirupati.png"
+              alt="Tirumala Tirupati Devasthanams — at the centre of the adulteration crisis"
+              onload="markLoaded(this)"
+            />
+            <div class="img-ph">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" /></svg
+              ><span>Temple Image<br />images/temples/tirupati.jpg</span>
+            </div>
+          </div>
+          <div class="temple-img-slot" id="slot-kashi">
+            <img
+              src="ImagesM/kashi-vishwanath.jpg"
+              alt="Kashi Vishwanath Temple, Varanasi"
+              onload="markLoaded(this)"
+            />
+            <div class="img-ph">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" /></svg
+              ><span>Temple Image<br />images/temples/kashi.jpg</span>
+            </div>
+          </div>
+          <div class="temple-img-slot" id="slot-sringeri">
+            <img
+              src="ImagesM/puri.jpg"
+              alt="Sringeri Mutt, Karnataka"
+              onload="markLoaded(this)"
+            />
+            <div class="img-ph">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" /></svg
+              ><span>Temple Image<br />images/temples/sringeri.jpg</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="crisis-callout reveal">
+          <div class="crisis-stat">
+            <span class="crisis-stat-num">Rs. 250Cr</span>
+            <span class="crisis-stat-unit">Fraud Value &bull; 2019–2024</span>
+          </div>
+          <div>
+            <p class="crisis-text">
+              "The main supplier never bought a single drop of milk or butter.
+              Instead, they operated as a fake unit entirely dedicated to making
+              artificial ghee using palm oil, chemical esters, and synthetic
+              flavouring."
+            </p>
+            <p class="crisis-source">
+              — SIT Report under CBI Supervision, Tirumala Tirupati Devasthanams
+              Investigation
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section class="solution-section" id="solution">
+      <div class="section-inner">
+        <div class="reveal">
+          <span class="section-tag">The Solution</span>
+          <h2 class="section-heading">
+            The Amul Model for Dharma:<br />A Fortress of Faith
+          </h2>
+          <p class="section-body">
+            Tirth Sutra is not a software company or a passive certifier. It is
+            a fully owned, constitutionally protected cooperative producer —
+            owning and overseeing the entire process from the farm to the
+            temple.
+          </p>
+        </div>
+        <div class="pillars-grid">
+          <div class="pillar-card reveal" data-num="I">
+            <svg
+              class="pillar-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.2"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            <div class="pillar-sub">Pillar I</div>
+            <div class="pillar-title">Spiritual Leadership at the Top</div>
+            <div class="pillar-text">
+              The Dharma Sansad — made up of the four Shankaracharyas, the Akhil
+              Bharatiya Akhara Parishad, and Vaishnava religious leaders — has
+              the final say on all commercial decisions. Religious principles
+              always come before profit.
+            </div>
+          </div>
+          <div class="pillar-card reveal" data-num="II">
+            <svg
+              class="pillar-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.2"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <div class="pillar-sub">Pillar II</div>
+            <div class="pillar-title">Protected by the Constitution</div>
+            <div class="pillar-text">
+              Registered as a Multi-State Cooperative Society under the MSCS Act
+              2022, and protected by Articles 26 and 16(5) of the Constitution —
+              allowing a fully Hindu Sevadar workforce across the country.
+            </div>
+          </div>
+          <div class="pillar-card reveal" data-num="III">
+            <svg
+              class="pillar-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.2"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+            <div class="pillar-sub">Pillar III</div>
+            <div class="pillar-title">Farm-to-Temple Supply Chain</div>
+            <div class="pillar-text">
+              Through Dharma Krishi contract farming, Tirth Sutra organises
+              Hindu farmers into local cooperatives and owns its own
+              Sattvik-certified processing facilities — removing every middleman
+              from the supply chain.
+            </div>
+          </div>
+          <div class="pillar-card reveal" data-num="IV">
+            <svg
+              class="pillar-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.2"
+            >
+              <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+              <path
+                d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"
+              />
+            </svg>
+            <div class="pillar-sub">Pillar V</div>
+            <div class="pillar-title">Education and Knowledge</div>
+            <div class="pillar-text">
+              A nationwide Gurukul Network, a digital platform called
+              Sant-Samvad for live Shankaracharya talks, and a Vidya-Seva
+              internship programme — building a self-reliant, spiritually
+              grounded Sevadar workforce for generations to come.
+            </div>
+          </div>
+        </div>
+
+        <div class="supply-strip reveal">
+          <div class="supply-img-slot" id="slot-farm">
+            <img
+              src="ImagesM/dairy-farming.jpg"
+              alt="Dharma Krishi farm — indigenous Gir and Sahiwal cows"
+              onload="markLoaded(this)"
+            />
+            <div class="supply-ph">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" /></svg
+              ><span>Farm Image<br />images/supply-chain/farm.jpg</span>
+            </div>
+            <div class="supply-caption">Dharma Krishi — Contract Farm</div>
+          </div>
+          <div class="supply-img-slot" id="slot-processing">
+            <img
+              src="ImagesM/ProcessingUnit.jpg"
+              alt="Sattvik-certified Bilona Ghee processing unit"
+              onload="markLoaded(this)"
+            />
+            <div class="supply-ph">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" /></svg
+              ><span
+                >Processing Unit<br />images/supply-chain/processing.jpg</span
+              >
+            </div>
+            <div class="supply-caption">Sattvik Processing Unit</div>
+          </div>
+          <div class="supply-img-slot" id="slot-prasad">
+            <img
+              src="ImagesM/blockchain.png"
+              alt="Prasad packaging with cryptographic QR code"
+              onload="markLoaded(this)"
+            />
+            <div class="supply-ph">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" /></svg
+              ><span>Prasad Packaging<br />images/supply-chain/prasad.jpg</span>
+            </div>
+            <div class="supply-caption">Blockchain-Verified Prasad</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARE -->
+    <section class="compare-section" id="compare">
+      <div class="section-inner">
+        <div class="reveal">
+          <span class="section-tag">From Crisis to Fortress</span>
+          <h2 class="section-heading">A Complete Transformation</h2>
+          <p class="section-body">
+            Every weakness in the current system has a direct, constitutionally
+            protected fix within the Tirth Sutra model.
+          </p>
+        </div>
+        <div style="overflow-x: auto">
+          <table class="compare-table reveal">
+            <thead>
+              <tr>
+                <th></th>
+                <th class="col-current">Current State</th>
+                <th class="col-new">Bharatiya Dharma Sansthan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="col-label">Governance</td>
+                <td class="col-current">
+                  Secular IAS bureaucrats and state HR&CE boards
+                </td>
+                <td class="col-new">
+                  Dharma Sansad (Shankaracharyas) with veto power over the
+                  commercial board
+                </td>
+              </tr>
+              <tr>
+                <td class="col-label">Procurement</td>
+                <td class="col-current">
+                  Lowest bidder tender rules — economically impossible for
+                  genuine ghee
+                </td>
+                <td class="col-new">
+                  Sattvik-verified Dharma Krishi direct contract farming at a
+                  guaranteed fair price
+                </td>
+              </tr>
+              <tr>
+                <td class="col-label">Purity Testing</td>
+                <td class="col-current">
+                  Basic Reichert-Meissl value test — easily beaten using
+                  synthetic chemicals
+                </td>
+                <td class="col-new">
+                  NABL Dharma Labs: advanced molecular profiling and DNA-based
+                  species detection
+                </td>
+              </tr>
+              <tr>
+                <td class="col-label">Workforce</td>
+                <td class="col-current">
+                  Mixed or secular staff; no religious qualification required
+                </td>
+                <td class="col-new">
+                  100% practising Hindu Sevadars; protected under Article 16(5)
+                </td>
+              </tr>
+              <tr>
+                <td class="col-label">Transparency</td>
+                <td class="col-current">
+                  Opaque supplier networks; forged paperwork
+                </td>
+                <td class="col-new">
+                  Secure blockchain records; devotees can scan a QR code on
+                  every Prasad wrapper
+                </td>
+              </tr>
+              <tr>
+                <td class="col-label">Economy</td>
+                <td class="col-current">
+                  Money lost to unorganised middlemen and those who adulterate
+                  products
+                </td>
+                <td class="col-new">
+                  A self-sustaining Dharmic Economy; profits reinvested into
+                  Gurukuls and cow protection
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNOLOGY -->
+    <section class="tech-section" id="technology">
+      <div class="section-inner">
+        <div class="reveal">
+          <span
+            class="section-tag"
+            style="
+              border-color: rgba(201, 151, 58, 0.4);
+              color: var(--gold-light);
+            "
+            >Technology</span
+          >
+          <h2 class="section-heading" style="color: var(--cream)">
+            Scientifically Proven Purity.<br />Securely Recorded Trust.
+          </h2>
+          <p class="section-body" style="color: rgba(251, 238, 219, 0.6)">
+            We do not just promise purity — we prove it at the molecular level,
+            and record that proof on a permanent blockchain ledger that every
+            devotee can access.
+          </p>
+        </div>
+        <div class="tech-grid">
+          <div class="tech-card reveal">
+            <div class="tech-card-title">
+              Gas Chromatography–Mass Spectrometry (GC-MS)
+            </div>
+            <div class="tech-card-text">
+              This test identifies the exact molecular makeup of the product —
+              detecting foreign vegetable oils, palm fats, and animal fats by
+              analysing fatty acid and fat compound patterns. It catches the
+              synthetic mixtures used in modern adulteration that older standard
+              tests simply cannot find.
+            </div>
+          </div>
+          <div class="tech-card reveal">
+            <div class="tech-card-title">
+              Species-Specific DNA Testing (PCR Assay)
+            </div>
+            <div class="tech-card-text">
+              DNA is extracted and tested using species-specific PCR targeting
+              genetic markers in mitochondrial DNA. This detects the presence of
+              cow, pig, or fish DNA at levels as low as 0.01% — even in heavily
+              processed fats.
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 4rem" class="reveal">
+          <div
+            style="
+              font-family: &quot;Cormorant Garamond&quot;, serif;
+              font-size: 1.6rem;
+              color: var(--cream);
+              margin-bottom: 2rem;
+              font-weight: 400;
+            "
+          >
+            The Sattvik Chain: Farm-to-Temple Blockchain Ledger
+          </div>
+          <div class="chain-visual">
+            <div class="chain-step">
+              <div class="chain-num">01</div>
+              <div>
+                <div class="chain-content-title">Dharma Krishi Farm</div>
+                <div class="chain-content-text">
+                  Details of the indigenous cow breed, the Sevadar farmer's
+                  identity, and organic certification are recorded on the
+                  blockchain via a smart contract as soon as the harvest is
+                  complete.
+                </div>
+              </div>
+            </div>
+            <div class="chain-step">
+              <div class="chain-num">02</div>
+              <div>
+                <div class="chain-content-title">Sattvik Processing Unit</div>
+                <div class="chain-content-text">
+                  Each RFID-tagged batch enters our owned processing facility.
+                  IoT sensors record the entry time, temperature, and processing
+                  duration. No non-vegetarian substances are permitted on the
+                  premises.
+                </div>
+              </div>
+            </div>
+            <div class="chain-step">
+              <div class="chain-num">03</div>
+              <div>
+                <div class="chain-content-title">Dharma Lab Certification</div>
+                <div class="chain-content-text">
+                  GC-MS and DNA PCR test results are cryptographically signed
+                  and linked to the batch record. If any contamination is
+                  detected, an immediate network-wide Red Alert is triggered.
+                </div>
+              </div>
+            </div>
+            <div class="chain-step">
+              <div class="chain-num">04</div>
+              <div>
+                <div class="chain-content-title">
+                  Temple Delivery &amp; Devotee QR Scan
+                </div>
+                <div class="chain-content-text">
+                  A secure QR code on each Prasad wrapper lets devotees
+                  instantly view the full blockchain record — the farm of
+                  origin, processing date, lab test certificates, and the name
+                  of the Sevadar who packed it.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="video-section" id="video">
+      <div class="section-inner">
+        <div class="reveal" style="text-align: center">
+          <span class="section-tag">In Their Own Words</span>
+          <h2 class="section-heading" style="margin-bottom: 0.5rem">
+            The Vision Explained
+          </h2>
+          <p class="section-body" style="margin: 0 auto">
+            Hear directly from those behind the movement to restore purity to
+            India's sacred supply chain.
+          </p>
+        </div>
+        <div class="video-container reveal">
+          <div class="video-label">Tirth Sutra — Bharatiya Dharma Sansthan</div>
+          <div class="video-wrapper">
+            <video controls preload="metadata" poster="">
+              <source
+                src="https://video-es1d.vercel.app/landing.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video element.
+            </video>
+            <div class="video-border"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISION / ZONES -->
+    <section class="vision-section" id="vision">
+      <div class="section-inner">
+        <div class="reveal">
+          <span class="section-tag">The Vision</span>
+          <h2 class="section-heading">
+            One United Federation:<br />Four Zones, One Mission
+          </h2>
+          <p class="section-body">
+            India's spiritual landscape requires local execution united under a
+            single standard of purity. The National Temple Grid coordinates
+            seamless logistics across the country from a Central Secretariat in
+            Ujjain or Varanasi.
+          </p>
+        </div>
+        <div class="zones-map">
+          <div class="zone-card reveal">
+            <div class="zone-img-slot" id="slot-north">
+              <img
+                src="ImagesM/joshimath.jpg"
+                alt="Jyotirmath — Himalayan shrine, North Zone headquarters"
+                onload="markLoaded(this)"
+              />
+              <div class="zone-img-ph">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" /></svg
+                ><span>Uttara Zone<br />images/temples/jyotirmath.jpg</span>
+              </div>
+            </div>
+            <div class="zone-body">
+              <div class="zone-name">Uttara — North Zone</div>
+              <div class="zone-hq">HQ: Jyotirmath / Ayodhya</div>
+              <ul class="zone-items">
+                <li>Himalayan temples and high-altitude sourcing</li>
+                <li>Specialisation: Saffron, pure wool for deity garments</li>
+                <li>Rare mountain herbs for specialised Havans</li>
+              </ul>
+            </div>
+          </div>
+          <div class="zone-card reveal">
+            <div class="zone-img-slot" id="slot-west">
+              <img
+                src="ImagesM/somnath.jpg"
+                alt="Dwarkadheesh Temple — West Zone headquarters"
+                onload="markLoaded(this)"
+              />
+              <div class="zone-img-ph">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" /></svg
+                ><span>Paschim Zone<br />images/temples/dwarka.jpg</span>
+              </div>
+            </div>
+            <div class="zone-body">
+              <div class="zone-name">Paschim — West Zone</div>
+              <div class="zone-hq">HQ: Dwarka / Somnath</div>
+              <ul class="zone-items">
+                <li>Dairy-rich regions of Gujarat and Rajasthan</li>
+                <li>Specialisation: Cotton, A2 Bilona Ghee production</li>
+                <li>Milk solids for temple sweets and offerings</li>
+              </ul>
+            </div>
+          </div>
+          <div class="zone-card reveal">
+            <div class="zone-img-slot" id="slot-south">
+              <img
+                src="ImagesM/Sringeri.avif"
+                alt="Sringeri Mutt — South Zone headquarters"
+                onload="markLoaded(this)"
+              />
+              <div class="zone-img-ph">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" /></svg
+                ><span>Dakshina Zone<br />images/temples/sringeri.jpg</span>
+              </div>
+            </div>
+            <div class="zone-body">
+              <div class="zone-name">Dakshina — South Zone</div>
+              <div class="zone-hq">HQ: Sringeri / Kanchipuram</div>
+              <ul class="zone-items">
+                <li>Serves TTD, Sabarimala, and major southern temples</li>
+                <li>Specialisation: Premium rice varieties, coconut oil</li>
+                <li>Silk fabrics, southern spices, and ritual materials</li>
+              </ul>
+            </div>
+          </div>
+          <div class="zone-card reveal">
+            <div class="zone-img-slot" id="slot-east">
+              <img
+                src="ImagesM/puri.jpg"
+                alt="Jagannath Puri Temple — East Zone headquarters"
+                onload="markLoaded(this)"
+              />
+              <div class="zone-img-ph">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" /></svg
+                ><span>Purva Zone<br />images/temples/puri.jpg</span>
+              </div>
+            </div>
+            <div class="zone-body">
+              <div class="zone-name">Purva — East Zone</div>
+              <div class="zone-hq">HQ: Puri / Kamakhya</div>
+              <ul class="zone-items">
+                <li>Serves the Jagannath Puri temple network</li>
+                <li>Specialisation: Jute, paddy cultivation</li>
+                <li>
+                  Specific ritual materials for Tantric and devotional practices
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section class="roadmap-section" id="roadmap">
+      <div class="section-inner">
+        <div class="reveal">
+          <span class="section-tag">Step-by-Step Plan</span>
+          <h2 class="section-heading">The Path Forward</h2>
+          <p class="section-body">
+            A clear, step-by-step plan that begins with legal and constitutional
+            groundwork, tests the model with a focused pilot, and then expands
+            to a nationwide federation.
+          </p>
+        </div>
+        <div class="roadmap-line">
+          <div class="roadmap-phase reveal">
+            <div class="phase-period">Year 0–1</div>
+            <div class="phase-name">Phase I: Building the Foundation</div>
+            <ul class="phase-items">
+              <li>
+                Convene the first Dharma Sansad to draft the Charter of Sanctity
+              </li>
+              <li>Officially register the Multi-State Cooperative Society</li>
+              <li>
+                File legal petitions to exempt BDS temples from lowest-bidder
+                tender rules
+              </li>
+              <li>Establish the first Dharma Krishi farming partnerships</li>
+            </ul>
+          </div>
+          <div class="roadmap-phase reveal">
+            <div class="phase-period">Year 1–2</div>
+            <div class="phase-name">Phase II: The Pilot Programme</div>
+            <ul class="phase-items">
+              <li>
+                Launch the South Zone pilot, starting with the Tirupati temple
+                network
+              </li>
+              <li>Set up the first NABL-accredited Dharma Lab</li>
+              <li>Open the first Bilona Ghee Processing Unit</li>
+              <li>Bring 100 farmers into the Dharma Krishi programme</li>
+            </ul>
+          </div>
+          <div class="roadmap-phase reveal">
+            <div class="phase-period">Year 3–5</div>
+            <div class="phase-name">Phase III: Nationwide Expansion</div>
+            <ul class="phase-items">
+              <li>Launch North, East, and West zones at the same time</li>
+              <li>Grow the Gurukul network to over 1,000 institutions</li>
+              <li>
+                Take over facility management at 50 major pilgrimage sites
+              </li>
+              <li>
+                Launch the Dharma Shuddh consumer brand for full financial
+                independence
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section class="impact-section" id="impact">
+      <div class="section-inner">
+        <div class="reveal">
+          <span
+            class="section-tag"
+            style="
+              border-color: rgba(201, 151, 58, 0.4);
+              color: var(--gold-light);
+            "
+            >The Impact</span
+          >
+          <h2 class="section-heading" style="color: var(--cream)">
+            Faith that Funds the Future
+          </h2>
+          <p class="section-body" style="color: rgba(251, 238, 219, 0.6)">
+            Tirth Sutra is built to be financially self-sufficient. Profits from
+            the supply chain flow into the Dharma Kosh fund, which is reinvested
+            directly into the Gurukul network and the protection of indigenous
+            cows.
+          </p>
+        </div>
+        <div class="impact-stats">
+          <div class="impact-stat reveal">
+            <div class="impact-num">22.3%</div>
+            <div class="impact-desc">
+              Annual Growth Rate of India's A2 Ghee Market through 2033
+            </div>
+          </div>
+          <div class="impact-stat reveal">
+            <div class="impact-num">8.08%</div>
+            <div class="impact-desc">
+              Projected Annual Growth of India's Religious Tourism Economy
+            </div>
+          </div>
+          <div class="impact-stat reveal">
+            <div class="impact-num">84%</div>
+            <div class="impact-desc">
+              Indian consumers willing to pay more for verified food safety
+            </div>
+          </div>
+          <div class="impact-stat reveal">
+            <div class="impact-num">Rs.0</div>
+            <div class="impact-desc">
+              State dependence — fully financially and operationally independent
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="join">
+      <div class="cta-inner reveal">
+        <div style="margin-bottom: 1.5rem">
+          <div
+            style="
+              width: 50px;
+              height: 50px;
+              border: 1px solid var(--deep-40);
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto;
+            "
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              color="var(--deep)"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+        </div>
+        <h2 class="cta-heading">
+          Your Place Is Within<br /><em>the Federation.</em>
+        </h2>
+        <p class="cta-sub">
+          India's spiritual world stands at a turning point in history. Tirth
+          Sutra offers a rare opportunity to bring order to a
+          multi-billion-dollar industry while fully restoring the sanctity of
+          India's sacred heritage.
+        </p>
+        <div class="cta-actions">
+          <a href="mailto:contact@tirthsutra.org" class="btn-dark"
+            >Onboard Your Temple</a
+          >
+          <a href="mailto:invest@tirthsutra.org" class="btn-bordered"
+            >Investment Inquiry</a
+          >
+        </div>
+        <div class="cta-options">
+          <div class="cta-option">
+            <div class="cta-option-title">Temple Onboarding</div>
+            <div class="cta-option-desc">
+              For Mandir trustees and administrators
+            </div>
+          </div>
+          <div style="width: 1px; background: var(--deep-20)"></div>
+          <div class="cta-option">
+            <div class="cta-option-title">Farmer Partnership</div>
+            <div class="cta-option-desc">Join the Dharma Krishi network</div>
+          </div>
+          <div style="width: 1px; background: var(--deep-20)"></div>
+          <div class="cta-option">
+            <div class="cta-option-title">Investment / Donation</div>
+            <div class="cta-option-desc">
+              Help fund the Circular Dharmic Economy
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div>
+          <img
+            id="footerLogoImg"
+            class="footer-logo-img"
+            src=""
+            alt="Tirth Sutra"
+          />
+          <div class="footer-logo-text" id="footerLogoText">Tirth Sutra</div>
+          <div class="footer-motto">
+            Pure Temples. Pure Prasad. Pure Dharma.
+          </div>
+        </div>
+        <div class="footer-copy">
+          Bharatiya Dharma Sansthan &nbsp;&bull;&nbsp; Mission No. 2
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () =>
+        navbar.classList.toggle("scrolled", window.scrollY > 60),
+      );
+      document
+        .getElementById("hamburger")
+        .addEventListener("click", () =>
+          document.getElementById("mobileMenu").classList.toggle("open"),
+        );
+      function closeMobile() {
+        document.getElementById("mobileMenu").classList.remove("open");
+      }
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              setTimeout(() => e.target.classList.add("visible"), 80);
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+      document
+        .querySelectorAll(
+          ".problem-cards,.pillars-grid,.impact-stats,.zones-map,.roadmap-line,.stats-grid,.temple-image-strip,.supply-strip",
+        )
+        .forEach((parent) => {
+          parent.querySelectorAll(".reveal").forEach((child, i) => {
+            child.style.transitionDelay = i * 0.1 + "s";
+          });
+        });
+      function setupLogo(imgId, fallbackId) {
+        const img = document.getElementById(imgId);
+        const fb = document.getElementById(fallbackId);
+        if (!img) return;
+        if (
+          !img.src ||
+          img.src === window.location.href ||
+          img.getAttribute("src") === ""
+        )
+          return;
+        img.addEventListener("load", () => {
+          img.style.display = "block";
+          if (fb) fb.style.display = "none";
+        });
+        img.addEventListener("error", () => {
+          img.style.display = "none";
+          if (fb) fb.style.display = "";
+        });
+      }
+      setupLogo("navLogoImg", "navLogoFallback");
+      setupLogo("heroLogoImg", "heroLogoFallback");
+      setupLogo("footerLogoImg", "footerLogoText");
+      function markLoaded(img) {
+        const slot = img.closest('[id^="slot-"]');
+        if (slot) slot.classList.add("loaded");
+      }
+    </script>
+  </body>
+</html>

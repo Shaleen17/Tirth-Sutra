@@ -106,9 +106,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "Rooted in Sanatan Dharma, qualified by our spiritual leaders",
       FooterSocial: "Our Sociial Media (Testing)",
       FooterTsutra: "Our E-Commerce Page",
-      footerTerms: "Terms & Condition",
-      footerPrivacy: "Privacy Policy",
-      footerRights: "© 2025 Tirth Sutra. All Rights Reserved.",
+      navMission: "Dharma Sansthan",
+      footerRights: "© 2026 Tirth Sutra. All Rights Reserved.",
       footerDisclaimer: "This is a conceptual presentation.",
     },
     hi: {
@@ -218,9 +217,8 @@ document.addEventListener("DOMContentLoaded", function () {
       taglineFlow: "सनातन धर्म पर आधारित, संत-महात्माओं से अनुमोदित।",
       FooterSocial: "सोशल मीडिया (परीक्षण)",
       FooterTsutra: "हमारा ई-कॉमर्स पेज",
-      footerTerms: "नियम एवं शर्तें",
-      footerPrivacy: "गोपनीयता नीति",
-      footerRights: "© 2025 तीर्थ सूत्र। सर्वाधिकार सुरक्षित।",
+      navMission: "धर्म संस्थान",
+      footerRights: "© 2026 तीर्थ सूत्र। सर्वाधिकार सुरक्षित।",
       footerDisclaimer: "यह एक वैचारिक प्रस्तुति है।",
     },
   };
