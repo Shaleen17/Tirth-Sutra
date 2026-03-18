@@ -234,10 +234,10 @@ const SEED_STORIES = [
     id: "s1",
     uid: "u1",
     emo: "🕉",
-    cap: " Ham Ram Ji Ke Ram Ji Hamare Hai",
+    cap: "तीर्थयात्रा का पूरा फल चाहिए ? तो पहले ये गलती मत करना !",
     t: "2h",
     type: "video",
-    src: "https://video-ae5o.vercel.app/Post6.mp4",
+    src: "https://video-5c9i.vercel.app/feed1.mp4",
   },
   {
     id: "s2",
@@ -433,7 +433,7 @@ const SEED_VID_STORIES = [
   {
     id: "vs1",
     uid: "u2",
-    cap: "tirth Sutra Logo Revel",
+    cap: "Tirth Sutra Logo Revel",
     t: "1h",
     type: "video",
     emo: "",
