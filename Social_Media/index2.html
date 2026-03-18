@@ -30,6 +30,22 @@
      ============================================================ -->
     <div id="toastContainer"></div>
 
+    <!-- PULL TO REFRESH INDICATOR -->
+    <div id="pullIndicator">
+      <div class="pull-inner">
+        <div class="pull-icon">
+          <svg viewBox="0 0 24 24">
+            <polyline points="23 4 23 10 17 10" />
+            <polyline points="1 20 1 14 7 14" />
+            <path
+              d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"
+            />
+          </svg>
+        </div>
+        <span id="pullText">Pull down to refresh</span>
+      </div>
+    </div>
+
     <!-- ============================================================
      STORY VIEWER
      ============================================================ -->
@@ -1026,6 +1042,18 @@
           </svg>
           Messages
         </button>
+        <!-- CHATS DRAWER -->
+        <button class="drawer-item" id="dChats" onclick="gpAndClose('chats')">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            />
+            <circle cx="9" cy="10" r="1" fill="currentColor" stroke="none" />
+            <circle cx="12" cy="10" r="1" fill="currentColor" stroke="none" />
+            <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none" />
+          </svg>
+          Chats
+        </button>
         <button
           class="drawer-item"
           id="dBookmarks"
@@ -1060,7 +1088,7 @@
           <svg id="dThemeIco" viewBox="0 0 24 24">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
           </svg>
-          Toggle Theme
+          Theme
         </button>
         <button
           class="drawer-item"
@@ -1178,6 +1206,18 @@
             </svg>
             <span class="sb-label">Notifications</span>
             <div class="ndot" id="ndot"></div>
+          </button>
+          <!-- CHATS SIDEBAR -->
+          <button class="sb" id="snChats" onclick="gp('chats')">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+              />
+              <circle cx="9" cy="10" r="1" fill="currentColor" stroke="none" />
+              <circle cx="12" cy="10" r="1" fill="currentColor" stroke="none" />
+              <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none" />
+            </svg>
+            <span class="sb-label">Chats</span>
           </button>
           <button class="sb" id="snMessages" onclick="gp('messages')">
             <svg viewBox="0 0 24 24">
@@ -2199,6 +2239,297 @@
             </div>
           </div>
 
+          <!-- CHATS PAGE -->
+          <div class="page hide" id="pgChats">
+            <div id="chatsPanel" class="chats-panel">
+              <div class="chats-hdr">
+                <div class="chats-hdr-row">
+                  <span class="chats-hdr-title">Chats</span>
+                  <div style="display: flex; gap: 6px">
+                    <button
+                      class="chats-icon-btn"
+                      onclick="openNewGroupModal()"
+                      title="New group"
+                    >
+                      <svg viewBox="0 0 24 24">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                      </svg>
+                    </button>
+                    <button
+                      class="chats-icon-btn"
+                      onclick="openNewDMModal()"
+                      title="New message"
+                    >
+                      <svg viewBox="0 0 24 24">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="chats-search-box">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                  <input
+                    type="text"
+                    id="chatsSearchIn"
+                    placeholder="Search chats…"
+                    oninput="filterChats(this.value)"
+                  />
+                </div>
+                <div class="chats-filter-tabs">
+                  <button
+                    class="chats-ftab on"
+                    onclick="setChatFilter('all', this)"
+                  >
+                    All
+                  </button>
+                  <button
+                    class="chats-ftab"
+                    onclick="setChatFilter('direct', this)"
+                  >
+                    Direct
+                  </button>
+                  <button
+                    class="chats-ftab"
+                    onclick="setChatFilter('groups', this)"
+                  >
+                    Groups
+                  </button>
+                  <button
+                    class="chats-ftab"
+                    onclick="setChatFilter('unread', this)"
+                  >
+                    Unread
+                  </button>
+                </div>
+              </div>
+              <div id="chatsList"></div>
+            </div>
+
+            <div id="chatWindow" class="chat-window hide">
+              <div class="chat-win-hdr" id="chatWinHdr">
+                <button class="chat-back-btn" onclick="closeChatWindow()">
+                  <svg viewBox="0 0 24 24">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                </button>
+                <div class="chat-win-av" id="chatWinAv"></div>
+                <div class="chat-win-info">
+                  <div class="chat-win-name" id="chatWinName"></div>
+                  <div class="chat-win-sub" id="chatWinSub"></div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    gap: 4px;
+                    margin-left: auto;
+                    position: relative;
+                  "
+                >
+                  <button
+                    class="chats-icon-btn"
+                    onclick="MC.info('Voice call coming soon! 📞')"
+                  >
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    class="chats-icon-btn"
+                    onclick="MC.info('Video call coming soon! 📹')"
+                  >
+                    <svg viewBox="0 0 24 24">
+                      <polygon points="23 7 16 12 23 17 23 7" />
+                      <rect x="1" y="5" width="15" height="14" rx="2" />
+                    </svg>
+                  </button>
+                  <button
+                    class="chats-icon-btn"
+                    id="chatWinMenuBtn"
+                    onclick="toggleChatWinMenu()"
+                  >
+                    <svg viewBox="0 0 24 24">
+                      <circle
+                        cx="12"
+                        cy="5"
+                        r="1"
+                        fill="currentColor"
+                        stroke="none"
+                      />
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="1"
+                        fill="currentColor"
+                        stroke="none"
+                      />
+                      <circle
+                        cx="12"
+                        cy="19"
+                        r="1"
+                        fill="currentColor"
+                        stroke="none"
+                      />
+                    </svg>
+                  </button>
+                  <div class="chat-win-menu hide" id="chatWinMenu">
+                    <button class="chat-win-mi" onclick="viewChatInfo()">
+                      View info
+                    </button>
+                    <button class="chat-win-mi" onclick="clearChatMessages()">
+                      Clear messages
+                    </button>
+                    <button
+                      class="chat-win-mi red"
+                      onclick="deleteChatFromMenu()"
+                    >
+                      Delete chat
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="chat-win-msgs" id="chatWinMsgs">
+                <div class="chat-empty-state" id="chatEmptyState">
+                  <div style="font-size: 48px; margin-bottom: 12px">💬</div>
+                  <div
+                    style="
+                      font-size: 16px;
+                      font-weight: 600;
+                      margin-bottom: 6px;
+                    "
+                  >
+                    Select a chat
+                  </div>
+                  <div style="font-size: 13px; color: var(--t3)">
+                    Choose a conversation to start chatting.
+                  </div>
+                </div>
+              </div>
+              <div class="chat-win-bar" id="chatWinBar" style="display: none">
+                <button class="chat-emoji-btn" onclick="toggleChatEmoji()">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M8 13s1.5 2 4 2 4-2 4-2" />
+                    <line x1="9" y1="9" x2="9.01" y2="9" />
+                    <line x1="15" y1="9" x2="15.01" y2="9" />
+                  </svg>
+                </button>
+                <div class="chat-emoji-picker hide" id="chatEmojiPicker"></div>
+                <label class="chat-attach-btn" title="Attach image">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"
+                    />
+                  </svg>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    class="hide"
+                    onchange="handleChatImgAttach(event)"
+                  />
+                </label>
+                <input
+                  class="chat-msg-input"
+                  id="chatMsgInput"
+                  placeholder="Type a message…"
+                  onkeydown="
+                    if (event.key === 'Enter' && !event.shiftKey) {
+                      event.preventDefault();
+                      sendChatMessage();
+                    }
+                  "
+                  oninput="updateChatTyping()"
+                />
+                <button class="chat-send-btn" onclick="sendChatMessage()">
+                  <svg viewBox="0 0 24 24">
+                    <line x1="22" y1="2" x2="11" y2="13" />
+                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- NEW GROUP MODAL -->
+            <div class="ovl" id="newGroupModal">
+              <div class="modal" style="max-width: 420px">
+                <div class="mhdr">
+                  <button class="xbtn" onclick="closeOvl('newGroupModal')">
+                    <svg viewBox="0 0 24 24">
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                  </button>
+                  <h3>New Group</h3>
+                  <button class="btn btn-p btn-sm" onclick="createGroup()">
+                    Create
+                  </button>
+                </div>
+                <div class="mpad">
+                  <div class="fg">
+                    <label class="fl">Group Name *</label>
+                    <input
+                      class="fi"
+                      id="ngName"
+                      placeholder="e.g. Kedarnath Yatra 2025"
+                    />
+                  </div>
+                  <div class="fg">
+                    <label class="fl">Select Members</label>
+                    <div
+                      id="ngMemberList"
+                      style="
+                        max-height: 220px;
+                        overflow-y: auto;
+                        border: 1.5px solid var(--bd);
+                        border-radius: 8px;
+                      "
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- NEW DM MODAL -->
+            <div class="ovl" id="newDMModal">
+              <div class="modal" style="max-width: 380px">
+                <div class="mhdr">
+                  <button class="xbtn" onclick="closeOvl('newDMModal')">
+                    <svg viewBox="0 0 24 24">
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                  </button>
+                  <h3>New Message</h3>
+                  <div></div>
+                </div>
+                <div class="mpad">
+                  <div class="chats-search-box" style="margin-bottom: 12px">
+                    <svg viewBox="0 0 24 24">
+                      <circle cx="11" cy="11" r="8" />
+                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    <input
+                      type="text"
+                      id="dmSearchIn"
+                      placeholder="Search users…"
+                      oninput="filterDMSearch(this.value)"
+                    />
+                  </div>
+                  <div id="dmUserList"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END CHATS PAGE -->
+
           <!-- BOOKMARKS PAGE -->
           <div class="page hide" id="pgBookmarks">
             <div class="fhdr">
@@ -2249,7 +2580,7 @@
             <div class="prof-hdr">
               <div class="prof-av-wrap">
                 <div class="av av80" id="prAv"></div>
-                <div style="display: flex; gap: 8px" id="prActions"></div>
+                <div id="prActions"></div>
               </div>
               <div class="prof-name" id="prName"></div>
               <div class="prof-hdl" id="prHdl"></div>
@@ -2400,13 +2731,27 @@
           </svg>
           <span class="bnb-label">Videos</span>
         </button>
-        <button class="bnb" id="bnNotifs" onclick="gp('notifs')">
+        <button
+          class="bnb"
+          id="bnNotifs"
+          onclick="gp('notifs')"
+          style="display: none"
+        >
           <svg viewBox="0 0 24 24">
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
             <path d="M13.73 21a2 2 0 0 1-3.46 0" />
           </svg>
           <span class="bnb-label">Alerts</span>
           <div class="bnb-badge" id="bnNotifBadge"></div>
+        </button>
+        <!-- CHATS BOTTOM NAV -->
+        <button class="bnb" id="bnChats" onclick="gp('chats')">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            />
+          </svg>
+          <span class="bnb-label">Chats</span>
         </button>
         <button class="bnb" id="bnProfile" onclick="gp('profile')">
           <svg viewBox="0 0 24 24">

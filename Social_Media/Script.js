@@ -838,6 +838,7 @@ const PAGE_IDS = [
   "messages",
   "bookmarks",
   "profile",
+  "chats",
 ];
 function gp(page) {
   PAGE_IDS.forEach((p) => {
@@ -879,14 +880,27 @@ function gp(page) {
     mandir: () => renderMandir(),
     video: () => renderVideoPage(),
     search: () => {
-      renderSearch("");
+      doSearch("");
       renderWidgets();
     },
     notifs: () => renderNotifs(),
     messages: () => renderConvs(),
     bookmarks: () => renderBM(),
     profile: () => renderProfile(CU ? CU.id : curProfId || "u1"),
+    chats: () => renderChatsPage(),
   };
+  //* pgChats needs flex not block */
+  if (page === "chats") {
+    const cp = document.getElementById("pgChats");
+    if (cp) cp.style.display = "flex";
+    const rw = document.getElementById("rightWrap");
+    if (rw) rw.style.display = "none";
+  } else {
+    const cp = document.getElementById("pgChats");
+    if (cp) cp.style.display = "";
+    const rw = document.getElementById("rightWrap");
+    if (rw) rw.style.display = "";
+  }
   if (renderers[page]) renderers[page]();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -2621,3 +2635,1208 @@ async function init() {
   }
 }
 window.addEventListener("DOMContentLoaded", init);
+
+/* ============================================================
+   PULL TO REFRESH — mobile only
+   ============================================================ */
+(function () {
+  // Only activate on touch devices
+  if (!("ontouchstart" in window)) return;
+
+  const THRESHOLD = 80; // px to pull before triggering refresh
+  const MAX_PULL = 120; // max visual pull distance
+
+  let startY = 0;
+  let currentY = 0;
+  let pulling = false;
+  let refreshing = false;
+  let startScrollY = 0;
+
+  const indicator = document.getElementById("pullIndicator");
+  const pullText = document.getElementById("pullText");
+
+  if (!indicator || !pullText) return;
+
+  /* ── helpers ── */
+  function canPull() {
+    // Only pull when page is scrolled to very top
+    return window.scrollY <= 0;
+  }
+
+  function setState(state) {
+    indicator.className = ""; // clear all state classes
+    if (state) indicator.classList.add(state);
+  }
+
+  function showIndicator(progress) {
+    // progress: 0–1
+    const h = Math.min(progress * 60, 60);
+    indicator.style.height = h + "px";
+
+    const inner = indicator.querySelector(".pull-inner");
+    if (inner) {
+      inner.style.opacity = Math.min(progress * 2, 1);
+      inner.style.transform = `translateY(${(1 - Math.min(progress * 2, 1)) * -10}px)`;
+    }
+  }
+
+  function hideIndicator() {
+    indicator.style.height = "0px";
+    const inner = indicator.querySelector(".pull-inner");
+    if (inner) {
+      inner.style.opacity = "0";
+      inner.style.transform = "translateY(-10px)";
+    }
+    setState("");
+  }
+
+  function doRefresh() {
+    if (refreshing) return;
+    refreshing = true;
+
+    setState("refreshing");
+    indicator.style.height = "60px";
+    pullText.textContent = "Refreshing…";
+    document.body.classList.add("pull-refreshing");
+
+    // Trigger the correct page refresh
+    const refreshMap = {
+      home: () => {
+        renderFeed();
+        renderStories();
+        renderWidgets();
+      },
+      mandir: () => renderMandir(),
+      video: () => renderVideoPage(),
+      search: () => doSearch(""),
+      notifs: () => renderNotifs(),
+      messages: () => renderConvs(),
+      bookmarks: () => renderBM(),
+      profile: () => renderProfile(curProfId || (CU ? CU.id : "u1")),
+      chats: () => renderChatsPage(),
+    };
+
+    setTimeout(() => {
+      const fn = refreshMap[curPage];
+      if (fn) fn();
+
+      MC.success("Feed refreshed 🔄");
+
+      // animate out
+      setState("");
+      pullText.textContent = "Pull down to refresh";
+      document.body.classList.remove("pull-refreshing");
+
+      // smooth hide
+      const step = () => {
+        const cur = parseFloat(indicator.style.height) || 0;
+        if (cur <= 1) {
+          indicator.style.height = "0px";
+          refreshing = false;
+          return;
+        }
+        indicator.style.height = cur - 5 + "px";
+        requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, 1000);
+  }
+
+  /* ── touch handlers ── */
+  document.addEventListener(
+    "touchstart",
+    (e) => {
+      if (refreshing) return;
+      startScrollY = window.scrollY;
+      if (!canPull()) return;
+
+      startY = e.touches[0].clientY;
+      pulling = false;
+    },
+    { passive: true },
+  );
+
+  document.addEventListener(
+    "touchmove",
+    (e) => {
+      if (refreshing) return;
+      if (!canPull() && window.scrollY > 5) return;
+
+      currentY = e.touches[0].clientY;
+      const diff = currentY - startY;
+
+      if (diff <= 0) {
+        if (pulling) hideIndicator();
+        pulling = false;
+        return;
+      }
+
+      pulling = true;
+
+      // Apply resistance so it feels natural
+      const resistance = 0.4;
+      const pull = Math.min(diff * resistance, MAX_PULL);
+      const progress = pull / THRESHOLD;
+
+      showIndicator(progress);
+
+      if (pull >= THRESHOLD) {
+        setState("ready");
+        pullText.textContent = "Release to refresh";
+      } else {
+        setState("visible");
+        pullText.textContent = "Pull down to refresh";
+      }
+    },
+    { passive: true },
+  );
+
+  document.addEventListener(
+    "touchend",
+    () => {
+      if (refreshing || !pulling) return;
+      pulling = false;
+
+      const diff = currentY - startY;
+      const resistance = 0.4;
+      const pull = Math.min(diff * resistance, MAX_PULL);
+
+      if (pull >= THRESHOLD) {
+        doRefresh();
+      } else {
+        // Not enough — snap back
+        setState("");
+        pullText.textContent = "Pull down to refresh";
+        const snap = () => {
+          const cur = parseFloat(indicator.style.height) || 0;
+          if (cur <= 1) {
+            indicator.style.height = "0px";
+            return;
+          }
+          indicator.style.height = cur - 4 + "px";
+          requestAnimationFrame(snap);
+        };
+        requestAnimationFrame(snap);
+      }
+    },
+    { passive: true },
+  );
+})();
+
+/* ================================================================
+   CHATS MODULE — paste after: window.addEventListener("DOMContentLoaded", init);
+   ================================================================ */
+
+const CHAT_CONTACTS = [
+  { id: "cc1", uid: "u2", online: true, lastSeen: "online" },
+  {
+    id: "cc2",
+    uid: "u3",
+    online: false,
+    lastSeen: "last seen today at 9:10 AM",
+  },
+  { id: "cc3", uid: "u4", online: true, lastSeen: "online" },
+  { id: "cc4", uid: "u1", online: false, lastSeen: "last seen yesterday" },
+  {
+    id: "cc5",
+    uid: "cx1",
+    online: true,
+    lastSeen: "online",
+    name: "Radha Devi",
+    handle: "radha_devi",
+    avatar: null,
+    verified: false,
+  },
+  {
+    id: "cc6",
+    uid: "cx2",
+    online: false,
+    lastSeen: "last seen 2h ago",
+    name: "Govind Das",
+    handle: "govind_das",
+    avatar: null,
+    verified: false,
+  },
+];
+
+const CHAT_GROUPS = [
+  {
+    id: "cg1",
+    type: "group",
+    name: "Kedarnath Yatra 2025 🏔",
+    members: ["u1", "u2", "u3", "u4", "cx1"],
+    admin: "u1",
+    desc: "Planning the Kedarnath pilgrimage together 🙏",
+    emoji: "🏔",
+  },
+  {
+    id: "cg2",
+    type: "group",
+    name: "Tirth Sutra Sangha 🕉",
+    members: ["u2", "u3", "cx1", "cx2"],
+    admin: "u2",
+    desc: "Official Tirth Sutra community group",
+    emoji: "🕉",
+  },
+  {
+    id: "cg3",
+    type: "group",
+    name: "Bhajan Circle 🎶",
+    members: ["u1", "u4", "cx1", "cx2"],
+    admin: "u4",
+    desc: "Daily bhajans and kirtan sharing",
+    emoji: "🎶",
+  },
+];
+
+const CHAT_SEED_MESSAGES = {
+  cc1: [
+    {
+      id: "m1",
+      from: "u2",
+      txt: "Jai Shri Ram! 🙏",
+      ts: Date.now() - 3600000,
+      read: true,
+    },
+    {
+      id: "m2",
+      from: "me",
+      txt: "Jai! How are you doing?",
+      ts: Date.now() - 3500000,
+      read: true,
+    },
+    {
+      id: "m3",
+      from: "u2",
+      txt: "All good, just came back from Ganga Aarti. It was divine! 🌊",
+      ts: Date.now() - 3400000,
+      read: true,
+    },
+    {
+      id: "m4",
+      from: "me",
+      txt: "Wonderful! I plan to visit next week.",
+      ts: Date.now() - 3000000,
+      read: true,
+    },
+    {
+      id: "m5",
+      from: "u2",
+      txt: "You should stay for the evening aarti — truly mesmerising.",
+      ts: Date.now() - 2900000,
+      read: false,
+    },
+  ],
+  cc2: [
+    {
+      id: "m1",
+      from: "u3",
+      txt: "Namaste! Did you read the new shloka I posted?",
+      ts: Date.now() - 86400000,
+      read: true,
+    },
+    {
+      id: "m2",
+      from: "me",
+      txt: "Yes! Bhagavad Gita 18.78 — beautiful. 🕉",
+      ts: Date.now() - 86000000,
+      read: true,
+    },
+    {
+      id: "m3",
+      from: "u3",
+      txt: "Jai Shri Krishna! Sharing more tomorrow.",
+      ts: Date.now() - 85000000,
+      read: true,
+    },
+  ],
+  cc3: [
+    {
+      id: "m1",
+      from: "u4",
+      txt: "Hey! Are you joining the Amarnath yatra this summer?",
+      ts: Date.now() - 7200000,
+      read: true,
+    },
+    {
+      id: "m2",
+      from: "me",
+      txt: "Definitely planning to! When are you going?",
+      ts: Date.now() - 7100000,
+      read: true,
+    },
+    {
+      id: "m3",
+      from: "u4",
+      txt: "July 15th from Jammu. Let me know!",
+      ts: Date.now() - 7000000,
+      read: false,
+    },
+  ],
+  cc4: [
+    {
+      id: "m1",
+      from: "u1",
+      txt: "Pranam. Your questions during satsang were very insightful.",
+      ts: Date.now() - 172800000,
+      read: true,
+    },
+    {
+      id: "m2",
+      from: "me",
+      txt: "Pranam Swamiji 🙏 Your teachings are truly inspiring.",
+      ts: Date.now() - 172000000,
+      read: true,
+    },
+  ],
+  cc5: [
+    {
+      id: "m1",
+      from: "cx1",
+      txt: "Hare Krishna! 🌸 Have you visited Vrindavan?",
+      ts: Date.now() - 43200000,
+      read: true,
+    },
+    {
+      id: "m2",
+      from: "me",
+      txt: "Not yet — it is on my list!",
+      ts: Date.now() - 43000000,
+      read: true,
+    },
+    {
+      id: "m3",
+      from: "cx1",
+      txt: "You must visit during Janmashtami — absolutely magical! 🎊",
+      ts: Date.now() - 42000000,
+      read: false,
+    },
+  ],
+  cc6: [
+    {
+      id: "m1",
+      from: "cx2",
+      txt: "Hari Bol! 🎻 Do you attend ISKCON Sunday feasts?",
+      ts: Date.now() - 259200000,
+      read: true,
+    },
+    {
+      id: "m2",
+      from: "me",
+      txt: "Sometimes! The prasad is always wonderful.",
+      ts: Date.now() - 258000000,
+      read: true,
+    },
+  ],
+  cg1: [
+    {
+      id: "m1",
+      from: "u1",
+      txt: "Jai Kedarnath! 🏔 Planning for May 2025.",
+      ts: Date.now() - 86400000,
+      read: true,
+    },
+    {
+      id: "m2",
+      from: "u2",
+      txt: "I am in! Should we book helicopters in advance?",
+      ts: Date.now() - 86000000,
+      read: true,
+    },
+    {
+      id: "m3",
+      from: "u3",
+      txt: "Yes — they fill up very fast. Register at irctc.co.in",
+      ts: Date.now() - 85000000,
+      read: true,
+    },
+    {
+      id: "m4",
+      from: "cx1",
+      txt: "What is the packing list? First time for me 🙏",
+      ts: Date.now() - 84000000,
+      read: true,
+    },
+    {
+      id: "m5",
+      from: "u4",
+      txt: "Warm clothes, trekking shoes, and lots of prasad! 😄",
+      ts: Date.now() - 7200000,
+      read: false,
+    },
+  ],
+  cg2: [
+    {
+      id: "m1",
+      from: "u2",
+      txt: "Welcome everyone to the official Tirth Sutra Sangha! 🕉",
+      ts: Date.now() - 604800000,
+      read: true,
+    },
+    {
+      id: "m2",
+      from: "cx1",
+      txt: "Jai Shri Ram! Happy to be here 🙏",
+      ts: Date.now() - 604000000,
+      read: true,
+    },
+    {
+      id: "m3",
+      from: "cx2",
+      txt: "Hare Krishna! Sharing bhakti content here?",
+      ts: Date.now() - 603000000,
+      read: true,
+    },
+    {
+      id: "m4",
+      from: "u3",
+      txt: "Yes! Daily shlokas, event updates, and spiritual discussions.",
+      ts: Date.now() - 602000000,
+      read: true,
+    },
+    {
+      id: "m5",
+      from: "u2",
+      txt: "New blog post on Char Dham planning is live on the feed! 🎉",
+      ts: Date.now() - 3600000,
+      read: false,
+    },
+  ],
+  cg3: [
+    {
+      id: "m1",
+      from: "u4",
+      txt: "Let us start with Hanuman Chalisa every morning 🙏",
+      ts: Date.now() - 172800000,
+      read: true,
+    },
+    {
+      id: "m2",
+      from: "cx1",
+      txt: "Jai Bajrang Bali! I will share a new bhajan today.",
+      ts: Date.now() - 172000000,
+      read: true,
+    },
+    {
+      id: "m3",
+      from: "cx2",
+      txt: "🎵 Hari naam sankirtan is the best medicine!",
+      ts: Date.now() - 171000000,
+      read: true,
+    },
+    {
+      id: "m4",
+      from: "u1",
+      txt: "Absolutely. Naam is everything. 🕉",
+      ts: Date.now() - 7200000,
+      read: false,
+    },
+  ],
+};
+
+let activeChatId = null;
+let chatFilter = "all";
+let selectedGroupMembers = [];
+
+const chatsBotReplies = {
+  u1: [
+    "Pranam 🙏 May Shiva bless you!",
+    "That is very insightful.",
+    "Hari OM! 🕉",
+    "Keep up the sadhana.",
+    "Wonderful thought.",
+  ],
+  u2: [
+    "Jai Shri Ram! 🙏",
+    "Yes, I agree completely!",
+    "Have you tried the new temple route?",
+    "See you at the ghats! 🌊",
+    "Amazing!",
+  ],
+  u3: [
+    "Jai Shri Krishna! 🔱",
+    "Today's shloka: Yogastah kuru karmani 🕉",
+    "Great point!",
+    "Keep chanting! 📿",
+    "Indeed!",
+  ],
+  u4: [
+    "Har Har Mahadev! 🏔",
+    "The mountains are calling!",
+    "Kedarnath this year!",
+    "Photography session?",
+    "Pranam 🙏",
+  ],
+  cx1: [
+    "Hare Krishna! 🌸",
+    "Radhe Radhe! 🌺",
+    "Beautiful thought!",
+    "Jai Shri Radha!",
+    "Vrindavan calls!",
+  ],
+  cx2: [
+    "Hari Bol! 🎻",
+    "Naam is everything!",
+    "ISKCON Prabhu ji!",
+    "Govinda! 🎊",
+    "Jai Jagannath!",
+  ],
+};
+const groupBotMap = {
+  cg1: ["u1", "u2", "u3", "u4", "cx1"],
+  cg2: ["u2", "cx1", "u3"],
+  cg3: ["u4", "cx1", "u2"],
+};
+
+/* ── Helpers ── */
+function getChatUser(uid) {
+  const u = getUser(uid);
+  if (u) return u;
+  const extra = CHAT_CONTACTS.find((c) => c.uid === uid);
+  if (extra && extra.name)
+    return {
+      id: uid,
+      name: extra.name,
+      handle: extra.handle,
+      avatar: extra.avatar,
+      verified: extra.verified || false,
+    };
+  return {
+    id: uid,
+    name: "Unknown",
+    handle: "unknown",
+    avatar: null,
+    verified: false,
+  };
+}
+function getChatContact(id) {
+  return CHAT_CONTACTS.find((c) => c.id === id) || null;
+}
+function getChatGroupsStore() {
+  return Store.g("chatGroups", CHAT_GROUPS);
+}
+function getChatGroup(id) {
+  return getChatGroupsStore().find((g) => g.id === id) || null;
+}
+function getChatMessages(chatId) {
+  const all = Store.g("chatMessages", CHAT_SEED_MESSAGES);
+  return all[chatId] || [];
+}
+function saveChatMessages(chatId, msgs) {
+  const all = Store.g("chatMessages", CHAT_SEED_MESSAGES);
+  all[chatId] = msgs;
+  Store.s("chatMessages", all);
+}
+function fmtChatTime(ts) {
+  const d = new Date(ts),
+    now = new Date(),
+    diff = now - d;
+  if (diff < 60000) return "just now";
+  if (diff < 3600000) return Math.floor(diff / 60000) + "m ago";
+  if (d.toDateString() === now.toDateString())
+    return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const yest = new Date(now);
+  yest.setDate(now.getDate() - 1);
+  if (d.toDateString() === yest.toDateString()) return "Yesterday";
+  return d.toLocaleDateString([], { day: "2-digit", month: "short" });
+}
+function fmtMsgTime(ts) {
+  return new Date(ts).toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+function getChatAvHTML(id, size = 38) {
+  if (id.startsWith("cg")) {
+    const g = getChatGroup(id);
+    return `<div style="width:${size}px;height:${size}px;border-radius:50%;background:linear-gradient(135deg,var(--p),var(--pl));display:flex;align-items:center;justify-content:center;font-size:${Math.round(size * 0.42)}px;flex-shrink:0">${g ? g.emoji || "👥" : "👥"}</div>`;
+  }
+  const c = getChatContact(id);
+  const u = getChatUser(c ? c.uid : "");
+  return `<div style="width:${size}px;height:${size}px;border-radius:50%;overflow:hidden;background:var(--p);display:flex;align-items:center;justify-content:center;color:#fff;font-size:${Math.round(size * 0.35)}px;font-weight:600;flex-shrink:0">${u.avatar ? `<img src="${u.avatar}" style="width:100%;height:100%;object-fit:cover">` : getIni(u.name)}</div>`;
+}
+function getUnreadCount(chatId) {
+  return getChatMessages(chatId).filter((m) => m.from !== "me" && !m.read)
+    .length;
+}
+function getLastMsg(chatId) {
+  const msgs = getChatMessages(chatId);
+  return msgs.length ? msgs[msgs.length - 1] : null;
+}
+function markAllRead(chatId) {
+  const msgs = getChatMessages(chatId);
+  msgs.forEach((m) => (m.read = true));
+  saveChatMessages(chatId, msgs);
+}
+
+function renderChatsPage() {
+  renderChatsList();
+  if (window.innerWidth >= 641) {
+    // Desktop: show empty state panel on right
+    const win = document.getElementById("chatWindow");
+    if (win) win.classList.remove("hide");
+    const bar = document.getElementById("chatWinBar");
+    if (bar) bar.style.display = "none";
+    const empty = document.getElementById("chatEmptyState");
+    if (empty) {
+      empty.style.display = "flex";
+      empty.style.flexDirection = "column";
+    }
+  } else {
+    // Mobile: always show list first, hide chat window
+    const win = document.getElementById("chatWindow");
+    if (win) win.classList.add("hide");
+    activeChatId = null;
+  }
+}
+
+function renderChatsList() {
+  const c = document.getElementById("chatsList");
+  if (!c) return;
+
+  let items = [];
+  CHAT_CONTACTS.forEach((cc) => {
+    const u = getChatUser(cc.uid);
+    items.push({
+      id: cc.id,
+      type: "direct",
+      name: u.name,
+      online: cc.online,
+      lastMsg: getLastMsg(cc.id),
+      unread: getUnreadCount(cc.id),
+      verified: u.verified || false,
+    });
+  });
+  getChatGroupsStore().forEach((g) => {
+    items.push({
+      id: g.id,
+      type: "group",
+      name: g.name,
+      online: false,
+      lastMsg: getLastMsg(g.id),
+      unread: getUnreadCount(g.id),
+    });
+  });
+
+  items.sort(
+    (a, b) => (b.lastMsg ? b.lastMsg.ts : 0) - (a.lastMsg ? a.lastMsg.ts : 0),
+  );
+
+  const q = (
+    document.getElementById("chatsSearchIn")?.value || ""
+  ).toLowerCase();
+  if (chatFilter === "direct") items = items.filter((i) => i.type === "direct");
+  if (chatFilter === "groups") items = items.filter((i) => i.type === "group");
+  if (chatFilter === "unread") items = items.filter((i) => i.unread > 0);
+  if (q) items = items.filter((i) => i.name.toLowerCase().includes(q));
+
+  if (!items.length) {
+    c.innerHTML = `<div class="empty" style="padding:40px 20px"><div class="empty-ico">💬</div><div class="empty-sub">No chats found</div></div>`;
+    return;
+  }
+
+  c.innerHTML = items
+    .map((item) => {
+      const isActive = item.id === activeChatId;
+      let prevText = "Tap to start chatting";
+      if (item.lastMsg) {
+        const isMe = item.lastMsg.from === "me";
+        const senderName = isMe
+          ? "You"
+          : item.type === "group"
+            ? getChatUser(item.lastMsg.from).name.split(" ")[0]
+            : "";
+        prevText =
+          (senderName ? senderName + ": " : "") +
+          (item.lastMsg.img ? "📷 Photo" : item.lastMsg.txt);
+      }
+      const time = item.lastMsg ? fmtChatTime(item.lastMsg.ts) : "";
+      return `<div class="chat-item${isActive ? " active" : ""}" id="ci_${item.id}" onclick="openChatWindow('${item.id}')">
+      <div class="chat-item-av">
+        ${getChatAvHTML(item.id, 46)}
+        ${item.online ? '<div class="chat-item-online"></div>' : ""}
+      </div>
+      <div class="chat-item-body">
+        <div class="chat-item-top">
+          <span class="chat-item-name">${esc(item.name)}${item.verified ? " 🔱" : ""} ${item.type === "group" ? '<span class="chat-group-badge">Group</span>' : ""}</span>
+          <span class="chat-item-time${item.unread ? " unread-time" : ""}">${time}</span>
+        </div>
+        <div class="chat-item-bottom">
+          <span class="chat-item-prev${item.unread ? " bold" : ""}">${esc(prevText.substring(0, 55))}</span>
+          ${item.unread ? `<span class="chat-unread-badge">${item.unread > 9 ? "9+" : item.unread}</span>` : ""}
+        </div>
+      </div>
+    </div>`;
+    })
+    .join("");
+}
+
+/* ── Open Chat Window ── */
+function openChatWindow(chatId) {
+  activeChatId = chatId;
+  markAllRead(chatId);
+
+  document
+    .querySelectorAll(".chat-item")
+    .forEach((el) => el.classList.remove("active"));
+  const el = document.getElementById("ci_" + chatId);
+  if (el) el.classList.add("active");
+
+  const isGroup = chatId.startsWith("cg");
+  const win = document.getElementById("chatWindow");
+  const bar = document.getElementById("chatWinBar");
+  const empty = document.getElementById("chatEmptyState");
+
+  if (win) win.classList.remove("hide");
+  if (bar) bar.style.display = "flex";
+  if (empty) empty.style.display = "none";
+
+  const winAv = document.getElementById("chatWinAv");
+  const winName = document.getElementById("chatWinName");
+  const winSub = document.getElementById("chatWinSub");
+  if (winAv) winAv.innerHTML = getChatAvHTML(chatId, 38);
+
+  if (isGroup) {
+    const g = getChatGroup(chatId);
+    if (winName) winName.textContent = g ? g.name : "Group";
+    if (winSub) winSub.textContent = g ? `${g.members.length} members` : "";
+  } else {
+    const cc = getChatContact(chatId);
+    const u = cc ? getChatUser(cc.uid) : { name: "Unknown" };
+    if (winName) winName.textContent = u.name + (u.verified ? " 🔱" : "");
+    if (winSub)
+      winSub.textContent = cc ? (cc.online ? "🟢 online" : cc.lastSeen) : "";
+  }
+
+  renderChatMessages(chatId);
+  renderChatsList();
+  setTimeout(() => document.getElementById("chatMsgInput")?.focus(), 100);
+}
+
+/* ── Render Messages ── */
+function renderChatMessages(chatId) {
+  const c = document.getElementById("chatWinMsgs");
+  if (!c) return;
+  const msgs = getChatMessages(chatId);
+  const isGroup = chatId.startsWith("cg");
+  let html = "",
+    lastDate = "";
+
+  msgs.forEach((m, idx) => {
+    const d = new Date(m.ts);
+    const dateStr = d.toDateString();
+    if (dateStr !== lastDate) {
+      const now = new Date();
+      const yest = new Date(now);
+      yest.setDate(now.getDate() - 1);
+      const label =
+        dateStr === now.toDateString()
+          ? "Today"
+          : dateStr === yest.toDateString()
+            ? "Yesterday"
+            : d.toLocaleDateString([], {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              });
+      html += `<div class="msg-date-sep"><span>${label}</span></div>`;
+      lastDate = dateStr;
+    }
+    const isOut = m.from === "me";
+    const u = isOut ? null : getChatUser(m.from);
+    const prev = msgs[idx - 1];
+    const showAv = !isOut && isGroup && (!prev || prev.from !== m.from);
+    const avHtml = u
+      ? `<div class="msg-av-small">${u.avatar ? `<img src="${u.avatar}">` : getIni(u.name)}</div>`
+      : "";
+    const avOrSpacer =
+      !isOut && isGroup
+        ? showAv
+          ? avHtml
+          : '<div class="msg-av-placeholder"></div>'
+        : "";
+    const tickClass = m.read ? "tick-read" : "tick-sent";
+    const tickSvg = isOut
+      ? `<svg class="msg-tick ${tickClass}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`
+      : "";
+
+    html += `<div class="msg-row ${isOut ? "out" : "in"}">
+      ${avOrSpacer}
+      <div class="msg-bubble">
+        ${showAv && u ? `<div class="msg-sender-name">${esc(u.name)}</div>` : ""}
+        ${m.img ? `<img class="msg-bubble-img" src="${m.img}" alt="">` : ""}
+        ${m.txt ? esc(m.txt) : ""}
+        <div class="msg-meta">
+          <span class="msg-time">${fmtMsgTime(m.ts)}</span>
+          ${tickSvg}
+        </div>
+      </div>
+    </div>`;
+  });
+
+  c.innerHTML =
+    html ||
+    `<div class="chat-empty-state"><div style="font-size:36px;margin-bottom:8px">👋</div><div style="font-size:14px;color:var(--t3)">Say hello!</div></div>`;
+  c.scrollTop = c.scrollHeight;
+}
+
+/* ── Send Message ── */
+function sendChatMessage() {
+  if (!CU) {
+    openOvl("authOvl");
+    return;
+  }
+  if (!activeChatId) return;
+  const inp = document.getElementById("chatMsgInput");
+  const txt = inp?.value?.trim() || "";
+  if (!txt) return;
+  const msgs = getChatMessages(activeChatId);
+  msgs.push({
+    id: "m" + Date.now(),
+    from: "me",
+    txt,
+    ts: Date.now(),
+    read: false,
+  });
+  saveChatMessages(activeChatId, msgs);
+  inp.value = "";
+  renderChatMessages(activeChatId);
+  renderChatsList();
+  simulateChatReply(activeChatId);
+}
+
+function simulateChatReply(chatId) {
+  const delay = 1000 + Math.random() * 1500;
+  const c = document.getElementById("chatWinMsgs");
+  setTimeout(() => {
+    if (activeChatId !== chatId || !c) return;
+    const typingEl = document.createElement("div");
+    typingEl.className = "msg-row in";
+    typingEl.id = "typingIndicator";
+    typingEl.innerHTML = `<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
+    c.appendChild(typingEl);
+    c.scrollTop = c.scrollHeight;
+  }, 400);
+
+  setTimeout(() => {
+    if (activeChatId !== chatId) return;
+    const ti = document.getElementById("typingIndicator");
+    if (ti) ti.remove();
+    let from;
+    if (chatId.startsWith("cg")) {
+      const g = getChatGroup(chatId);
+      const members = (groupBotMap[chatId] || (g ? g.members : [])).filter(
+        (m) => m !== "me",
+      );
+      from = members[Math.floor(Math.random() * members.length)];
+    } else {
+      const cc = getChatContact(chatId);
+      from = cc ? cc.uid : "u1";
+    }
+    const pool = chatsBotReplies[from] || [
+      "🙏",
+      "Great!",
+      "Indeed!",
+      "Jai Shri Ram!",
+    ];
+    const reply = pool[Math.floor(Math.random() * pool.length)];
+    const msgs = getChatMessages(chatId);
+    msgs.push({
+      id: "m" + Date.now(),
+      from,
+      txt: reply,
+      ts: Date.now(),
+      read: true,
+    });
+    msgs.forEach((m) => {
+      if (m.from === "me") m.read = true;
+    });
+    saveChatMessages(chatId, msgs);
+    if (activeChatId === chatId) renderChatMessages(chatId);
+    renderChatsList();
+  }, delay);
+}
+
+/* ── Image Attach ── */
+function handleChatImgAttach(e) {
+  if (!CU || !activeChatId) {
+    openOvl("authOvl");
+    return;
+  }
+  const f = e.target?.files?.[0];
+  if (!f) return;
+  const r = new FileReader();
+  r.onload = (ev) => {
+    const msgs = getChatMessages(activeChatId);
+    msgs.push({
+      id: "m" + Date.now(),
+      from: "me",
+      img: ev.target.result,
+      txt: "",
+      ts: Date.now(),
+      read: false,
+    });
+    saveChatMessages(activeChatId, msgs);
+    renderChatMessages(activeChatId);
+    renderChatsList();
+    simulateChatReply(activeChatId);
+  };
+  r.readAsDataURL(f);
+}
+
+/* ── Emoji ── */
+function toggleChatEmoji() {
+  const ep = document.getElementById("chatEmojiPicker");
+  if (!ep) return;
+  ep.classList.toggle("hide");
+  if (!ep.classList.contains("hide") && !ep.innerHTML) {
+    const emojis = [
+      "🕉",
+      "🙏",
+      "🏔",
+      "🛕",
+      "📖",
+      "🌸",
+      "🔱",
+      "💧",
+      "🌅",
+      "✨",
+      "🪔",
+      "📿",
+      "🌊",
+      "⛰️",
+      "🌺",
+      "🕯",
+      "🌿",
+      "🔔",
+      "🎆",
+      "🌙",
+      "😊",
+      "❤️",
+      "🙌",
+      "🎶",
+      "🎊",
+    ];
+    ep.innerHTML = emojis
+      .map(
+        (em) =>
+          `<button class="chat-emoji-btn2" onclick="insertChatEmoji('${em}')">${em}</button>`,
+      )
+      .join("");
+  }
+}
+function insertChatEmoji(em) {
+  const inp = document.getElementById("chatMsgInput");
+  if (inp) {
+    inp.value += em;
+    inp.focus();
+  }
+  document.getElementById("chatEmojiPicker")?.classList.add("hide");
+}
+
+/* ── Filter & Search ── */
+function setChatFilter(f, el) {
+  chatFilter = f;
+  document
+    .querySelectorAll(".chats-ftab")
+    .forEach((t) => t.classList.remove("on"));
+  if (el) el.classList.add("on");
+  renderChatsList();
+}
+function filterChats() {
+  renderChatsList();
+}
+
+function filterDMSearch(q) {
+  const c = document.getElementById("dmUserList");
+  if (!c) return;
+  const all = getUsers();
+  const filtered = q
+    ? all.filter(
+        (u) =>
+          u.name.toLowerCase().includes(q.toLowerCase()) ||
+          u.handle.toLowerCase().includes(q.toLowerCase()),
+      )
+    : all;
+  c.innerHTML = filtered
+    .map(
+      (u) => `<div class="dm-user-item" onclick="startDMWith('${u.id}')">
+    <div class="av av36">${u.avatar ? `<img src="${u.avatar}">` : getIni(u.name)}</div>
+    <div><div style="font-weight:600;font-size:14px">${u.name}${u.verified ? " 🔱" : ""}</div><div style="font-size:12px;color:var(--t3)">@${u.handle}</div></div>
+  </div>`,
+    )
+    .join("");
+}
+
+function startDMWith(uid) {
+  closeOvl("newDMModal");
+  let cc = CHAT_CONTACTS.find((c) => c.uid === uid);
+  if (!cc) {
+    const newId = "cc" + Date.now();
+    CHAT_CONTACTS.push({ id: newId, uid, online: false, lastSeen: "recently" });
+    cc = CHAT_CONTACTS[CHAT_CONTACTS.length - 1];
+  }
+  gp("chats");
+  setTimeout(() => openChatWindow(cc.id), 100);
+}
+
+/* ── New Group ── */
+function openNewGroupModal() {
+  if (!CU) {
+    openOvl("authOvl");
+    return;
+  }
+  selectedGroupMembers = [];
+  const el = document.getElementById("ngName");
+  if (el) el.value = "";
+  const ml = document.getElementById("ngMemberList");
+  if (!ml) return;
+  ml.innerHTML = getUsers()
+    .filter((u) => u.id !== CU.id)
+    .map(
+      (
+        u,
+      ) => `<div class="ng-member-item" onclick="toggleGroupMember('${u.id}')">
+    <div class="ng-check" id="ngc_${u.id}"></div>
+    <div class="av av36">${u.avatar ? `<img src="${u.avatar}">` : getIni(u.name)}</div>
+    <div><div style="font-weight:600;font-size:14px">${u.name}</div><div style="font-size:12px;color:var(--t3)">@${u.handle}</div></div>
+  </div>`,
+    )
+    .join("");
+  openOvl("newGroupModal");
+}
+function toggleGroupMember(uid) {
+  const check = document.getElementById("ngc_" + uid);
+  const idx = selectedGroupMembers.indexOf(uid);
+  if (idx > -1) {
+    selectedGroupMembers.splice(idx, 1);
+    check?.classList.remove("checked");
+  } else {
+    selectedGroupMembers.push(uid);
+    check?.classList.add("checked");
+  }
+}
+function createGroup() {
+  const name = document.getElementById("ngName")?.value?.trim() || "";
+  if (!name) {
+    MC.warn("Please enter a group name");
+    return;
+  }
+  if (selectedGroupMembers.length < 1) {
+    MC.warn("Add at least 1 member");
+    return;
+  }
+  const id = "cg" + Date.now();
+  const newG = {
+    id,
+    type: "group",
+    name,
+    members: [CU.id, ...selectedGroupMembers],
+    admin: CU.id,
+    desc: "",
+    emoji: "💬",
+  };
+  const gs = getChatGroupsStore();
+  gs.push(newG);
+  Store.s("chatGroups", gs);
+  CHAT_GROUPS.push(newG);
+  closeOvl("newGroupModal");
+  renderChatsList();
+  openChatWindow(id);
+  MC.success(`Group "${name}" created! 🎉`);
+}
+
+/* ── New DM ── */
+function openNewDMModal() {
+  if (!CU) {
+    openOvl("authOvl");
+    return;
+  }
+  const inp = document.getElementById("dmSearchIn");
+  if (inp) inp.value = "";
+  filterDMSearch("");
+  openOvl("newDMModal");
+}
+
+/* ── Chat Window Menu ── */
+function toggleChatWinMenu() {
+  document.getElementById("chatWinMenu")?.classList.toggle("hide");
+}
+
+function viewChatInfo() {
+  document.getElementById("chatWinMenu")?.classList.add("hide");
+  if (!activeChatId) return;
+  if (activeChatId.startsWith("cg")) {
+    const g = getChatGroup(activeChatId);
+    MC.info(g ? `${g.name} · ${g.members.length} members 👥` : "Group info");
+  } else {
+    const cc = getChatContact(activeChatId);
+    const u = getChatUser(cc?.uid || "");
+    MC.info(
+      `${u.name} · @${u.handle} ${cc?.online ? "🟢 online" : cc?.lastSeen || ""}`,
+    );
+  }
+}
+function clearChatMessages() {
+  document.getElementById("chatWinMenu")?.classList.add("hide");
+  if (!activeChatId) return;
+  saveChatMessages(activeChatId, []);
+  renderChatMessages(activeChatId);
+  renderChatsList();
+  MC.info("Messages cleared");
+}
+function deleteChatFromMenu() {
+  document.getElementById("chatWinMenu")?.classList.add("hide");
+  if (!activeChatId) return;
+  saveChatMessages(activeChatId, []);
+  closeChatWindow();
+  MC.info("Chat deleted");
+}
+
+/* ── Close Chat (mobile back) ── */
+function closeChatWindow() {
+  activeChatId = null;
+  document
+    .querySelectorAll(".chat-item")
+    .forEach((el) => el.classList.remove("active"));
+  if (window.innerWidth < 641) {
+    document.getElementById("chatWindow")?.classList.add("hide");
+  } else {
+    const bar = document.getElementById("chatWinBar");
+    if (bar) bar.style.display = "none";
+    const msgs = document.getElementById("chatWinMsgs");
+    if (msgs)
+      msgs.innerHTML = `<div class="chat-empty-state" id="chatEmptyState" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--t3);text-align:center;padding:40px">
+      <div style="font-size:48px;margin-bottom:12px">💬</div>
+      <div style="font-size:16px;font-weight:600;margin-bottom:6px">Select a chat</div>
+      <div style="font-size:13px">Choose a conversation from the left to start chatting.</div>
+    </div>`;
+    const winAv = document.getElementById("chatWinAv");
+    if (winAv) winAv.innerHTML = "";
+    const winName = document.getElementById("chatWinName");
+    if (winName) winName.textContent = "";
+    const winSub = document.getElementById("chatWinSub");
+    if (winSub) winSub.textContent = "";
+  }
+  renderChatsList();
+}
+
+function updateChatTyping() {
+  /* placeholder */
+}
+
+/* ── Close menus on outside click ── */
+document.addEventListener("click", (e) => {
+  if (
+    !e.target.closest(".chat-emoji-btn") &&
+    !e.target.closest("#chatEmojiPicker")
+  ) {
+    document.getElementById("chatEmojiPicker")?.classList.add("hide");
+  }
+  if (
+    !e.target.closest("#chatWinMenuBtn") &&
+    !e.target.closest("#chatWinMenu")
+  ) {
+    document.getElementById("chatWinMenu")?.classList.add("hide");
+  }
+});
