@@ -639,7 +639,7 @@ function esc(s) {
    SEED DATA — version controlled
    Change VERSION number every time you update seed data
    ============================================================ */
-const SEED_VERSION = "v3"; // ← change to v4, v5 etc on each update
+const SEED_VERSION = "v4"; // ← change to v4, v5 etc on each update
 
 function seedData() {
   const saved = Store.g("seedVersion");
@@ -2604,10 +2604,10 @@ function initUI() {
 
 /* ── BOOTSTRAP ── */
 async function init() {
-  try {
-    await openIDB();
-  } catch {}
+  // Step 1 — seed data immediately (no delay)
   seedData();
+
+  // Step 2 — restore logged in user
   const saved = Store.g("currentUser");
   if (saved) {
     const users = getUsers();
@@ -2616,17 +2616,12 @@ async function init() {
       CU = found;
       Store.s("currentUser", found);
     } else {
-      // User not found — session expired after seed update
       CU = null;
       Store.d("currentUser");
-      // Only show message if they were actually logged in before
-      if (saved.id) {
-        setTimeout(() => {
-          MC.info("Session reset after update. Please sign in again 🙏");
-        }, 1500);
-      }
     }
   }
+
+  // Step 3 — restore theme
   const theme = Store.g("theme", "light");
   if (theme === "dark") {
     document.documentElement.setAttribute("data-dark", "");
@@ -2636,7 +2631,8 @@ async function init() {
       if (ico) ico.innerHTML = sunPath;
     });
   }
-  // Wire up auth buttons
+
+  // Step 4 — wire auth buttons
   const lb = document.getElementById("loginBtn");
   if (lb) lb.addEventListener("click", doLogin);
   const sb2 = document.getElementById("signupBtn");
@@ -2647,10 +2643,14 @@ async function init() {
   document.getElementById("suPw")?.addEventListener("keydown", (e) => {
     if (e.key === "Enter") doSignup();
   });
+
+  // Step 5 — render UI immediately
   initUI();
   renderFeed();
   renderStories();
   renderWidgets();
+
+  // Step 6 — notification dots
   const notifs = Store.g("notifs", SEED_NOTIFS);
   if (notifs.some((n) => n.unread)) {
     const d = document.getElementById("ndot");
@@ -2658,15 +2658,15 @@ async function init() {
     const bd = document.getElementById("bnNotifBadge");
     if (bd) bd.style.display = "block";
   }
-  if (!Store.g("welcomed5")) {
-    setTimeout(() => {
-      MC.info(
-        " Welcome to Mandir Community! Check the new Mandir tab for temples, events & satsang.",
-      );
-      Store.s("welcomed5", true);
-    }, 2000);
-  }
+
+  // Step 7 — IDB in background, never blocks render
+  try {
+    await openIDB();
+  } catch {}
 }
+
+// Call init immediately when DOM is ready
+window.addEventListener("DOMContentLoaded", init);
 
 /* ============================================================
    BROWSER / PHONE BACK BUTTON HANDLER
