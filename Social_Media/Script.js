@@ -2634,7 +2634,80 @@ async function init() {
     }, 2000);
   }
 }
-window.addEventListener("DOMContentLoaded", init);
+
+/* ============================================================
+   BROWSER / PHONE BACK BUTTON HANDLER
+   ============================================================ */
+(function () {
+  // Push a state so the browser has something to go "back" from
+  function pushState(name) {
+    history.pushState({ page: name }, "", "");
+  }
+
+  // On page load push initial state
+  window.addEventListener("load", () => {
+    history.replaceState({ page: "home" }, "", "");
+  });
+
+  // Every time gp() is called push a new state
+  const _origGP = window.gp;
+  window.gp = function (page) {
+    _origGP(page);
+    pushState(page);
+  };
+
+  // When user presses phone back button
+  window.addEventListener("popstate", (e) => {
+    // 1. If chat window is open on mobile → close it first
+    const chatWin = document.getElementById("chatWindow");
+    const isChatOpen =
+      chatWin && !chatWin.classList.contains("hide") && window.innerWidth < 641;
+
+    if (isChatOpen) {
+      closeChatWindow();
+      // Push state again so next back press goes to previous page
+      history.pushState({ page: "chats" }, "", "");
+      return;
+    }
+
+    // 2. If old Messages chat view is open → go back to convs list
+    const oldChatView = document.getElementById("chatView");
+    const isOldChatOpen =
+      oldChatView && !oldChatView.classList.contains("hide");
+
+    if (isOldChatOpen) {
+      backToConvs();
+      history.pushState({ page: "messages" }, "", "");
+      return;
+    }
+
+    // 3. If any modal is open → close it
+    const openModal = document.querySelector(".ovl.show");
+    if (openModal) {
+      openModal.classList.remove("show");
+      history.pushState({ page: curPage }, "", "");
+      return;
+    }
+
+    // 4. If story viewer is open → close it
+    const sv = document.getElementById("sv");
+    if (sv && sv.classList.contains("show")) {
+      closeSV();
+      history.pushState({ page: curPage }, "", "");
+      return;
+    }
+
+    // 5. If not on home → go to home
+    if (typeof curPage !== "undefined" && curPage !== "home") {
+      _origGP("home");
+      history.pushState({ page: "home" }, "", "");
+      return;
+    }
+
+    // 6. Already on home → let browser handle (exit app)
+    // Do nothing — default back behavior
+  });
+})();
 
 /* ============================================================
    PULL TO REFRESH — mobile only

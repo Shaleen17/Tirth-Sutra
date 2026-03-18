@@ -2314,7 +2314,12 @@
 
             <div id="chatWindow" class="chat-window hide">
               <div class="chat-win-hdr" id="chatWinHdr">
-                <button class="chat-back-btn" onclick="closeChatWindow()">
+                <button
+                  class="chat-back-btn"
+                  id="chatBackBtn"
+                  onclick="closeChatWindow()"
+                  style="display: flex"
+                >
                   <svg viewBox="0 0 24 24">
                     <polyline points="15 18 9 12 15 6" />
                   </svg>

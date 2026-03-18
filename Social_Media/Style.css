@@ -4098,7 +4098,7 @@ video {
 }
 @media (min-width: 641px) {
   .chat-back-btn {
-    display: none;
+    display: none !important;
   }
   #pgChats.on {
     height: calc(100vh - 0px);
