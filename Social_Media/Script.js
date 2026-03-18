@@ -635,20 +635,46 @@ function esc(s) {
     .replace(/>/g, "&gt;");
 }
 
-/* ── SEED INIT ── */
+/* ============================================================
+   SEED DATA — version controlled
+   Change VERSION number every time you update seed data
+   ============================================================ */
+const SEED_VERSION = "v3"; // ← change to v4, v5 etc on each update
+
 function seedData() {
-  if (!Store.g("seeded")) {
+  const saved = Store.g("seedVersion");
+
+  // If version changed or never seeded → wipe and reseed everything
+  if (saved !== SEED_VERSION) {
+    // Clear all old cached data
+    Store.d("users");
+    Store.d("posts");
+    Store.d("stories");
+    Store.d("notifs");
+    Store.d("convs");
+    Store.d("videos");
+    Store.d("liveStreams");
+    Store.d("vidStories");
+    Store.d("seeded");
+    Store.d("seen");
+    Store.d("vidStoriesSeen");
+    Store.d("chatMessages");
+    Store.d("chatGroups");
+
+    // Save fresh seed data
     Store.s("users", SEED_USERS);
     Store.s("posts", SEED_POSTS);
     Store.s("stories", SEED_STORIES);
     Store.s("notifs", SEED_NOTIFS);
     Store.s("convs", SEED_CONVS);
+    Store.s("videos", SEED_VIDEOS);
+    Store.s("liveStreams", SEED_LIVE);
+    Store.s("vidStories", SEED_VID_STORIES);
     Store.s("seeded", true);
+    Store.s("seedVersion", SEED_VERSION);
+
+    console.log("✅ Seed data updated to", SEED_VERSION);
   }
-  Store.s("stories", SEED_STORIES); // ← added this line
-  Store.s("videos", SEED_VIDEOS);
-  Store.s("liveStreams", SEED_LIVE);
-  Store.s("vidStories", SEED_VID_STORIES);
 }
 
 /* ── AUTH ── */
@@ -2590,8 +2616,15 @@ async function init() {
       CU = found;
       Store.s("currentUser", found);
     } else {
+      // User not found — session expired after seed update
       CU = null;
       Store.d("currentUser");
+      // Only show message if they were actually logged in before
+      if (saved.id) {
+        setTimeout(() => {
+          MC.info("Session reset after update. Please sign in again 🙏");
+        }, 1500);
+      }
     }
   }
   const theme = Store.g("theme", "light");
