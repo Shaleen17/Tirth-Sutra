@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -36,7 +36,7 @@
                 `;
             document.documentElement.insertAdjacentHTML(
               "beforeend",
-              accessDeniedHTML
+              accessDeniedHTML,
             );
           });
         }
@@ -87,7 +87,7 @@
       /* --- New Footer Styles --- */
       .footer-bg {
         background-color: #4a2e2a; /* Your deep brown color */
-        background-image: url('../assets/images/footer_background.png');
+        background-image: url("../assets/images/footer_background.png");
         background-blend-mode: multiply;
         background-size: 400px;
         color: #fdfbf8;
@@ -192,7 +192,11 @@
                 src="../assets/images/nilachakra_logo.jpg"
                 alt="The Nilachakra, emblem of Tirth Sutra"
                 class="w-full h-auto rounded-lg shadow-md object-cover aspect-square"
-                onerror="this.onerror=null;this.src='https://placehold.co/400x400/8C3B2A/FFFFFF?text=Nilachakra';"
+                onerror="
+                  this.onerror = null;
+                  this.src =
+                    'https://placehold.co/400x400/8C3B2A/FFFFFF?text=Nilachakra';
+                "
               />
             </div>
           </div>
@@ -205,7 +209,11 @@
                 src="../assets/images/shaleen.jpg"
                 alt="Shaleen Singh, Founder of Tirth Sutra"
                 class="w-full h-auto rounded-lg shadow-md object-cover aspect-square"
-                onerror="this.onerror=null;this.src='https://placehold.co/400x400/FBEEDB/4A2E2A?text=Shaleen+Singh';"
+                onerror="
+                  this.onerror = null;
+                  this.src =
+                    'https://placehold.co/400x400/FBEEDB/4A2E2A?text=Shaleen+Singh';
+                "
               />
             </div>
             <div class="md:col-span-2">
@@ -246,55 +254,6 @@
               </p>
             </div>
           </div>
-
-          <!-- === CO-FOUNDER SECTION START === -->
-          <hr class="my-12 border-t-2 border-[#FBEEDB]" />
-
-          <div class="md:grid md:grid-cols-3 md:gap-12 items-center">
-            <div class="md:col-span-2">
-              <h2
-                class="text-3xl font-bold text-[#4a2e2a] mb-4"
-                data-lang-key="cofounderTitle"
-              >
-                A Message from the Co-founder
-              </h2>
-              <p class="text-lg leading-relaxed" data-lang-key="cofounderText1">
-                My name is Prasham Tiwari from Mumbai. I am passionate about
-                blending tradition with technology to make spiritual experiences
-                more accessible and meaningful. Through this website, my aim is
-                to guide devotees with authentic insights into the origins,
-                significance, and proper way of taking darshan.
-              </p>
-              <p
-                class="text-lg leading-relaxed mt-4"
-                data-lang-key="cofounderText2"
-              >
-                My vision is to simplify and enrich every devotee’s
-                journey—bridging the gap between spirituality and convenience—so
-                that sacred knowledge and guidance are available at the click of
-                a button.
-              </p>
-              <p
-                class="text-lg leading-relaxed mt-4"
-                data-lang-key="cofounderText3"
-              >
-                As part of this initiative, I also focus on building and
-                strengthening networks, both digital and human. With strong
-                networking skills, I ensure meaningful collaborations, connect
-                with temple authorities, and expand our platform’s reach so that
-                more people can benefit from this effort.
-              </p>
-            </div>
-            <div class="md:col-span-1 mb-8 md:mb-0 mt-8 md:mt-0">
-              <img
-                src="../assets/images/WhatsApp Image 2025-10-01 at 00.00.55_c7e1f906.jpg"
-                alt="Prasham Tiwari, Co-founder of Tirth Sutra"
-                class="w-full h-auto rounded-lg shadow-md object-cover aspect-square"
-                onerror="this.onerror=null;this.src='https://placehold.co/400x400/8C3B2A/FFFFFF?text=Prasham+Tiwari';"
-              />
-            </div>
-          </div>
-          <!-- === CO-FOUNDER SECTION END === -->
 
           <hr class="my-12 border-t-2 border-[#FBEEDB]" />
 
